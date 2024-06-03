@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>    
 
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="disciplinas.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -30,11 +30,11 @@
 
             <div class="element">
                 <img src="./imgs/house.svg" alt="imagem de home">
-                <a href="#" class="selected">Dashboard</a>
+                <a href="#">Dashboard</a>
             </div>
             <div class="element">
                 <img src="./imgs/book.svg" alt="imagem de home">
-                <a href="#">Notas</a>
+                <a href="#" class="selected">Disciplinas</a>
             </div>
 
            </nav>
@@ -49,25 +49,38 @@
 
             <div class="main-title">
 
-                <h1>Dashboard</h1>
-                <p class="bemvindo">Bem vindo, Aluno</p>
+                <button class="back-btn"><img src="./imgs/arrowBack.svg" alt=""></button>
+                <h1 class="subject-name">Nome da Disciplina</h1>
 
             </div>
 
             <div class="main-hero">
 
-                <h2>Disciplinas</h2>
+                <h2>Quizzes</h2>
+                <div class="main-hero-information">
+                    <p>Nome</p>
+                    <p>Data de Entrega</p>
+                </div>
 
                 <ul class="main-list">
+                    <li class="main-list-content">
+                        <button class="main-list-btn">
+                            <div class="quizz-name-content">
+                                <p>Nome do Quizz</p>
+                                <span class="tag-quizz"><p>Exercício</p></span>
+                            </div>
+                            <p class="date">Data de Entrega</p>
+                        </button>
+                    </li>
                 </ul>
 
             </div>
 
 
-            <div class="empty-subjects">
+            <div class="empty-quizz">
 
                 <img src="./imgs/clipboard.svg" alt="">
-                <h2>Você ainda não possui disciplinas cadastradas</h2>
+                <h2>A disciplina não possui nenhum Quizz cadastrado</h2>
 
             </div>
 
@@ -75,7 +88,7 @@
 
     </div>
 
-    <script src="/scripts/indexPage/index.js" type="module"></script>
+    <script src="/scripts/disciplinasPage/index.js" type="module"></script>
 </body>
 
 </html>

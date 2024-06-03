@@ -95,17 +95,27 @@ body, a, button{
     flex: 1 0 70vh;
     display: flex;
     flex-direction: column;
-    padding-left: 3rem;
+    padding-left: 5rem;
 }
 
 .main-title {
     margin: 2.4rem 0;
+    display: flex;
 }
 
-.main-title p {
-    font-weight: 400;
-    color: #44403C;
-    font-size: 24px;
+.main-title button{
+    margin-left: -3rem;
+    margin-right: 1.3rem;
+    margin-top: 3px;
+    height: 39px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.main-title button:hover{
+    background-color: #b1b1b1b4;
+    border-radius: 999px;
 }
 
 .main-title h1 {
@@ -125,6 +135,15 @@ body, a, button{
     margin-bottom: 0.8rem;
 }
 
+.main-hero-information {
+    display: flex;
+    justify-content: space-between;
+    width: 830px;
+    padding-bottom: 0.8rem;
+    color: #78716C;
+    font-size: 14px;
+}
+
 .main-list-btn {
     background-color: #F5F5F5;
     padding: 16px 0;
@@ -134,10 +153,39 @@ body, a, button{
     width: 896px;
     cursor: pointer;
     color: #1C1917;
-    text-align: left;
-    font-size: 18px;
     font-weight: 400;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-list-btn p {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.main-list-btn .date {
+    color: #57534E;
+    font-size: 14px;
+    padding-right: 4.1rem;
+}
+
+.quizz-name-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.tag-quizz p{
+    background-color: #E0E7FF;
+    color: #57534E;
+    border: 1px solid #57534E;
+    border-radius: 9999px;
+    font-size: 14px;
+    padding: 0 12px;
 }
 
 .main-list-btn:hover{
@@ -166,24 +214,22 @@ body, a, button{
     transform: translateY(-50%);
 }
 
-.empty-subjects {
+/* Parte de disciplina sem nenhum quizz */
+.empty-quizz {
     padding-top: 8rem;
-    padding-left: 5rem;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
+    justify-content: center;
     gap: 1rem;
-}
-
-.empty-subjects img {
-    padding-left: 8.4rem;
+    padding-right: 25rem;
 }
 
 
-.empty-subjects h2 {
+.empty-quizz h2 {
     font-size: 14px;
     color: #44403C;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .hidden {

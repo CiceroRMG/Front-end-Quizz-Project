@@ -2,5 +2,5 @@
 export function welcomeMessageModifier(usuario) {
     const welcomeMsg = document.body.querySelector(".bemvindo")
     
-    welcomeMsg.innerText = `Bem vindo, ${usuario.nome}`
+    welcomeMsg.innerText = `Bem vindo, ${usuario.nome} - #${usuario.matricula}`
 }
