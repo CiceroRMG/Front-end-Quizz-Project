@@ -28,5 +28,12 @@ export async function getOnBackDisciplinaById(id) {
     return disciplina;
 }
 
+// o id parametro dessa função pode ser tanto um id de um quizz quanto o id de uma disciplina
+export async function getOnBackQuizzesById(id) {
+    const pegando = await fetch(`http://localhost:3333/quizzes/${id}`)
+    const data = await pegando.json()
 
+    const quizz = data.quizz
+    return quizz
+}
 

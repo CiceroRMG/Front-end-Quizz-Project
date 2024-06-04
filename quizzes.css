@@ -92,14 +92,18 @@ body, a, button{
 .main {
     border-radius: 24px 0 0 24px;
     background-color: #fafafa;
-    flex: 1 0 70vh;
+    flex: 1 0 100vh;
     display: flex;
-    flex-direction: column;
     padding-left: 5rem;
+    justify-content: space-between;
+}
+
+.main-content{
+    max-width: 600px;
 }
 
 .main-title {
-    margin: 2.4rem 0;
+    margin-top: 2.4rem;
     display: flex;
 }
 
@@ -124,6 +128,13 @@ body, a, button{
     font-size: 30px;
 }
 
+.main-subtitle {
+    color: #44403C;
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 2.2rem;
+}
+
 .main-hero {
     margin: 0.5rem 0;
 }
@@ -137,70 +148,104 @@ body, a, button{
 
 .main-hero-information {
     display: flex;
-    justify-content: space-between;
-    width: 830px;
+    gap: 2rem;
     padding-bottom: 0.8rem;
     color: #78716C;
     font-size: 14px;
+    padding-bottom: 2rem;
 }
 
-.main-list-btn {
-    background-color: #F5F5F5;
-    padding: 16px 0;
-    padding-left: 20px;
-    border: 1px solid #E7E5E4;
-    border-radius: 12px;
-    width: 896px;
-    cursor: pointer;
-    color: #1C1917;
-    font-weight: 400;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
-
+.informations-elements {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    gap: 0.6rem;
+    color: #3730A3;
 }
 
-.main-list-btn p {
+.orientacao h1{
+    font-size: 20px;
+    color: #44403C;
+    font-weight: 600;
+    padding-bottom: 0.8rem;
+}
+
+.orientacao p{
     font-size: 16px;
+    color: #44403C;
     font-weight: 400;
+    padding-bottom: 2rem;
 }
 
-.main-list-btn .date {
-    color: #57534E;
-    font-size: 14px;
-    padding-right: 5.1rem;
+
+.data-entrega-div {
+    padding-bottom: 2rem;
+    color: #44403C;
+    font-size: 16px;
+    font-weight: 500;
 }
 
-.quizz-name-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
+.data-entrega-div span {
+    color: #3730A3;
 }
 
-.tag-quizz p{
-    background-color: #E0E7FF;
-    color: #57534E;
-    border: 1px solid #57534E;
-    border-radius: 9999px;
-    font-size: 14px;
-    padding: 0 12px;
+.start-btn{
+    background-color: #6366F1;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    padding: 12px 28px;
+    cursor: pointer;
 }
 
-.main-list-btn:hover{
-    border: 1px solid #FEF08A;
-}
-
-.main-list-content {
-    list-style: none;
-}
-
-.main-list {
+.main-try {
+    background-color: #F5F5F5;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    height: 90dvh;
+    width: 320px;
+    padding: 32px 20px;
+    border: 1px solid #E5E5E5;
+    border-radius: 24px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+    text-align: center;
+    margin-top: 40px;
+    margin-right: 6rem;
+    justify-self: flex-end;
 }
+
+.main-try h2 {
+    font-size: 20px;
+    color: #44403C;
+    font-weight: 500;
+    padding-bottom: 4rem;
+}
+
+.main-try p {
+    font-size: 16px;
+    color: #44403C;
+    font-weight: 600;
+    padding-bottom: 1rem;
+}
+
+.main-try span {
+    font-size: 16px;
+    color: #44403C;
+    font-weight: 400;
+}
+
+.div-tentativas {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.div-sem-tentativas p {
+    font-weight: 500;
+    color: #78716C;
+    margin: 50% 0;
+}
+
+
 
 .selected::before {
     content: "";
@@ -214,23 +259,6 @@ body, a, button{
     transform: translateY(-50%);
 }
 
-/* Parte de disciplina sem nenhum quizz */
-.empty-quizz {
-    padding-top: 8rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding-right: 25rem;
-}
-
-
-.empty-quizz h2 {
-    font-size: 14px;
-    color: #44403C;
-    font-weight: 500;
-}
 
 .hidden {
     display: none;
