@@ -4,7 +4,7 @@ import { getOnBackDisciplinaById } from "../fetchDbFunctions.js"
 export async function informationsPageOfQuizzModifier(Quizz) {
     // muda o nome do quizz
     const quizzName = document.body.querySelector(".quizz-name")
-    const quizz = Quizz[0]
+    const quizz = Quizz
     quizzName.innerText = `${quizz.titulo}`
 
     // muda o nome da disciplina

@@ -18,7 +18,7 @@ export function createQuizzesOnPage(Quizz){
     const btn = document.createElement("button")
     btn.classList.add("main-list-btn")
     btn.addEventListener('click', ()=>{
-        window.location.href = `http://127.0.0.1:5500/quizz.html?id=${Quizz._id}`
+        window.location.href = `http://127.0.0.1:5500/html/quizz.html?id=${Quizz._id}`
     })
     btn.innerHTML = 
         `

@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: "Poppins", sans-serif;
+    background-image: url(../imgs/background-login.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+body, a, button{
+    font-family: "Poppins", sans-serif;
+}
+
+.header-container{
+    display: flex;
+    align-items: center;
+    padding-top: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.header-container h1{
+    font-size: 1.4rem;
+    color: #334155;
+}
+
+.app{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    justify-self: center;
+}
+
+.app section {
+    background-color: #FAFAFA;
+    border: 1px solid #E5E5E5;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 11px 20px 0px rgba(0, 0, 0, 0.05);
+    border-radius: 1.25rem;
+    padding: 89px 65px;
+    margin-top: 1.6rem;
+}
+
+.main-title h1 {
+    font-size: 36px;
+    color: #1C1917;
+    text-align: center;
+    font-weight: 500;
+}
+
+.border{
+    border: 1px solid #D4D4D4;
+    width: 15rem;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+.section-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.form-input{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.form-input label {
+    font-size: 1rem;
+}
+
+.form-input input {
+    background-color: #F5F5F5;
+    border: 1px solid #E5E5E5;
+    padding: 12px 8px;
+    border-radius: 6px;
+    width: 26rem;
+    height: 3rem;
+}
+
+.form-input input:focus {
+    outline: 2px solid #6365f1e7;
+}
+
+.form-input input::placeholder{
+    font-size: 16px;
+    color: #A8A29E;
+}
+
+.section-form a {
+    text-align: center;
+    color: #312E81;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+.section-form a:hover {
+    color: #6365f1e7;
+}
+
+.section-form button {
+    background-color: #6366F1;
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    width: 20rem;
+    cursor: pointer;
+}
+
+.section-form button:hover {
+    background-color: #6365f1e7;
+}
+
+.fail {
+    color: #EF4444;
+    font-size: 0.8rem;
+}
+
+.hidden {
+    display: none;
+}

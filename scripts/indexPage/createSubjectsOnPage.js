@@ -12,7 +12,7 @@ export function createSubjectsOnPage(Disciplina){
     btn.classList.add("main-list-btn")
     btn.innerText = `${Disciplina.nome.toUpperCase()} - ${Disciplina.ano}/${Disciplina.semestre}`
     btn.addEventListener('click', ()=>{
-        window.location.href = `http://127.0.0.1:5500/disciplina.html?id=${Disciplina._id}`
+        window.location.href = `http://127.0.0.1:5500/html/disciplina.html?id=${Disciplina._id}`
     })
 
     li.append(btn)

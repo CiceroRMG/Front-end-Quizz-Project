@@ -12,8 +12,9 @@ body, a, button{
     display: flex;
     flex-direction: column;
     background-color: #1E1B4B;
-    width: 240px;
-    min-width: 180px;
+    max-width: 15rem;
+    width: 100%;
+    min-width: 11.25rem;
 }
 
 .header a {
@@ -30,6 +31,7 @@ body, a, button{
     padding-left: 1.2rem;
     color: #EEF2FF;
     flex: 1 0 15vh;
+    min-height: 7.3rem;
 }
 
 .logo h1 {
@@ -49,6 +51,7 @@ body, a, button{
     flex-direction: column;
     flex: 1 0 65vh;
     padding-left: 2rem;
+    min-width: 11.25rem;
 }
 
 .element{
@@ -96,10 +99,12 @@ body, a, button{
     display: flex;
     flex-direction: column;
     padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 .main-title {
     margin: 2.4rem 0;
+    min-width: 3rem;
 }
 
 .main-title p {
@@ -116,6 +121,8 @@ body, a, button{
 
 .main-hero {
     margin: 0.5rem 0;
+    min-width: 3rem;
+    padding-right: 2rem;
 }
 
 .main-hero h2 {
@@ -128,10 +135,11 @@ body, a, button{
 .main-list-btn {
     background-color: #F5F5F5;
     padding: 16px 0;
-    padding-left: 20px;
+    padding-left: 1.25rem;
     border: 1px solid #E7E5E4;
     border-radius: 12px;
-    width: 896px;
+    max-width: 56rem;
+    width: 90%;
     cursor: pointer;
     color: #1C1917;
     text-align: left;
@@ -189,3 +197,29 @@ body, a, button{
 .hidden {
     display: none;
 }
+
+@media (max-width: 1100px){
+    .main-list-btn {
+        width: 100%;
+        max-width: 30rem;
+    }
+    .main-hero {
+        margin: 0.5rem 0;
+        min-width: none;
+        max-width: 30rem;
+        width: 90%;
+        padding-right: 1rem;
+    }
+    .main-title {
+        margin: 2.4rem 0;
+        max-width: 30rem;
+        width: 90%;
+    }
+    .main{
+        width: 100%;
+        max-width: 80vw;
+    }
+}
+
+
+
