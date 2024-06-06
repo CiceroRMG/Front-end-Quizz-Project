@@ -8,7 +8,7 @@ body{
     font-family: "Poppins", sans-serif;
     background-image: url(../imgs/background-login.svg);
     background-size: cover;
-    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 body, a, button{
@@ -129,4 +129,75 @@ body, a, button{
 
 .hidden {
     display: none;
+}
+
+@media (max-width: 1200px){
+    body{
+        height: 100%;
+        width: 100%;
+        max-width: 100vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-input input {
+        width: 70vw;
+    }
+
+    .app section{
+        padding: 5rem 2.5rem;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-form a{
+        font-size: 14px;
+    }
+    .section-form button{
+        width: 35vw;
+        font-size: 14px;
+        margin-top: 2rem;
+    }
+}
+
+
+@media (max-width: 500px){
+    body{
+        height: 100vh;
+        width: 100%;
+        max-width: 100vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-input input {
+        width: 70vw;
+    }
+
+    .app section{
+        padding: 5rem 2.5rem;
+        margin-top: 5rem;
+    }
+
+    .section-form a{
+        font-size: 11px;
+    }
+    .section-form button{
+        width: 35vw;
+        font-size: 14px;
+        margin-top: 2rem;
+    }
+}
+
+
+@media (max-width: 389px){
+    .app section{
+        padding: 3rem 2.5rem;
+        margin-top: 1.5rem;
+    }
+    .section-form button{
+        width: 35vw;
+        font-size: 14px;
+        margin-top: 0;
+    }
 }
