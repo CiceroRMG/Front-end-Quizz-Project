@@ -2,7 +2,7 @@ const form = document.querySelector('.section-form')
 form.addEventListener('submit', authenticationLogin)
 
 // função de autenticação do usuário
-async function authenticationLogin(event) {
+export async function authenticationLogin(event) {
     event.preventDefault()
 
     const loginValue = document.querySelector('#login').value
@@ -16,6 +16,7 @@ async function authenticationLogin(event) {
       });
 
     const backResponse = await sendToBackForAuthentication.json()
+
     // A propriedade ok é um valor booleano que será true se o status da resposta estiver no intervalo de 200-299
     if (sendToBackForAuthentication.ok) {
         localStorage.setItem('token', backResponse.token);  // Armazenar o token no localStorage
