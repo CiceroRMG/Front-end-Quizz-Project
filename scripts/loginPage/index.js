@@ -4,16 +4,32 @@ form.addEventListener('submit', authenticationLogin)
 // função de autenticação do usuário
 export async function authenticationLogin(event) {
     event.preventDefault()
+    toogleLoginData.correctData()
 
     const loginValue = document.querySelector('#login').value
     const passwordValue = document.querySelector('#password').value
 
-    const sendToBackForAuthentication = await fetch('http://localhost:3333/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: loginValue, senha: passwordValue })
+    let email, matricula, sendToBackForAuthentication;
 
-      });
+    // checa se tem @ ou não no valor, pra diferenciar se é um email ou matricula
+    if (loginValue.includes('@')) {
+        email = loginValue;
+        sendToBackForAuthentication = await fetch('http://localhost:3333/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, senha: passwordValue })
+  
+        });
+    } else {
+        matricula = loginValue;
+        sendToBackForAuthentication = await fetch('http://localhost:3333/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ matricula: matricula, senha: passwordValue })
+  
+        });
+    }
+  
 
     const backResponse = await sendToBackForAuthentication.json()
 
@@ -22,6 +38,23 @@ export async function authenticationLogin(event) {
         localStorage.setItem('token', backResponse.token);  // Armazenar o token no localStorage
         window.location.href = '/html/index.html';
       } else {
-        alert('Email ou senha incorretos');
+        toogleLoginData.incorrectData();
       }
+}
+
+
+const toogleLoginData = {
+  span: document.querySelectorAll('.fail'),
+
+  incorrectData() {
+    this.span.forEach(span => {
+      span.classList.remove('hidden')
+    })
+  },
+
+  correctData() {
+    this.span.forEach(span => {
+      span.classList.add('hidden')
+    })
+  }
 }

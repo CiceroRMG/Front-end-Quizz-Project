@@ -1,30 +1,20 @@
 import { getOnBackDisciplinaById } from "../fetchDbFunctions.js"
 import { takeSubjectIdByParams } from "./takeSubjectIdByParams.js"
 
-export async function checkIfStudentIsInSubject(token, arrayDeDisciplinasDoAluno){
-    if(!arrayDeDisciplinasDoAluno){
-        return console.log("Esse aluno não possui disciplinas")
+// tenho que fazer isso no back e não no front
+// sempre lembrar que o front é o que roda no pc da pessoa
 
-    }
+export async function checkIfStudentIsInSubject(objeto){
+
     try {
 
-        let check = false
-        const disciplinaAtual = (await getOnBackDisciplinaById(token, takeSubjectIdByParams())).disciplina._id
-    
-        for (const objetoAlunoDisciplina of arrayDeDisciplinasDoAluno){
-            const disciplinaDoAluno = objetoAlunoDisciplina.disciplina_id
-    
-            if(disciplinaDoAluno === disciplinaAtual){
-                check = true
-            }
-        }
-    
-        if(!check){
-            alert('Esse usuario não tem permissao para entrar na disciplina')
-            return history.back()
-        }
-    
-        return console.log('Usuario possui a disciplina')
+       if(objeto.status){
+        alert(objeto.msg)
+        history.back()
+       } else{
+        console.log(objeto.msg)
+       }
+        
 
     } catch(error){
         console.log(error)

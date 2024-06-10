@@ -34,10 +34,24 @@ export async function getOnBackDisciplinasUsersTable(token, id) {
     const pegando = await fetch(`http://localhost:3333/usersDisciplinas/${id}`, {
         headers: {'authorization': token },
     })
+
     const data = await pegando.json()
 
     const disciplinasComAlunos = data.alunoDisciplina
     return {disciplinasComAlunos, token}
+}
+
+export async function checkOnBackIfUserInDisciplina(token, userId, subjectId) {
+    const pegando = await fetch(`http://localhost:3333/usersDisciplinas/${userId}/${subjectId}`, {
+        headers: {'authorization': token },
+    })
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Usuário não tem permissão para acessar a disciplina' }
+    }
+
+    const data = await pegando.json()
+    return data
 }
 
 // função pega a disciplina no db pelo parametro id 

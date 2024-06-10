@@ -1,4 +1,4 @@
-import { getOnBackDisciplinaById, getOnBackQuizzesById, getOnBackDisciplinasUsersTable, getOnBackUserByToken } from "../fetchDbFunctions.js"
+import { getOnBackDisciplinaById, getOnBackQuizzesById, getOnBackUserByToken, checkOnBackIfUserInDisciplina } from "../fetchDbFunctions.js"
 import { takeSubjectIdByParams } from "./takeSubjectIdByParams.js"
 import { backPage } from "./backBtn.js"
 import { nameOfSubjectModifier } from "./nameOfSubjectModifier.js"
@@ -8,20 +8,29 @@ import { getTokenOnLocalStorage } from "../getTokenOnLocalStorage.js"
 import { checkIfStudentIsInSubject } from "./checkIfStudentIsInSubject.js"
 
 const token = getTokenOnLocalStorage()
+backPage()
 
 // verifica se o aluno pussui a disciplina para ter acesso
 
-const takeUserId = getOnBackUserByToken(getTokenOnLocalStorage())
-takeUserId
-    .then(objeto => getOnBackDisciplinasUsersTable(objeto.token, objeto.usuario._id))
-    .then(objeto => checkIfStudentIsInSubject(objeto.token, objeto.disciplinasComAlunos))
-
-
+async function checkUserSubjectRelation(token) {
+    try {
+        const takeUserId = await getOnBackUserByToken(token)
+        const subjectId = await getOnBackDisciplinaById(token, takeSubjectIdByParams())
+        
+        const response = await checkOnBackIfUserInDisciplina(token, takeUserId.usuario._id, subjectId.disciplina._id)
+        
+        checkIfStudentIsInSubject(response)
+    } catch (error) {
+        console.log(error)
+    }
+}
+checkUserSubjectRelation(token)    
+    
 // essa parte pega o Id no parametro e ve qual disciplina corresponde, depois coloca o nome da disciplina no titulo
+
 const takeDisciplinaById = getOnBackDisciplinaById(token, takeSubjectIdByParams())
 takeDisciplinaById.then(objeto => nameOfSubjectModifier(objeto.disciplina))
 
-backPage()
 
 // essa parte pega os quizzes da disciplina pelo parametro -> id da disciplina clicada
 const takeAllQuizzesOfASubject = getOnBackQuizzesById(token, takeSubjectIdByParams())
