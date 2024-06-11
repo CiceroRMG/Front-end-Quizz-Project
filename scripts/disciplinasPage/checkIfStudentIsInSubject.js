@@ -1,14 +1,14 @@
-import { getOnBackDisciplinaById } from "../fetchDbFunctions.js"
-import { takeSubjectIdByParams } from "./takeSubjectIdByParams.js"
-
 // tenho que fazer isso no back e não no front
 // sempre lembrar que o front é o que roda no pc da pessoa
+
+import { getOnBackUserByToken, getOnBackDisciplinaById, checkOnBackIfUserInDisciplina, getOnBackQuizzesById } from "../fetchDbFunctions.js"
+import { takeSubjectIdByParams } from "./takeSubjectIdByParams.js"
 
 export async function checkIfStudentIsInSubject(objeto){
 
     try {
 
-       if(objeto.status){
+       if(objeto.status === 404){
         alert(objeto.msg)
         history.back()
        } else{
@@ -20,4 +20,17 @@ export async function checkIfStudentIsInSubject(objeto){
         console.log(error)
     }
 
+}
+
+export async function checkUserSubjectRelation(token) {
+    try {
+        const takeUserId = await getOnBackUserByToken(token)
+        const subjectId = await getOnBackDisciplinaById(token, takeSubjectIdByParams())
+        
+        const response = await checkOnBackIfUserInDisciplina(token, takeUserId.usuario._id, subjectId.disciplina._id)
+        
+        checkIfStudentIsInSubject(response)
+    } catch (error) {
+        console.log(error)
+    }
 }

@@ -23,6 +23,10 @@ export async function getOnBackUserByToken(token) {
         body: JSON.stringify({ token })
       });
 
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Usuário não tem permissão para acessar a disciplina' }
+    }
+
     const data = await pegando.json()
 
     const usuario = data.usuario
