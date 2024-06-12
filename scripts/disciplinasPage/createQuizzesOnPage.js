@@ -1,5 +1,6 @@
 // recebe o objeto dos quizzes e criar as li de cada quizz com o link passando o ID
 import { toggleQuizzes } from "./toggleQuizzes.js"
+import { based_url } from "../config.js"
 
 export function createQuizzesOnPage(Quizz){
     toggleQuizzes.notEmptyQuizzes()
@@ -18,7 +19,7 @@ export function createQuizzesOnPage(Quizz){
     const btn = document.createElement("button")
     btn.classList.add("main-list-btn")
     btn.addEventListener('click', ()=>{
-        window.location.href = `http://127.0.0.1:5500/html/quizz.html?id=${Quizz._id}`
+        window.location.href = `${based_url}/html/quizz.html?id=${Quizz._id}`
     })
     btn.innerHTML = 
         `

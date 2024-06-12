@@ -268,6 +268,25 @@ body, a, button{
     }
 }
 
+@media (max-width: 790px){
+    .main{
+        max-width: 90vw;
+    }
+    .header{
+        width: 5.5rem;
+        min-width: 5.5rem;
+    }
+    .element a {
+        display: none;
+    }
+    .nav-footer span{
+        display: none;
+    }
+    .logo h1{
+        display: none;
+    }
+}
+
 @media (max-width: 500px){
     .app {
         flex-direction: column;
@@ -367,4 +386,67 @@ body, a, button{
         text-align: center;
     }
 
+}
+
+@media (max-width: 350px){
+    .logo{
+        flex: auto;
+    }
+    .nav{
+        flex: 1 0 65vw;
+    }
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 3px;
+    background: 
+      radial-gradient(farthest-side,#ffa516 95%,#0000) 50% 0/12px 12px no-repeat,
+      radial-gradient(farthest-side,#0000 calc(100% - 5px),#ffa516 calc(100% - 4px)) content-box;
+    animation: l6 2s infinite ;
+    position: absolute;
+    right: 50vw;
+    top: 50vh;
+  }
+  @keyframes l6 {to{transform: rotate(1turn)}}
+  
+
+
+
+/* animação de aparição do conteudo */
+.fade-in {
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
 }

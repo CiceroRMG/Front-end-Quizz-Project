@@ -72,6 +72,7 @@ body, a, button{
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
+    position: relative;
 }
 
 .form-input label {
@@ -122,9 +123,15 @@ body, a, button{
     background-color: #6365f1e7;
 }
 
-.fail {
+.fail span {
+    position: absolute;
     color: #EF4444;
     font-size: 0.8rem;
+    bottom: -1.5rem;
+}
+
+.fail input{
+    outline: 1px solid #EF4444;
 }
 
 .hidden {
@@ -141,7 +148,7 @@ body, a, button{
     }
 
     .form-input input {
-        width: 70vw;
+        width: 60vw;
     }
 
     .app section{
@@ -200,4 +207,39 @@ body, a, button{
         font-size: 14px;
         margin-top: 0;
     }
+}
+
+
+/* animação de aparição do conteudo */
+.fade-in {
+    animation: fadeIn ease 1.5s;
+    -webkit-animation: fadeIn ease 1.5s;
+    -moz-animation: fadeIn ease 1.5s;
+    -o-animation: fadeIn ease 1.5s;
+    -ms-animation: fadeIn ease 1.5s;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
 }

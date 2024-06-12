@@ -1,4 +1,4 @@
-import { getOnBackUserByToken, getOnBackQuizzesById, checkOnBackIfUserInDisciplina, getOnBackQuizzesById } from "../fetchDbFunctions.js"
+import { getOnBackUserByToken, getOnBackQuizzesById, checkOnBackIfUserInDisciplina } from "../fetchDbFunctions.js"
 import { takeSubjectIdByParams } from "../disciplinasPage/takeSubjectIdByParams.js"
 import { checkIfStudentIsInSubject } from "../disciplinasPage/checkIfStudentIsInSubject.js"
 
@@ -13,6 +13,7 @@ export async function checkUserQuizzRelation(token) {
         
         checkIfStudentIsInSubject(response)
     } catch (error) {
+        history.back()
         console.log(error)
     }
 }

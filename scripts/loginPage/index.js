@@ -20,7 +20,7 @@ export async function authenticationLogin(event) {
           body: JSON.stringify({ email: email, senha: passwordValue })
   
         });
-    } else {
+    } else if(loginValue.lenght == "8") {
         matricula = loginValue;
         sendToBackForAuthentication = await fetch('http://localhost:3333/login', {
           method: 'POST',
@@ -28,6 +28,8 @@ export async function authenticationLogin(event) {
           body: JSON.stringify({ matricula: matricula, senha: passwordValue })
   
         });
+    } else {
+      return toogleLoginData.incorrectData()
     }
   
 
@@ -44,17 +46,45 @@ export async function authenticationLogin(event) {
 
 
 const toogleLoginData = {
-  span: document.querySelectorAll('.fail'),
+  input: document.querySelectorAll('.form-input'),
+  span: document.querySelector('.span'),
 
   incorrectData() {
-    this.span.forEach(span => {
-      span.classList.remove('hidden')
+    this.input.forEach(input => {
+      input.classList.add('fail')
+      this.span.classList.remove('hidden')
     })
   },
 
   correctData() {
-    this.span.forEach(span => {
-      span.classList.add('hidden')
+    this.input.forEach(input => {
+      input.classList.remove('fail')
+      this.span.classList.add('hidden')
     })
   }
 }
+
+
+// se o usuario ja estiver logado ele não pode voltar pra tela de login se ele não deslogar
+async function checkIfValidToken(token){
+  const whateverReq = await getOnBackUserByToken(token)
+  if (whateverReq.status === 401){
+      console.log("Não possui token")
+      return false
+  } else {
+      return true
+  }
+}
+
+function userLogged(){
+    const token = window.localStorage.getItem('token')
+    if(token){
+      if(checkIfValidToken(token)){
+        window.location.href = '/html/index.html';
+      }
+    } else {
+      console.log("Usuario não esta logado ou token expirado")
+    }
+
+}
+userLogged()
