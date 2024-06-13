@@ -37,7 +37,8 @@ export async function authenticationLogin(event) {
 
     // A propriedade ok é um valor booleano que será true se o status da resposta estiver no intervalo de 200-299
     if (sendToBackForAuthentication.ok) {
-        localStorage.setItem('token', backResponse.token);  // Armazenar o token no localStorage
+        localStorage.setItem('token', backResponse.token);
+        localStorage.setItem('refreshToken', backResponse.refreshToken); 
         window.location.href = '/html/index.html';
       } else {
         toogleLoginData.incorrectData();

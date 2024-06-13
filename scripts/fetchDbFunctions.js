@@ -33,6 +33,8 @@ export async function getOnBackUserByToken(token) {
     return { usuario, token }
 }
 
+
+
 // função pega o usuario-disciplina no db pelo parametro id -> o parametro id pode ser tanto um id de aluno quanto um id de disciplina
 export async function getOnBackDisciplinasUsersTable(token, id) {
     const pegando = await fetch(`http://localhost:3333/usersDisciplinas/${id}`, {
@@ -79,4 +81,6 @@ export async function getOnBackQuizzesById(token, id) {
     const quizz = data.quizz
     return {quizz, token}
 }
+
+
 
