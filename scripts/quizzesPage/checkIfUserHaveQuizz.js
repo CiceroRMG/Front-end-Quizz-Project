@@ -6,10 +6,10 @@ import { checkIfStudentIsInSubject } from "../disciplinasPage/checkIfStudentIsIn
 export async function checkUserQuizzRelation(token) {
     try {
         const takeUserId = await getOnBackUserByToken(token)
-        const quizzId = await getOnBackQuizzesById(token, takeSubjectIdByParams())
+        const quizzId = await getOnBackQuizzesById(takeSubjectIdByParams())
         const disciplinaId = quizzId.quizz.disciplina_id
         
-        const response = await checkOnBackIfUserInDisciplina(token, takeUserId.usuario._id, disciplinaId)
+        const response = await checkOnBackIfUserInDisciplina(takeUserId.usuario._id, disciplinaId)
         
         checkIfStudentIsInSubject(response)
     } catch (error) {

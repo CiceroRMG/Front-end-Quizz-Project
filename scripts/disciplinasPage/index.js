@@ -6,6 +6,7 @@ import { createQuizzesOnPage } from "./createQuizzesOnPage.js"
 import { toggleQuizzes } from "./toggleQuizzes.js"
 import { getTokenOnLocalStorage } from "../getTokenOnLocalStorage.js"
 import { checkUserSubjectRelation } from "./checkIfStudentIsInSubject.js"
+import { checkIfValidToken } from "../pushToLoginPage.js"
 
 
 const loading = document.querySelector('.loader')
@@ -18,6 +19,11 @@ window.addEventListener('load', ()=>{
     }, 500)
 })
 
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log("Verificando token na inicialização");
+    await checkIfValidToken();
+});
+
 
 const token = getTokenOnLocalStorage()
 backPage()
@@ -27,12 +33,12 @@ checkUserSubjectRelation(token)
     
 // essa parte pega o Id no parametro e ve qual disciplina corresponde, depois coloca o nome da disciplina no titulo
 
-const takeDisciplinaById = getOnBackDisciplinaById(token, takeSubjectIdByParams())
+const takeDisciplinaById = getOnBackDisciplinaById(takeSubjectIdByParams())
 takeDisciplinaById.then(objeto => nameOfSubjectModifier(objeto.disciplina))
 
 
 // essa parte pega os quizzes da disciplina pelo parametro -> id da disciplina clicada
-const takeAllQuizzesOfASubject = getOnBackQuizzesById(token, takeSubjectIdByParams())
+const takeAllQuizzesOfASubject = getOnBackQuizzesById(takeSubjectIdByParams())
 takeAllQuizzesOfASubject.then(objeto => {
     for (const quizz of objeto.quizz){
         if (!objeto.quizz){

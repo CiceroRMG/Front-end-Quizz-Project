@@ -5,6 +5,7 @@ import { informationsPageOfQuizzModifier } from "./informationsPageOfQuizzModifi
 
 import { getTokenOnLocalStorage } from "../getTokenOnLocalStorage.js"
 import { checkUserQuizzRelation } from "./checkIfUserHaveQuizz.js"
+import { checkIfValidToken } from "../pushToLoginPage.js"
 
 
 const loading = document.querySelector('.loader')
@@ -18,6 +19,11 @@ window.addEventListener('load', ()=>{
     }, 500)
 })
 
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log("Verificando token na inicialização");
+    await checkIfValidToken();
+});
+
 const token = getTokenOnLocalStorage()
 backPage()
 
@@ -26,7 +32,7 @@ checkUserQuizzRelation(token)
 
 
 // pega o quizz no BD por ID parametro e coloca todas as informações na página do quiz
-const takeQuizzById = getOnBackQuizzesById(token, takeQuizzIdByParams())
-takeQuizzById.then(objeto => informationsPageOfQuizzModifier(objeto.token, objeto.quizz))
+const takeQuizzById = getOnBackQuizzesById(takeQuizzIdByParams())
+takeQuizzById.then(objeto => informationsPageOfQuizzModifier(objeto.quizz))
 
 

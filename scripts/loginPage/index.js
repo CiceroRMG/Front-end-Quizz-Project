@@ -34,7 +34,7 @@ export async function authenticationLogin(event) {
   
 
     const backResponse = await sendToBackForAuthentication.json()
-
+    console.log(backResponse)
     // A propriedade ok é um valor booleano que será true se o status da resposta estiver no intervalo de 200-299
     if (sendToBackForAuthentication.ok) {
         localStorage.setItem('token', backResponse.token);
@@ -66,26 +66,15 @@ const toogleLoginData = {
 }
 
 
-// se o usuario ja estiver logado ele não pode voltar pra tela de login se ele não deslogar
-async function checkIfValidToken(token){
-  const whateverReq = await getOnBackUserByToken(token)
-  if (whateverReq.status === 401){
-      console.log("Não possui token")
-      return false
-  } else {
-      return true
-  }
-}
-
 function userLogged(){
     const token = window.localStorage.getItem('token')
     if(token){
-      if(checkIfValidToken(token)){
-        window.location.href = '/html/index.html';
-      }
+      window.location.href = '/html/index.html';
+
     } else {
       console.log("Usuario não esta logado ou token expirado")
     }
 
 }
+
 userLogged()

@@ -6,14 +6,14 @@ import { createSubjectsOnPage } from "./createSubjectsOnPage.js" // cria as disc
 import { getOnBackDisciplinaById } from "../fetchDbFunctions.js"; // busca a disciplina pelo id
 import { toggleSubjects } from "./toggleSubjects.js";
 
-export async function searchAndDisplayStudentSubjects(token, disciplinasDoUsuario){
+export async function searchAndDisplayStudentSubjects(disciplinasDoUsuario){
     if(!disciplinasDoUsuario){
         toggleSubjects.emptySubjects()
         return console.log("não possui disciplinas")
     }
     for (const disciplina of disciplinasDoUsuario) {
         const idDaDisciplina = disciplina.disciplina_id;
-        const pegandoADisciplinaPeloId = await getOnBackDisciplinaById(token, idDaDisciplina);
+        const pegandoADisciplinaPeloId = await getOnBackDisciplinaById(idDaDisciplina);
         createSubjectsOnPage(pegandoADisciplinaPeloId.disciplina);
     }
 }

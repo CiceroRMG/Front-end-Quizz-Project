@@ -24,9 +24,8 @@ export async function checkIfStudentIsInSubject(objeto){
 export async function checkUserSubjectRelation(token) {
     try {
         const takeUserId = await getOnBackUserByToken(token)
-        const subjectId = await getOnBackDisciplinaById(token, takeSubjectIdByParams())
-        
-        const response = await checkOnBackIfUserInDisciplina(token, takeUserId.usuario._id, subjectId.disciplina._id)
+        const subjectId = await getOnBackDisciplinaById(takeSubjectIdByParams())
+        const response = await checkOnBackIfUserInDisciplina(takeUserId.usuario._id, subjectId.disciplina._id)
         
         checkIfStudentIsInSubject(response)
     } catch (error) {
