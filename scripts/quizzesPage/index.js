@@ -19,20 +19,22 @@ window.addEventListener('load', ()=>{
     }, 500)
 })
 
+backPage()
+
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Verificando token na inicialização");
     await checkIfValidToken();
+
+    const token = getTokenOnLocalStorage()
+
+    // verifica se o usuario possui a disciplina que contem o quizz em questão
+    await checkUserQuizzRelation(token)
+
+
+    // pega o quizz no BD por ID parametro e coloca todas as informações na página do quiz
+    const takeQuizzById = await getOnBackQuizzesById(takeQuizzIdByParams())
+    informationsPageOfQuizzModifier(takeQuizzById.quizz)
 });
 
-const token = getTokenOnLocalStorage()
-backPage()
-
-// verifica se o usuario possui a disciplina que contem o quizz em questão
-checkUserQuizzRelation(token)
-
-
-// pega o quizz no BD por ID parametro e coloca todas as informações na página do quiz
-const takeQuizzById = getOnBackQuizzesById(takeQuizzIdByParams())
-takeQuizzById.then(objeto => informationsPageOfQuizzModifier(objeto.quizz))
 
 

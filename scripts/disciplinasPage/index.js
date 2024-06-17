@@ -11,6 +11,7 @@ import { checkIfValidToken } from "../pushToLoginPage.js"
 
 const loading = document.querySelector('.loader')
 const content = document.querySelector('.main')
+
 window.addEventListener('load', ()=>{
     setTimeout(()=>{
         loading.classList.add('hidden')
@@ -19,35 +20,33 @@ window.addEventListener('load', ()=>{
     }, 500)
 })
 
+backPage()
+        
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Verificando token na inicialização");
     await checkIfValidToken();
-});
 
+    const token = getTokenOnLocalStorage()
 
-const token = getTokenOnLocalStorage()
-backPage()
-
-// verifica se o aluno pussui a disciplina para ter acesso
-checkUserSubjectRelation(token)    
+    await checkUserSubjectRelation(token)    
     
-// essa parte pega o Id no parametro e ve qual disciplina corresponde, depois coloca o nome da disciplina no titulo
+    // essa parte pega o Id no parametro e ve qual disciplina corresponde, depois coloca o nome da disciplina no titulo
 
-const takeDisciplinaById = getOnBackDisciplinaById(takeSubjectIdByParams())
-takeDisciplinaById.then(objeto => nameOfSubjectModifier(objeto.disciplina))
+    const takeDisciplinaById = await getOnBackDisciplinaById(takeSubjectIdByParams())
+    nameOfSubjectModifier(takeDisciplinaById.disciplina)
 
 
-// essa parte pega os quizzes da disciplina pelo parametro -> id da disciplina clicada
-const takeAllQuizzesOfASubject = getOnBackQuizzesById(takeSubjectIdByParams())
-takeAllQuizzesOfASubject.then(objeto => {
-    for (const quizz of objeto.quizz){
-        if (!objeto.quizz){
+    // essa parte pega os quizzes da disciplina pelo parametro -> id da disciplina clicada
+    const takeAllQuizzesOfASubject = await getOnBackQuizzesById(takeSubjectIdByParams())
+
+    for (const quizz of takeAllQuizzesOfASubject.quizz){
+        if (!takeAllQuizzesOfASubject.quizz){
             toggleQuizzes.emptyQuizzes()
             return console.log("Essa disciplina não possui quizzes")
         }
-        createQuizzesOnPage(quizz)
+        createQuizzesOnPage(quizz)     
     }
-})
+});
 
 
 

@@ -7,7 +7,7 @@ export async function checkIfValidToken(){
     const token = window.localStorage.getItem('token')
     if (!token){
         console.log("Usuário sem token")
-        // redirectToLogin()
+        redirectToLogin()
         return false
     }
 
@@ -21,7 +21,7 @@ export async function checkIfValidToken(){
             return true
         } else {
             console.log("token invalido ou inexistente")
-            // redirectToLogin()
+            redirectToLogin()
             return false
         }  
     }
@@ -98,9 +98,21 @@ async function tryMakeANewTokenIfUserHaveARefreshToken(){
 
 
 const logoutBtn = document.querySelector('.logoutBtn')
-logoutBtn.addEventListener('click', logout)
+logoutBtn.addEventListener('click', await logout)
 
-function logout(){
+async function logout(){
+    const refreshToken = localStorage.getItem('refreshToken')
+
+    const response = await fetch('http://localhost:3333/refreshToken/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'authorization': refreshToken },
+        body: JSON.stringify({ refreshToken })
+    });
+
+    if(!response){
+        return console.log("Algo deu errado na resposta para deletar o refreshToken")
+    }
+
     redirectToLogin()
 }
 

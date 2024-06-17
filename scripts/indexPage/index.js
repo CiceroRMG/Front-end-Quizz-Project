@@ -19,18 +19,19 @@ window.addEventListener('load', ()=>{
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Verificando token na inicialização");
     await checkIfValidToken();
+
+    // recebe o objeto usuario do banco mandando o token de autenticação
+    const takeUserById = await getOnBackUserByToken(getTokenOnLocalStorage())
+
+    // ja com o objeto usuario em mãos, roda as funções que dependendem do id do usuario para funcionar e ja manda o token junto no header
+    takeUserById
+    const takeRelationUserSubject = await getOnBackDisciplinasUsersTable(takeUserById.usuario._id)
+    searchAndDisplayStudentSubjects(takeRelationUserSubject.disciplinasComAlunos)
+
+
+    // função que mostra o nome do usuario na tela
+    welcomeMessageModifier(takeUserById.usuario)
 });
 
-// recebe o objeto usuario do banco mandando o token de autenticação
-const takeUserById = getOnBackUserByToken(getTokenOnLocalStorage())
-
-// ja com o objeto usuario em mãos, roda as funções que dependendem do id do usuario para funcionar e ja manda o token junto no header
-takeUserById
-    .then(objeto => getOnBackDisciplinasUsersTable(objeto.usuario._id))
-    .then(objeto => searchAndDisplayStudentSubjects(objeto.disciplinasComAlunos))
-
-
-// função que mostra o nome do usuario na tela
-takeUserById.then(objeto => welcomeMessageModifier(objeto.usuario))
 
 
