@@ -78,3 +78,20 @@ function userLogged(){
 }
 
 userLogged()
+
+
+const seeBtn = document.querySelector('.eyes')
+const seeClickedBtn = document.querySelector('.eyes-see')
+const inputPassword = document.querySelector('#password')
+
+seeBtn.addEventListener('click', ()=>{
+  seeBtn.classList.add('hidden')
+  seeClickedBtn.classList.remove('hidden')
+  inputPassword.setAttribute('type', 'text')
+})
+
+seeClickedBtn.addEventListener('click', ()=>{
+  seeBtn.classList.remove('hidden')
+  seeClickedBtn.classList.add('hidden')
+  inputPassword.setAttribute('type', 'password')
+})

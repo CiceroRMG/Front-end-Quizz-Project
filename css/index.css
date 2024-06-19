@@ -198,6 +198,51 @@ body, a, button{
     display: none;
 }
 
+.dialog {
+    margin: auto;
+    border-radius: 8px;
+    padding: 2.5rem;
+    border: 1px solid #E7E5E4;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+}
+dialog::backdrop{
+    background-color: rgba(78, 72, 72, 0.7);
+}
+
+.dialog h1{
+    font-size: 1.3rem;
+    margin-bottom: 1.7rem;
+    font-weight: 500;
+}
+
+.dialog-form{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.dialog-form button{
+    padding: 0.4rem 1.4rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.dialog-form button:hover{
+    background-color: #d4c9bfd3;
+}
+
+.dialog-form .logouBtnConfirm{
+    background-color: rgba(237, 0, 0, 0.808);
+    color: white;
+    padding: 0.4rem 1.7rem;
+}
+
+.dialog-form .logouBtnConfirm:hover{
+    background-color: rgb(235, 0, 0);
+}
+
 @media (max-width: 1100px){
     .main-list-btn {
         width: 100%;
@@ -289,10 +334,20 @@ body, a, button{
     }
     .nav{
         flex: 1 0 50vw;
-        justify-content: flex-end;
+        justify-content:flex-end;
+        padding-right: 1rem;
     }
     .nav-footer{
-        display: none;
+        padding-bottom: 0;
+        flex: auto;
+        padding-left: 0;
+    }
+
+    .dialog{
+        padding: 4rem 2rem;
+    }
+    .dialog h1 {
+        font-size: 1rem;
     }
 
 }
@@ -307,15 +362,18 @@ body, a, button{
     .main-list-btn{
         font-size: 1rem;
     }
+    .nav{
+        flex: 1 0 40vw;
+    }
 
 }
 
-@media (max-width: 350px){
+@media (max-width: 370px){
     .logo{
         flex: auto;
     }
     .nav{
-        flex: 1 0 65vw;
+        flex: 1 0 50vw;
     }
 }
 

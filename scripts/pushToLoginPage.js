@@ -94,11 +94,19 @@ async function tryMakeANewTokenIfUserHaveARefreshToken(){
     }
 }
 
+const logouBtn = document.querySelector('.logoutBtn')
+const dialog = document.querySelector('.dialog')
+logouBtn.addEventListener('click', ()=>{
+    dialog.showModal()
+    dialog.classList.add('fade-in')
+})
 
-
-
-const logoutBtn = document.querySelector('.logoutBtn')
-logoutBtn.addEventListener('click', await logout)
+const logouBtnBack = document.querySelector('.logoutBtnBack')
+logouBtnBack.addEventListener('click', ()=>{
+    dialog.close()
+})
+const logoutBtnConfirm = document.querySelector('.logouBtnConfirm')
+logoutBtnConfirm.addEventListener('click', await logout)
 
 async function logout(){
     const refreshToken = localStorage.getItem('refreshToken')
