@@ -55,6 +55,18 @@ export async function getOnBackUserByToken(token) {
     return { usuario, token: window.localStorage.getItem('token') }
 }
 
+export async function getOnBackUserTypeByToken() {
+    const pegando = await fetchWithToken('http://localhost:3333/userToken')
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível obter a resposta do tipo do usuario pelo token' }
+    }
+
+    const data = await pegando.json()
+
+    const usuario = data.usuario
+    return { usuario }
+}
 
 
 // função pega o usuario-disciplina no db pelo parametro id -> o parametro id pode ser tanto um id de aluno quanto um id de disciplina
@@ -93,6 +105,18 @@ export async function getOnBackDisciplinaById(id) {
     const disciplina = data.disciplina
     return {disciplina, token: window.localStorage.getItem('token')};
 }
+
+export async function getOnBackDisciplinasOfProfessorById(id) {
+    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/prof/${id}`);
+    if(!pegando){
+        return console.log("A requisição de pegar as discplinas do professor pelo ID falhou")
+    }
+
+    const data = await pegando.json();
+    const disciplinas = data.disciplinas
+    return { disciplinas };
+}
+
 
 // o id parametro dessa função pode ser tanto um id de um quizz quanto o id de uma disciplina
 export async function getOnBackQuizzesById(id) {

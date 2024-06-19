@@ -211,6 +211,7 @@ body, a, button{
     text-align: center;
     margin-top: 40px;
     margin-right: 6rem;
+    margin-left: 2rem;
     justify-self: flex-end;
 }
 
@@ -309,6 +310,7 @@ dialog::backdrop{
     background-color: rgb(235, 0, 0);
 }
 
+
 @media (max-width: 1100px){
     .main-list-btn {
         width: 100%;
@@ -339,9 +341,13 @@ dialog::backdrop{
     .empty-quizz{
         padding-right: 20vw;
     }
+    .main-try{
+        margin-right: 2rem;
+        margin-left: 2rem;
+    }
 }
 
-@media (max-width: 790px){
+@media (max-width: 896px){
     .main{
         max-width: 90vw;
     }

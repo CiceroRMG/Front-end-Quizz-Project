@@ -3,7 +3,7 @@
 // chama função para criar os elementos disciplinas na tela
 
 import { createSubjectsOnPage } from "./createSubjectsOnPage.js" // cria as disciplinas na pagina
-import { getOnBackDisciplinaById } from "../fetchDbFunctions.js"; // busca a disciplina pelo id
+import { getOnBackDisciplinaById } from "../../fetchDbFunctions.js"; // busca a disciplina pelo id
 import { toggleSubjects } from "./toggleSubjects.js";
 
 export async function searchAndDisplayStudentSubjects(disciplinasDoUsuario){

@@ -1,4 +1,4 @@
-import { getOnBackUserByToken, getOnBackQuizzesById, checkOnBackIfUserInDisciplina } from "../fetchDbFunctions.js"
+import { getOnBackUserByToken, getOnBackQuizzesById, checkOnBackIfUserInDisciplina } from "../../fetchDbFunctions.js"
 import { takeSubjectIdByParams } from "../disciplinasPage/takeSubjectIdByParams.js"
 import { checkIfStudentIsInSubject } from "../disciplinasPage/checkIfStudentIsInSubject.js"
 

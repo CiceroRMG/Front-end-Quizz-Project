@@ -1,4 +1,4 @@
-import { getOnBackDisciplinaById } from "../fetchDbFunctions.js"
+import { getOnBackDisciplinaById } from "../../fetchDbFunctions.js"
 
 
 export async function informationsPageOfQuizzModifier(Quizz) {

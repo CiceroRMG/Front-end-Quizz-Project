@@ -94,6 +94,8 @@ async function tryMakeANewTokenIfUserHaveARefreshToken(){
     }
 }
 
+
+// parte que abre o modal pra confirmar o logou do usuario
 const logouBtn = document.querySelector('.logoutBtn')
 const dialog = document.querySelector('.dialog')
 logouBtn.addEventListener('click', ()=>{
@@ -108,6 +110,7 @@ logouBtnBack.addEventListener('click', ()=>{
 const logoutBtnConfirm = document.querySelector('.logouBtnConfirm')
 logoutBtnConfirm.addEventListener('click', await logout)
 
+// parte que realmente desloga o usuario
 async function logout(){
     const refreshToken = localStorage.getItem('refreshToken')
 

@@ -1,7 +1,7 @@
 // tenho que fazer isso no back e não no front
 // sempre lembrar que o front é o que roda no pc da pessoa
 
-import { getOnBackUserByToken, getOnBackDisciplinaById, checkOnBackIfUserInDisciplina} from "../fetchDbFunctions.js"
+import { getOnBackUserByToken, getOnBackDisciplinaById, checkOnBackIfUserInDisciplina} from "../../fetchDbFunctions.js"
 import { takeSubjectIdByParams } from "./takeSubjectIdByParams.js"
 
 export async function checkIfStudentIsInSubject(objeto){

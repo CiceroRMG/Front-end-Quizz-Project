@@ -1,5 +1,5 @@
 import { toggleSubjects } from "./toggleSubjects.js"
-import { based_url } from "../config.js"
+import { based_url } from "../../config.js"
 
 // função recebe o objeto disciplina la do banco correspondente a um usuario e cria cada componente na tela
 export function createSubjectsOnPage(Disciplina){
@@ -13,7 +13,7 @@ export function createSubjectsOnPage(Disciplina){
     btn.classList.add("main-list-btn")
     btn.innerText = `${Disciplina.nome.toUpperCase()} - ${Disciplina.ano}/${Disciplina.semestre}`
     btn.addEventListener('click', ()=>{
-        window.location.href = `${based_url}/html/disciplina.html?id=${Disciplina._id}`
+        window.location.href = `${based_url}/html/professorFlowPages/disciplina.html?id=${Disciplina._id}`
     })
 
     li.append(btn)

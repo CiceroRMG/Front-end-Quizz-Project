@@ -1,6 +1,11 @@
 const form = document.querySelector('.section-form')
 form.addEventListener('submit', authenticationLogin)
 
+const alunoUrl = '/html/alunoFlowPages/index.html'
+const professorUrl = '/html/professorFlowPages/index.html'
+const admUrl = '/html/admFlowPages/index.html'
+
+
 // função de autenticação do usuário
 export async function authenticationLogin(event) {
     event.preventDefault()
@@ -34,12 +39,22 @@ export async function authenticationLogin(event) {
   
 
     const backResponse = await sendToBackForAuthentication.json()
-    console.log(backResponse)
+  
     // A propriedade ok é um valor booleano que será true se o status da resposta estiver no intervalo de 200-299
     if (sendToBackForAuthentication.ok) {
         localStorage.setItem('token', backResponse.token);
-        localStorage.setItem('refreshToken', backResponse.refreshToken); 
-        window.location.href = '/html/index.html';
+        localStorage.setItem('refreshToken', backResponse.refreshToken);
+        const userType = backResponse.tipo
+        if(userType === 'aluno'){
+          window.location.href = alunoUrl;
+        }
+        if(userType === 'professor'){
+          window.location.href = professorUrl;
+        }
+        if(userType === 'admin'){
+          window.location.href = admUrl;
+        }
+
       } else {
         toogleLoginData.incorrectData();
       }
@@ -69,7 +84,7 @@ const toogleLoginData = {
 function userLogged(){
     const token = window.localStorage.getItem('token')
     if(token){
-      window.location.href = '/html/index.html';
+      window.location.href = '/html/alunoFlowPages/index.html';
 
     } else {
       console.log("Usuario não esta logado ou token expirado")
@@ -79,7 +94,7 @@ function userLogged(){
 
 userLogged()
 
-
+// botao de olhar a senha
 const seeBtn = document.querySelector('.eyes')
 const seeClickedBtn = document.querySelector('.eyes-see')
 const inputPassword = document.querySelector('#password')
