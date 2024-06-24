@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard ADMIN</title>    
 
-    <link rel="stylesheet" href="../../css/admStyles/painel.css">
+    <link rel="stylesheet" href="../../css/admStyles/disciplinaRegister.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -69,50 +69,34 @@
             <div class="main-title">
                 <button class="back-btn"><img src="../../imgs/arrowBack.svg" alt=""></button>
                 <div class="painel-title">
-                    <h1 class="h1-title">Painel</h1>
-                    <p class="bemvindo">nº cadastrados</p>
+                    <h1 class="h1-title">Cadastro da Disciplina</h1>
                 </div>
-
-                <button class="createBtn">
-                    <img src="../../imgs/createQuizz.svg">
-                    <p>Cadastrar</p>
-                </button>
 
             </div>
 
             <div class="main-hero">
 
+                <form action="#" class="form">
 
-                <table class="table">
+                    <div class="content-form">
+                        <div class="name-form">
+                            <label for="subject-name">Nome</label>
+                            <input type="text" placeholder="Digite o nome da disciplina" id="subject-name">
+                        </div>
 
-                    <thead>
+                        <div class="prof-form">
+                            <label for="professor-select">Professor <img src="../../imgs/interrogation.svg"></label>
+                            <select name="professor-select" id="professor-select">
+                                <option value="" disabled selected>Selecione um professor</option>
+                                <option value="">Sem professor</option>
+                                <option value="idDoProfessor">Nome do professor</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button>Cadastrar</button>
 
-                        <tr>
-                            <th class="th-1">Nome 1</th>
-                            <th class="th-2">Nome 2</th>
-                            <th class="th-3">Nome 3</th>
-                            <th class="th-4">Nome 4</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody class="tbody">
-
-                        <tr>
-                            <!-- <td class="first">Disciplina</td>
-                            <td class="second">Jose clandio da silva</td>
-                            <td class="third">3</td>
-                            <td class="last">
-                                <div class="links">
-                                    <a class="first-a" href="#">Editar</a><a href="#">Remover</a>
-                                </div>
-                            </td> -->
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
+                </form>
 
             </div>
 

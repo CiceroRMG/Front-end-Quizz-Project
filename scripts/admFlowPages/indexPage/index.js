@@ -1,5 +1,4 @@
 import { checkIfValidToken } from "../../pushToLoginPage.js";
-import { loader } from "../../loader.js";
 import { checkTypeUser } from "../../checkTypeUser.js";
 
 document.addEventListener('DOMContentLoaded', async () => {

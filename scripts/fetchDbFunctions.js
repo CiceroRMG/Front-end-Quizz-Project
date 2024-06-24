@@ -106,6 +106,18 @@ export async function getOnBackDisciplinaById(id) {
     return {disciplina, token: window.localStorage.getItem('token')};
 }
 
+export async function getAllDisciplinasIfProfessorName(){
+    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/painel/data`);
+    if(!pegando){
+        return console.log("A requisição de pegar todas as discplinas falhou")
+    }
+
+    const data = await pegando.json();
+
+    const disciplinas = data.disciplinas
+    return {disciplinas};
+}
+
 export async function getOnBackDisciplinasOfProfessorById(id) {
     const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/prof/${id}`);
     if(!pegando){
