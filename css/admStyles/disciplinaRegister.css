@@ -110,7 +110,7 @@ body, a, button{
 .main-title .back-btn{
     margin-left: -3rem;
     margin-right: 1.3rem;
-    margin-top: 3px;
+    margin-top: 2px;
     height: 39px;
     border: none;
     background: none;
@@ -122,20 +122,6 @@ body, a, button{
     border-radius: 999px;
 }
 
-
-.main-title .createBtn {
-    margin-left: auto;
-    display: flex;
-    height: 2.4rem;
-    padding: 1.5rem 1.6rem;
-    align-items: center;
-    gap: 0.5rem;
-    background-color: #6366F1;
-    color: white;
-    border: none;
-    border-radius: 0.375rem;
-    cursor: pointer;
-}
 
 .main-hero{
     width: 95%;
@@ -150,6 +136,7 @@ body, a, button{
 .form{
     display: flex;
     flex-direction: column;
+    gap: 2rem;
     height: 90%;
 }
 
@@ -157,7 +144,7 @@ body, a, button{
 .form button{
    border-radius:  0.375rem;
    background: #6366F1;
-   padding: 0.75rem 4rem;
+   padding: 1rem 4rem;
    width: 16.375rem;
    align-self: center;
    border: none;
@@ -168,7 +155,11 @@ body, a, button{
    cursor: pointer;
 }
 
-.form .content-form{
+.form button:hover{
+    background-color: #3c3ff0;
+}
+
+.form .content-form, .data-form{
     display: flex;
     gap: 2rem;
     align-items: center;
@@ -180,26 +171,28 @@ body, a, button{
     font-size: 1rem;
 }
 
-.form .name-form, .prof-form{
+.form .name-form, .prof-form, .year-form, .semestre-form{
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     flex: 1 0 0;
+    justify-content: center;
 }
 
-.form .name-form input{
+.form .name-form input, .year-form input{
     padding: 1rem 0.5rem;
     border-radius: 0.375rem;
     border: 1px solid #D4D4D4;
+    padding-top: 1.15rem
 }
 
-.form .name-form input::placeholder{
+
+.form .name-form input::placeholder, .data-form input::placeholder{
     color: #78716C;
     font-size: 1rem;
-    line-height: 1.5rem; 
 }
 
-.form .prof-form select{
+.form .prof-form select, .semestre-form select{
     padding: 1rem 0.5rem;
     background-color: transparent;
     border: none;

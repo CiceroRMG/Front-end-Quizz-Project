@@ -140,7 +140,25 @@ body, a, button{
 
 .main-hero{
     width: 95%;
+    height: 75.5%;
+    overflow-y: auto;
 }
+
+.main-hero::-webkit-scrollbar-thumb {
+    border-radius: 10px; 
+    background-color: #eeeeee;
+}
+
+.main-hero::-webkit-scrollbar-track {
+    background-color: #fafafa; 
+    border-radius: 10px; 
+}
+
+.main-hero::-webkit-scrollbar {
+    width: 7px; 
+
+}
+
 
 .createBtn p {
     font-weight: 500;
@@ -160,6 +178,8 @@ body, a, button{
 .table{
     border-collapse: separate;
     border-spacing: 0 8px;
+    overflow-y: scroll;
+    margin-right: 10px;
 }
 
 .table th{
@@ -167,6 +187,11 @@ body, a, button{
     font-size: 0.875rem;
     font-weight: 400;
     text-align: start;
+}
+
+.table tbody {
+    overflow-y: scroll;
+    height: 50%;
 }
 
 
@@ -226,6 +251,7 @@ tbody tr a {
 
 .links a {
     color: #4338CA;
+    cursor: pointer;
 }
 
 .links a:hover{

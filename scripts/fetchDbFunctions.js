@@ -22,6 +22,36 @@ async function fetchWithToken(url, options = {}) {
     return response;
 }
 
+export async function registerDisciplina(objeto){
+    const pegando = await fetchWithToken('http://localhost:3333/disciplinas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(objeto)
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível criar a disciplina' }
+    }
+
+    const data = await pegando.json()
+
+    return { status: pegando.status, msg: data.msg }
+}
+
+export async function deleteDisciplinaById(id){
+    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/${id}`, {
+        method: 'DELETE',
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível deletar a disciplina' }
+    }
+
+    const data = await pegando.json()
+
+    return { status: pegando.status, msg: data.msg }
+}
+
 
 
 // função pega o usuario no db pelo parametro id
@@ -140,6 +170,19 @@ export async function getOnBackQuizzesById(id) {
 
     const quizz = data.quizz
     return {quizz, token: window.localStorage.getItem('token')}
+}
+
+export async function getOnBackAllProfessor(){
+    const pegando = await fetchWithToken('http://localhost:3333/users/register/getAllProfessor')
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível obter a resposta de requisitar todos os professores' }
+    }
+
+    const data = await pegando.json()
+
+    const professores = data.professores
+    return { professores }
 }
 
 

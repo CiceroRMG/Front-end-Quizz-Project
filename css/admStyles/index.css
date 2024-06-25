@@ -188,24 +188,36 @@ body, a, button{
     transform: translateY(-50%);
 }
 
-.empty-subjects {
-    padding-top: 8rem;
-    padding-left: 5rem;
+.arrow-nav{
+    margin-left: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    transform: rotate(270deg);
+}
+
+.arrow-nav:hover{
+    transform: rotate(360deg);
+}
+
+.arrow-nav .select{
+    transform: rotate(360deg);
+}
+
+.nav-list{
+    list-style: none;
     display: flex;
     flex-direction: column;
-    align-items: start;
     gap: 1rem;
 }
 
-.empty-subjects img {
-    padding-left: 8.4rem;
+.nav-list li {
+    font-size: 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
 }
 
-
-.empty-subjects h2 {
-    font-size: 14px;
-    color: #44403C;
-    font-weight: 600;
+.nav-list li:hover {
+    color: #FEF08A;
 }
 
 .hidden {

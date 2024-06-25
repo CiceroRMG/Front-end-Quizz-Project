@@ -1,5 +1,6 @@
 import { checkIfValidToken } from "../../pushToLoginPage.js";
 import { checkTypeUser } from "../../checkTypeUser.js";
+import { based_url } from "../../config.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Verificando token na inicialização");
@@ -8,6 +9,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     await checkTypeUser('admin')
 
 });
+
+const disciplinaBtn = document.getElementById('disciplina-btn')
+
+disciplinaBtn.addEventListener('click', ()=> window.location.href = `${based_url}/html/admFlowPages/painel.html`)
 
 
 

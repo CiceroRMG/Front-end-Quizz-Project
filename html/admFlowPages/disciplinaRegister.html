@@ -30,11 +30,11 @@
 
             <div class="element">
                 <img src="../../imgs/house.svg" alt="imagem de home">
-                <a href='index.html' class="selected">Dashboard</a>
+                <a href='index.html'>Dashboard</a>
             </div>
             <div class="element">
                 <img src="../../imgs/book.svg" alt="imagem de home">
-                <a href="#">Painel</a>
+                <a href="#" class="selected">Painel</a>
                 <img class="arrow-nav" src="../../imgs/arrowNav.svg">
             </div>
             <div class="element">
@@ -81,7 +81,7 @@
                     <div class="content-form">
                         <div class="name-form">
                             <label for="subject-name">Nome</label>
-                            <input type="text" placeholder="Digite o nome da disciplina" id="subject-name">
+                            <input type="text" placeholder="Digite o nome da disciplina" id="subject-name" autocomplete="none" required>
                         </div>
 
                         <div class="prof-form">
@@ -89,7 +89,23 @@
                             <select name="professor-select" id="professor-select">
                                 <option value="" disabled selected>Selecione um professor</option>
                                 <option value="">Sem professor</option>
-                                <option value="idDoProfessor">Nome do professor</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="data-form">
+                        <div class="year-form">
+                            <label for="data-select">Ano</label>
+                            <input type="number" id="data-select" min="2023" max="2099" placeholder="Digite o ano: 2024..." maxlength="04" minlength="04" required>
+                        </div>
+
+                        <div class="semestre-form">
+                            <label for="semestre-select">Semestre</label>
+                            <select name="semestre-select" id="semestre-select" required>
+                                <option value="" disabled selected>Selecione um semestre</option>
+                                <option value="1">Primeiro</option>
+                                <option value="2">Segundo</option>
                             </select>
                         </div>
                     </div>
@@ -105,7 +121,7 @@
 
     </div>
     
-    <script src="../../scripts/admFlowPages/painelPage/index.js" type="module"></script>
+    <script src="../../scripts/admFlowPages/disciplinaRegisterPage/index.js" type="module"></script>
 
 </body>
 
