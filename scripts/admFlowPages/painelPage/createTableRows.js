@@ -30,7 +30,7 @@ export async function createTableRows(objeto){
         tr.innerHTML = 
         `
             <td class="first">${objeto.nome} - ${objeto.ano}</td>
-            <td class="second">Não possui professor</td>
+            <td class="second" style="color: #78716C">Não possui professor</td>
             <td class="third">${objeto.quizes.length}</td>
             <td class="last">
                 <div class="links">

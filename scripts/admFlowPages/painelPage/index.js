@@ -7,10 +7,13 @@ import { displayNameAndProfessor } from "./createTableRows.js";
 import { changeTitlePage } from "./changeTitleOfPage.js";
 import { changeThOfPage } from "./changeThOfTable.js";
 import { based_url } from "../../config.js";
+import { navArrowBar } from "../navArrowBar.js";
 
 loader()
 
 backPage()
+
+navArrowBar()
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Verificando token na inicialização");

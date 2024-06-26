@@ -8,81 +8,6 @@ body, a, button{
     font-family: "Poppins", sans-serif;
 }
 
-.header {
-    display: flex;
-    flex-direction: column;
-    background-color: #1E1B4B;
-    width: 240px;
-    min-width: 180px;
-}
-
-.header a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.logo {
-    display: flex;
-    align-items: flex-start;
-    align-content: flex-start;
-    padding-top: 2rem;
-    padding-left: 1.2rem;
-    color: #EEF2FF;
-    flex: 1 0 15vh;
-}
-
-.logo h1 {
-    font-weight: 600;
-    font-size: 24px;
-    padding-top: 0.5rem;
-    letter-spacing: -0.5px;
-}
-
-
-.nav{
-    display: flex;
-    gap: 15px;
-    color: white;
-    justify-content: start;
-    align-items:flex-start;
-    flex-direction: column;
-    flex: 1 0 65vh;
-    padding-left: 2rem;
-}
-
-.element{
-    display: flex;
-    gap: 8px;
-    position: relative;
-}
-
-.element a {
-    padding-top: 0.2rem;
-}
-
-.element a:hover {
-    color: #FEF08A;;
-}
-
-.nav-footer{
-    color: white;
-    flex: 1 0 20vh;
-    display: flex;
-    align-items: flex-end;
-    padding-bottom: 2rem;
-    padding-left: 2rem;
-}
-
-.nav-footer a {
-    font-size: 16px;
-    font-weight: 300;
-}
-
-.nav-footer a:hover {
-    color: #FEF08A;;
-}
-
 /* a partir daqui main */
 .app {
     display: flex;
@@ -110,7 +35,7 @@ body, a, button{
 .main-title .back-btn{
     margin-left: -3rem;
     margin-right: 1.3rem;
-    margin-top: 2px;
+    margin-top: -2.5px;
     height: 39px;
     border: none;
     background: none;
@@ -136,7 +61,7 @@ body, a, button{
 .form{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 4rem;
     height: 90%;
 }
 
@@ -183,7 +108,12 @@ body, a, button{
     padding: 1rem 0.5rem;
     border-radius: 0.375rem;
     border: 1px solid #D4D4D4;
-    padding-top: 1.15rem
+    padding-top: 1.15rem;
+}
+
+.form .name-form input:focus, .year-form input:focus{
+    outline: 1px solid #3c3ff0;
+
 }
 
 
@@ -211,100 +141,22 @@ option{
     color: #1C1917;
 }
 
+.name-form, .data-form, .semestre-form{
+    position: relative;
+}
 
-
-.selected::before {
-    content: "";
-    display: block;
-    width: 5px;
-    height: 28px;
-    background-color: #FEF08A;
+/* inputs não validos */
+.fail input{
+    outline: 1px solid #EF4444;
+}
+.fail span {
     position: absolute;
-    left: -31.5px;
-    top: 50%;
-    transform: translateY(-50%);
+    color: #EF4444;
+    font-size: 0.8rem;
+    bottom: -2rem;
 }
 
-.hidden {
-    display: none;
-}
 
-.arrow-nav{
-    margin-left: auto;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    transform: rotate(270deg);
-}
-
-.arrow-nav:hover{
-    transform: rotate(360deg);
-}
-
-.arrow-nav .select{
-    transform: rotate(360deg);
-}
-
-.nav-list{
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.nav-list li {
-    font-size: 1rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.nav-list li:hover {
-    color: #FEF08A;
-}
-
-.dialog {
-    margin: auto;
-    border-radius: 8px;
-    padding: 2.5rem;
-    border: 1px solid #E7E5E4;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
-}
-dialog::backdrop{
-    background-color: rgba(78, 72, 72, 0.7);
-}
-
-.dialog h1{
-    font-size: 1.3rem;
-    margin-bottom: 1.7rem;
-    font-weight: 500;
-}
-
-.dialog-form{
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-}
-
-.dialog-form button{
-    padding: 0.4rem 1.4rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.dialog-form button:hover{
-    background-color: #d4c9bfd3;
-}
-
-.dialog-form .logouBtnConfirm{
-    background-color: rgba(237, 0, 0, 0.808);
-    color: white;
-    padding: 0.4rem 1.7rem;
-}
-
-.dialog-form .logouBtnConfirm:hover{
-    background-color: rgb(235, 0, 0);
-}
 
 @media (max-width: 1100px){
     .main-list-btn {
@@ -476,58 +328,4 @@ dialog::backdrop{
     .nav{
         flex: 1 0 50vw;
     }
-}
-
-
-/* HTML: <div class="loader"></div> */
-.loader {
-    width: 50px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    padding: 3px;
-    background: 
-      radial-gradient(farthest-side,#ffa516 95%,#0000) 50% 0/12px 12px no-repeat,
-      radial-gradient(farthest-side,#0000 calc(100% - 5px),#ffa516 calc(100% - 4px)) content-box;
-    animation: l6 2s infinite ;
-    position: absolute;
-    right: 50vw;
-    top: 50vh;
-  }
-  @keyframes l6 {to{transform: rotate(1turn)}}
-  
-
-
-
-/* animação de aparição do conteudo */
-.fade-in {
-    animation: fadeIn ease 1s;
-    -webkit-animation: fadeIn ease 1s;
-    -moz-animation: fadeIn ease 1s;
-    -o-animation: fadeIn ease 1s;
-    -ms-animation: fadeIn ease 1s;
-}
-
-@keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-}
-
-@-moz-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-}
-
-@-webkit-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-}
-
-@-o-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-}
-
-@-ms-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
 }

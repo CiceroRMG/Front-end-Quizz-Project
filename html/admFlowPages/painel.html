@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard ADMIN</title>    
 
+    <link rel="stylesheet" href="../../css/navMain.css">
+    <link rel="stylesheet" href="../../css/admStyles/navAdm.css">
     <link rel="stylesheet" href="../../css/admStyles/painel.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/dialogLogout.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -34,14 +39,14 @@
             </div>
             <div class="element">
                 <img src="../../imgs/book.svg" alt="imagem de home">
-                <a href="#" class="selected">Painel</a>
+                <a href="#" class="painel-nav-btn selected">Painel</a>
                 <img class="arrow-nav" src="../../imgs/arrowNav.svg">
             </div>
-            <div class="element">
+            <div class="element hidden" id="arrow-nav-items">
                 <ul class="nav-list">
                     <li>Alunos</li>
                     <li>Professores</li>
-                    <li>Disciplinas</li>
+                    <li><a class="li-selected" href="painel.html">Disciplinas</a></li>
                 </ul>
             </div>
             

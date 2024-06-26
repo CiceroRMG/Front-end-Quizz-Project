@@ -1,6 +1,11 @@
 import { checkIfValidToken } from "../../pushToLoginPage.js";
 import { checkTypeUser } from "../../checkTypeUser.js";
 import { based_url } from "../../config.js";
+import { navArrowBar } from "../navArrowBar.js";
+import { loader } from "../../loader.js";
+
+loader()
+navArrowBar()
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Verificando token na inicialização");

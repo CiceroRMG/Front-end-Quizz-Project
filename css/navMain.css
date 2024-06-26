@@ -1,0 +1,74 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    background-color: #1E1B4B;
+    width: 240px;
+    min-width: 180px;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.logo {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding-top: 2rem;
+    padding-left: 1.2rem;
+    color: #EEF2FF;
+    flex: 1 0 15vh;
+}
+
+.logo h1 {
+    font-weight: 600;
+    font-size: 24px;
+    padding-top: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+
+.nav{
+    display: flex;
+    gap: 15px;
+    color: white;
+    justify-content: start;
+    align-items:flex-start;
+    flex-direction: column;
+    flex: 1 0 65vh;
+    padding-left: 2rem;
+}
+
+.element{
+    display: flex;
+    gap: 8px;
+    position: relative;
+}
+
+.element a {
+    padding-top: 0.2rem;
+}
+
+.element a:hover {
+    color: #FEF08A;;
+}
+
+.nav-footer{
+    color: white;
+    flex: 1 0 20vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+}
+
+.nav-footer a {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.nav-footer a:hover {
+    color: #FEF08A;;
+}

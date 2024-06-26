@@ -6,10 +6,14 @@ import {backPage} from "../../alunoFlowPages/disciplinasPage/backBtn.js"
 import { putAllProfessorOnOption } from "./putAllProfessorOnOption.js";
 import { registerDisciplina } from "../../fetchDbFunctions.js";
 import { based_url } from "../../config.js";
+import { inputValidation } from "./formValidations.js";
+import { navArrowBar } from "../navArrowBar.js";
 
 loader()
 
 backPage()
+
+navArrowBar()
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Verificando token na inicialização");
@@ -20,8 +24,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const allProfessor = await getOnBackAllProfessor()
     putAllProfessorOnOption(allProfessor.professores)
     
-
-    // mandar os valores do formulario para o back para criar a disciplina, após redirecionar para o painel
 });
 
 
@@ -35,7 +37,15 @@ form.addEventListener('submit', async (event)=>{
     const selectProfessor = document.querySelector('#professor-select')
     const inputYear = document.querySelector('#data-select')
     const selectSemestre = document.querySelector('#semestre-select')
-
+    
+    // validações dos formulários
+    if(
+        !inputValidation(inputSubjectName.value, '.name-form', '.subject-name-span') ||
+        !inputValidation(inputYear.value, '.data-form', '.data-select-span') ||
+        !inputValidation(selectSemestre.value, '.semestre-form', '.semestre-select-span')
+    ) {
+        return console.log('Algum dado invalido')
+    }
     // validando se tem professor ou não
     if(selectProfessor.value !== ""){
         req = {
