@@ -12,7 +12,7 @@ body, a, button{
 /* a partir daqui main */
 .app {
     display: flex;
-    background-color: #1E1B4B
+    background-color: #1E1B4B;
 }
 
 .main {
@@ -23,6 +23,7 @@ body, a, button{
     flex-direction: column;
     padding-left: 5rem;
     overflow-x: hidden;
+    
 }
 
 .main-title {
@@ -30,7 +31,7 @@ body, a, button{
     margin-right: 2.4rem;
     display: flex;
     width: 95%;
-    max-width: 70rem;
+    max-width: 78rem;
 
 }
 
@@ -106,7 +107,6 @@ body, a, button{
     border-spacing: 0 8px;
     overflow-y: scroll;
     margin-right: 10px;
-    width: 82%;
 }
 
 .table th{
@@ -114,6 +114,7 @@ body, a, button{
     font-size: 0.875rem;
     font-weight: 400;
     text-align: start;
+    padding-right: 2rem;
 }
 
 .table tbody {
@@ -140,7 +141,7 @@ body, a, button{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border-left: 1px solid #E7E5E4;
-    width: 22rem;
+    width: 30rem;
 }
 
 .table tbody .second{
@@ -184,6 +185,85 @@ tbody tr a {
     color: #6366F1;
 }
 
+.empty-subjects {
+    position: absolute;
+    top: 50vh;
+    left: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.empty-subjects h2 {
+    font-size: 14px;
+    color: #44403C;
+    font-weight: 600;
+}
+
+.dialog-delete-btn {
+    margin: auto;
+    border-radius: 8px;
+    padding: 3rem;
+    border: 1px solid #E7E5E4;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+}
+.dialog-delete-btn::backdrop{
+    background: rgba(78, 77, 78, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.7px);
+    -webkit-backdrop-filter: blur(3.7px);
+    border: 1px solid rgba(98, 98, 98, 0.3);
+}
+
+.dialog-delete-btn h1{
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    font-weight: 500;
+}
+
+.dialog-delete-btn p{
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.dialog-delete-btn .dialog-delete-name{
+    color: #4338CA;
+    font-weight: 500;
+}
+
+.dialog-delete{
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.dialog-delete button{
+    padding: 0.7rem 2.5rem;
+    padding-top: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.dialog-delete button:hover{
+    background-color: #d4c9bfd3;
+}
+
+.dialog-delete .deleteBtnConfirm{
+    padding: 0.3rem 2rem;
+    padding-top: 0.4rem;
+    background-color: rgba(237, 0, 0, 0.808);
+    color: white;
+}
+
+.dialog-delete .deleteBtnConfirm:hover{
+    background-color: rgb(235, 0, 0);
+}
 
 
 @media (max-width: 1100px){
