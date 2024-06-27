@@ -84,7 +84,7 @@ const toogleLoginData = {
 function userLogged(){
     const token = window.localStorage.getItem('token')
     if(token){
-      window.location.href = '/html/alunoFlowPages/index.html';
+      history.back();
 
     } else {
       console.log("Usuario não esta logado ou token expirado")

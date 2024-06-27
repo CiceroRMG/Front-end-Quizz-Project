@@ -100,7 +100,7 @@ const logouBtn = document.querySelector('.logoutBtn')
 const dialog = document.querySelector('.dialog')
 logouBtn.addEventListener('click', ()=>{
     dialog.showModal()
-    dialog.classList.add('fade-in')
+    dialog.classList.add('animate-in')
 })
 
 const logouBtnBack = document.querySelector('.logoutBtnBack')

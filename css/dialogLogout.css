@@ -1,17 +1,22 @@
 .dialog {
     margin: auto;
     border-radius: 8px;
-    padding: 2.5rem;
+    padding: 3rem;
     border: 1px solid #E7E5E4;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
 }
 dialog::backdrop{
-    background-color: rgba(78, 72, 72, 0.7);
+    background: rgba(78, 77, 78, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.7px);
+    -webkit-backdrop-filter: blur(3.7px);
+    border: 1px solid rgba(98, 98, 98, 0.3);
 }
 
 .dialog h1{
-    font-size: 1.3rem;
-    margin-bottom: 1.7rem;
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
     font-weight: 500;
 }
 
@@ -22,7 +27,8 @@ dialog::backdrop{
 }
 
 .dialog-form button{
-    padding: 0.4rem 1.4rem;
+    padding: 0.6rem 2rem;
+    padding-top: 0.8rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -36,7 +42,8 @@ dialog::backdrop{
 .dialog-form .logouBtnConfirm{
     background-color: rgba(237, 0, 0, 0.808);
     color: white;
-    padding: 0.4rem 1.7rem;
+    padding: 0.4rem 2.3rem;
+    padding-top: 0.6rem;
 }
 
 .dialog-form .logouBtnConfirm:hover{
