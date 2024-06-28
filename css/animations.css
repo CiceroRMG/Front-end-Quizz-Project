@@ -69,3 +69,20 @@
   @keyframes l6 {to{transform: rotate(1turn)}}
   
   
+  @keyframes slideOutAndFade {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-50%);
+      height: 0;
+      padding: 0;
+      margin-bottom: 0;
+    }
+  }
+  
+  .elemento-excluido {
+    animation: slideOutAndFade 0.5s ease forwards;
+  }

@@ -3,6 +3,7 @@ import { getAllDisciplinasIfProfessorName } from "../../fetchDbFunctions.js";
 import { changeTitlePage } from "./changeTitleOfPage.js";
 import { dialogDeleteBtn } from "./deleteDialog.js";
 import { changeDialogMessageBtnDelete } from "./deleteDialog.js";
+import { createDialog } from "./createDialogDelete.js";
 
 // mensagem do dialog-delete da table das disciplinas
 const subjectTitleDialog = "Tem certeza que quer deletar essa disciplina?"
@@ -10,7 +11,7 @@ const subjectMessageDialog = `Ao deletar a disciplina, todos os dados serão per
                             incluindo os quizzes e os alunos vinculados`
 
 
-// tanto a função de criar as tables estão inclusas aqui, quanto a do fluxo de delete do botao
+// tanto a função de criar as tables estão inclusas aqui, quanto a do fluxo de delete do botao e o dialog
 export async function createTableRows(objeto){
     noRegisterSubjects()
     const tr = document.createElement('tr')
@@ -54,12 +55,16 @@ export async function createTableRows(objeto){
     linksDiv.appendChild(deleteBtn);
 
     deleteBtn.addEventListener('click', async ()=>{
-        dialogDeleteBtn()
+        const dialog = createDialog()
+        dialogDeleteBtn(dialog)
+        changeDialogMessageBtnDelete(dialog, subjectTitleDialog, subjectMessageDialog, objeto.nome)
 
         const deleteBtnConfirm = document.querySelector('.deleteBtnConfirm')
         deleteBtnConfirm.addEventListener('click', async ()=>{
             await deleteDisciplinaById(objeto._id)
-            document.getElementById(`disciplina-${objeto._id}`).remove();
+            const element = document.getElementById(`disciplina-${objeto._id}`)
+            element.classList.add('elemento-excluido')
+            setTimeout(()=>element.remove(), 500)
             subtractOneOfRegisterSubjectsNumber()
         })
     })
@@ -68,25 +73,38 @@ export async function createTableRows(objeto){
     tbody.append(tr)
 }
 
-// função pega a array e percorre
+
+
+
+// função pega a array de todas as disciplinas e percorre
 export function displayNameAndProfessor(allSubjects){
     for (const subject of allSubjects){
         createTableRows(subject)
-        changeDialogMessageBtnDelete(subjectTitleDialog, subjectMessageDialog, subject.nome)
     }
 }
+
+
 
 // faz denovo a contagem de elementos da array toda vez que exclui uma disciplina
 async function subtractOneOfRegisterSubjectsNumber(){
     const allSubjects = await getAllDisciplinasIfProfessorName()
     if(!allSubjects.disciplinas){
         changeTitlePage("0", "Disciplinas")
-        noRegisterSubjects()
+        registerSubjects()
     }
     changeTitlePage(allSubjects.disciplinas.length, "Disciplinas")
 }
 
+
+// mostra a div que fala que não possui disciplinas
 function noRegisterSubjects(){
     const div = document.querySelector('.empty-subjects')
-    div.classList.toggle('hidden')
+    div.classList.add('hidden')
+    div.classList.remove('animate-in')
+}
+
+function registerSubjects(){
+    const div = document.querySelector('.empty-subjects')
+    div.classList.remove('hidden')
+    div.classList.add('animate-in')
 }
