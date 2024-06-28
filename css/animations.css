@@ -84,5 +84,36 @@
   }
   
   .elemento-excluido {
-    animation: slideOutAndFade 0.5s ease forwards;
+    animation: slideOutAndFade 0.7s ease forwards;
   }
+
+
+.animate-in-left {
+    animation: slideFadeInLeft 0.7s ease forwards;
+}
+
+@keyframes slideFadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-in-right {
+    animation: slideFadeInRight 0.5s ease forwards;
+}
+
+@keyframes slideFadeInRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+}

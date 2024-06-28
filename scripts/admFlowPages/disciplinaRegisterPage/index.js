@@ -8,6 +8,7 @@ import { registerDisciplina } from "../../fetchDbFunctions.js";
 import { based_url } from "../../config.js";
 import { inputValidation } from "./formValidations.js";
 import { navArrowBar } from "../navArrowBar.js";
+import { displaySuccessModal } from "../successModal.js";
 
 loader()
 
@@ -65,8 +66,7 @@ form.addEventListener('submit', async (event)=>{
     const criandoDisciplina = await registerDisciplina(req)
 
     if(criandoDisciplina.status === 201){
-        alert('Disciplina criada com sucesso')
-        window.location.href = `${based_url}/html/admFlowPages/painel.html`
+        displaySuccessModal()
     } else if(criandoDisciplina.status === 409){
         alert('Essa disciplina já existe')
     } else{

@@ -59,10 +59,10 @@ export async function createTableRows(objeto){
         dialogDeleteBtn(dialog)
         changeDialogMessageBtnDelete(dialog, subjectTitleDialog, subjectMessageDialog, objeto.nome)
 
-        const deleteBtnConfirm = document.querySelector('.deleteBtnConfirm')
+        const deleteBtnConfirm = dialog.querySelector('.deleteBtnConfirm')
         deleteBtnConfirm.addEventListener('click', async ()=>{
             await deleteDisciplinaById(objeto._id)
-            const element = document.getElementById(`disciplina-${objeto._id}`)
+            const element = document.getElementById(`disciplina-${objeto._id}`) 
             element.classList.add('elemento-excluido')
             setTimeout(()=>element.remove(), 500)
             subtractOneOfRegisterSubjectsNumber()
