@@ -52,6 +52,22 @@ export async function deleteDisciplinaById(id){
     return { status: pegando.status, msg: data.msg }
 }
 
+export async function editDisciplina(objeto, id){
+    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(objeto)
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível editar a disciplina' }
+    }
+
+    const data = await pegando.json()
+
+    return { status: pegando.status, msg: data.msg }
+}
+
 
 
 // função pega o usuario no db pelo parametro id

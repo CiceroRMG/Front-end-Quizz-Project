@@ -1,4 +1,4 @@
-export function putAllProfessorOnOption(array){
+export async function putAllProfessorOnOption(array){
     for (const professor of array){
         createAllProfessorOption(professor)
     }

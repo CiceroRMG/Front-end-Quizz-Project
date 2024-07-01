@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const takeUserById = await getOnBackUserByToken(getTokenOnLocalStorage())
 
     // ja com o objeto usuario em mãos, roda as funções que dependendem do id do usuario para funcionar e ja manda o token junto no header
-    takeUserById
     const takeRelationUserSubject = await getOnBackDisciplinasUsersTable(takeUserById.usuario._id)
     searchAndDisplayStudentSubjects(takeRelationUserSubject.disciplinasComAlunos)
 

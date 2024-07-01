@@ -4,6 +4,7 @@ import { changeTitlePage } from "./changeTitleOfPage.js";
 import { dialogDeleteBtn } from "./deleteDialog.js";
 import { changeDialogMessageBtnDelete } from "./deleteDialog.js";
 import { createDialog } from "./createDialogDelete.js";
+import { based_url } from "../../config.js";
 
 // mensagem do dialog-delete da table das disciplinas
 const subjectTitleDialog = "Tem certeza que quer deletar essa disciplina?"
@@ -27,7 +28,7 @@ export async function createTableRows(objeto){
             <td class="third">${objeto.quizes.length}</td>
             <td class="last">
                 <div class="links">
-                    <a class="first-a" href="#">Editar</a>
+                    <a class="first-a" href="${based_url}/html/admFlowPages/disciplinaEdit.html?id=${objeto._id}">Editar</a>
                 </div>
             </td>
                     
@@ -40,7 +41,7 @@ export async function createTableRows(objeto){
             <td class="third">${objeto.quizes.length}</td>
             <td class="last">
                 <div class="links">
-                    <a class="first-a" href="#">Editar</a>
+                    <a class="first-a" href="${based_url}/html/admFlowPages/disciplinaEdit.html?id=${objeto._id}">Editar</a>
                 </div>
             </td>
                     

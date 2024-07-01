@@ -1,14 +1,15 @@
 import { checkIfValidToken } from "../../pushToLoginPage.js";
 import { checkTypeUser } from "../../checkTypeUser.js";
-import { getOnBackAllProfessor } from "../../fetchDbFunctions.js";
+import { getOnBackAllProfessor} from "../../fetchDbFunctions.js";
+import { takeSubjectIdByParams } from "../../alunoFlowPages/disciplinasPage/takeSubjectIdByParams.js";
 import { loader } from "../../loader.js"
 import {backPage} from "../../alunoFlowPages/disciplinasPage/backBtn.js"
-import { putAllProfessorOnOption } from "./putAllProfessorOnOption.js";
-import { registerDisciplina } from "../../fetchDbFunctions.js";
-import { based_url } from "../../config.js";
-import { inputValidation } from "./formValidations.js";
+import { putAllProfessorOnOption } from "../disciplinaRegisterPage/putAllProfessorOnOption.js";
+import { editDisciplina } from "../../fetchDbFunctions.js";
+import { inputValidation } from "../disciplinaRegisterPage/formValidations.js";
 import { navArrowBar } from "../navArrowBar.js";
 import { displaySuccessModal } from "../successModal.js";
+import { displayValuesOnInputs } from "./displayValuesOnInputs.js";
 import { displayExistsModal } from "../alreadyExistsModal.js";
 
 loader()
@@ -24,9 +25,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     const allProfessor = await getOnBackAllProfessor()
-    putAllProfessorOnOption(allProfessor.professores)
-    
+    await putAllProfessorOnOption(allProfessor.professores)
+    await displayValuesOnInputs()
 });
+
+
+// parte do formulário
+const inputSubjectName = document.querySelector('#subject-name')
+const selectProfessor = document.querySelector('#professor-select')
+const inputYear = document.querySelector('#data-select')
+const selectSemestre = document.querySelector('#semestre-select')
 
 
 const form = document.querySelector(".form")
@@ -34,11 +42,6 @@ const form = document.querySelector(".form")
 form.addEventListener('submit', async (event)=>{
     event.preventDefault()
     let req = {}
-
-    const inputSubjectName = document.querySelector('#subject-name')
-    const selectProfessor = document.querySelector('#professor-select')
-    const inputYear = document.querySelector('#data-select')
-    const selectSemestre = document.querySelector('#semestre-select')
     
     // validações dos formulários
     if(
@@ -64,13 +67,13 @@ form.addEventListener('submit', async (event)=>{
         }
     }
 
-    const criandoDisciplina = await registerDisciplina(req)
+    const criandoDisciplina = await editDisciplina(req, takeSubjectIdByParams())
 
-    if(criandoDisciplina.status === 201){
-        displaySuccessModal("Disciplina Criada com Sucesso.")
+    if(criandoDisciplina.status === 200){
+        displaySuccessModal("Disciplina Atualizada com Sucesso.")
     } else if(criandoDisciplina.status === 409){
-        displayExistsModal("Essa Disciplina Já Existe")
+        displayExistsModal("Essa Disciplina Já Existe.")
     } else{
-        alert('Erro ao criar a disciplina')
+        alert('Erro ao editar a disciplina')
     }
 })

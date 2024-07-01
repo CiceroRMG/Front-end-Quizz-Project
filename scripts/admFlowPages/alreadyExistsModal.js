@@ -1,11 +1,11 @@
-function createSuccessModal(msg){
+function createExistsModal(msg){
     const div = document.createElement('div')
-    div.classList.add('success-modal')
+    div.classList.add('exists-modal')
     div.classList.add('animate-in-left')
 
     div.innerHTML = 
     `
-        <div class="title-modal"><img src="../../imgs/success-modal.svg"><h1>Sucesso!</h1></div>
+        <div class="title-modal"><img src="../../imgs/x.svg"><h1>Erro!</h1></div>
         <p>${msg}</p>
     `
 
@@ -15,9 +15,9 @@ function createSuccessModal(msg){
     return div
 }
 
-export function displaySuccessModal(msg){
+export function displayExistsModal(msg){
     let modal = ""
-    modal = createSuccessModal(msg)
+    modal = createExistsModal(msg)
     setTimeout(()=>{
         setTimeout(()=>{
             modal.remove()
