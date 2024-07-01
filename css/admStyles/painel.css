@@ -156,7 +156,23 @@ body, a, button{
 .table tbody .third{
     width: 7rem;
     padding-left: 0.8rem;
+    position: relative;
 }
+
+.hover-quizz{
+    background-color: #FAFAFA;
+    border-radius: 1rem;
+    border: 1px solid #E5E5E5;
+    position: absolute;
+    z-index: 999;
+    padding: 0.5rem 1rem;
+}
+
+.hover-quizz ul{
+    list-style: none;
+    font-size: 0.9rem;
+}
+
 
 .table tbody .last {
     border-top-right-radius: 10px;
@@ -269,6 +285,7 @@ tbody tr a {
 .dialog-delete .deleteBtnConfirm:hover{
     background-color: rgb(235, 0, 0);
 }
+
 
 
 @media (max-width: 1100px){

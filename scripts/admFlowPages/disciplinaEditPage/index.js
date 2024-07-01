@@ -74,6 +74,6 @@ form.addEventListener('submit', async (event)=>{
     } else if(criandoDisciplina.status === 409){
         displayExistsModal("Essa Disciplina Já Existe.")
     } else{
-        alert('Erro ao editar a disciplina')
+        displayExistsModal('Ocorreu algum erro ao editar a disciplina')
     }
 })

@@ -5,7 +5,6 @@ import { loader } from "../../loader.js"
 import {backPage} from "../../alunoFlowPages/disciplinasPage/backBtn.js"
 import { putAllProfessorOnOption } from "./putAllProfessorOnOption.js";
 import { registerDisciplina } from "../../fetchDbFunctions.js";
-import { based_url } from "../../config.js";
 import { inputValidation } from "./formValidations.js";
 import { navArrowBar } from "../navArrowBar.js";
 import { displaySuccessModal } from "../successModal.js";
@@ -71,6 +70,6 @@ form.addEventListener('submit', async (event)=>{
     } else if(criandoDisciplina.status === 409){
         displayExistsModal("Essa Disciplina Já Existe")
     } else{
-        alert('Erro ao criar a disciplina')
+        displayExistsModal('Ocorreu algum erro ao criar a disciplina')
     }
 })
