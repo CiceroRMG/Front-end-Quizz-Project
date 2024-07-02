@@ -68,6 +68,19 @@ export async function editDisciplina(objeto, id){
     return { status: pegando.status, msg: data.msg }
 }
 
+export async function getAllDisciplinas(){
+    const pegando = await fetchWithToken('http://localhost:3333/disciplinas')
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível obter a resposta de requisitar todas as disciplinas' }
+    }
+
+    const data = await pegando.json()
+
+    const disciplinas = data.disciplinas
+    return { disciplinas }
+}
+
 
 
 // função pega o usuario no db pelo parametro id
@@ -118,8 +131,8 @@ export async function getOnBackUserTypeByToken() {
 // função pega o usuario-disciplina no db pelo parametro id -> o parametro id pode ser tanto um id de aluno quanto um id de disciplina
 export async function getOnBackDisciplinasUsersTable(id) {
     const pegando = await fetchWithToken(`http://localhost:3333/usersDisciplinas/${id}`)
-    if(!pegando){
-        return console.log("A requisição de pegar a relação alunoDisciplina pelo ID falhou")
+    if(!pegando.ok){
+        return ({status: pegando.status, msg: 'Esse id não esta vinculado a nenhum aluno e nenhuma disciplina'})
     }
 
     const data = await pegando.json()
@@ -201,5 +214,31 @@ export async function getOnBackAllProfessor(){
     return { professores }
 }
 
+export async function getAllStudents(){
+    const pegando = await fetchWithToken('http://localhost:3333/users/register/getAllStudents')
 
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível obter a resposta de requisitar todos os alunos' }
+    }
+
+    const data = await pegando.json()
+
+    const alunos = data.alunos
+    return { alunos }
+}
+
+
+export async function deleteUserById(id){
+    const pegando = await fetchWithToken(`http://localhost:3333/users/${id}`, {
+        method: 'DELETE',
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível deletar o usuario' }
+    }
+
+    const data = await pegando.json()
+
+    return { status: pegando.status, msg: data.msg }
+}
 

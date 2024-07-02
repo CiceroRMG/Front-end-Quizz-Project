@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="../../css/navMain.css">
     <link rel="stylesheet" href="../../css/admStyles/navAdm.css">
-    <link rel="stylesheet" href="../../css/admStyles/disciplinaRegister.css">
+    <link rel="stylesheet" href="../../css/admStyles/studentRegister.css">
     <link rel="stylesheet" href="../../css/sucessModal.css">
     <link rel="stylesheet" href="../../css/existsModal.css">
     <link rel="stylesheet" href="../../css/animations.css">
@@ -76,7 +76,7 @@
             <div class="main-title">
                 <button class="back-btn"><img src="../../imgs/arrowBack.svg" alt=""></button>
                 <div class="painel-title">
-                    <h1 class="h1-title">Editor de Disciplinas</h1>
+                    <h1 class="h1-title">Cadastro de Alunos</h1>
                 </div>
 
             </div>
@@ -86,42 +86,45 @@
                 <form action="#" class="form">
 
                     <div class="content-form">
-                        <div class="name-form">
-                            <label for="subject-name">Nome</label>
-                            <input type="text" placeholder="Digite o nome da disciplina" id="subject-name" autocomplete="none">
-                            <span class="subject-name-span hidden">Coloque o nome da disciplina!</span>
-                        </div>
-                        <span class="subject-name-span hidden">Coloque o nome da disciplina!</span>
 
-                        <div class="prof-form">
-                            <label for="professor-select">Professor <img src="../../imgs/interrogation.svg" class="interrogation" title="A disciplina não precisa ter um professor"></label>
-                            <select name="professor-select" id="professor-select">
-                                <option value="" disabled selected style="color:darkgray;">Selecione um professor</option>
-                                <option value="">Sem professor</option>
-                            </select>
+                        <div class="name-form">
+                            <label for="student-name">Nome</label>
+                            <input type="text" placeholder="Digite o nome completo" id="student-name" autocomplete="none" minlength="07">
+                            <span class="student-name-span hidden">Coloque o nome do Aluno!</span>
+                        </div>
+
+                        <div class="matricula-form">
+                            <label for="matricula-input">Matrícula <img src="../../imgs/interrogation.svg" class="interrogation" title="A matrícula deve conter 9 digítos numéricos"></label>
+                            <input type="number" placeholder="Crie uma matrícula com 9 dígitos" id="matricula-input" autocomplete="none" minlength="08" maxlength="08">
+                            <span class="matricula-span hidden">A matrícula deve conter 9 digítos.</span>
                         </div>
 
                     </div>
 
                     <div class="data-form">
-                        <div class="year-form">
-                            <label for="data-select">Ano</label>
-                            <input type="number" id="data-select" min="2023" max="2099" placeholder="Digite o ano: 2024..." maxlength="04" minlength="04" >
-                            <span class="data-select-span hidden">O ano deve ser válido!</span>
+                        <div class="email-form">
+                            <label for="email-input">Email</label>
+                            <input type="email" placeholder="Digite um email válido" id="email-input" autocomplete="none">
+                            <span class="email-span hidden">Email inválido ou já cadastrado.</span>
                         </div>
 
-                        <div class="semestre-form">
-                            <label for="semestre-select">Semestre</label>
-                            <select name="semestre-select" id="semestre-select" >
-                                <option value="" disabled selected>Selecione um semestre</option>
-                                <option value="1">Primeiro</option>
-                                <option value="2">Segundo</option>
-                            </select>
-                            <span class="semestre-select-span hidden">Selecione um semestre!</span>
+
+                        <div class="subject-form">
+                            <label for="subject-select">Disciplinas <img src="../../imgs/interrogation.svg" class="interrogation" title="O aluno pode ser criado sem disciplinas"></label>
+                            <div class="select-btn">
+                                <input type="text" name="subject-select" id="subject-select" placeholder="Selecione uma ou mais Disciplinas" disabled>
+                                <div class="img-subject-form"><img src="../../imgs/arrowSelect.svg"></div>
+                                <div class="div-select hidden">
+                                    <ul class="select">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                     
-                    <button>Salvar Edição</button>
+                    <button type="submit" class="register-btn">Cadastrar</button>
 
                 </form>
 
@@ -132,7 +135,7 @@
 
     </div>
     
-    <script src="../../scripts/admFlowPages/disciplinaEditPage/index.js" type="module"></script>
+    <script src="../../scripts/admFlowPages/studentRegisterPage/index.js" type="module"></script>
 
 </body>
 

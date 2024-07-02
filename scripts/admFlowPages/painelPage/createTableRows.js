@@ -5,6 +5,7 @@ import { dialogDeleteBtn } from "./deleteDialog.js";
 import { changeDialogMessageBtnDelete } from "./deleteDialog.js";
 import { createDialog } from "./createDialogDelete.js";
 import { based_url } from "../../config.js";
+import { noRegister, register } from "./noRegisterOnTable.js";
 
 // mensagem do dialog-delete da table das disciplinas
 const subjectTitleDialog = "Tem certeza que quer deletar essa disciplina?"
@@ -13,8 +14,8 @@ const subjectMessageDialog = `Ao deletar a disciplina, todos os dados serão per
 
 
 // tanto a função de criar as tables estão inclusas aqui, quanto a do fluxo de delete do botao e o dialog
-export async function createTableRows(objeto){
-    noRegisterSubjects()
+export async function createSubjectsTableRows(objeto){
+    noRegister()
     const tr = document.createElement('tr')
 
     tr.id = `disciplina-${objeto._id}`;
@@ -112,37 +113,13 @@ export async function createTableRows(objeto){
 }
 
 
-
-
-// função pega a array de todas as disciplinas e percorre
-export function displayNameAndProfessor(allSubjects){
-    for (const subject of allSubjects){
-        createTableRows(subject)
-    }
-}
-
-
-
 // faz denovo a contagem de elementos da array toda vez que exclui uma disciplina
 async function subtractOneOfRegisterSubjectsNumber(){
     const allSubjects = await getAllDisciplinasIfProfessorName()
     if(!allSubjects.disciplinas){
         changeTitlePage("0", "Disciplinas")
-        registerSubjects()
+        register()
     }
     changeTitlePage(allSubjects.disciplinas.length, "Disciplinas")
 }
 
-
-// mostra a div que fala que não possui disciplinas
-function noRegisterSubjects(){
-    const div = document.querySelector('.empty-subjects')
-    div.classList.add('hidden')
-    div.classList.remove('animate-in')
-}
-
-function registerSubjects(){
-    const div = document.querySelector('.empty-subjects')
-    div.classList.remove('hidden')
-    div.classList.add('animate-in')
-}
