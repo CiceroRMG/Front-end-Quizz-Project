@@ -18,7 +18,6 @@ export async function createStudentsTableRows(objeto){
     const tr = document.createElement('tr')
 
     tr.id = `aluno-${objeto._id}`;
-    console.log(objeto._id)
 
     const studentSubject = await getOnBackDisciplinasUsersTable(objeto._id)
     
@@ -47,7 +46,7 @@ export async function createStudentsTableRows(objeto){
     const hoverUl = tr.querySelector('.hover-quizz-ul')
     const hoverDiv = tr.querySelector('.hover-quizz')
     for (const subject of studentSubject.disciplinasComAlunos){
-        const nome = subject.nome
+        const nome = subject.disciplina_id.nome
         const li = document.createElement('li')
         li.innerText = nome
         hoverUl.append(li)
@@ -97,11 +96,11 @@ export async function createStudentsTableRows(objeto){
 
 // faz denovo a contagem de elementos da array toda vez que exclui um elemento
 async function subtractOneOfStudentsNumber(){
-    const allStudents = await getAllStudents()
-    if(!allStudents.users){
+    const allStudents = await getAllStudents();
+    if(!allStudents.alunos){
         changeTitlePage("0", "Alunos")
         register()
     }
-    changeTitlePage(allStudents.users.length, "Alunos")
+    changeTitlePage(allStudents.alunos.length, "Alunos")
 }
 

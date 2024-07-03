@@ -135,11 +135,12 @@ body, a, button{
     position: relative;
 }
 .form .select-btn input {
-    flex: 1 0 0;
+    flex: 0.9 0 0;
     background-color: transparent;
     border: none;
     font-size: 1rem;
     cursor: pointer;
+    overflow-x: auto;
 }
 
 .form .select-btn .select {
@@ -152,10 +153,10 @@ body, a, button{
     padding: 0.5rem;
     list-style: none;
     display: flex;
+    flex-wrap: nowrap;
     flex-direction: column;
     gap: 0.25rem;
     width: 100%;
-    overflow-y: auto;
 }
 
 .form .select-btn .select .option{
@@ -165,6 +166,11 @@ body, a, button{
 }
 
 .form .select-btn .select .option:hover{
+    background-color: #E0E7FF;
+    border-radius: 0.5rem;
+}
+
+.form .select-btn .select .option.ok{
     background-color: #E0E7FF;
     border-radius: 0.5rem;
 }

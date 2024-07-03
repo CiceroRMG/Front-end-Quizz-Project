@@ -1,6 +1,6 @@
 import { checkIfValidToken } from "../../pushToLoginPage.js";
 import { checkTypeUser } from "../../checkTypeUser.js";
-import { getAllDisciplinas } from "../../fetchDbFunctions.js";
+import { getAllDisciplinas, registerUser, registerUserDisciplina } from "../../fetchDbFunctions.js";
 import { loader } from "../../loader.js"
 import {backPage} from "../../alunoFlowPages/disciplinasPage/backBtn.js"
 import { inputValidation } from "./studentFormValidations.js";
@@ -8,6 +8,8 @@ import { navArrowBar } from "../navArrowBar.js";
 import { displaySuccessModal } from "../successModal.js";
 import { displayExistsModal } from "../alreadyExistsModal.js";
 import { putAllSubjectsOnOption } from "./putAllSubjectsOnOption.js";
+
+import { selectedOptions } from "./putAllSubjectsOnOption.js";
 
 loader()
 
@@ -39,6 +41,7 @@ const form = document.querySelector(".form")
 form.addEventListener('submit', async (event)=>{
     event.preventDefault()
     let req = {}
+    let req2 = {}
 
     const inputStudentName = document.querySelector('#student-name')
     const selectSubject = document.querySelector('#subject-select')
@@ -58,29 +61,49 @@ form.addEventListener('submit', async (event)=>{
         req = {
             nome: inputStudentName.value,
             email: inputEmail.value,
-            matricula: inputMatricula.value
+            matricula: inputMatricula.value,
+            tipo: "aluno",
+            senha: "12345"
         }
 
         // se tiver disciplina selecionada, temos que adicionar cada disciplina na relação com o usuario novo
             // 1 - fazer uma requisição de cadastro para rota de usuario
             // 2 - depois que o usuario for criado la no back, pegar a reposta com o userId dele
             // 3 - com o userId do usuario criar uma requisição para rota user disicplina, para cada disciplina selecionada
+        const criandoAluno = await registerUser(req)
+        const userId = criandoAluno.user._id
+        let userRelation = ""
+        for (const subjectSelect of selectedOptions.values){
+            req2 = {
+                aluno_id: userId,
+                disciplina_id: subjectSelect
+            }
+            userRelation = await registerUserDisciplina(req2)
+        }
+
+        if(userRelation.status === 201){
+            displaySuccessModal("Aluno Criado com Sucesso.")
+        } else if(criandoAluno.status === 409){
+            displayExistsModal("Esse Aluno Já Existe")
+        } else{
+            displayExistsModal('Ocorreu algum erro ao cadastrar o aluno')
+        }
 
     } else{
         req = {
             nome: inputStudentName.value,
             email: inputEmail.value,
-            matricula: inputMatricula.value
+            matricula: inputMatricula.value,
+            tipo: "aluno",
+            senha: "12345"
         }
-    }
-
-    const criandoAluno = await registerUser(req)
-
-    if(criandoAluno.status === 201){
-        displaySuccessModal("Aluno Criado com Sucesso.")
-    } else if(criandoAluno.status === 409){
-        displayExistsModal("Esse Aluno Já Existe")
-    } else{
-        displayExistsModal('Ocorreu algum erro ao cadastrar o aluno')
+        const criandoAluno = await registerUser(req)
+        if(criandoAluno.status === 201){
+            displaySuccessModal("Aluno Criado com Sucesso.")
+        } else if(criandoAluno.status === 409){
+            displayExistsModal("Esse Aluno Já Existe")
+        } else{
+            displayExistsModal('Ocorreu algum erro ao cadastrar o aluno')
+        }
     }
 })

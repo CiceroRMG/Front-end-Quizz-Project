@@ -242,3 +242,36 @@ export async function deleteUserById(id){
     return { status: pegando.status, msg: data.msg }
 }
 
+export async function registerUser(objeto){
+    const pegando = await fetchWithToken('http://localhost:3333/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(objeto)
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível criar o usuario' }
+    }
+
+    const data = await pegando.json()
+    const user = data.newUser
+
+    return { user, status: pegando.status }
+}
+
+export async function registerUserDisciplina(objeto){
+    const pegando = await fetchWithToken('http://localhost:3333/usersDisciplinas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(objeto)
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível criar a relação entre aluno e disciplina' }
+    }
+
+    const data = await pegando.json()
+    const userDisciplina = data.response
+
+    return { userDisciplina, status: pegando.status }
+}
