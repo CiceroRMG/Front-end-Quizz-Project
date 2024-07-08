@@ -250,7 +250,8 @@ export async function registerUser(objeto){
     });
 
     if (!pegando.ok) {
-        return { status: pegando.status, msg: 'Não foi possível criar o usuario' }
+        const response = await pegando.json()
+        return { status: pegando.status, msg: response.message, info: response.info}
     }
 
     const data = await pegando.json()

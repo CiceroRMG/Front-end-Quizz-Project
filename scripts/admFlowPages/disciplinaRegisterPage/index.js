@@ -9,12 +9,15 @@ import { inputValidation } from "./formValidations.js";
 import { navArrowBar } from "../navArrowBar.js";
 import { displaySuccessModal } from "../successModal.js";
 import { displayExistsModal } from "../alreadyExistsModal.js";
+import { hrefNavLinks } from "../navLinksHref.js";
 
 loader()
 
 backPage()
 
 navArrowBar()
+
+hrefNavLinks()
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Verificando token na inicialização");

@@ -1,21 +1,25 @@
 import { checkIfValidToken } from "../../pushToLoginPage.js";
 import { checkTypeUser } from "../../checkTypeUser.js";
-import { getAllDisciplinas, registerUser, registerUserDisciplina } from "../../fetchDbFunctions.js";
+import { getAllDisciplinas, registerUserDisciplina } from "../../fetchDbFunctions.js";
 import { loader } from "../../loader.js"
 import {backPage} from "../../alunoFlowPages/disciplinasPage/backBtn.js"
-import { inputValidation } from "./studentFormValidations.js";
+import { inputValidation, validateAllInputs } from "./studentFormValidations.js";
 import { navArrowBar } from "../navArrowBar.js";
 import { displaySuccessModal } from "../successModal.js";
 import { displayExistsModal } from "../alreadyExistsModal.js";
 import { putAllSubjectsOnOption } from "./putAllSubjectsOnOption.js";
 
 import { selectedOptions } from "./putAllSubjectsOnOption.js";
+import { selectSubjects } from "./subjectSelect.js";
+import { hrefNavLinks } from "../navLinksHref.js";
 
 loader()
 
 backPage()
 
 navArrowBar()
+
+hrefNavLinks()
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("Verificando token na inicialização");
@@ -26,13 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const allSubjects = await getAllDisciplinas()
     putAllSubjectsOnOption(allSubjects.disciplinas)
 
-    // select das disciplinas
-    const selectSubject = document.querySelector('.select-btn')
-    selectSubject.addEventListener('click', ()=>{
-        const select = document.querySelector('.div-select')
-        select.classList.toggle('hidden')
-        select.classList.toggle('fade-in')
-    })
+    selectSubjects()
 });
 
 
@@ -48,13 +46,13 @@ form.addEventListener('submit', async (event)=>{
     const inputEmail = document.querySelector('#email-input')
     const inputMatricula = document.querySelector('#matricula-input')
     
-    // validações dos formulários
+    // valida se os inputs estão vazios ou não
     if(
         !inputValidation(inputStudentName.value, '.name-form', '.student-name-span') ||
         !inputValidation(inputEmail.value, '.email-form', '.email-span') ||
         !inputValidation(inputMatricula.value, '.matricula-form', '.matricula-span')
     ) {
-        return console.log('Algum dado invalido')
+        return console.log('Algum dado vazio')
     }
     // validando se tem disciplina ou não
     if(selectSubject.value !== ""){
@@ -66,12 +64,12 @@ form.addEventListener('submit', async (event)=>{
             senha: "12345"
         }
 
-        // se tiver disciplina selecionada, temos que adicionar cada disciplina na relação com o usuario novo
-            // 1 - fazer uma requisição de cadastro para rota de usuario
-            // 2 - depois que o usuario for criado la no back, pegar a reposta com o userId dele
-            // 3 - com o userId do usuario criar uma requisição para rota user disicplina, para cada disciplina selecionada
-        const criandoAluno = await registerUser(req)
-        const userId = criandoAluno.user._id
+        const validations = await validateAllInputs(req)
+        if(!validations){
+            return console.log('Algum dado invalido')
+        }
+
+        const userId = validations.user._id
         let userRelation = ""
         for (const subjectSelect of selectedOptions.values){
             req2 = {
@@ -81,12 +79,10 @@ form.addEventListener('submit', async (event)=>{
             userRelation = await registerUserDisciplina(req2)
         }
 
-        if(userRelation.status === 201){
-            displaySuccessModal("Aluno Criado com Sucesso.")
-        } else if(criandoAluno.status === 409){
-            displayExistsModal("Esse Aluno Já Existe")
-        } else{
-            displayExistsModal('Ocorreu algum erro ao cadastrar o aluno')
+        if (userRelation.status === 201){
+            return displaySuccessModal("Aluno Criado com Sucesso.")
+        } else {
+            return displayExistsModal('Ocorreu algum erro ao cadastrar o aluno')
         }
 
     } else{
@@ -97,13 +93,17 @@ form.addEventListener('submit', async (event)=>{
             tipo: "aluno",
             senha: "12345"
         }
-        const criandoAluno = await registerUser(req)
-        if(criandoAluno.status === 201){
-            displaySuccessModal("Aluno Criado com Sucesso.")
-        } else if(criandoAluno.status === 409){
-            displayExistsModal("Esse Aluno Já Existe")
-        } else{
-            displayExistsModal('Ocorreu algum erro ao cadastrar o aluno')
+
+        const validations = await validateAllInputs(req)
+        if(!validations){
+            return console.log('Algum dado invalido')
+        }
+
+        if (validations.status === 201){
+            return displaySuccessModal("Aluno Criado com Sucesso.")
+            
+        } else {
+            return displayExistsModal('Ocorreu algum erro ao cadastrar o aluno')
         }
     }
 })

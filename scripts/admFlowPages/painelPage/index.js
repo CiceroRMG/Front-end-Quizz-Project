@@ -18,33 +18,75 @@ backPage()
 navArrowBar()
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("Verificando token na inicialização");
     await checkIfValidToken();
-
-
     await checkTypeUser('admin')
+
+
+    const params = new URLSearchParams(window.location.search);
+    const panel = params.get('panel');
+    const tbody = document.querySelector(".tbody")
+    const studentsBtnNav = document.getElementById("alunos-nav-a")
+    const professorsBtnNav = document.getElementById("professores-nav-a")
+    const disciplinasBtnNav = document.getElementById("disciplinas-nav-a")
     
-    // alunos
-    changeBtnHref('admFlowPages/studentRegister.html')
-    changeThOfPage('Matrícula', 'Nome', 'Disciplinas', 'Ações')
-    const allStudents = await getAllStudents()
-    if(!allStudents.alunos){
-        changeTitlePage("0", "Alunos")
-        return console.log('Lista vazia')
+    switch(panel) {
+        case 'students':
+            await loadStudentsPanel();
+            break;
+        case 'subjects':
+            await loadSubjectsPanel();
+            break;
+        // case 'teachers':
+        //     await loadTeachersPanel();
+        //     break;
+        default:
+            console.log('Painel não especificado');
+            await loadStudentsPanel();
     }
-    changeTitlePage(allStudents.alunos.length, "Alunos")
-    iterateArrays(allStudents.alunos, createStudentsTableRows)
 
 
-    // // disciplinas
-    // changeBtnHref('admFlowPages/disciplinaRegister.html')
-    // changeThOfPage('Nome', 'Professor', 'Quizz', 'Ações')
-    // const allSubjects = await getAllDisciplinasIfProfessorName()
-    // if(!allSubjects.disciplinas){
-    //     changeTitlePage("0", "Disciplinas")
-    //     return console.log('Lista vazia')
-    // }
-    // changeTitlePage(allSubjects.disciplinas.length, "Disciplinas")
-    // iterateArrays(allSubjects.disciplinas, createSubjectsTableRows)
+    studentsBtnNav.addEventListener('click', async () => {
+        await loadStudentsPanel();
+    });
 
+    disciplinasBtnNav.addEventListener('click', async () => {
+        await loadSubjectsPanel();
+    });
+
+    professorsBtnNav.addEventListener('click', async () => {
+        await loadTeachersPanel();
+    });
+
+    async function loadStudentsPanel(){
+        tbody.innerHTML = ""
+        studentsBtnNav.style.color = "#FEF08A"
+        disciplinasBtnNav.style.color = "#FAFAFA"
+        professorsBtnNav.style.color = "#FAFAFA"
+        changeBtnHref('admFlowPages/studentRegister.html')
+        changeThOfPage('Matrícula', 'Nome', 'Disciplinas', 'Ações')
+        const allStudents = await getAllStudents()
+        if(!allStudents.alunos){
+            changeTitlePage("0", "Alunos")
+            return console.log('Lista vazia')
+        }
+        changeTitlePage(allStudents.alunos.length, "Alunos")
+        iterateArrays(allStudents.alunos, createStudentsTableRows)
+    }
+    
+    async function loadSubjectsPanel(){
+        tbody.innerHTML = ""
+        studentsBtnNav.style.color = "#FAFAFA"
+        disciplinasBtnNav.style.color = "#FEF08A"
+        professorsBtnNav.style.color = "#FAFAFA"
+        changeBtnHref('admFlowPages/disciplinaRegister.html')
+        changeThOfPage('Nome', 'Professor', 'Quizz', 'Ações')
+        const allSubjects = await getAllDisciplinasIfProfessorName()
+        if(!allSubjects.disciplinas){
+            changeTitlePage("0", "Disciplinas")
+            return console.log('Lista vazia')
+        }
+        changeTitlePage(allSubjects.disciplinas.length, "Disciplinas")
+        iterateArrays(allSubjects.disciplinas, createSubjectsTableRows)
+    }
 });
+
