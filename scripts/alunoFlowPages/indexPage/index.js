@@ -18,9 +18,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // recebe o objeto usuario do banco mandando o token de autenticação
     const takeUserById = await getOnBackUserByToken(getTokenOnLocalStorage())
+    console.log(takeUserById)
 
     // ja com o objeto usuario em mãos, roda as funções que dependendem do id do usuario para funcionar e ja manda o token junto no header
     const takeRelationUserSubject = await getOnBackDisciplinasUsersTable(takeUserById.usuario._id)
+    console.log(takeRelationUserSubject)
     searchAndDisplayStudentSubjects(takeRelationUserSubject.disciplinasComAlunos)
 
 

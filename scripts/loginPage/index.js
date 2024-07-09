@@ -25,7 +25,7 @@ export async function authenticationLogin(event) {
           body: JSON.stringify({ email: email, senha: passwordValue })
   
         });
-    } else if(loginValue.lenght == "8") {
+    } else if(loginValue.length == "8") {
         matricula = loginValue;
         sendToBackForAuthentication = await fetch('http://localhost:3333/login', {
           method: 'POST',

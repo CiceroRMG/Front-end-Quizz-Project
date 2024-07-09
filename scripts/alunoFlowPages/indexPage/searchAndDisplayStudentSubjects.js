@@ -12,7 +12,7 @@ export async function searchAndDisplayStudentSubjects(disciplinasDoUsuario){
         return console.log("não possui disciplinas")
     }
     for (const disciplina of disciplinasDoUsuario) {
-        const idDaDisciplina = disciplina.disciplina_id;
+        const idDaDisciplina = disciplina.disciplina_id._id;
         const pegandoADisciplinaPeloId = await getOnBackDisciplinaById(idDaDisciplina);
         createSubjectsOnPage(pegandoADisciplinaPeloId.disciplina);
     }
