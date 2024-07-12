@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #6366F1;
+    --primary-color-hover: #5659d2;
+    --primary-text-color: #FAFAFA;
+    --outline-text-color: #78716C;
+    --destructive-color: #EF4444;
+}
+
+
+/* standart styles */
+button{
+    display: flex;
+    border-radius: 0.375rem;
+    border: none;
+    gap: 0.625rem;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    margin: 1rem;
+}
+
+button p{
+    font-family: "Open Sans";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0rem;
+}
+
+/* Paddings */
+.primary-l, .outline-l, .outline-destructive-l, .destructive-l{
+    width: 16.375rem;
+    padding: 0.75rem 1.75rem;
+}
+
+.primary-md, .outline-md, .outline-destructive-md, .destructive-md{
+    padding: 0.75rem 1.75rem;
+}
+
+.primary-sm, .outline-sm, .outline-destructive-sm, .destructive-sm{
+    padding: 0.5rem 1.25rem;
+}
+
+/* Primary button style*/
+.primary-l, .primary-md, .primary-sm{
+    background-color: var(--primary-color);
+}
+
+.primary-l:hover, .primary-md:hover, .primary-sm:hover{
+    background-color: var(--primary-color-hover);
+}
+
+.primary-md p, .primary-l p, .primary-sm p{
+    color: var(--primary-text-color);
+}
+
+.primary-md img, .primary-l img, .primary-sm img{
+    width: 1.375rem;
+    height: 1.625rem;
+    fill: #EEF2FF;
+}
+
+
+/* Outline button style*/
+.outline-sm, .outline-md, .outline-l{
+    border: 1px solid var(--outline-text-color);
+    background: transparent;
+}
+
+.outline-sm p, .outline-md p, .outline-l p{
+    color: var(--outline-text-color);
+}
+
+/* Outline destructive button style */
+.outline-destructive-sm, .outline-destructive-md, .outline-destructive-l{
+    border: 1px solid var(--destructive-color);
+    background: transparent;
+}
+
+.outline-destructive-sm p, .outline-destructive-md p, .outline-destructive-l p{
+    color: var(--destructive-color);
+}
+
+/* Destructive button style */
+.destructive-sm, .destructive-md, .destructive-l{
+    background: var(--destructive-color);
+}
+
+.destructive-sm p, .destructive-md p, .destructive-l p{
+    color: var(--primary-text-color);
+}
