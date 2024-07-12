@@ -19,7 +19,6 @@ export async function createSubjectsTableRows(objeto){
     const tr = document.createElement('tr')
 
     tr.id = `disciplina-${objeto._id}`;
-    console.log(objeto)
     const profName = objeto.prof_id
     if (profName){
         tr.innerHTML = 
