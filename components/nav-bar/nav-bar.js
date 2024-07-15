@@ -1,15 +1,34 @@
 
 const mainNav = {
     mainComponents: [
-        componente1, componente2
+        navBarItens({
+            img: "./img/house.svg",
+            text: "Dashboard",
+            type: "a",
+            link: "#"
+        }),
+        navBarItens({
+            img: "./img/book.svg",
+            text: "Disciplinas",
+            type: "a",
+            link: "#"
+        })
     ],
     footerComponents: [
-        componente1, componente2
+        navBarItens({
+            img: "./img/password.svg",
+            text: "Trocar a senha",
+            type: "a",
+            link: "#"
+        }), 
+        navBarItens({
+            img: "./img/logout.svg",
+            text: "Encerrar sessão",
+            type: "a",
+            link: "#"
+        })
     ],
 }
-
-
-
 
 
 function navBarItens({img, text, link, type = "a"}){
@@ -17,13 +36,14 @@ function navBarItens({img, text, link, type = "a"}){
     const div = document.createElement("div")
     div.classList.add('element')
 
-    const image = document.createElement('img')
-    image.setAttribute('src', img)
+    // div.append(image)
 
     if (type === "a"){
         const elementLink = document.createElement('a')
-        elementLink.innerText = text
         elementLink.setAttribute('href', link)
+        const conteudo = `<img src="${img}"> ${text}`
+        elementLink.innerHTML = conteudo
+        div.append(elementLink)
     }
     if (type === "ul"){
         const elementUl = document.createElement('button')
@@ -32,43 +52,51 @@ function navBarItens({img, text, link, type = "a"}){
         arrow.setAttribute("src", "./img/arrow.svg")
         arrow.classList.add("arrow-nav")
         elementUl.append(arrow)
+        div.append(elementUl)
     }
-
+    return div
 }
 
 
 
 function navBar({mainComponents = [], footerComponents = []}){
-
+    const header = document.createElement('header')
+    header.classList.add('nav-bar-layout')
     // header
     const logo = document.createElement("div")
     logo.classList.add("logo")
     const logoImg = document.createElement("img")
     logoImg.setAttribute('src', './img/logo.svg')
     logo.appendChild(logoImg)
-
+    header.append(logo)
 
     // nav
         // vai ser composto de componentes
         // aqui tem que receber uma array, por que dependendo de quantos componentes for usar tem que dar um forEach() pra adicionar na lista
-
-
+    const nav = document.createElement("div")
+    nav.classList.add('nav')
+    for (const component of mainComponents){
+        nav.appendChild(component)
+    }
+    header.append(nav)
 
     // footer
         // vai ser composto de 1 ou 2 componentes (logout(obrigatorio) e trocar a senha)
+
+    const footer = document.createElement("div")
+    footer.classList.add('nav-footer')
+    for (const component of footerComponents){
+        footer.appendChild(component)
+    }
+    header.append(footer)
+
+
+    return header
 }
 
 
+function page(nav){
+    document.body.append(nav)
+}
 
-
-
-    <div class="nav-footer">
-    <a href="#" class="logoutBtn">|** <span>Logout</span></a>
-    <dialog class="dialog">
-        <h1>Tem certeza que deseja sair?</h1>
-        <form method="dialog" class="dialog-form">
-            <button class="logouBtnConfirm">Sair</button>
-            <button class="logoutBtnBack">Voltar</button>
-        </form>
-    </dialog>
-    </div>
+page(navBar(mainNav))

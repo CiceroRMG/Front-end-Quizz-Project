@@ -5,18 +5,52 @@
 }
 
 :root{
-
+    --primary-color: #EEF2FF
 }
 
-
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    display: flex;
+    gap: 0.5rem;
+}
 
 
 .nav-bar-layout{
     display: flex;
-    width: 12.5rem;
-    height: 52rem;
+    height: 100vh;
+    width: 13.5rem;
     flex-direction: column;
     justify-content: space-between;
+    background-color: #1E1B4B;
+    padding: 2rem;
+}
+
+.logo{
+    flex: 1 0 7dvh;
+    display: flex;
+    justify-content: flex-start;
     align-items: flex-start;
-    flex-shrink: 0;
+    padding-top: 0.5rem;
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 75dvh;
+    gap: 1rem;
+}
+
+
+.nav-footer{
+    flex: 1 0 5dvh;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 0.5rem;
+}
+
+.element{
+    display: flex;
 }
