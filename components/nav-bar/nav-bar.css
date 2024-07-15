@@ -2,17 +2,24 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Open Sans";
 }
 
 :root{
     --primary-color: #EEF2FF
 }
 
-a {
+
+.nav-item {
     text-decoration: none;
     color: var(--primary-color);
     display: flex;
     gap: 0.5rem;
+    font-size: 0.875rem;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 
