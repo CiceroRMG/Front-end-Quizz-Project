@@ -95,9 +95,10 @@ const botaoDestructiveG = {
 }
 
 
-function buttom({text = "Button", type = "primary-md", onclick = null, img = null}){
+export function buttom({text = "Button", type = "primary-md", onclick = null, img = null}){
 
     const btn = document.createElement('button')
+    btn.classList.add('button')
 
     const p = document.createElement('p')
     p.innerText = text
@@ -124,16 +125,16 @@ function page(element){
     document.body.appendChild(element)
 }
 
-page(buttom(botaoL))
-page(buttom(botaoM))
-page(buttom(botaoP))
-page(buttom(botaoOutlineG))
-page(buttom(botaoOutlineM))
-page(buttom(botaoOutlineP))
-page(buttom(botaoOutlineDestructiveG))
-page(buttom(botaoOutlineDestructiveM))
-page(buttom(botaoOutlineDestructiveP))
-page(buttom(botaoDestructiveG))
-page(buttom(botaoDestructiveM))
-page(buttom(botaoDestructiveP))
+// page(buttom(botaoL))
+// page(buttom(botaoM))
+// page(buttom(botaoP))
+// page(buttom(botaoOutlineG))
+// page(buttom(botaoOutlineM))
+// page(buttom(botaoOutlineP))
+// page(buttom(botaoOutlineDestructiveG))
+// page(buttom(botaoOutlineDestructiveM))
+// page(buttom(botaoOutlineDestructiveP))
+// page(buttom(botaoDestructiveG))
+// page(buttom(botaoDestructiveM))
+// page(buttom(botaoDestructiveP))
 
