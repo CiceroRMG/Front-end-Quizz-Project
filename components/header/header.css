@@ -1,0 +1,36 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.head{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.backBtn{
+    border: none;
+    background-color: transparent;
+    display: flex;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+.backBtn:hover{
+    background-color: rgba(225, 225, 225, 0.674);
+    border-radius: 999px;
+}
+
+.container h1 {
+    color: #1C1917;
+    font-family: "Open Sans";
+    font-size:  1.875rem;
+    font-weight: 700;
+}
+
+.header-p{
+    color: #44403C;
+    font-family: "Open Sans";
+    font-size: 1.125rem;
+}

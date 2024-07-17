@@ -1,47 +1,9 @@
 import { logout } from "../../scripts/pushToLoginPage.js"
 import { Dialog } from "../dialog/dialog.js"
 import { Logo } from "../logo/logo.js"
+import { Header } from "../header/header.js"
+import { MainLayout } from "../mainLayout/mainLayout.js"
 
-
-
-
-const arrayItensOfNav = {
-    mainComponents: [
-        {
-            img: "./img/house.svg",
-            text: "Dashboard",
-            as: "a",
-            link: "#"
-        },
-        {
-            img: "./img/book.svg",
-            text: "Disciplinas",
-            as: "button",
-            link: "#",
-            type: "ul"
-        }
-    ],
-    footerComponents: [
-        {
-            img: "./img/password.svg",
-            text: "Trocar a senha",
-            as: "a",
-            link: "#"
-        }, 
-        {
-            img: "./img/logout.svg",
-            text: "Encerrar sessão",
-            as: "button",
-            link: "#",
-            type: "normal",
-            onclick(){
-                const dialog = document.querySelector('.dialog')
-                dialog.showModal()
-                dialog.classList.add('animate-in')
-            }
-        }
-    ],
-}
 
 const liItens = {
     itens: [
@@ -82,8 +44,7 @@ const logoutDialog = {
 } 
 
 
-
-function NavUlItens({itens = [{text, href}]}){
+export function NavUlItens({itens = [{text, href}]}){
     const element = document.createElement("div")
     element.classList.add('ul')
     element.classList.add('hidden')
@@ -101,7 +62,7 @@ function NavUlItens({itens = [{text, href}]}){
     return element
 }
 
-function NavBarItens({img, text, link, as = "a", onclick = null, type = "normal"}){
+export function NavBarItens({img, text, link, as = "a", onclick = null, type = "normal"}){
     // img // text // type -> a or ul
     const div = document.createElement("div")
     div.classList.add('element')
@@ -117,7 +78,7 @@ function NavBarItens({img, text, link, as = "a", onclick = null, type = "normal"
         element.onclick = onclick
         if (type === "ul"){
             const arrow = document.createElement('img')
-            arrow.setAttribute("src", "./img/arrow.svg")
+            arrow.setAttribute("src", "./nav-bar/img/arrow.svg")
             arrow.classList.add("arrow-nav")
             element.append(arrow)
             const ul = NavUlItens(liItens)
@@ -134,7 +95,7 @@ function NavBarItens({img, text, link, as = "a", onclick = null, type = "normal"
     return div
 }
 
-function NavBar({mainComponents = [], footerComponents = []}){
+export function NavBar({mainComponents = [], footerComponents = []}){
     const header = document.createElement('header')
     header.classList.add('nav-bar-layout')
 
@@ -176,8 +137,19 @@ function NavBar({mainComponents = [], footerComponents = []}){
 
 
 
-function page(nav){
-    document.body.append(nav)
-}
+// function page(){
+//     const div = document.createElement('div')
+//     div.classList.add('app')
+//     div.style.display = "flex"
+//     div.style.backgroundColor = "#1E1B4B"
 
-page(NavBar(arrayItensOfNav))
+//     div.append(NavBar(arrayItensOfNav))
+
+//     const main = MainLayout()
+//     div.append(main)
+//     main.append(Header(headerContent))
+
+//     document.body.append(div)
+// }
+
+// page()

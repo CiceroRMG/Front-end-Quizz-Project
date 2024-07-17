@@ -26,7 +26,7 @@
 .nav-bar-layout{
     display: flex;
     height: 100vh;
-    width: 13.5rem;
+    width: 14rem;
     flex-direction: column;
     justify-content: space-between;
     background-color: #1E1B4B;
