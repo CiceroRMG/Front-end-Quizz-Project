@@ -1,47 +1,6 @@
 import { logout } from "../../scripts/pushToLoginPage.js"
 import { Dialog } from "../dialog/dialog.js"
 import { Logo } from "../logo/logo.js"
-import { Header } from "../header/header.js"
-import { MainLayout } from "../mainLayout/mainLayout.js"
-
-
-const liItens = {
-    itens: [
-        {
-            text: "Alunos",
-            href: "#"
-        },
-        {
-            text: "Professores",
-            href: "#"
-        },
-        {
-            text: "Disciplinas",
-            href: "#"
-        }
-    ]
-}
-
-const logoutDialog = {
-    title: "Tem certeza que deseja sair?",
-    dialogButtons: [
-        {
-            text: "Cancelar",
-            type: "outline-md",
-            onclick(){
-                const dialog = document.querySelector('.dialog')
-                dialog.close()
-            }
-        },
-        {
-            text: "Sair",
-            type: "destructive-md",
-            async onclick(){
-                await logout()
-            }
-        },
-    ]
-} 
 
 
 export function NavUlItens({itens = [{text, href}]}){
@@ -62,7 +21,7 @@ export function NavUlItens({itens = [{text, href}]}){
     return element
 }
 
-export function NavBarItens({img, text, link, as = "a", onclick = null, type = "normal"}){
+export function NavBarItens({img, text, link, as = "a", onclick = null, type = "normal", listItens = null}){
     // img // text // type -> a or ul
     const div = document.createElement("div")
     div.classList.add('element')
@@ -81,7 +40,7 @@ export function NavBarItens({img, text, link, as = "a", onclick = null, type = "
             arrow.setAttribute("src", "./nav-bar/img/arrow.svg")
             arrow.classList.add("arrow-nav")
             element.append(arrow)
-            const ul = NavUlItens(liItens)
+            const ul = NavUlItens(listItens)
             div.append(ul)
             element.addEventListener('click', ()=>{
                 ul.classList.toggle('hidden')
@@ -113,7 +72,8 @@ export function NavBar({mainComponents = [], footerComponents = []}){
             as: component.as,
             link: component.link,
             onclick: component.onclick,
-            type: component.type
+            type: component.type,
+            listItens: component.listItens
         })
         nav.appendChild(item)
     }
@@ -128,6 +88,26 @@ export function NavBar({mainComponents = [], footerComponents = []}){
     }
     header.append(footer)
 
+    const logoutDialog = {
+        title: "Tem certeza que deseja sair?",
+        dialogButtons: [
+            {
+                text: "Cancelar",
+                type: "outline-md",
+                onclick(){
+                    const dialog = document.querySelector('.dialog')
+                    dialog.close()
+                }
+            },
+            {
+                text: "Sair",
+                type: "destructive-md",
+                async onclick(){
+                    await logout()
+                }
+            },
+        ]
+    } 
     header.append(Dialog(logoutDialog))
 
 

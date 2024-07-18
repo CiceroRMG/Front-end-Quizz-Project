@@ -1,6 +1,3 @@
-import { logout } from "./../scripts/pushToLoginPage.js"
-import { Dialog } from "./dialog/dialog.js"
-import { Logo } from "./logo/logo.js"
 import { Header } from "./header/header.js"
 import { MainLayout } from "./mainLayout/mainLayout.js"
 import { NavBar } from "./nav-bar/nav-bar.js"
@@ -19,7 +16,23 @@ const arrayItensOfNav = {
             text: "Disciplinas",
             as: "button",
             link: "#",
-            type: "ul"
+            type: "ul",
+            listItens: {
+                itens: [
+                    {
+                        text: "Alunos",
+                        href: "#"
+                    },
+                    {
+                        text: "Professores",
+                        href: "#"
+                    },
+                    {
+                        text: "Disciplinas",
+                        href: "#"
+                    }
+                ]
+            }
         }
     ],
     footerComponents: [
