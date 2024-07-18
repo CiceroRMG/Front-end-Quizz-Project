@@ -56,3 +56,40 @@ export function Item({contents = [{as: null, text, link: "#", onclick: null}], s
     
     return div
 }
+
+
+export function ListItens({elements = [{as, text}], itens = []}){
+    const container = document.createElement('div')
+    container.classList.add('layout-container')
+
+    const div = document.createElement('div')
+    div.classList.add('titles-container')
+
+    for(const element of elements){
+        const content = document.createElement(element.as)
+        content.innerText = element.text
+
+        div.append(content)
+    }
+
+    container.append(div)
+
+    const list = document.createElement('ul')
+    list.classList.add('ul-itens')
+
+    for (const item of itens){
+        const li = document.createElement('li')
+        const itemm = Item({
+            contents: item.contents,
+            style: item.style,
+            click: item.click,
+            onclick: item.onclick
+        })
+        li.append(itemm)
+        list.append(li)
+    }
+
+    container.append(list)
+
+    return container
+}

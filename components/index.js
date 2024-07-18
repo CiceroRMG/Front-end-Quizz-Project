@@ -1,7 +1,7 @@
 import { Header } from "./header/header.js"
 import { MainLayout } from "./mainLayout/mainLayout.js"
 import { NavBar } from "./nav-bar/nav-bar.js"
-
+import { ListItens } from "./listItens/listItens.js"
 
 const arrayItensOfNav = {
     mainComponents: [
@@ -62,6 +62,81 @@ const headerContent = {
     subtitle: "Bem vindo, Aluno",
 }
 
+const titles = [
+    {
+        as: "h1",
+        text: "Teste"
+    },
+    {
+        as: "p",
+        text: "Teste"
+    },
+    {
+        as: "p",
+        text: "Teste"
+    }
+]
+
+const itens = [
+    {
+        contents: [
+            {
+                as: "h1",
+                text: "teste",
+            },
+            {
+                as: "p",
+                text: "teste",
+            },
+            {
+                as: "span",
+                text: "teste",
+            }
+        ],
+        click: true,
+        onclick(){
+            window.location.href = "https://www.google.com"
+        }
+    },
+    {
+        contents: [
+            {
+                as: "h1",
+                text: "teste",
+            },
+            {
+                as: "a",
+                text: "teste",
+            },
+            {
+                as: "a",
+                text: "teste",
+                link: "https://www.google.com"
+            }
+        ],
+        click: true,
+        style: "space"
+    },
+    {
+        contents: [
+            {
+                as: "h1",
+                text: "teste",
+            },
+            {
+                as: "button",
+                text: "teste",
+            }
+        ],
+        click: true
+    }
+]
+
+const contentAll = {
+    elements: titles,
+    itens: itens
+}
+
 function page(){
     const div = document.createElement('div')
     div.classList.add('app')
@@ -73,6 +148,7 @@ function page(){
     const main = MainLayout()
     div.append(main)
     main.append(Header(headerContent))
+    main.append(ListItens(contentAll))
 
     document.body.append(div)
 }
