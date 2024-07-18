@@ -12,6 +12,7 @@
     align-items: center;
 
     margin: 1rem;
+
 }
 
 .item-container .element-h1{
@@ -24,6 +25,7 @@
     color: #57534E;
     font-family: "Open Sans";
     font-size: 0.875rem;
+    padding-top: 2px;
 }
 
 .item-container .element-tag{
@@ -40,5 +42,14 @@
     color: #4338CA;
     font-family: "Open Sans";
     font-size: 1rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
 }
 
+.section{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}

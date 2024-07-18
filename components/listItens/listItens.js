@@ -1,27 +1,15 @@
 
-const itemm = {
-    contents: [
-        {
-            as: "h1",
-            text: "Teste",        
-        },
-        {
-            as: "p",
-            text: "Teste",        
-        },
-        {
-            as: "span",
-            text: "Tag",        
-        }
-    ],
-}
-
-function Item({contents = [{as: null, text, link: null, onclick: null}], style = "normal"}){
+export function Item({contents = [{as: null, text, link: "#", onclick: null}], style = "normal", click = false, onclick}){
 
     const div = document.createElement('div')
     div.classList.add('item-container')
     const section = document.createElement('div')
+    section.classList.add('section')
 
+    if(click){
+        div.style.cursor = "pointer"
+        div.onclick = onclick
+    }
     
     for(const content of contents){
         const element = document.createElement(content.as)
@@ -68,10 +56,3 @@ function Item({contents = [{as: null, text, link: null, onclick: null}], style =
     
     return div
 }
-
-function page(){
-    const items = Item(itemm)
-    document.body.append(items)
-}
-
-page()
