@@ -20,20 +20,19 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    white-space: nowrap;
 }
-
 
 .nav-bar-layout{
     display: flex;
     height: 100vh;
-    width: 14rem;
     flex-direction: column;
     justify-content: space-between;
     background-color: #1E1B4B;
     padding: 2rem;
 }
 
-.logo{
+.logo-div{
     flex: 1 0 7dvh;
     display: flex;
     justify-content: flex-start;
@@ -70,7 +69,6 @@
 
 .ul ul{
     position: absolute;
-    color: var(--text-primary-color);
     top: 2.5rem;
     display: flex;
     flex-direction: column;
@@ -78,6 +76,11 @@
     font-size: 0.875rem;
     cursor: pointer;
     z-index: 9999;
+    color: var(--text-primary-color);
+    padding: 0 1.5rem;
+    padding-right: 3rem;
+    padding-left: 0.7rem;
+    border-radius: 1rem;
 }
 
 .ul ul li:hover{
@@ -94,4 +97,59 @@
 
 .arrow-nav.select{
     transform: rotate(90deg);
+}
+
+@media (max-width: 1000px){
+    header p, header h1, header span{
+        display: none;
+    }
+    header dialog p, dialog h1, dialog span{
+        display: flex;
+    }
+    .ul ul{
+        left: -1.2rem;
+        color: black;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: 1px solid #E5E5E5;
+        background:  #FAFAFA;
+    }
+}
+
+@media (max-width: 520px){
+    .nav-bar-layout{
+        flex-direction: row;
+        width: 100vw;
+        height: 10vh;
+        justify-content: space-between;
+        background-color: #1E1B4B;
+        padding: 2rem;
+    }
+
+    .app{
+        flex-direction: column;
+    }
+
+    .logo-div{
+        flex: 1 0 7%;
+        padding: 0;
+        align-items: center;
+        min-width: 2rem;
+    }
+
+    .nav{
+        flex-direction: row;
+        flex: 1 0 50%;
+        justify-content: flex-end;
+        gap: 1.2rem;
+        padding-right: 1rem;
+    }
+    .nav-footer{
+        flex: 1 0 5%;
+        gap: 1.2rem;
+        flex-direction: row;
+        align-items: center;
+        padding: 0;
+    }
+
 }

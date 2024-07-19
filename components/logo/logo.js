@@ -5,5 +5,9 @@ export function Logo(){
     logoImg.setAttribute('src', './logo/img/logo.svg')
     logo.appendChild(logoImg)
     
+    const h1 = document.createElement('h1')
+    h1.innerText = "Polvo"
+    logo.append(h1)
+
     return logo
 }

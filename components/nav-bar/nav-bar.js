@@ -27,7 +27,7 @@ export function NavBarItens({img, text, link, as = "a", onclick = null, type = "
     div.classList.add('element')
     const element = document.createElement(as)
     element.classList.add('nav-item')
-    const conteudo = `<img src="${img}"> ${text}`
+    const conteudo = `<img src="${img}"> <p>${text}</p>`
     element.innerHTML = conteudo
 
     if (as === "a"){
@@ -59,8 +59,11 @@ export function NavBar({mainComponents = [], footerComponents = []}){
     header.classList.add('nav-bar-layout')
 
     // header
+    const divLogo = document.createElement('div')
+    divLogo.classList.add('logo-div')
     const logoBar = Logo()
-    header.append(logoBar)
+    divLogo.append(logoBar)
+    header.append(divLogo)
 
     // nav
     const nav = document.createElement("div")
