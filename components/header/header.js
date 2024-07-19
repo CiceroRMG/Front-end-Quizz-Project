@@ -2,7 +2,7 @@
 
 
 
-export function Header({title, subtitle = null, backBtn = null}){
+export function Header({title, subtitle = null, backBtn = null, image = null}){
     const div = document.createElement('div')
     div.classList.add("container")
 
@@ -12,11 +12,21 @@ export function Header({title, subtitle = null, backBtn = null}){
     if(backBtn){
         const btn = document.createElement('button')
         const img = document.createElement('img')
-        img.setAttribute('src', '../header/img/backBtn.svg')
+        img.setAttribute('src', "./header/img/backBtn.svg")
         btn.classList.add('backBtn')
         btn.append(img)
 
-        head.append(btn)
+        div.append(btn)
+    }
+
+    if(image){
+        const divImg = document.createElement('div')
+        const img = document.createElement('img')
+        img.setAttribute('src', image)
+        divImg.classList.add('header-image')
+        divImg.append(img)
+
+        div.append(divImg)
     }
 
     const h1 = document.createElement('h1')
@@ -29,10 +39,7 @@ export function Header({title, subtitle = null, backBtn = null}){
         p.classList.add('header-p')
         p.innerText = subtitle
 
-        div.append(p)
-        if(backBtn){
-            p.style.paddingLeft = "2.3rem"
-        }
+        head.append(p)
     }
 
 

@@ -2,6 +2,8 @@ import { Header } from "./header/header.js"
 import { MainLayout } from "./mainLayout/mainLayout.js"
 import { NavBar } from "./nav-bar/nav-bar.js"
 import { ListItens } from "./listItens/listItens.js"
+import { AppLayout } from "./appLayout/appLayout.js"
+import { Toaster } from "./toaster/toaster.js"
 
 const arrayItensOfNav = {
     mainComponents: [
@@ -60,6 +62,7 @@ const arrayItensOfNav = {
 const headerContent = {
     title: "Dashboard",
     subtitle: "Bem vindo, Aluno",
+    backBtn: true,
 }
 
 const titles = [
@@ -137,11 +140,14 @@ const contentAll = {
     itens: itens
 }
 
+const toasterContent = {
+    title: "Sucesso",
+    subtitle: "Tal ação realizada com sucesso.",
+    image: "./toaster/img/checkCircle.svg"
+}
+
 function page(){
-    const div = document.createElement('div')
-    div.classList.add('app')
-    div.style.display = "flex"
-    div.style.backgroundColor = "#1E1B4B"
+    const div = AppLayout()
 
     div.append(NavBar(arrayItensOfNav))
 
@@ -149,6 +155,8 @@ function page(){
     div.append(main)
     main.append(Header(headerContent))
     main.append(ListItens(contentAll))
+
+    main.append(Toaster(toasterContent))
 
     document.body.append(div)
 }

@@ -126,10 +126,6 @@
         padding: 2rem;
     }
 
-    .app{
-        flex-direction: column;
-    }
-
     .logo-div{
         flex: 1 0 7%;
         padding: 0;
