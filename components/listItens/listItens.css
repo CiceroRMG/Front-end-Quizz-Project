@@ -107,4 +107,36 @@
     gap: 0.5rem;
 }
 
+@media (max-width: 520px){
+    .item-container{
+        width: 100%;
 
+    }
+
+}
+
+@media (max-width: 395px){
+    .item-container {
+        width: 100%;
+        min-width: 10rem;
+    }
+    .item-container .element-h1{
+        font-size: 0.875rem;
+    }
+    .item-container .element-p, .item-container .element-a, .item-container .element-button, .item-container .element-tag{
+        font-size: 0.75rem;
+    }
+
+    .titles-container{
+        min-width: 10rem;
+        width: 100%;
+    }
+
+    .ul-itens{
+        gap: 0.55rem;
+    }
+
+    .section{
+        gap: 1rem;
+    }
+}
