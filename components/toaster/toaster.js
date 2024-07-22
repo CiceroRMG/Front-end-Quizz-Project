@@ -1,11 +1,17 @@
 import { Header } from "../header/header.js"
 
 
-export function Toaster({title, subtitle, image}){
+export function Toaster({title, subtitle, image, style = "success"}){
 
     const toaster = document.createElement('div')
     toaster.classList.add('toaster-container')
 
+    if(style === "error"){
+        toaster.classList.add('error')
+    }
+    if(style === "info"){
+        toaster.classList.add('info')
+    }
     const content = Header({title: title, subtitle: subtitle, image: image})
     toaster.append(content)
 
@@ -16,6 +22,7 @@ export function Toaster({title, subtitle, image}){
     btn.append(imgBtn)
     btn.classList.add('x-btn')
     btn.onclick = ()=>{toaster.classList.add("hidden")}
+
 
     toaster.append(btn)
 
