@@ -37,6 +37,12 @@ const arrayItensOfNav = {
                     }
                 ]
             }
+        },
+        {
+            img: "/components/nav-bar/img/book.svg",
+            text: "Notas",
+            as: "button",
+            link: "#",
         }
     ],
     footerComponents: [
@@ -283,7 +289,7 @@ function page(){
     main.append(Header(headerContent))
     main.append(ListItens(contentAll))
     main.append(Toaster(toasterContent))
-    // main.append(Input(inputData))
+    main.append(Input(inputData))
     main.append(Select(selectData))
     main.append(Select(selectData2))
 
