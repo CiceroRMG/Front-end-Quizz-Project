@@ -4,6 +4,8 @@ import { NavBar } from "./nav-bar/nav-bar.js"
 import { ListItens } from "./listItens/listItens.js"
 import { AppLayout } from "./appLayout/appLayout.js"
 import { Toaster } from "./toaster/toaster.js"
+import { Input } from "./input/input.js"
+import { Select } from "./select/select.js"
 
 const arrayItensOfNav = {
     mainComponents: [
@@ -146,6 +148,72 @@ const toasterContent = {
     image: "./toaster/img/checkCircle.svg"
 }
 
+const inputData = {
+    label: "Senha",
+    style: "outline",
+    info: "Qualquer coisa",
+    id: "input-password",
+    error: "Esse aqui é o erro",
+    type: "password"
+}
+
+const selectData = {
+    label: "Disciplinas",
+    info: "Qualquer coisa",
+    id: "teste",
+    placeholder: "Selecione alguma opção",
+    options: [
+        {
+            text: "Teste",
+            value: "id"
+        },
+        {
+            text: "Teste 1",
+            value: "id5"
+        },
+        {
+            text: "Teste 2",
+            value: "id2"
+        },
+        {
+            text: "Teste 3",
+            value: "id3"
+        },
+        {
+            text: "Teste 4",
+            value: "id5"
+        },
+        {
+            text: "Teste 696",
+            value: "id6"
+        },
+        {
+            text: "Teste 5454",
+            value: "id6"
+        },
+        {
+            text: "Teste 12",
+            value: "id6"
+        },
+        {
+            text: "Teste 651",
+            value: "id6"
+        },
+        {
+            text: "Teste 44",
+            value: "id6"
+        },
+        {
+            text: "Teste 65165",
+            value: "id6"
+        },
+        {
+            text: "Teste 78",
+            value: "id6"
+        }
+    ]
+}
+
 function page(){
     const div = AppLayout()
 
@@ -157,6 +225,10 @@ function page(){
     main.append(ListItens(contentAll))
 
     main.append(Toaster(toasterContent))
+
+    main.append(Input(inputData))
+
+    main.append(Select(selectData))
 
     document.body.append(div)
 }

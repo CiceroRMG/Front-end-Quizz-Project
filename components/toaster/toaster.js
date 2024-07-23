@@ -1,7 +1,7 @@
 import { Header } from "../header/header.js"
 
 
-export function Toaster({title, subtitle, image, style = "success"}){
+export function Toaster({title, subtitle, image, style = "success", timeout}){
 
     const toaster = document.createElement('div')
     toaster.classList.add('toaster-container')
@@ -25,6 +25,14 @@ export function Toaster({title, subtitle, image, style = "success"}){
 
 
     toaster.append(btn)
+
+    toaster.classList.add('animate-in-left')
+    setTimeout(()=>{
+        setTimeout(()=>{
+            toaster.remove()
+        }, 1000)
+        toaster.classList.add('animate-in-right')
+    }, 4000)
 
     return toaster
 }

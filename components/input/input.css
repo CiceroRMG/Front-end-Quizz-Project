@@ -1,0 +1,83 @@
+
+.inputContainer{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+
+.input-label{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.input-label h2{
+    color: #1C1917;
+    font-family: "Open Sans";
+    font-size: 1rem;
+}
+
+.input{
+    width: 100%;
+    padding: 0.65rem 0.5rem;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1.5rem;
+}
+
+.input.default{
+    border-radius: 0.375rem;
+    border: 1px solid #E5E5E5;
+    background: #F5F5F5;
+}
+
+.input.default:focus{
+    outline: 1px solid #6366F1;
+}
+
+.input.outline{
+    border-radius: 0.375rem;
+    border: 1px solid #D6D3D1;
+    background-color: transparent;
+}
+
+.input.outline:focus{
+    outline: 1px solid #6366F1;
+}
+
+.input.default::placeholder{
+    color: #A8A29E;
+    font-family:"Open Sans";
+    font-size: 1rem;
+}
+
+.input.outline::placeholder{
+    color: #78716C;
+    font-family:"Open Sans";
+    font-size: 1rem;
+}
+
+.image-container{
+    position: absolute;
+    right: 1.25rem;
+    top: 3.25rem;
+    cursor: pointer;
+}
+
+.input-error {
+    position: absolute;
+    top: 6rem;
+    left: 0.2rem;
+    color: rgb(220, 20, 30);
+    font-family:"Open Sans";
+    font-size: 0.875rem;
+    white-space: normal;
+    width: 100%;
+    word-wrap: break-word;
+}
+
