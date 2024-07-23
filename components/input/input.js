@@ -16,7 +16,7 @@ export function Input({label = null, img = null, placeholder = null, style = "de
 
         if(info){
             const infoImg = document.createElement('img')
-            infoImg.setAttribute('src', './input/img/info.svg')
+            infoImg.setAttribute('src', '/components/input/img/info.svg')
             infoImg.setAttribute('title', info)
             
             header.append(infoImg)
@@ -45,8 +45,8 @@ export function Input({label = null, img = null, placeholder = null, style = "de
         spanDiv.classList.add('image-container')
         spanDiv.innerHTML = 
             `
-                <span class="eyes"><img src="../imgs/eyes-see.svg"></span>
-                <span class="eyes-see hidden"><img src="../imgs/eyes-not-see.svg"></span>
+                <span class="eyes"><img src="/components/input/img/eyes-see.svg"></span>
+                <span class="eyes-see hidden"><img src="/components/input/img/eyes-not-see.svg"></span>
             `
         const eyesOpen = spanDiv.querySelector('.eyes')
         const eyesClosed = spanDiv.querySelector('.eyes-see')

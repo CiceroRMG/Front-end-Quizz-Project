@@ -18,7 +18,7 @@ export function Toaster({title, subtitle, image, style = "success", timeout}){
     const btn = document.createElement('button')
     const imgBtn = document.createElement('img')
 
-    imgBtn.setAttribute('src', './toaster/img/x.svg')
+    imgBtn.setAttribute('src', '/components/toaster/img/x.svg')
     btn.append(imgBtn)
     btn.classList.add('x-btn')
     btn.onclick = ()=>{toaster.classList.add("hidden")}

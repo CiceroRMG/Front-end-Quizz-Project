@@ -52,7 +52,7 @@ export function Dialog({title, paragraph = null, dialogButtons = [], img = null,
         closeBtn.classList.add('dialogCloseBtn')
         closeBtn.innerHTML = 
             `
-                <img src="../dialog/img/x.svg">
+                <img src="/components/dialog/img/x.svg">
             `
         closeBtn.onclick = ()=>{
             const dialog = document.querySelector('.dialog')

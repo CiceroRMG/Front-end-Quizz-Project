@@ -37,7 +37,7 @@ export function NavBarItens({img, text, link, as = "a", onclick = null, type = "
         element.onclick = onclick
         if (type === "ul"){
             const arrow = document.createElement('img')
-            arrow.setAttribute("src", "./nav-bar/img/arrow.svg")
+            arrow.setAttribute("src", "/components/nav-bar/img/arrow.svg")
             arrow.classList.add("arrow-nav")
             element.append(arrow)
             const ul = NavUlItens(listItens)
@@ -116,23 +116,3 @@ export function NavBar({mainComponents = [], footerComponents = []}){
 
     return header
 }
-
-
-
-
-// function page(){
-//     const div = document.createElement('div')
-//     div.classList.add('app')
-//     div.style.display = "flex"
-//     div.style.backgroundColor = "#1E1B4B"
-
-//     div.append(NavBar(arrayItensOfNav))
-
-//     const main = MainLayout()
-//     div.append(main)
-//     main.append(Header(headerContent))
-
-//     document.body.append(div)
-// }
-
-// page()

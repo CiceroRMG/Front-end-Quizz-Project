@@ -10,13 +10,13 @@ import { Select } from "./select/select.js"
 const arrayItensOfNav = {
     mainComponents: [
         {
-            img: "./nav-bar/img/house.svg",
+            img: "/components/nav-bar/img/house.svg",
             text: "Dashboard",
             as: "a",
             link: "#"
         },
         {
-            img: "./nav-bar/img/book.svg",
+            img: "/components/nav-bar/img/book.svg",
             text: "Disciplinas",
             as: "button",
             link: "#",
@@ -41,13 +41,13 @@ const arrayItensOfNav = {
     ],
     footerComponents: [
         {
-            img: "./nav-bar/img/password.svg",
+            img: "/components/nav-bar/img/password.svg",
             text: "Trocar a senha",
             as: "a",
             link: "#"
         }, 
         {
-            img: "./nav-bar/img/logout.svg",
+            img: "/components/nav-bar/img/logout.svg",
             text: "Encerrar sessão",
             as: "button",
             link: "#",
@@ -145,7 +145,7 @@ const contentAll = {
 const toasterContent = {
     title: "Sucesso",
     subtitle: "Tal ação realizada com sucesso.",
-    image: "./toaster/img/checkCircle.svg"
+    image: "/components/toaster/img/checkCircle.svg"
 }
 
 const inputData = {
@@ -158,9 +158,68 @@ const inputData = {
 }
 
 const selectData = {
-    label: "Disciplinas",
+    label: "multiselect",
     info: "Qualquer coisa",
     id: "teste",
+    type: "multiselect",
+    placeholder: "Selecione alguma opção",
+    options: [
+        {
+            text: "Teste",
+            value: "id"
+        },
+        {
+            text: "Teste 1",
+            value: "id5"
+        },
+        {
+            text: "Teste 2",
+            value: "id2"
+        },
+        {
+            text: "Teste 3",
+            value: "id3"
+        },
+        {
+            text: "Teste 4",
+            value: "id5"
+        },
+        {
+            text: "Teste 696",
+            value: "id6"
+        },
+        {
+            text: "Teste 5454",
+            value: "id6"
+        },
+        {
+            text: "Teste 12",
+            value: "id6"
+        },
+        {
+            text: "Teste 651",
+            value: "id6"
+        },
+        {
+            text: "Teste 44",
+            value: "id6"
+        },
+        {
+            text: "Teste 65165",
+            value: "id6"
+        },
+        {
+            text: "Teste 78",
+            value: "id6"
+        }
+    ]
+}
+
+const selectData2 = {
+    label: "normal",
+    info: "Qualquer coisa",
+    id: "testeand",
+    type: "default",
     placeholder: "Selecione alguma opção",
     options: [
         {
@@ -223,12 +282,10 @@ function page(){
     div.append(main)
     main.append(Header(headerContent))
     main.append(ListItens(contentAll))
-
     main.append(Toaster(toasterContent))
-
-    main.append(Input(inputData))
-
+    // main.append(Input(inputData))
     main.append(Select(selectData))
+    main.append(Select(selectData2))
 
     document.body.append(div)
 }

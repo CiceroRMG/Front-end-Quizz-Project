@@ -3,7 +3,7 @@
 
 
 
-export function Select({label = null, info = null, id = null, placeholder = null, options = [{text, value}]}){
+export function Select({label = null, info = null, id = null, placeholder = null, options = [{text, value}], type = "default"}){
 
     const container = document.createElement('div')
     container.classList.add('selectContainer')
@@ -48,45 +48,94 @@ export function Select({label = null, info = null, id = null, placeholder = null
     optionsList.classList.add('options-ul')
 
     // aqui é a parte que o filho chora e a mãe não ve
-    let selectedOptions = {
-        content: [],
-        values: []
-    }
-    if(options.length > 0){
-        for(const option of options){
-            const li = document.createElement('li')
-            li.classList.add('option')
-            li.innerText = option.text
-            li.setAttribute('data-value', option.value)
-            li.setAttribute('data-content', option.text)
-            li.onclick = ()=>{
-                li.classList.toggle('li-selected')
-                const valueName = li.getAttribute('data-content')
-                const value = li.getAttribute('data-value')
-                if (selectedOptions.content.includes(valueName)){
-                    li.classList.remove('li-selected')
-                    selectedOptions.content = selectedOptions.content.filter(val => val !== valueName);
-                } else {
-                    selectedOptions.content.push(valueName)
-                    li.classList.add('li-selected')
-                }
-                p.innerText = selectedOptions.content.join(', ')
-
-                if(selectedOptions.content < 1){
-                    p.innerText = placeholder
-                }
-
-                if (selectedOptions.values.includes(value)){
-                    selectedOptions.values = selectedOptions.values.filter(val => val !== value);
-                } else {
-                    selectedOptions.values.push(value)
-                }
-                
-                return selectedOptions.values
-                
-            }
-            optionsList.append(li)
+    if(type === "default"){
+        
+        let selectedOptions = {
+            content: [],
+            values: []
         }
+        if(options.length > 0){
+            for(const option of options){
+                const li = document.createElement('li')
+                li.classList.add('option')
+                li.innerText = option.text
+                li.setAttribute('data-value', option.value)
+                li.setAttribute('data-content', option.text)
+                li.onclick = () => {
+                    // Remover 'li-selected' de todos os outros itens
+                    optionsList.querySelectorAll('.li-selected').forEach(selectedLi => {
+                        if (selectedLi !== li) {
+                            selectedLi.classList.remove('li-selected');
+                        }
+                    });
+            
+                    li.classList.toggle('li-selected');
+                
+                    const valueName = li.getAttribute('data-content');
+                    const value = li.getAttribute('data-value');
+                
+                    if (li.classList.contains('li-selected')) {
+                        selectedOptions.content = [valueName]; 
+                        selectedOptions.values = [value];
+                        p.innerText = valueName;
+                    } else {
+                        selectedOptions.content = [];
+                        selectedOptions.values = [];
+                        p.innerText = placeholder;
+                    }
+
+                    return selectedOptions.values
+                };
+                    
+                optionsList.append(li)
+            }
+        }
+
+    }
+
+    if(type === "multiselect"){
+        let selectedOptions = {
+            content: [],
+            values: []
+        }
+        if(options.length > 0){
+            for(const option of options){
+                const li = document.createElement('li')
+                li.classList.add('option')
+                li.innerText = option.text
+                li.setAttribute('data-value', option.value)
+                li.setAttribute('data-content', option.text)
+                li.onclick = ()=>{
+                    li.classList.toggle('li-selected')
+                    const valueName = li.getAttribute('data-content')
+                    const value = li.getAttribute('data-value')
+                    if (selectedOptions.content.includes(valueName)){
+                        li.classList.remove('li-selected')
+                        selectedOptions.content = selectedOptions.content.filter(val => val !== valueName);
+                    } else {
+                        selectedOptions.content.push(valueName)
+                        li.classList.add('li-selected')
+                    }
+                    p.innerText = selectedOptions.content.join(', ')
+    
+                    if(selectedOptions.content < 1){
+                        selectedOptions.values = []
+                        p.innerText = placeholder
+                    }
+    
+                    if (selectedOptions.values.includes(value)){
+                        selectedOptions.values = selectedOptions.values.filter(val => val !== value);
+                    } else {
+                        selectedOptions.values.push(value)
+                    }
+                    
+                    return selectedOptions.values
+                    
+                }
+                optionsList.append(li)
+            }
+        }
+
     }
 
     select.onclick = ()=>{

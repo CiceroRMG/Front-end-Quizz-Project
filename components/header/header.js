@@ -12,7 +12,7 @@ export function Header({title, subtitle = null, backBtn = null, image = null}){
     if(backBtn){
         const btn = document.createElement('button')
         const img = document.createElement('img')
-        img.setAttribute('src', "./header/img/backBtn.svg")
+        img.setAttribute('src', "/components/header/img/backBtn.svg")
         btn.classList.add('backBtn')
         btn.append(img)
 

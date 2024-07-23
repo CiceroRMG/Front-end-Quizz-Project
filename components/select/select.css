@@ -74,6 +74,8 @@
 
     overflow-y: auto;
     max-height: 17rem;
+
+    z-index: 999;
 }
 
 .options-container::-webkit-scrollbar-thumb {
