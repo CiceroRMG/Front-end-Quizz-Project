@@ -1,0 +1,116 @@
+
+.table{
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    width: 100%;
+}
+
+.table th{
+    color: #78716C;
+    font-size: 0.875rem;
+    text-align: start;
+    padding-right: 1.5rem;
+    white-space: nowrap;
+}
+
+.table tbody td{
+    white-space: nowrap;
+    padding: 1rem 0rem;
+    padding-right: 1.5rem;
+    border: 1px solid #E7E5E4;
+    border-width: 1px 0 1px 0; 
+    background-color: #F5F5F5;
+}
+
+.table tr th:nth-child(2){
+    width: 25%;
+}
+
+.table tr th:nth-child(3){
+    text-align: center;
+    width: 25%;
+}
+
+.table tbody .tr-body td:first-child{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: 1px solid #E7E5E4;
+    padding-left: 1.2rem;
+    width: 40%;
+}
+
+.table tbody .tr-body td:last-child{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-right: 1px solid #E7E5E4;
+    width: 10%;
+}
+
+.table tbody .tr-body td:nth-child(3) p{
+    max-width: max-content;
+    margin: auto;
+}
+
+.table tbody .tr-body td:nth-child(3) p:hover{
+    background-color: #E5E5E5;
+    box-shadow: 0 0 0 0.5rem #E5E5E5;
+    border-radius: 0.1rem;
+}
+
+.hover-quizz{
+    background-color: #FAFAFA;
+    border-radius: 1rem;
+    border: 1px solid #E5E5E5;
+    position: absolute;
+    z-index: 999;
+    padding: 0.5rem 1rem;
+}
+
+.hover-quizz ul{
+    list-style: none;
+    font-size: 0.9rem;
+}
+
+tbody tr {
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+}
+
+tbody tr a {
+    text-decoration: none;
+}
+
+tbody .table-element-a, .table-element-button{
+    color: #4338CA;
+    font-family: "Open Sans";
+    font-size: 1rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+tbody .edit-a-table{
+    padding-right: 1.2rem;
+}
+
+tbody .table-element-p{
+    color: #1C1917;
+    font-family: "Open Sans";
+    font-size: 1rem;
+}
+
+.table-element-a:hover, .table-element-button:hover{
+    color: #ffda56;
+}
+
+.table-element-tag{
+    border-radius: 600em;
+    background: #6366F1;
+    display: flex;
+    padding: 0.25rem 1rem;
+    font-size: 0.875rem;
+    align-items: center;
+    color: #EEF2FF;
+    width: max-content;
+}
