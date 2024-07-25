@@ -9,6 +9,7 @@ import { Select } from "./select/select.js"
 import { Table } from "./table/table.js"
 import { SideCard } from "./sideCard/sideCard.js"
 import { buttom } from "./button/buttom.js"
+import { LongText } from "./longText/longText.js"
 
 const arrayItensOfNav = {
     mainComponents: [
@@ -410,6 +411,7 @@ function page(){
     main.append(Select(selectData2))
     main.append(Table(tableDatas))
     main.append(SideCard(sideCardData))
+    main.append(LongText({title: "Text", placeholder: "Escreva alguma coisa..."}))
 
     document.body.append(div)
 }
