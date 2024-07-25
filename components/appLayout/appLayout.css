@@ -1,0 +1,11 @@
+
+.app{
+    display: flex;
+    background-color: #1E1B4B;
+}
+
+@media (max-width: 520px){
+    .app{
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,152 @@
+
+.item-container{
+    border-radius: 0.75rem;
+    border: 1px solid #E7E5E4;
+    background:  #F5F5F5;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+
+    display: flex;
+    width: 100%;
+    min-width: 20rem;
+    padding: 1rem 1.25rem;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.item-container:hover{
+    background:  #eeeeeebc;
+}
+
+.item-container .element-h1{
+    color: #1C1917;
+    font-family: "Open Sans";
+    font-size: 1rem;
+}
+
+.item-container .element-p {
+    color: #57534E;
+    font-family: "Open Sans";
+    font-size: 0.875rem;
+    padding-top: 2px;
+}
+
+.item-container .element-tag{
+    border-radius: 600em;
+    background: #6366F1;
+    display: flex;
+    padding: 0.25rem 1rem;
+    font-size: 0.875rem;
+    align-items: center;
+    color: #EEF2FF;
+}
+
+.element-a ,.element-button{
+    color: #4338CA;
+    font-family: "Open Sans";
+    font-size: 1rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.element-a:hover ,.element-button:hover{
+    background-color: #e1e1e1cc;
+    border-radius: 999px;
+    color: #594aff;
+    box-shadow: 0px 0px 1px 7px #e1e1e1cc;
+}
+
+.section{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+/* layout container & title-itens-container */
+
+.titles-container{
+    background:  transparent;
+    display: flex;
+    width: 100%;
+    min-width: 20rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+
+.titles-container :last-child{
+    padding-right: 2rem;
+}
+
+.layout-container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.titles-container h1{
+    color: #44403C;
+    font-family: "Open Sans";
+    font-size: 1.125rem;
+    font-weight: 700;
+
+}
+
+.titles-container p{
+    color: #78716C;
+    font-family: "Open Sans";
+    font-size: 0.875rem;
+}
+
+.ul-itens{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+@media (max-width: 520px){
+    .item-container{
+        width: 100%;
+
+    }
+    .titles-container{
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 395px){
+    .item-container {
+        min-width: 10rem;
+    }
+    .item-container .element-h1{
+        font-size: 0.875rem;
+    }
+    .item-container .element-p, .item-container .element-a, .item-container .element-button, .item-container .element-tag{
+        font-size: 0.75rem;
+    }
+
+    .titles-container{
+        min-width: 10rem;
+        width: 100%;
+    }
+
+    .titles-container h1{
+        font-size: 0.875rem;
+    }
+
+    .titles-container p{
+        font-size: 0.75rem;
+    }
+
+    .ul-itens{
+        gap: 0.55rem;
+    }
+
+    .section{
+        gap: 1rem;
+    }
+}

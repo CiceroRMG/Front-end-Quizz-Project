@@ -1,0 +1,158 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans";
+}
+
+:root{
+    --text-primary-color: #EEF2FF
+}
+
+
+.nav-item {
+    text-decoration: none;
+    color: var(--text-primary-color);
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nav-bar-layout{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #1E1B4B;
+    padding: 2rem;
+}
+
+.logo-div{
+    flex: 1 0 7dvh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 0.5rem;
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 75dvh;
+    gap: 1rem;
+}
+
+
+.nav-footer{
+    flex: 1 0 5dvh;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 0.5rem;
+}
+
+.element{
+    display: flex;
+    position: relative;
+}
+
+.hidden{
+    display: none;
+}
+
+.ul{
+    background: #1E1B4B;
+    z-index: 99;
+}
+
+.ul ul{
+    position: absolute;
+    top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 0.875rem;
+    background: #1E1B4B;
+    border: 1px solid transparent;
+    color: var(--text-primary-color);
+    padding: 0 1.5rem;
+    padding-right: 2rem;
+    padding-left: 0.7rem;
+}
+
+.ul ul li{
+    cursor: pointer;
+}
+
+.ul ul li:hover{
+    color: rgb(232, 196, 68);
+}
+
+.arrow-nav{
+    transition: transform 0.3s ease;
+}
+
+.arrow-nav:hover{
+    transform: rotate(90deg);
+}
+
+.arrow-nav.select{
+    transform: rotate(90deg);
+}
+
+@media (max-width: 1000px){
+    header p, header h1, header span{
+        display: none;
+    }
+    header dialog p, dialog h1, dialog span{
+        display: flex;
+    }
+    .ul ul{
+        left: -1.2rem;
+        color: black;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: 1px solid #E5E5E5;
+        background:  #FAFAFA;
+    }
+}
+
+@media (max-width: 520px){
+    .nav-bar-layout{
+        flex-direction: row;
+        width: 100vw;
+        height: 10vh;
+        justify-content: space-between;
+        background-color: #1E1B4B;
+        padding: 2rem;
+    }
+
+    .logo-div{
+        flex: 1 0 7%;
+        padding: 0;
+        align-items: center;
+        min-width: 2rem;
+    }
+
+    .nav{
+        flex-direction: row;
+        flex: 1 0 50%;
+        justify-content: flex-end;
+        gap: 1.2rem;
+        padding-right: 1rem;
+    }
+    .nav-footer{
+        flex: 1 0 5%;
+        gap: 1.2rem;
+        flex-direction: row;
+        align-items: center;
+        padding: 0;
+    }
+
+}

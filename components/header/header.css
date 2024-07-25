@@ -1,0 +1,44 @@
+.container{
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.head{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.backBtn{
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-self: baseline;
+    cursor: pointer;
+    padding: 0.4rem;
+}
+.backBtn:hover{
+    background-color: #e1e1e1ac;
+    box-shadow: 0 0 0px 2px #e1e1e1ac;
+    border-radius: 999px;
+}
+
+.container h1 {
+    color: #1C1917;
+    font-family: "Open Sans";
+    font-size:  1.875rem;
+    font-weight: 700;
+}
+
+.header-p{
+    color: #44403C;
+    font-family: "Open Sans";
+    font-size: 1.125rem;
+}
+
+.header-image img{
+    width: 1.6rem;
+    height: 1.6rem;
+}
+

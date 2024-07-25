@@ -96,22 +96,22 @@ async function tryMakeANewTokenIfUserHaveARefreshToken(){
 
 
 // parte que abre o modal pra confirmar o logou do usuario
-const logouBtn = document.querySelector('.logoutBtn')
-const dialog = document.querySelector('.dialog')
-logouBtn.addEventListener('click', ()=>{
-    dialog.showModal()
-    dialog.classList.add('animate-in')
-})
+// const logouBtn = document.querySelector('.logoutBtn')
+// const dialog = document.querySelector('.dialog')
+// logouBtn.addEventListener('click', ()=>{
+//     dialog.showModal()
+//     dialog.classList.add('animate-in')
+// })
 
-const logouBtnBack = document.querySelector('.logoutBtnBack')
-logouBtnBack.addEventListener('click', ()=>{
-    dialog.close()
-})
-const logoutBtnConfirm = document.querySelector('.logouBtnConfirm')
-logoutBtnConfirm.addEventListener('click', await logout)
+// const logouBtnBack = document.querySelector('.logoutBtnBack')
+// logouBtnBack.addEventListener('click', ()=>{
+//     dialog.close()
+// })
+// const logoutBtnConfirm = document.querySelector('.logouBtnConfirm')
+// logoutBtnConfirm.addEventListener('click', async() => {await logout()})
 
 // parte que realmente desloga o usuario
-async function logout(){
+export async function logout(){
     const refreshToken = localStorage.getItem('refreshToken')
 
     const response = await fetch('http://localhost:3333/refreshToken/delete', {

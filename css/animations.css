@@ -10,7 +10,7 @@
 @keyframes slideFadeIn {
     from {
         opacity: 0;
-        transform: translateY(-40px);
+        transform: translateY(-25px);
     }
     to {
         opacity: 1;
@@ -95,7 +95,7 @@
 @keyframes slideFadeInLeft {
     from {
         opacity: 0;
-        transform: translateX(20px);
+        transform: translateX(1rem);
     }
     to {
         opacity: 1;
@@ -114,7 +114,7 @@
     }
     to {
         opacity: 0;
-        transform: translateX(20px);
+        transform: translateX(1rem);
     }
 }
 
@@ -126,7 +126,7 @@
 @keyframes slideFadeInHover {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-1rem);
     }
     to {
         opacity: 1;
@@ -137,7 +137,7 @@
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(1rem);
     }
     to {
         opacity: 1;

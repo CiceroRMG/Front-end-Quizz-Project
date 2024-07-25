@@ -1,0 +1,89 @@
+
+.toaster-container{
+    display: flex;
+    padding: 1rem 1.25rem;
+    align-items: flex-start;
+    gap: 3rem;
+    border-radius: 0.375rem;
+    border-left: 5px solid #34D399;
+    background: #D1FAE5;
+    white-space: nowrap;
+    max-width: 26rem;
+    min-width: 15rem;
+    width: 100%;
+    box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    position: absolute;
+    z-index: 999;
+    right: 1rem;
+    bottom: 4rem;
+}
+
+.toaster-container.error {
+    border-left: 5px solid #d33434;
+    background: #fad9d1;
+}
+
+.toaster-container.info {
+    border-left: 5px solid #6366F1;
+    background: #E0E7FF;
+}
+
+.x-btn{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.x-btn:hover{
+    background-color: #85858527;
+    border-radius: 999px;
+    box-shadow: 0 -2px 0 2px #85858527;
+}
+
+.toaster-container h1{
+    font-size: 1.5rem;
+}
+
+@media (max-width: 468px){
+    .toaster-container{
+        max-width: 21rem;
+    }
+
+    .toaster-container h1{
+        font-size: 1rem;
+    }
+
+    .toaster-container p{
+        font-size: 0.875rem;
+    }
+
+    .toaster-container img{
+        width: 17px;
+        height: 17px;
+    }
+
+}
+
+@media (max-width: 380px){
+    .toaster-container{
+        gap: 1rem;
+        width: 19rem;
+        padding: 1rem 1rem;
+    }
+}
+
+@media (max-width: 370px){
+    .toaster-container{
+        gap: 0rem;
+        width: 18rem;
+        padding: 1rem 1rem;
+    }
+}
+
+@media (max-width: 370px){
+    .toaster-container{
+        white-space: wrap;
+        width: 15rem;
+    }
+}
