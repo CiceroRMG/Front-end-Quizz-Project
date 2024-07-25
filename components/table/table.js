@@ -1,5 +1,23 @@
+import { Dialog } from "../dialog/dialog.js"
 
-export function TableItens(item){
+function createEditBtn(anchor){
+    const editBtn = document.createElement('a')
+    editBtn.setAttribute('href', anchor)
+    editBtn.classList.add('table-element-a')
+    editBtn.classList.add('edit-a-table')
+    editBtn.innerText = 'Editar'
+
+    return editBtn
+}
+
+function createRemoveBtn(){
+    const removeBtn = document.createElement('button')
+    removeBtn.classList.add('table-element-button')
+    removeBtn.innerText = 'Remover'
+    return removeBtn
+}
+
+export function TableItem(item, dialogData, editAnchor){
 
     const tr = document.createElement('tr')
     tr.classList.add('tr-body')
@@ -10,9 +28,31 @@ export function TableItens(item){
         const td = document.createElement('td')
         td.classList.add('table-td')
         if(typeof value === 'object'){
-
+            
             const element = document.createElement(value.as)
             element.innerText = value.content
+            
+            if(value.hoverItens){
+                element.classList.add('hover')
+                const ul = document.createElement('ul')
+                ul.classList.add('hover-content')
+                ul.classList.add('hidden')
+                element.addEventListener('mouseover', () => {
+                    ul.classList.add('animate-in');
+                    value.hoverItens.forEach((li)=>{
+                        const liDiv = document.createElement('li')
+                        liDiv.innerHTML = `<p>${li}</p>`
+                        ul.append(liDiv)
+                    })
+                    ul.classList.remove('hidden');
+                });
+            
+                element.addEventListener('mouseout', () => {
+                    ul.classList.add('hidden');
+                    ul.innerHTML = ''
+                });
+                element.append(ul)
+            }
 
             if(value.as === "button"){
                 element.classList.add('table-element-button')
@@ -47,13 +87,20 @@ export function TableItens(item){
     tdActions.classList.add('table-td')
     tdActions.classList.add('actions')
 
-    const editBtn = document.createElement('a')
-    editBtn.classList.add('table-element-a')
-    editBtn.classList.add('edit-a-table')
-    editBtn.innerText = 'Editar'
-    const removeBtn = document.createElement('button')
-    removeBtn.classList.add('table-element-button')
-    removeBtn.innerText = 'Remover'
+    const editBtn = createEditBtn(editAnchor)
+    const removeBtn = createRemoveBtn()
+    
+    removeBtn.addEventListener('click', ()=>{
+        const deleteDialog = {
+            title: dialogData.title,
+            paragraph: dialogData.paragraph,
+            dialogButtons: dialogData.dialogButtons
+        } 
+        const dialog = Dialog(deleteDialog)
+        tr.append(dialog)
+        dialog.showModal()
+        dialog.classList.add('animate-in')
+    })
 
     tdActions.append(editBtn)
     tdActions.append(removeBtn)
@@ -64,7 +111,7 @@ export function TableItens(item){
 }
 
 
-export function Table({columns = [{as, text}], rows = []}){
+export function Table({columns = [{text}], rows = [], dialogData, editAnchor}){
     const container = document.createElement('div')
     container.classList.add('table-container')
 
@@ -91,7 +138,7 @@ export function Table({columns = [{as, text}], rows = []}){
     tbody.classList.add('tbody')
 
     for(const row of rows){
-        const trElement = TableItens(row)
+        const trElement = TableItem(row, dialogData, editAnchor)
         tbody.append(trElement)
     }
 

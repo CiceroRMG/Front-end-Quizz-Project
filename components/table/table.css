@@ -49,26 +49,34 @@
 .table tbody .tr-body td:nth-child(3) p{
     max-width: max-content;
     margin: auto;
+    position: relative;
 }
 
-.table tbody .tr-body td:nth-child(3) p:hover{
+.table tbody .tr-body .hover:hover{
     background-color: #E5E5E5;
     box-shadow: 0 0 0 0.5rem #E5E5E5;
     border-radius: 0.1rem;
 }
 
-.hover-quizz{
+.hover-content{
     background-color: #FAFAFA;
     border-radius: 1rem;
     border: 1px solid #E5E5E5;
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
     z-index: 999;
     padding: 0.5rem 1rem;
 }
 
-.hover-quizz ul{
-    list-style: none;
-    font-size: 0.9rem;
+.hover-content p{
+    display: flex;
+    padding: 0.5rem;
+    color: #44403C;
+    font-family: "Open Sans";
+    font-size: 1rem;
+
 }
 
 tbody tr {
@@ -113,4 +121,11 @@ tbody .table-element-p{
     align-items: center;
     color: #EEF2FF;
     width: max-content;
+}
+
+
+@media (max-width: 740px){
+    .table-element-h1, .table-element-p, .table-element-a.edit-a-table, .table-element-button, .table-element-tag {
+        font-size: 0.875rem;
+    }
 }

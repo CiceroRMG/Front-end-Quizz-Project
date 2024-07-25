@@ -25,6 +25,3 @@ export function buttom({text = "Button", type = "primary-md", onclick = null, im
 }
 
 
-function page(element){
-    document.body.appendChild(element)
-}

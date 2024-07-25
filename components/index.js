@@ -299,79 +299,70 @@ const tableDatas = {
         {
             name: "Jose Carmago Silva Junior",
             name2: "8595494",
-            name3: "8",
+            action: {
+                content: "8",
+                as: "p",
+                hoverItens: ["Materia 1", "materia 2", "materia 4"]
+            }
         },
         {
             name: "Jojo",
             action: {
                 as: "span",
-                content: "saske"
+                content: "saske",
             },
             name3: "8",
 
         },
         {
             name: "Jojo",
-            name2: "8595494",
+            action: {
+                as: "span",
+                content: "saske",
+            },
             name3: "8",
 
         },
         {
             name: "Jojo",
-            name2: "8595494",
+            action: {
+                as: "span",
+                content: "saske",
+            },
             name3: "8",
 
         },
         {
             name: "Jojo",
-            name2: "8595494",
+            action: {
+                as: "span",
+                content: "saske",
+            },
             name3: "8",
 
         },
-    ]
-    
-//     rows: [
-//         {
-//             contents: [
-//                 {
-//                     as: "h1",
-//                     text: "info 1"
-//                 },
-//                 {
-//                     as: "p",
-//                     text: "info 2"
-//                 },
-//                 {
-//                     as: "p",
-//                     text: "info 3"
-//                 },
-//                 {
-//                     as: "p",
-//                     text: "info 4"
-//                 }
-//             ]
-//         },
-//         {
-//             contents: [
-//                 {
-//                     as: "h1",
-//                     text: "info 1"
-//                 },
-//                 {
-//                     as: "p",
-//                     text: "info 2"
-//                 },
-//                 {
-//                     as: "p",
-//                     text: "info 3"
-//                 },
-//                 {
-//                     as: "p",
-//                     text: "info 4"
-//                 }
-//             ]
-//         }
-//     ]
+    ],
+    dialogData: {
+        title: "Tem certeza?",
+        paragraph: "Lore lore lore lorellreo lorelolre lorellllll elroerler",
+        dialogButtons: [
+            {
+                text: "Cancelar",
+                type: "outline-sm",
+                onclick(){
+                    const tbody = document.querySelector('.tbody')
+                    const dialog = tbody.querySelector('.dialog')
+                    dialog.remove()
+                    dialog.close()
+                }
+            },
+            {
+                text: "Eliminar",
+                type: "destructive-sm",
+            },
+        ]
+    },
+    editAnchor: "https://www.youtube.com"
 }
 
 function page(){
@@ -382,11 +373,11 @@ function page(){
     const main = MainLayout()
     div.append(main)
     main.append(Header(headerContent))
-    // main.append(ListItens(contentAll))
+    main.append(ListItens(contentAll))
     main.append(Toaster(toasterContent))
-    // main.append(Input(inputData))
-    // main.append(Select(selectData))
-    // main.append(Select(selectData2))
+    main.append(Input(inputData))
+    main.append(Select(selectData))
+    main.append(Select(selectData2))
     main.append(Table(tableDatas))
 
     document.body.append(div)
