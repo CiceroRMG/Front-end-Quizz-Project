@@ -7,6 +7,8 @@ import { Toaster } from "./toaster/toaster.js"
 import { Input } from "./input/input.js"
 import { Select } from "./select/select.js"
 import { Table } from "./table/table.js"
+import { SideCard } from "./sideCard/sideCard.js"
+import { buttom } from "./button/buttom.js"
 
 const arrayItensOfNav = {
     mainComponents: [
@@ -365,6 +367,34 @@ const tableDatas = {
     editAnchor: "https://www.youtube.com"
 }
 
+const sideCardData = {
+
+    title: "Suas Tentativas",
+    itens: [
+        {
+            key: "Teste 1",
+            value: "A"
+        },
+        {
+            key: "Teste 1",
+            value: "A"
+        },
+        {
+            key: "Teste 1",
+            value: "A"
+        },
+        {
+            key: "Teste 1",
+            value: "A"
+        }
+    ],
+    btn: {
+        type: "primary-md",
+        text: "Button"
+    }
+
+}
+
 function page(){
     const div = AppLayout()
 
@@ -379,6 +409,7 @@ function page(){
     main.append(Select(selectData))
     main.append(Select(selectData2))
     main.append(Table(tableDatas))
+    main.append(SideCard(sideCardData))
 
     document.body.append(div)
 }
