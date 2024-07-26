@@ -10,7 +10,7 @@ import { Table } from "./table/table.js"
 import { SideCard } from "./sideCard/sideCard.js"
 import { buttom } from "./button/buttom.js"
 import { LongText } from "./longText/longText.js"
-import { InformationsBox } from "./quizInformations/informations.js"
+import { InformationsBox } from "./informations/informations.js"
 
 const arrayItensOfNav = {
     mainComponents: [
