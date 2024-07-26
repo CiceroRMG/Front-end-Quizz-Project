@@ -11,6 +11,7 @@ import { SideCard } from "./sideCard/sideCard.js"
 import { buttom } from "./button/buttom.js"
 import { LongText } from "./longText/longText.js"
 import { InformationsBox } from "./informations/informations.js"
+import { Empty } from "./empty/empty.js"
 
 const arrayItensOfNav = {
     mainComponents: [
@@ -439,6 +440,7 @@ function page(){
     main.append(SideCard(sideCardData))
     main.append(LongText({title: "Text", placeholder: "Escreva alguma coisa..."}))
     main.append(InformationsBox(informationsBoxData))
+    main.append(Empty({title: "Nenhum aluno cadastrado"}))
 
     document.body.append(div)
 }

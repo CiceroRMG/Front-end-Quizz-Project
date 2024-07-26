@@ -1,0 +1,29 @@
+.empty-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.empty-div h1 {
+    color: #A8A29E;
+
+    font-family: "Open Sans";
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+
+@media (max-width: 513px){
+
+    .empty-div img{
+
+        aspect-ratio: 16 / 9;
+        width: 100%;
+
+    }
+
+}
