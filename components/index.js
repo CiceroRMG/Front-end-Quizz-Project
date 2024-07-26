@@ -10,6 +10,7 @@ import { Table } from "./table/table.js"
 import { SideCard } from "./sideCard/sideCard.js"
 import { buttom } from "./button/buttom.js"
 import { LongText } from "./longText/longText.js"
+import { InformationsBox } from "./quizInformations/informations.js"
 
 const arrayItensOfNav = {
     mainComponents: [
@@ -396,6 +397,31 @@ const sideCardData = {
 
 }
 
+const informationsBoxData = {
+    header: {
+        title: "Orientações do Professor",
+        subtitle: "Lorem ipsum dolor sit amet consectetur. Eros nibh urna eu varius amet id. Ipsum mi ultrices pulvinar ultricies et facilisis arcu. Id velit senectus maecenas donec. Nulla nec fermentum non egestas elit quam vestibulum adipiscing."
+    },
+    informations: {
+        info1: {
+            title: "Tentativas",
+            content: "3"
+        },
+        info2: {
+            title: "Tentativas",
+            content: "3"
+        },
+        info3: {
+            title: "Tentativas",
+            content: "3"
+        }
+    },
+    btn: {
+        text: "Começar",
+        type: "primary-md"
+    }
+}
+
 function page(){
     const div = AppLayout()
 
@@ -412,6 +438,7 @@ function page(){
     main.append(Table(tableDatas))
     main.append(SideCard(sideCardData))
     main.append(LongText({title: "Text", placeholder: "Escreva alguma coisa..."}))
+    main.append(InformationsBox(informationsBoxData))
 
     document.body.append(div)
 }

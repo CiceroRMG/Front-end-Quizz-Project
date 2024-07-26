@@ -1,0 +1,50 @@
+.informations-box{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+}
+
+.informations-ul{
+    display: flex;
+
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.informations-li{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.informations-li::before{
+    content: "•";
+}
+
+.informations-li h1, .informations-li span{
+    color: #44403C;
+    font-family: "Open Sans";
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.informations-li span{
+    color: #4338CA;
+}
+
+.head-info-div h1{
+    font-size: 1.125rem;
+    color: #44403C;
+    font-weight: 600;
+}
+
+.head-info-div p{
+    font-size: 1rem;
+    line-height: 1.5rem;
+    text-align: justify;
+}
+
+.btn-info-div{
+    margin-top: 1rem;
+}
