@@ -1,4 +1,5 @@
 import { Login } from "../../components/login/login.js"
+import { LoginLayout } from "../../components/loginLayout/loginLayout.js"
 
 
 const loginData = {
@@ -17,7 +18,10 @@ const loginData = {
             type: "password"
         }
     ],
-    link: "#",
+    link: {
+        href: "#",
+        content: "Esqueceu a senha?"
+    },
     btn: {
         onclick: ()=>{console.log('oi')},
         text: "Entrar",
@@ -28,12 +32,12 @@ const loginData = {
 
 function page(){
 
-    const div = document.createElement('div')
+    const layout = LoginLayout()
 
     const login = Login(loginData)
-    div.append(login)
+    layout.append(login)
 
-    document.body.append(div)
+    document.body.append(layout)
 }
 
 page()
