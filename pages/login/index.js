@@ -9,12 +9,12 @@ const loginData = {
         {
             label: "Matrícula ou Email",
             error: "Os dados não correspondem a um usuário",
-            id: "user-login",
+            id: "login",
             placeholder: "usuario@gmail.com",
         },
         {
             label: "Senha",
-            id: "password-login",
+            id: "password",
             type: "password"
         }
     ],
@@ -23,7 +23,6 @@ const loginData = {
         content: "Esqueceu a senha?"
     },
     btn: {
-        onclick: ()=>{console.log('oi')},
         text: "Entrar",
         type: "primary-l"
     }
@@ -34,8 +33,14 @@ function page(){
 
     const layout = LoginLayout()
 
+    const form = document.createElement('form')
+    form.classList.add('section-form')
+    form.style.width = "100%"
+
     const login = Login(loginData)
-    layout.append(login)
+    form.append(login)
+
+    layout.append(form)
 
     document.body.append(layout)
 }

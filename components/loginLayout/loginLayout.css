@@ -9,3 +9,17 @@
     background-size: cover;
     background-position: center;
 }
+
+.logo-div-login{
+
+    position: absolute;
+    z-index: 100;
+
+    top: 1rem;
+    left: 1rem;
+
+}
+
+.logo img{
+    fill: black;
+}
