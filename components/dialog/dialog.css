@@ -27,6 +27,7 @@ dialog::backdrop{
     color: #44403C;
     margin-bottom: 2rem;
     line-height: 1.5rem;
+    text-align: justify;
 }
 
 .dialog-form{
