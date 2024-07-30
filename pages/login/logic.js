@@ -5,7 +5,7 @@ form.addEventListener('submit', authenticationLogin)
 
 const alunoUrl = '/html/alunoFlowPages/index.html'
 const professorUrl = '/html/professorFlowPages/index.html'
-const admUrl = '/html/admFlowPages/index.html'
+const admUrl = '/pages/admin/dashboard/dashboard.html'
 
 
 async function userLogged(){

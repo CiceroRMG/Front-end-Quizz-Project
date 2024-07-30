@@ -94,23 +94,6 @@ async function tryMakeANewTokenIfUserHaveARefreshToken(){
     }
 }
 
-
-// parte que abre o modal pra confirmar o logou do usuario
-// const logouBtn = document.querySelector('.logoutBtn')
-// const dialog = document.querySelector('.dialog')
-// logouBtn.addEventListener('click', ()=>{
-//     dialog.showModal()
-//     dialog.classList.add('animate-in')
-// })
-
-// const logouBtnBack = document.querySelector('.logoutBtnBack')
-// logouBtnBack.addEventListener('click', ()=>{
-//     dialog.close()
-// })
-// const logoutBtnConfirm = document.querySelector('.logouBtnConfirm')
-// logoutBtnConfirm.addEventListener('click', async() => {await logout()})
-
-// parte que realmente desloga o usuario
 export async function logout(){
     const refreshToken = localStorage.getItem('refreshToken')
 
@@ -130,6 +113,6 @@ export async function logout(){
 function redirectToLogin(){
     window.localStorage.removeItem('token')
     window.localStorage.removeItem('refreshToken')
-    window.location.href = `${based_url}/html/login.html`
+    window.location.href = `${based_url}/pages/login/login.html`
 }
 

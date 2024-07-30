@@ -6,7 +6,7 @@ export function Logo({color = "white"}){
     const h1 = document.createElement('h1')
     h1.innerText = "Polvo"
 
-    if(color = "black"){
+    if(color === "black"){
         logoImg.setAttribute('src', '/components/logo/img/logoBlack.svg')
         h1.style.color = "#334155"
 

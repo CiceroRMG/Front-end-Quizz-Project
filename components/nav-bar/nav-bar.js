@@ -12,8 +12,10 @@ export function NavUlItens({itens = [{text, href}]}){
     ul.classList.add("nav-list")
     for(const item of itens){
         const li = document.createElement("li")
-        li.setAttribute('href', item.href)
-        li.textContent = item.text
+        const liLink = document.createElement("a")
+        liLink.setAttribute('href', item.href)
+        liLink.textContent = item.text
+        li.appendChild(liLink)
         ul.append(li)
     }
 
@@ -61,7 +63,7 @@ export function NavBar({mainComponents = [], footerComponents = []}){
     // header
     const divLogo = document.createElement('div')
     divLogo.classList.add('logo-div')
-    const logoBar = Logo()
+    const logoBar = Logo({color: "white"})
     divLogo.append(logoBar)
     header.append(divLogo)
 

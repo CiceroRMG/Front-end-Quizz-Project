@@ -86,11 +86,13 @@
     padding-left: 0.7rem;
 }
 
-.ul ul li{
+.ul ul li a{
     cursor: pointer;
+    color: var(--text-primary-color);
+    text-decoration: none;
 }
 
-.ul ul li:hover{
+.ul ul li a:hover{
     color: rgb(232, 196, 68);
 }
 
@@ -120,6 +122,9 @@
         border-radius: 1rem;
         border: 1px solid #E5E5E5;
         background:  #FAFAFA;
+    }
+    .ul ul li a{
+        color: black;
     }
 }
 
