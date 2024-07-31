@@ -15,7 +15,8 @@ export function Header({title, subtitle = null, backBtn = null, image = null}){
         img.setAttribute('src', "/components/header/img/backBtn.svg")
         btn.classList.add('backBtn')
         btn.append(img)
-
+        btn.onclick = backBtn.onclick
+        
         div.append(btn)
     }
 
