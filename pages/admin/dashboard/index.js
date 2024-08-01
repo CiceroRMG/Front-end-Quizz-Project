@@ -28,11 +28,11 @@ const itens = [
             {
                 as: "a",
                 text: "Cadastrar novo",
-                link: `${based_url}/pages/admin/painel/painel.html?panel=students`
+                link: `${based_url}/pages/admin/register/studentsRegister/studentsRegister.html`
             }
         ],
         click: true,
-        onclick: ()=> window.location.href = `${based_url}/pages/admin/painel/painel.html?panel=students`
+        onclick: ()=> window.location.href = `${based_url}/pages/admin/painel/studentsPainel/studentsPainel.html`
     },
     {
         contents: [
@@ -43,11 +43,11 @@ const itens = [
             {
                 as: "a",
                 text: "Cadastrar novo",
-                link: `${based_url}/pages/admin/painel/painel.html?panel=professors`
+                link: `${based_url}/pages/admin/register/professorsRegister/professorsRegister.html`
             }
         ],
         click: true,
-        onclick: ()=> window.location.href = `${based_url}/pages/admin/painel/painel.html?panel=professors`
+        onclick: ()=> window.location.href = `${based_url}/pages/admin/painel/professorsPainel/professorsPainel.html`
     },
     {
         contents: [
@@ -58,11 +58,11 @@ const itens = [
             {
                 as: "a",
                 text: "Cadastrar novo",
-                link: `${based_url}/pages/admin/painel/painel.html?panel=subjects`
+                link: `${based_url}/pages/admin/register/subjectsRegister/subjectsRegister.html`
             }
         ],
         click: true,
-        onclick: ()=> window.location.href = `${based_url}/pages/admin/painel/painel.html?panel=subjects`
+        onclick: ()=> window.location.href = `${based_url}/pages/admin/painel/subjectsPainel/subjectsPainel.html`
     }
 ]
 

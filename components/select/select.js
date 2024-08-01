@@ -84,7 +84,8 @@ export function Select({label = null, info = null, id = null, placeholder = null
                         p.innerText = placeholder;
                     }
 
-                    return selectedOptions.values
+                    const event = new CustomEvent(id, { detail: selectedOptions });
+                    document.dispatchEvent(event);
                 };
                     
                 optionsList.append(li)

@@ -6,6 +6,7 @@
     flex-direction: column;
     gap: 1rem;
     position: relative;
+    min-width: 11.75rem;
 }
 
 .input-label{
@@ -79,5 +80,9 @@
     white-space: normal;
     width: 100%;
     word-wrap: break-word;
+}
+
+.fail{
+    outline: 1px solid #EF4444;
 }
 

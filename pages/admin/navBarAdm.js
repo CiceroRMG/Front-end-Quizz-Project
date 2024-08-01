@@ -19,15 +19,15 @@ const arrayItensOfNav = {
                 itens: [
                     {
                         text: "Alunos",
-                        href: `${based_url}/pages/admin/painel/painel.html?panel=students`
+                        href: `${based_url}/pages/admin/painel/studentsPainel/studentsPainel.html`
                     },
                     {
                         text: "Professores",
-                        href: `${based_url}/pages/admin/painel/painel.html?panel=professors`
+                        href: `${based_url}/pages/admin/painel/professorsPainel/professorsPainel.html`
                     },
                     {
                         text: "Disciplinas",
-                        href: `${based_url}/pages/admin/painel/painel.html?panel=subjects`
+                        href: `${based_url}/pages/admin/painel/subjectsPainel/subjectsPainel.html`
                     }
                 ]
             }

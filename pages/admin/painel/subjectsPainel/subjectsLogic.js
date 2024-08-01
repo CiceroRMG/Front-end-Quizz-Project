@@ -1,4 +1,5 @@
-import { deleteDisciplinaById, getAllDisciplinasIfProfessorName } from "../../../scripts/fetchDbFunctions.js";
+import { deleteDisciplinaById, getAllDisciplinasIfProfessorName } from "../../../../scripts/fetchDbFunctions.js";
+
 
 function noRegister(){
     const div = document.querySelector('.empty-subject-div')
@@ -21,7 +22,7 @@ export async function makeArrayRowsWithSubjectsData(){
             quizesName.push(quiz.nome)
         })
         const row = {
-            content1: disciplina.nome,
+            content1: `${disciplina.nome} ${disciplina.ano} / ${disciplina.semestre}`,
             content2: disciplina.prof_id ? disciplina.prof_id.nome : "Não possui professor",
             action: {
                 content: disciplina.quizes.length,
@@ -110,7 +111,7 @@ const subjectRegisterBtn = {
     type: "primary-md",
     img: "/imgs/createQuizz.svg",
     text: "Cadastrar",
-    onclick: ()=>{window.location.href = "/pages/admin/register/subjectRegister.html"}
+    onclick: ()=>{window.location.href = "/pages/admin/register/subjectsRegister/subjectsRegister.html"}
 }
 
 export {subjectRegisterBtn, subjectsHeader,tableDataSubjects}
