@@ -60,7 +60,7 @@ export async function makeArrayRowsWithSubjectsData(){
                     },
                 ]
             },
-            editAnchor: "/pages/admin/dashboard/edit",
+            editAnchor: `/pages/admin/edit/subjectsEdit/subjectsEdit.html?id=${disciplina._id}`,
             id: disciplina._id
         }
         rows.push(row)

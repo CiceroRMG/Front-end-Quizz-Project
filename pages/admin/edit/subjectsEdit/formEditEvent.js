@@ -1,11 +1,12 @@
 import { Toaster } from "../../../../components/toaster/toaster.js";
-import { registerDisciplina } from "../../../../scripts/fetchDbFunctions.js";
-import { inputEmptyValidation } from "./subjectsFormValidations.js";
+import { takeSubjectIdByParams } from "../../../../scripts/alunoFlowPages/disciplinasPage/takeSubjectIdByParams.js";
+import { editDisciplina, getOnBackDisciplinaById } from "../../../../scripts/fetchDbFunctions.js";
+import { inputEmptyValidation } from "../../register/subjectsRegister/subjectsFormValidations.js";
 
 const successToaster = {
     title: "Sucesso!",
     image: "/components/toaster/img/checkCircle.svg",
-    subtitle: "Sucesso na criação da disciplina.",
+    subtitle: "Sucesso na edição da disciplina.",
 }
 
 const existsToaster = {
@@ -29,9 +30,32 @@ const semesterErrorToaster = {
     style: "error"
 }
 
-
 let selectedProfessorValue = ""
 let selectedSemesterValue = ""
+
+export async function displayValuesOnInputs(){
+    const inputSubjectName = document.querySelector('#inputName')
+    const inputYear = document.querySelector('#inputYear')
+    const selectProfessor = document.querySelector('#selectProfessor')
+    const textOfProfessorSelect = selectProfessor.querySelector('.p-select')
+    const selectYear = document.querySelector('#selectSemester')
+    const textOfSelectYear = selectYear.querySelector('.p-select')
+
+    const takeDisciplinaById = await getOnBackDisciplinaById(takeSubjectIdByParams())
+
+    inputSubjectName.value = takeDisciplinaById.disciplina.nome
+    inputYear.value = takeDisciplinaById.disciplina.ano
+    selectedSemesterValue = takeDisciplinaById.disciplina.semestre
+    textOfSelectYear.innerText = takeDisciplinaById.disciplina.semestre
+
+    if (takeDisciplinaById.disciplina.prof_id) {
+        selectedProfessorValue = takeDisciplinaById.disciplina.prof_id._id
+        textOfProfessorSelect.innerText = takeDisciplinaById.disciplina.prof_id.nome
+    } else{
+        selectedProfessorValue = ""
+    }
+    
+}
 
 document.addEventListener('selectProfessor', (event) => {
     selectedProfessorValue = event.detail.values[0];
@@ -41,7 +65,8 @@ document.addEventListener('selectSemester', (event) => {
     selectedSemesterValue = event.detail.values[0];
 });
 
-export async function formEvent(){
+export async function formEditEvent(){
+    await displayValuesOnInputs()
 
     const form = document.querySelector(".register-form")
         
@@ -68,14 +93,14 @@ export async function formEvent(){
         // validando se tem professor ou não
         req = {
             nome: inputSubjectName.value,
-            prof_id: selectedProfessorValue || null,
+            prof_id: selectedProfessorValue,
             ano: inputYear.value,
             semestre: selectedSemesterValue
         }
     
-        const criandoDisciplina = await registerDisciplina(req)
-    
-        if(criandoDisciplina.status === 201){
+        const criandoDisciplina = await editDisciplina(req, takeSubjectIdByParams())
+        console.log(criandoDisciplina);
+        if(criandoDisciplina.status === 200){
             document.body.append(Toaster(successToaster))
         } else if(criandoDisciplina.status === 409){
             document.body.append(Toaster(existsToaster))
