@@ -4,11 +4,19 @@ import { Empty } from "../../../../components/empty/empty.js"
 import { Header } from "../../../../components/header/header.js"
 import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 import { Table } from "../../../../components/table/table.js"
+import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { getAllDisciplinasIfProfessorName } from "../../../../scripts/fetchDbFunctions.js"
+import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
+import { tableAnimation } from "../../tableAnimation.js"
 import {subjectRegisterBtn, subjectsHeader,tableDataSubjects} from "./subjectsLogic.js"
 
 
+document.addEventListener('DOMContentLoaded', async () => {
+    await checkIfValidToken();
+    await checkTypeUser('admin')
+    
+});
 
 async function subjectsPanelPage(){
     const div = AppLayout()
@@ -26,10 +34,13 @@ async function subjectsPanelPage(){
     headDiv.style.gap = "2rem"
     main.append(headDiv)
 
-    main.append(Table(tableDataSubjects))
+    const table = Table(tableDataSubjects)
+    table.classList.add('hidden')
+    main.append(table)
 
     const allSubjects = await getAllDisciplinasIfProfessorName()
     const emptyDiv = document.createElement('div')
+    emptyDiv.classList.add('animate-in-left')
     emptyDiv.style.height = "100dvh"
     emptyDiv.style.display = "none"
     if(!allSubjects.disciplinas){
@@ -41,6 +52,7 @@ async function subjectsPanelPage(){
     main.append(emptyDiv)
 
     document.body.append(div)
+    await tableAnimation()
 }
 
-subjectsPanelPage()
+await subjectsPanelPage()

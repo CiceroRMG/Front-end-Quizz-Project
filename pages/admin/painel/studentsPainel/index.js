@@ -6,6 +6,7 @@ import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 import { Table } from "../../../../components/table/table.js"
 import { getAllStudents } from "../../../../scripts/fetchDbFunctions.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
+import { tableAnimation } from "../../tableAnimation.js"
 import { studentRegisterBtn, studentsHeader, tableDataStudents } from "./studentsLogic.js"
 
 
@@ -27,7 +28,9 @@ async function studentsPanelPage(){
     headDiv.style.gap = "2rem"
     main.append(headDiv)
 
-    main.append(Table(tableDataStudents))
+    const table = Table(tableDataStudents)
+    table.classList.add('hidden')
+    main.append(table)
 
     const allStudents = await getAllStudents()
     const emptyDiv = document.createElement('div')
@@ -42,6 +45,8 @@ async function studentsPanelPage(){
     main.append(emptyDiv)
 
     document.body.append(div)
+    await tableAnimation()
 }
 
-studentsPanelPage()
+
+await studentsPanelPage()
