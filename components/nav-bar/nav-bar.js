@@ -29,7 +29,7 @@ export function NavBarItens({img, text, link, as = "a", onclick = null, type = "
     div.classList.add('element')
     const element = document.createElement(as)
     element.classList.add('nav-item')
-    const conteudo = `<img src="${img}"> <p>${text}</p>`
+    const conteudo = `<img src="${img}" style="fill: #FEF08A"> <p>${text}</p>`
     element.innerHTML = conteudo
 
     if (as === "a"){

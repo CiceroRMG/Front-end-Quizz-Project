@@ -3,7 +3,7 @@ import { getOnBackUserTypeByToken } from "../../scripts/fetchDbFunctions.js"
 const form = document.querySelector('.section-form')
 form.addEventListener('submit', authenticationLogin)
 
-const alunoUrl = '/html/alunoFlowPages/index.html'
+const alunoUrl = '/pages/student/dashboard/dashboard.html'
 const professorUrl = '/html/professorFlowPages/index.html'
 const admUrl = '/pages/admin/dashboard/dashboard.html'
 

@@ -21,6 +21,12 @@
     border: none;
     cursor: pointer;
     white-space: nowrap;
+    line-height: 1.5rem;
+}
+
+.nav-item:hover {
+
+    filter: brightness(0) saturate(100%) invert(92%) sepia(23%) saturate(799%) hue-rotate(345deg) brightness(102%) contrast(103%);
 }
 
 .nav-bar-layout{
@@ -90,10 +96,19 @@
     cursor: pointer;
     color: var(--text-primary-color);
     text-decoration: none;
+    line-height: 1.2rem;
 }
 
 .ul ul li a:hover{
-    color: rgb(232, 196, 68);
+    color: #FEF08A;
+}
+
+.ul ul li a .selected{
+    color: #FEF08A;
+}
+
+.nav-item .selected{
+    filter: brightness(0) saturate(100%) invert(92%) sepia(23%) saturate(799%) hue-rotate(345deg) brightness(102%) contrast(103%);
 }
 
 .arrow-nav{

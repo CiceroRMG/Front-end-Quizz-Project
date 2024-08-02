@@ -46,6 +46,10 @@
     font-size: 1.5rem;
 }
 
+.toaster-container p{
+    font-size: 0.9rem;
+}
+
 @media (max-width: 468px){
     .toaster-container{
         max-width: 21rem;
