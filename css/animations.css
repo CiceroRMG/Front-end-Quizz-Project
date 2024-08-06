@@ -95,6 +95,10 @@ to {
     animation: slideFadeInLeft 0.7s ease forwards;
 }
 
+.animate-in-left-table.elemento-excluido {
+    animation: slideOutAndFade 0.7s ease forwards;
+}
+
 @keyframes slideFadeInLeft {
     from {
         opacity: 0;

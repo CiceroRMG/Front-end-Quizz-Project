@@ -9,7 +9,6 @@ function noRegister(){
 export async function makeArrayRowsWithStudentsData(){
     
     const allStudents = await getAllStudents()
-    console.log(allStudents);
     if(!allStudents.alunos){
        return console.log("Não possui dados");
     }
@@ -66,7 +65,6 @@ export async function makeArrayRowsWithStudentsData(){
         rows.push(row)
         
     };
-    console.log(rows);
     return rows
 }
 

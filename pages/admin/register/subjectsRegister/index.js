@@ -8,10 +8,8 @@ import { getOnBackAllProfessor } from "../../../../scripts/fetchDbFunctions.js"
 import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
-import { formEvent } from "./subjectRegister.js"
+import { formEvent } from "./formEventSubject.js"
 import { eventFocusInputs } from "./subjectsFormValidations.js"
-
-
 
 
 const subjectsHeader = {

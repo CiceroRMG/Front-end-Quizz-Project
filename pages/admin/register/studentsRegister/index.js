@@ -8,10 +8,8 @@ import { getAllDisciplinas, getOnBackAllProfessor } from "../../../../scripts/fe
 import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
-// import { formEvent } from "./subjectRegister.js"
-// import { eventFocusInputs } from "./subjectsFormValidations.js"
-
-
+import { formEventStudents } from "./formEventStudent.js"
+import { eventFocusInputs } from "./studentsFormValidations.js"
 
 
 const studentsHeader = {
@@ -34,9 +32,9 @@ const inputStudentName = {
 
 const inputRegistration = {
     label : "Matrícula", 
-    info : "A matrícula deve conter 9 digitos numéricos", 
+    info : "A matrícula deve conter 8 digitos numéricos", 
     id : "inputRegistration", 
-    placeholder : "9 dígitos numéricos", 
+    placeholder : "8 dígitos numéricos", 
     style: "outline",
     error: "Digite uma matrícula válida.",
 }
@@ -46,14 +44,15 @@ const inputEmail = {
     placeholder: "email@email.com",
     id: "inputEmail",
     error: "Digite um email válido",
-    style: "outline"
+    style: "outline",
+    type: "email"
 }
 
 const selectSubjects = {
     label : "Disciplinas",  
     id : "selectDisciplinas", 
     placeholder : "Disciplinas do usuário",
-    info: "O usuário pode ser criado sem disciplinas",
+    info: "O usuário pode ser criado sem disciplinas, deixe em branco para cadastro sem disciplinas",
     options : await createSubjectOptions(),
     type: "multiselect"
 }
@@ -86,16 +85,11 @@ function createFormLayout(){
 
 async function createSubjectOptions(){
     let array = []
-    const nullSubjects = {
-        text: "Nenhuma Disciplina",
-        value: "",
-    }
-    array.push(nullSubjects)
 
     const allProfessor = await getAllDisciplinas()
     allProfessor.disciplinas.forEach((disciplina)=>{
         const object = {
-            text: disciplina.nome,
+            text: `${disciplina.nome} | ${disciplina.ano} / ${disciplina.semestre}`,
             value: disciplina._id
         }
         array.push(object)
@@ -132,7 +126,7 @@ function studentsRegisterPage(){
     const selectDiv = document.createElement('div')
     selectDiv.style.display = "flex"
     selectDiv.style.width = "100%"
-    selectDiv.style.maxWidth = "50%"
+    selectDiv.style.maxWidth = "49%"
     selectDiv.append(Select(selectSubjects))
     downInputDiv.append(selectDiv)
 
@@ -152,6 +146,6 @@ function studentsRegisterPage(){
 
 studentsRegisterPage()
 
-// formEvent()
+formEventStudents()
 
-// eventFocusInputs()
+eventFocusInputs()
