@@ -44,6 +44,8 @@ export function Login({title, inputs = [], link, btn}){
         text: btn.text,
         type: btn.type
     })
+    submitBtn.setAttribute('type', 'submit')
+
 
     loginBox.append(submitBtn)
 

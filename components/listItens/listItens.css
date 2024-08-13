@@ -22,13 +22,16 @@
     color: #1C1917;
     font-family: "Open Sans";
     font-size: 1rem;
+    line-height: 1.5rem;
+    padding-top: 0.2rem;
 }
 
 .item-container .element-p {
     color: #57534E;
     font-family: "Open Sans";
     font-size: 0.875rem;
-    padding-top: 2px;
+    padding-top: 0.2rem;
+    line-height: 1.5rem;
 }
 
 .item-container .element-tag{
@@ -49,13 +52,15 @@
     background-color: transparent;
     cursor: pointer;
     text-decoration: none;
+    line-height: 1.5rem;
+    padding-top: 0.2rem;
 }
 
 .element-a:hover ,.element-button:hover{
-    background-color: #e1e1e1cc;
+    background-color: #e3e2e2cc;
     border-radius: 999px;
     color: #594aff;
-    box-shadow: 0px 0px 1px 7px #e1e1e1cc;
+    box-shadow: 0px 1.5px 1px 4px #e3e2e2cc;
 }
 
 .section{
@@ -84,7 +89,7 @@
 .layout-container{
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.85rem;
 }
 
 .titles-container h1{
@@ -124,9 +129,11 @@
     }
     .item-container .element-h1{
         font-size: 0.875rem;
+        line-height: 1rem;
     }
     .item-container .element-p, .item-container .element-a, .item-container .element-button, .item-container .element-tag{
         font-size: 0.75rem;
+        line-height: 1rem;
     }
 
     .titles-container{

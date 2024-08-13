@@ -59,24 +59,30 @@
 }
 
 .hover-content{
-    background-color: #FAFAFA;
+    background: #FAFAFA;
     border-radius: 1rem;
     border: 1px solid #E5E5E5;
     position: absolute;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    z-index: 999;
+    gap: 0.5rem;
     padding: 0.5rem 1rem;
+    z-index: 999;
 }
 
-.hover-content p{
+.table .tr-body .hover-content li{
     display: flex;
-    padding: 0.5rem;
+    padding: 0.4rem;
+}
+
+.table .tr-body .hover-content li p{
     color: #44403C;
     font-family: "Open Sans";
-    font-size: 1rem;
-
+    font-size: 0.875rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    line-height: 1.2rem;
 }
 
 tbody tr {

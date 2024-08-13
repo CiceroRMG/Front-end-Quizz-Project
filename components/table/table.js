@@ -17,72 +17,80 @@ function createRemoveBtn(){
     return removeBtn
 }
 
-export function TableItem(item, dialogData, editAnchor){
+export function TableItem({content1, content2, action, dialogData, editAnchor, id}){
 
     const tr = document.createElement('tr')
     tr.classList.add('tr-body')
+    if(id){
+        tr.id = id
+    }
+    
+    const td1 = document.createElement('td')
+    td1.classList.add('table-td')
+    td1.innerHTML = 
+            `
+                <p class="table-element-p">${content1}</p>
+            `
+    tr.append(td1)
 
-    const objectForArray = Object.values(item)
+    const td2 = document.createElement('td')
+    td2.classList.add('table-td')
+    td2.innerHTML = 
+            `
+                <p class="table-element-p">${content2}</p>
+            `
+    tr.append(td2)
 
-    objectForArray.forEach((value)=>{
-        const td = document.createElement('td')
-        td.classList.add('table-td')
-        if(typeof value === 'object'){
-            
-            const element = document.createElement(value.as)
-            element.innerText = value.content
-            
-            if(value.hoverItens){
-                element.classList.add('hover')
-                const ul = document.createElement('ul')
-                ul.classList.add('hover-content')
-                ul.classList.add('hidden')
-                element.addEventListener('mouseover', () => {
-                    ul.classList.add('animate-in');
-                    value.hoverItens.forEach((li)=>{
-                        const liDiv = document.createElement('li')
-                        liDiv.innerHTML = `<p>${li}</p>`
-                        ul.append(liDiv)
-                    })
-                    ul.classList.remove('hidden');
-                });
-            
-                element.addEventListener('mouseout', () => {
-                    ul.classList.add('hidden');
-                    ul.innerHTML = ''
-                });
-                element.append(ul)
-            }
-
-            if(value.as === "button"){
-                element.classList.add('table-element-button')
-                element.onclick = ()=> value.onclick(item.name)
-            }
-            if(value.as === "a"){
-                element.classList.add('table-element-a')
-                element.setAttribute('href', value.href)
-            }
-            if(value.as === "h1"){
-                element.classList.add('table-element-h1')
-            }
-            if(value.as === "p"){
-                element.classList.add('table-element-p')
-            }
-            if(value.as === "span"){
-                element.classList.add('table-element-tag')
-            }
-
-            td.append(element)
-
-        } else{
-            td.innerHTML = 
-                `
-                    <p class="table-element-p">${value}</p>
-                `
+    const td3 = document.createElement('td')
+    td3.classList.add('table-td')
+    if(action){            
+        const element = document.createElement(action.as)
+        element.innerText = action.content
+        
+        if(action.hoverItens){
+            element.classList.add('hover')
+            const ul = document.createElement('ul')
+            ul.classList.add('hover-content')
+            ul.classList.add('hidden')
+            element.addEventListener('mouseover', () => {
+                ul.classList.add('animate-in');
+                action.hoverItens.forEach((li)=>{
+                    const liDiv = document.createElement('li')
+                    liDiv.innerHTML = `<p>${li}</p>`
+                    ul.append(liDiv)
+                })
+                ul.classList.remove('hidden');
+            });
+        
+            element.addEventListener('mouseout', () => {
+                ul.classList.add('hidden');
+                ul.innerHTML = ''
+            });
+            element.append(ul)
         }
-        tr.append(td)
-    })
 
+        if(action.as === "button"){
+            element.classList.add('table-element-button')
+            element.onclick = ()=> action.onclick(action.onclick)
+        }
+        if(action.as === "a"){
+            element.classList.add('table-element-a')
+            element.setAttribute('href', action.href)
+        }
+        if(action.as === "h1"){
+            element.classList.add('table-element-h1')
+        }
+        if(action.as === "p"){
+            element.classList.add('table-element-p')
+        }
+        if(action.as === "span"){
+            element.classList.add('table-element-tag')
+        }
+
+        td3.append(element)
+        tr.append(td3)
+    }
+    
     const tdActions = document.createElement('td')
     tdActions.classList.add('table-td')
     tdActions.classList.add('actions')
@@ -111,7 +119,7 @@ export function TableItem(item, dialogData, editAnchor){
 }
 
 
-export function Table({columns = [{text}], rows = [], dialogData, editAnchor}){
+export function Table({columns = [{text}], rows = []}){
     const container = document.createElement('div')
     container.classList.add('table-container')
 
@@ -138,7 +146,14 @@ export function Table({columns = [{text}], rows = [], dialogData, editAnchor}){
     tbody.classList.add('tbody')
 
     for(const row of rows){
-        const trElement = TableItem(row, dialogData, editAnchor)
+        const trElement = TableItem({
+            content1: row.content1,
+            content2: row.content2,
+            action: row.action,
+            dialogData: row.dialogData,
+            editAnchor: row.editAnchor,
+            id: row.id
+        })
         tbody.append(trElement)
     }
 
