@@ -4,7 +4,7 @@ import { editDisciplina, editUserNoPassword, registerUser } from "../../../../sc
 const existsToaster = {
     title: "Erro!",
     image: "/components/toaster/img/infoCircle.svg",
-    subtitle: "Esse aluno já foi cadastrado.",
+    subtitle: "Esse usuário já foi cadastrado.",
     style: "info"
 }
 
