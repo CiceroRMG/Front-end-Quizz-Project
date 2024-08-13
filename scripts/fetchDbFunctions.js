@@ -307,3 +307,19 @@ export async function deleteAllSubjectStudentRelation(id){
 
     return { status: pegando.status, msg: data.msg }
 }
+
+export async function turnNullSubjectsProfId(id) {
+    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/null/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json'},
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível tornar null os profId' }
+    }
+
+    const data = await pegando.json()
+
+    return { status: pegando.status, msg: data.msg }
+}
+

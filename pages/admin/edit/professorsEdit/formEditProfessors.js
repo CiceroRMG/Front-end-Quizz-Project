@@ -1,17 +1,17 @@
 import { Toaster } from "../../../../components/toaster/toaster.js";
-import { deleteAllSubjectStudentRelation, getOnBackDisciplinasUsersTable, getOnBackUserById, registerUserDisciplina } from "../../../../scripts/fetchDbFunctions.js";
+import { editDisciplina, getOnBackUserById, turnNullSubjectsProfId } from "../../../../scripts/fetchDbFunctions.js";
 import { inputEmptyValidation, validateAllStudentsInputsAndEdit } from "../../register/studentsRegister/studentsFormValidations.js"
 
 const successToaster = {
     title: "Sucesso!",
     image: "/components/toaster/img/checkCircle.svg",
-    subtitle: "Sucesso na edição do aluno.",
+    subtitle: "Sucesso na edição do professor.",
 }
 
 const errorToaster = {
     title: "Erro!",
     image: "/components/toaster/img/errorCircle.svg",
-    subtitle: "Ocorreu algum erro ao editar o aluno.",
+    subtitle: "Ocorreu algum erro ao editar o professor.",
     style: "error"
 }
 
@@ -44,7 +44,7 @@ document.addEventListener('selectDisciplinas', (event) => {
     
 });
 
-export async function formEditStudent(){
+export async function formEditProfessors(){
     await displayValuesOnInputs()
 
     const form = document.querySelector(".register-form")
@@ -71,7 +71,7 @@ export async function formEditStudent(){
             nome: inputStudentName.value,
             matricula: inputRegister.value,
             email: inputEmail.value,
-            tipo: "aluno"
+            tipo: "professor"
         }
         const userId = takeIdByParams()
     
@@ -79,26 +79,20 @@ export async function formEditStudent(){
         if(!validations){
             return console.log('Algum dado invalido')
         }        
-    
+        
+        await turnNullSubjectsProfId(userId)
         let userRelation = ""
         if(selectedSubjectsValue.length > 0){
-
-            const deleteAllRelations = await deleteAllSubjectStudentRelation(userId)
-            if(deleteAllRelations.status === 200){
-
-                for (const subjectSelect of selectedSubjectsValue){
-                    req2 = {
-                        aluno_id: userId,
-                        disciplina_id: subjectSelect
-                    }
-                    userRelation = await registerUserDisciplina(req2)
+            for (const subjectSelect of selectedSubjectsValue){
+                req2 = {
+                    prof_id: userId,
                 }
-
+                userRelation = await editDisciplina(req2, subjectSelect)
             }
         
         } 
             
-        if (validations.status === 200 || userRelation.status === 201){
+        if (validations.status === 200 || userRelation.status === 200){
             return document.body.append(Toaster(successToaster))
             
         } else {
