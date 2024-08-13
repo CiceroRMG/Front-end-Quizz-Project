@@ -3,7 +3,7 @@
 
 
 
-export function Select({label = null, info = null, id = null, placeholder = null, options = [{text, value}], type = "default"}){
+export function Select({label = null, info = null, id = null, placeholder = null, options = [{text, value}], type = "default", preSelectedOptions = {content: [], values: []}}){
 
     const container = document.createElement('div')
     container.classList.add('selectContainer')
@@ -51,8 +51,8 @@ export function Select({label = null, info = null, id = null, placeholder = null
     if(type === "default"){
         
         let selectedOptions = {
-            content: [],
-            values: []
+            content: preSelectedOptions.content || [],
+            values: preSelectedOptions.values || []
         }
         if(options.length > 0){
             for(const option of options){
@@ -96,9 +96,11 @@ export function Select({label = null, info = null, id = null, placeholder = null
 
     if(type === "multiselect"){
         let selectedOptions = {
-            content: [],
-            values: []
+            content: preSelectedOptions.content || [],
+            values: preSelectedOptions.values || []
         }
+        p.innerText = selectedOptions.content.join(', ') || placeholder
+
         if(options.length > 0){
             for(const option of options){
                 const li = document.createElement('li')
@@ -106,7 +108,12 @@ export function Select({label = null, info = null, id = null, placeholder = null
                 li.innerText = option.text
                 li.setAttribute('data-value', option.value)
                 li.setAttribute('data-content', option.text)
-                li.onclick = ()=>{
+
+                if (selectedOptions.values.includes(option.value)) {
+                    li.classList.add('li-selected')
+                }
+
+                li.onclick = async ()=>{
                     li.classList.toggle('li-selected')
                     const valueName = li.getAttribute('data-content')
                     const value = li.getAttribute('data-value')

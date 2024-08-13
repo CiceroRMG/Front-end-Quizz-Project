@@ -276,3 +276,34 @@ export async function registerUserDisciplina(objeto){
 
     return { userDisciplina, status: pegando.status }
 }
+
+export async function editUserNoPassword(objeto, id){
+    const pegando = await fetchWithToken(`http://localhost:3333/users/adm/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(objeto)
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível editar o usuario' }
+    }
+
+    const data = await pegando.json()
+
+    return { status: pegando.status, msg: data.msg }
+}
+
+
+export async function deleteAllSubjectStudentRelation(id){
+    const pegando = await fetchWithToken(`http://localhost:3333/usersDisciplinas/${id}`, {
+        method: 'DELETE',
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível deletar as relações' }
+    }
+
+    const data = await pegando.json()
+
+    return { status: pegando.status, msg: data.msg }
+}

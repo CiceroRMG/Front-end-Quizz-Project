@@ -1,5 +1,5 @@
 import { Toaster } from "../../../../components/toaster/toaster.js"
-import { registerUser } from "../../../../scripts/fetchDbFunctions.js"
+import { editDisciplina, editUserNoPassword, registerUser } from "../../../../scripts/fetchDbFunctions.js"
 
 const existsToaster = {
     title: "Erro!",
@@ -56,6 +56,34 @@ export async function validateAllStudentsInputsAndRegister(req){
     }
     return criandoAluno
 }
+
+export async function validateAllStudentsInputsAndEdit(req, id){
+    const criandoAluno = await editUserNoPassword(req, id)
+    // matricula ou email ja existem cadastrados
+    if (criandoAluno.status === 409){
+        document.body.append(Toaster(existsToaster))
+        return false
+    }
+    // validação do nome
+    if(criandoAluno.status === 400){
+        errorValidations('#inputName', '#inputNameError')
+        return false
+    }
+    // validação da matrícula
+    if(criandoAluno.status === 406){
+        errorValidations('#inputRegistration', '#inputRegistrationError')
+        return false
+    }
+    // validação do email
+    if(criandoAluno.status === 412){
+        errorValidations('#inputEmail', '#inputEmailError')
+        return false
+    }
+    return criandoAluno
+}
+
+
+
 
 export function eventFocusInputs(){
     
