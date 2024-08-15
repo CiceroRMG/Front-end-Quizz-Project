@@ -4,12 +4,14 @@ import { Header } from "../../../../components/header/header.js"
 import { Input } from "../../../../components/input/input.js"
 import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 import { Select } from "../../../../components/select/select.js"
-import { getOnBackAllProfessor } from "../../../../scripts/fetchDbFunctions.js"
+import { getOnBackAllProfessor, getOnBackDisciplinaById } from "../../../../scripts/fetchDbFunctions.js"
 import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
 import { eventFocusInputs } from "../../register/subjectsRegister/subjectsFormValidations.js"
 import { displayValuesOnInputs, formEditEvent } from "./formEditEvent.js"
+import { takeSubjectIdByParams } from "../../../../scripts/alunoFlowPages/disciplinasPage/takeSubjectIdByParams.js"
+import { takeIdByParams } from "../studentsEdit/formEditStudent.js"
 
 
 
@@ -37,7 +39,8 @@ const selectProfessor = {
     info : "A disciplina não precisa ter um professor", 
     id : "selectProfessor", 
     placeholder : "Selecione um professor", 
-    options : await createProfessorOptions()
+    options : await createProfessorOptions(),
+    preSelectedOptions: await preSelectedProfessorValues()
 }
 
 const inputSubjectYear = {
@@ -61,7 +64,8 @@ const selectYear = {
             text: "Segundo" ,
             value: 2
         }
-    ], 
+    ],
+    preSelectedOptions: await preSelectedSemesterValues() 
 }
 
 const submitBtn = {
@@ -109,6 +113,51 @@ async function createProfessorOptions(){
     return array
 }
 
+async function preSelectedProfessorValues() {
+    const subjectReq = await getOnBackDisciplinaById(takeIdByParams())
+    const subject = subjectReq.disciplina
+    
+    if(subject.prof_id){
+
+        let professorsValue = []
+        let professorsContent = []
+    
+        professorsValue.push(subject.prof_id._id)
+        professorsContent.push(subject.prof_id.nome)
+    
+        const object = 
+        {
+            content: professorsContent,
+            values: professorsValue
+        }
+    
+        return object
+
+    }   
+}
+
+async function preSelectedSemesterValues() {
+    const subjectReq = await getOnBackDisciplinaById(takeIdByParams())
+    const subject = subjectReq.disciplina
+    
+    let professorsValue = []
+    let professorsContent = []
+
+    professorsValue.push(subject.semestre)
+    if(subject.semestre === 1){
+        professorsContent.push("Primeiro")
+    } else{
+        professorsContent.push("Segundo")
+    }
+
+    const object = 
+    {
+        content: professorsContent,
+        values: professorsValue
+    }
+
+    return object
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
     await checkIfValidToken();

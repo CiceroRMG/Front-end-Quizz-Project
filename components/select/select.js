@@ -54,6 +54,8 @@ export function Select({label = null, info = null, id = null, placeholder = null
             content: preSelectedOptions.content || [],
             values: preSelectedOptions.values || []
         }
+        p.innerText = selectedOptions.content.join(', ') || placeholder
+
         if(options.length > 0){
             for(const option of options){
                 const li = document.createElement('li')
@@ -61,6 +63,9 @@ export function Select({label = null, info = null, id = null, placeholder = null
                 li.innerText = option.text
                 li.setAttribute('data-value', option.value)
                 li.setAttribute('data-content', option.text)
+                if (selectedOptions.values.includes(option.value)) {
+                    li.classList.add('li-selected')
+                }
                 li.onclick = () => {
                     // Remover 'li-selected' de todos os outros itens
                     optionsList.querySelectorAll('.li-selected').forEach(selectedLi => {

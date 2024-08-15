@@ -30,30 +30,17 @@ const semesterErrorToaster = {
     style: "error"
 }
 
-let selectedProfessorValue = ""
-let selectedSemesterValue = ""
+let selectedProfessorValue = []
+let selectedSemesterValue = []
 
 export async function displayValuesOnInputs(){
     const inputSubjectName = document.querySelector('#inputName')
     const inputYear = document.querySelector('#inputYear')
-    const selectProfessor = document.querySelector('#selectProfessor')
-    const textOfProfessorSelect = selectProfessor.querySelector('.p-select')
-    const selectYear = document.querySelector('#selectSemester')
-    const textOfSelectYear = selectYear.querySelector('.p-select')
 
     const takeDisciplinaById = await getOnBackDisciplinaById(takeSubjectIdByParams())
 
     inputSubjectName.value = takeDisciplinaById.disciplina.nome
     inputYear.value = takeDisciplinaById.disciplina.ano
-    selectedSemesterValue = takeDisciplinaById.disciplina.semestre
-    textOfSelectYear.innerText = takeDisciplinaById.disciplina.semestre
-
-    if (takeDisciplinaById.disciplina.prof_id) {
-        selectedProfessorValue = takeDisciplinaById.disciplina.prof_id._id
-        textOfProfessorSelect.innerText = takeDisciplinaById.disciplina.prof_id.nome
-    } else{
-        selectedProfessorValue = ""
-    }
     
 }
 
@@ -90,16 +77,33 @@ export async function formEditEvent(){
             return console.log('Semestre não selecionado');
         }
 
-        // validando se tem professor ou não
-        req = {
-            nome: inputSubjectName.value,
-            prof_id: selectedProfessorValue,
-            ano: inputYear.value,
-            semestre: selectedSemesterValue
+        if(selectedProfessorValue.length > 0 && selectedSemesterValue.length > 0){
+            req = {
+                nome: inputSubjectName.value,
+                prof_id: selectedProfessorValue,
+                ano: inputYear.value,
+                semestre: selectedSemesterValue
+            }
+        } else if(selectedProfessorValue.length > 0){
+            req = {
+                nome: inputSubjectName.value,
+                prof_id: selectedProfessorValue,
+                ano: inputYear.value,
+            }
+        } else if (selectedSemesterValue.length > 0){
+            req = {
+                nome: inputSubjectName.value,
+                ano: inputYear.value,
+                semestre: selectedSemesterValue
+            }
+        } else{
+            req = {
+                nome: inputSubjectName.value,
+                ano: inputYear.value,
+            }
         }
     
         const criandoDisciplina = await editDisciplina(req, takeSubjectIdByParams())
-        console.log(criandoDisciplina);
         if(criandoDisciplina.status === 200){
             document.body.append(Toaster(successToaster))
         } else if(criandoDisciplina.status === 409){
