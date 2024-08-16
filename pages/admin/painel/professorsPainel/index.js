@@ -4,7 +4,7 @@ import { Empty } from "../../../../components/empty/empty.js"
 import { Header } from "../../../../components/header/header.js"
 import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 import { Table } from "../../../../components/table/table.js"
-import { getAllStudents } from "../../../../scripts/fetchDbFunctions.js"
+import { getAllStudents, getOnBackAllProfessor } from "../../../../scripts/fetchDbFunctions.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
 import { tableAnimation } from "../../tableAnimation.js"
 import { professorsHeader, tableDataProfessors, professorsRegisterBtn } from "./professorsLogic.js"
@@ -31,13 +31,14 @@ async function professorPanelPage(){
     const table = Table(tableDataProfessors)
     main.append(table)
 
-    const allStudents = await getAllStudents()
+    const allProfessors = await getOnBackAllProfessor()
     const emptyDiv = document.createElement('div')
     emptyDiv.style.height = "100dvh"
     emptyDiv.style.display = "none"
-    if(!allStudents.alunos){
+    if(allProfessors.professores.length < 1){
         emptyDiv.classList.add('animate-in-login')
         emptyDiv.style.display = "flex"
+        table.style.display = "none"
     }
     emptyDiv.classList.add('empty-subject-div')
     emptyDiv.append(Empty({title: "Nenhum professor cadastrado"}))

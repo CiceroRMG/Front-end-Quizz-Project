@@ -12,3 +12,7 @@
 .ul-itens::-webkit-scrollbar {
     width: 20px; 
 }
+
+.ul-itens{
+    padding: 0.2rem 0;
+}

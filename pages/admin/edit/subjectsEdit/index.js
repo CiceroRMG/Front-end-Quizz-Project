@@ -298,8 +298,9 @@ function subjectsEditPage(){
     const titles = listQuizzesDiv.querySelector('.titles-container')
     titles.style.paddingRight = '5.7rem'
     const ulQuizzes = listQuizzesDiv.querySelector('.ul-itens')
+    ulQuizzes.style.maxHeight = "37.7vh"
+    ulQuizzes.style.height = "100%"
     ulQuizzes.style.overflowY = "auto"
-    ulQuizzes.style.maxHeight = "37.4vh"
     const liQuizzes = ulQuizzes.querySelectorAll('li')
     if(liQuizzes.length < 1){
         listQuizzesDiv.append(Empty({title: "A disciplina não possui Quizzes"}))

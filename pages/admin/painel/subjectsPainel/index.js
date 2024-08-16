@@ -42,9 +42,10 @@ async function subjectsPanelPage(){
     emptyDiv.classList.add('animate-in-left')
     emptyDiv.style.height = "100dvh"
     emptyDiv.style.display = "none"
-    if(!allSubjects.disciplinas){
+    if(allSubjects.disciplinas.length < 1){
         emptyDiv.classList.add('animate-in-login')
         emptyDiv.style.display = "flex"
+        table.style.display = "none"
     }
     emptyDiv.classList.add('empty-subject-div')
     emptyDiv.append(Empty({title: "Nenhuma disciplina cadastrada"}))
