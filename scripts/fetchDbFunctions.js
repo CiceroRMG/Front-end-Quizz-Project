@@ -323,3 +323,16 @@ export async function turnNullSubjectsProfId(id) {
     return { status: pegando.status, msg: data.msg }
 }
 
+export async function deleteQuizzById(id){
+    const pegando = await fetchWithToken(`http://localhost:3333/quizzes/${id}`, {
+        method: 'DELETE',
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível deletar as relações' }
+    }
+
+    const data = await pegando.json()
+
+    return { status: pegando.status, msg: data.msg }
+}

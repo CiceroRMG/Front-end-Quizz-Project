@@ -1,3 +1,6 @@
+/* .table-container{
+    position: relative;
+} */
 
 .table{
     border-collapse: separate;
@@ -20,16 +23,29 @@
     border: 1px solid #E7E5E4;
     border-width: 1px 0 1px 0; 
     background-color: #F5F5F5;
+    /* position: static; */
 }
 
 .table tr th:nth-child(2){
     width: 25%;
 }
 
+/* .table tr{
+    position: static;
+} */
+
 .table tr th:nth-child(3){
     text-align: center;
     width: 25%;
 }
+
+/* .teste{
+    position: absolute;
+    background-color: red;
+    width: 100%;
+    top: 11rem;
+    height: 20rem;
+} */
 
 .table tbody .tr-body td:first-child{
     border-top-left-radius: 10px;
@@ -49,7 +65,7 @@
 .table tbody .tr-body td:nth-child(3) p{
     max-width: max-content;
     margin: auto;
-    position: relative;
+    /* position: relative; */
 }
 
 .table tbody .tr-body .hover:hover{
@@ -59,15 +75,15 @@
 }
 
 .hover-content{
-    background: #FAFAFA;
+    background-color: #FAFAFA;
     border-radius: 1rem;
     border: 1px solid #E5E5E5;
     position: absolute;
-    display: flex;
+    display: block;
     flex-direction: column;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    z-index: 999;
+    z-index: 9999;
 }
 
 .table .tr-body .hover-content li{

@@ -4,16 +4,16 @@ import { Header } from "../../../../components/header/header.js"
 import { Input } from "../../../../components/input/input.js"
 import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 import { Select } from "../../../../components/select/select.js"
-import { getOnBackAllProfessor, getOnBackDisciplinaById } from "../../../../scripts/fetchDbFunctions.js"
+import { deleteQuizzById, getOnBackAllProfessor, getOnBackDisciplinaById } from "../../../../scripts/fetchDbFunctions.js"
 import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
 import { eventFocusInputs } from "../../register/subjectsRegister/subjectsFormValidations.js"
-import { displayValuesOnInputs, formEditEvent } from "./formEditEvent.js"
-import { takeSubjectIdByParams } from "../../../../scripts/alunoFlowPages/disciplinasPage/takeSubjectIdByParams.js"
+import { formEditEvent } from "./formEditEvent.js"
 import { takeIdByParams } from "../studentsEdit/formEditStudent.js"
-
-
+import { ListItens } from "../../../../components/listItens/listItens.js"
+import { Dialog } from "../../../../components/dialog/dialog.js"
+import { Empty } from "../../../../components/empty/empty.js"
 
 
 const subjectsHeader = {
@@ -71,7 +71,23 @@ const selectYear = {
 const submitBtn = {
     text: "Editar", 
     type: "primary-l",
+    btnType: "submit"
 }
+
+const quizzesListItens = {
+    elements: [
+    {
+        as: "p",
+        text: "Nome"
+    },
+    {
+        as: "p",
+        text: "Ações"
+    }
+],
+    itens: await createQuizzesItensAndDialog()
+}
+
 
 function createSideBySideInputsDiv(){
     const div = document.createElement('div')
@@ -88,10 +104,28 @@ function createFormLayout(){
     form.classList.add('register-form')
     form.style.width = "100%"
     form.style.height = "100%"
+    form.style.maxHeight = "100vh"
     form.style.display = "flex"
     form.style.flexDirection = "column"
     form.style.gap = "3rem"
     return form
+}
+
+function createQuizzesLayout(){
+    const div = document.createElement('div')
+    div.style.paddingLeft = "2.4rem"
+    div.style.display = "flex"
+    div.style.flexDirection = "column"
+
+    const h2 = document.createElement('h2')
+    h2.innerText = "Quizzes"
+    h2.style.fontSize = "1rem"
+    h2.style.color = "#1C1917"
+    h2.style.paddingBottom = "0.9rem"
+
+    div.append(h2)
+
+    return div
 }
 
 async function createProfessorOptions(){
@@ -159,6 +193,80 @@ async function preSelectedSemesterValues() {
     return object
 }
 
+async function createQuizzesItensAndDialog() {
+    let array = []
+    let dialogData = {}
+
+    const subjectQuizzes = await getOnBackDisciplinaById(takeIdByParams())
+    
+    if(subjectQuizzes.disciplina.quizes.length > 0){
+        for(const quizz of subjectQuizzes.disciplina.quizes) {
+            
+            const object = {
+                contents: [
+                    {
+                        as: "h1",
+                        text: quizz.nome,
+                    },
+                    {
+                        as: "a",
+                        text: "Editar",
+                        link: `/pages/admin/edit/quizesEdit/quizesEdit.html?id=${quizz.quizz_id}`, 
+                    },
+                    {
+                        as: "button",
+                        text: "Remover",
+                        onclick: ()=>{
+                            dialogData = {
+                                title: "Tem certeza?",
+                                paragraph: `Tem certeza que deseja excluir "${quizz.nome}"? O processo não poderá ser revertido.`,
+                                dialogButtons: [
+                                    {
+                                        text: "Cancelar",
+                                        type: "outline-sm",
+                                        onclick(){
+                                            const main = document.querySelector('.main')
+                                            const dialog = main.querySelector('.dialog')
+                                            dialog.remove()
+                                            dialog.close()
+                                        }
+                                    },
+                                    {
+                                        text: "Eliminar",
+                                        type: "destructive-sm",
+                                        onclick: async () => {
+                                                console.log(quizz.quizz_id);
+                                                console.log(await deleteQuizzById(quizz.quizz_id));
+                                                const element = document.getElementById(`${quizz.quizz_id}`) 
+                                                element.classList.add('elemento-excluido')
+                                                setTimeout(()=>element.remove(), 500)
+                                                dialog.remove()
+                                        }
+                                    },
+                                ]
+                            }
+                            const main = document.querySelector('.main')
+                            main.append(Dialog(dialogData))
+                            const dialog = main.querySelector('.dialog')
+                            dialog.classList.add('animate-in')
+                            dialog.showModal()
+
+                        }
+                    }
+                ], 
+                id: quizz.quizz_id,
+                style: "space",
+                click: false,
+            }
+            
+            array.push(object)
+
+        }
+    }
+
+    return array
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     await checkIfValidToken();
     await checkTypeUser('admin')
@@ -185,6 +293,20 @@ function subjectsEditPage(){
     downInputDiv.append(Input(inputSubjectYear))
     downInputDiv.append(Select(selectYear))
 
+    const listQuizzesDiv = createQuizzesLayout()
+    listQuizzesDiv.append(ListItens(quizzesListItens))
+    const titles = listQuizzesDiv.querySelector('.titles-container')
+    titles.style.paddingRight = '5.7rem'
+    const ulQuizzes = listQuizzesDiv.querySelector('.ul-itens')
+    ulQuizzes.style.overflowY = "auto"
+    ulQuizzes.style.maxHeight = "37.4vh"
+    const liQuizzes = ulQuizzes.querySelectorAll('li')
+    if(liQuizzes.length < 1){
+        listQuizzesDiv.append(Empty({title: "A disciplina não possui Quizzes"}))
+        titles.style.display = "none"
+    }
+
+
     const submitBtnDiv = document.createElement('div')
     submitBtnDiv.style.display = "flex"
     submitBtnDiv.style.justifyContent = "center"
@@ -193,6 +315,7 @@ function subjectsEditPage(){
 
     form.append(aboveInputDiv)
     form.append(downInputDiv)
+    form.append(listQuizzesDiv)
     form.append(submitBtnDiv)
     main.append(form)
 

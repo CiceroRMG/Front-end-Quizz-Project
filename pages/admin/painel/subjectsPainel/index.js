@@ -35,7 +35,6 @@ async function subjectsPanelPage(){
     main.append(headDiv)
 
     const table = Table(tableDataSubjects)
-    table.classList.add('hidden')
     main.append(table)
 
     const allSubjects = await getAllDisciplinasIfProfessorName()
@@ -52,7 +51,6 @@ async function subjectsPanelPage(){
     main.append(emptyDiv)
 
     document.body.append(div)
-    await tableAnimation()
 }
 
 await subjectsPanelPage()

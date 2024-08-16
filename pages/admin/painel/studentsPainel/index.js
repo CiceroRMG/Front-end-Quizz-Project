@@ -29,7 +29,6 @@ async function studentsPanelPage(){
     main.append(headDiv)
 
     const table = Table(tableDataStudents)
-    table.classList.add('hidden')
     main.append(table)
 
     const allStudents = await getAllStudents()
@@ -45,7 +44,6 @@ async function studentsPanelPage(){
     main.append(emptyDiv)
 
     document.body.append(div)
-    await tableAnimation()
 }
 
 

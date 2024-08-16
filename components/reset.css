@@ -26,6 +26,11 @@ time, mark, audio, video {
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
+
+/* tr, td{
+    position: static;
+} */
+
 body {
     line-height: 1;
 }

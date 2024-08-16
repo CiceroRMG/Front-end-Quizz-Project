@@ -1,8 +1,13 @@
 
-export function Item({contents = [{as: null, text, link: "#", onclick: null}], style = "normal", click = false, onclick}){
+export function Item({contents = [{as: null, text, link: "#", onclick: null}], style = "normal", id = null, click = false, onclick}){
 
     const div = document.createElement('div')
     div.classList.add('item-container')
+    
+    if(id){
+        div.id = id
+    }
+
     const section = document.createElement('div')
     section.classList.add('section')
 
@@ -20,6 +25,7 @@ export function Item({contents = [{as: null, text, link: "#", onclick: null}], s
         }
         if(content.as === "button"){
             element.classList.add('element-button')
+            element.type = "button"
             element.onclick = content.onclick
         }
         if(content.as === "h1"){
@@ -83,7 +89,8 @@ export function ListItens({elements = [{as, text}], itens = []}){
             contents: item.contents,
             style: item.style,
             click: item.click,
-            onclick: item.onclick
+            onclick: item.onclick,
+            id: item.id
         })
         li.append(itemm)
         list.append(li)

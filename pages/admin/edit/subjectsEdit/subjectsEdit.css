@@ -1,0 +1,14 @@
+.ul-itens::-webkit-scrollbar-thumb {
+    border-radius: 1rem; 
+    background-color: #e7e7e7;
+    border: 7px solid #fafafa;
+}
+
+.ul-itens::-webkit-scrollbar-track {
+    background-color: #fafafa; 
+    border-radius: 1rem; 
+}
+
+.ul-itens::-webkit-scrollbar {
+    width: 20px; 
+}

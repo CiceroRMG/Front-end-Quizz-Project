@@ -1,8 +1,12 @@
 
-export function buttom({text = "Button", type = "primary-md", onclick = null, img = null}){
+export function buttom({text = "Button", type = "primary-md", onclick = null, img = null, btnType = null}){
 
     const btn = document.createElement('button')
     btn.classList.add('button')
+
+    if(btnType){
+        btn.type = btnType
+    }
 
     const p = document.createElement('p')
     p.innerText = text
