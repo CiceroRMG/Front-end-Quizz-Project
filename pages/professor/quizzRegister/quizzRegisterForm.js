@@ -15,6 +15,13 @@ const errorToaster = {
     style: "error"
 }
 
+const missingToaster = {
+    title: "Campo Obrigatório Faltando!",
+    image: "/components/toaster/img/infoCircle.svg",
+    subtitle: "Esta faltando algum dado obrigatório",
+    style: "info"
+}
+
 
 let selectedSubjectValue = ""
 let quizTypeValue = ""
@@ -70,6 +77,10 @@ export async function formEventQuiz(){
             return console.log('Algum dado invalido')
         }
 
+        if(!selectedSubjectValue || !quizTypeValue || !maxTimeValue){
+            return document.body.append(Toaster(missingToaster))
+        }
+
         req = {
             titulo: inputQuizName.value,
             tempo: maxTimeValue ? maxTimeValue : null,
@@ -83,6 +94,8 @@ export async function formEventQuiz(){
         }
     
         const registerQuizReq = await registerQuiz(req)
+        const quizzId = registerQuizReq.data.response._id
+        
 
         if(!registerQuizReq){
             action = ""
@@ -92,7 +105,7 @@ export async function formEventQuiz(){
         
         if (registerQuizReq.status === 201){
             if(action === "register"){
-                window.location.href = "/pages/professor/quizzRegister/quizzRegisterQuestions.html"
+                window.location.href = `/pages/professor/quizzRegister/questionsRegister/questionsRegister.html?id=${quizzId}`
             }
             if(action === "save"){
                 history.back()
