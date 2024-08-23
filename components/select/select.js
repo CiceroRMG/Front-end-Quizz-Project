@@ -44,6 +44,10 @@ export function Select({label = null, info = null, id = null, placeholder = null
     optionDiv.classList.add('options-container')
     optionDiv.classList.add('hidden')
 
+    if(!label){
+        optionDiv.classList.add('notLabel')
+    }
+
     const optionsList = document.createElement('ul')
     optionsList.classList.add('options-ul')
 

@@ -188,6 +188,17 @@ export async function getOnBackDisciplinasOfProfessorById(id) {
     return { disciplinas };
 }
 
+export async function getOnBackDisciplinasOfProfessorByToken() {
+    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/prof`);
+    if(!pegando){
+        return console.log("A requisição de pegar as discplinas do professor pelo token falhou")
+    }
+
+    const data = await pegando.json();
+    const disciplinas = data.disciplinas
+    return { disciplinas };
+}
+
 
 // o id parametro dessa função pode ser tanto um id de um quizz quanto o id de uma disciplina
 export async function getOnBackQuizzesById(id) {

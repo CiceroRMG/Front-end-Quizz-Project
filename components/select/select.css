@@ -80,6 +80,10 @@
     z-index: 999;
 }
 
+.options-container.notLabel{
+    top: 4rem;
+}
+
 .options-container::-webkit-scrollbar-thumb {
     border-radius: 1rem; 
     background-color: #e7e7e7;
