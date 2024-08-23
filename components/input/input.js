@@ -78,6 +78,9 @@ export function Input({label = null, img = null, placeholder = null, style = "de
         const spanError = document.createElement('span')
         spanError.classList.add('input-error')
         spanError.classList.add('hidden')
+        if(!label){
+            spanError.classList.add('notLabel')
+        }
         spanError.id = `${id}Error`
         spanError.innerText = error
         container.append(spanError)

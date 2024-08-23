@@ -82,6 +82,10 @@
     word-wrap: break-word;
 }
 
+.input-error.notLabel{
+    top: 4rem;
+}
+
 .fail{
     outline: 1px solid #EF4444;
 }

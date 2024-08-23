@@ -9,6 +9,7 @@ import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { getOnBackDisciplinasOfProfessorByToken } from "../../../scripts/fetchDbFunctions.js"
 import { NavBarProfessor } from "../navBarProfessor.js"
 import { LongText } from "../../../components/longText/longText.js"
+import { formEventQuiz } from "./quizzRegisterForm.js"
 
 
 const header = {
@@ -134,13 +135,14 @@ function createFormLayout(){
     return form
 }
 
-function createDateInputs(text){
+function createDateInputs(text, id){
     const div = document.createElement('div')
     div.classList.add('date-div')
 
     const time = document.createElement('input')
     time.setAttribute('type', 'date')
     time.classList.add('date-input')
+    time.id = id
 
     const p = document.createElement('p')
     p.innerText = text
@@ -149,6 +151,21 @@ function createDateInputs(text){
     div.append(p)
 
     return div
+}
+
+function putDateOnInputs(){
+    const dateInput = document.getElementById('inputStartDate');
+    const dateInputFinish = document.getElementById('inputFinishDate');
+
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+
+    dateInput.value = formattedDate;
+    dateInputFinish.value = formattedDate;
 }
 
 
@@ -198,16 +215,25 @@ function quizRegisterPage(){
     downInputDiv.append(Select(selectMaxTime))
 
     const dateInputsDiv = createSideBySideInputsDiv()
-    dateInputsDiv.append(createDateInputs('Data de início'))
-    dateInputsDiv.append(createDateInputs('Data de entrega'))
+    dateInputsDiv.append(createDateInputs('Data de início', 'inputStartDate'))
+    dateInputsDiv.append(createDateInputs('Data de entrega', 'inputFinishDate'))
 
     const submitBtnDiv = document.createElement('div')
     submitBtnDiv.style.display = "flex"
     submitBtnDiv.style.justifyContent = "flex-end"
     submitBtnDiv.style.gap = "1rem"
     submitBtnDiv.style.margin = "auto 0 auto 0"
-    submitBtnDiv.append(buttom(saveBtn))
-    submitBtnDiv.append(buttom(submitBtn))
+
+    const saveButton = buttom(saveBtn)
+    saveButton.id = "saveBtn"
+    saveButton.name = "action"
+
+    const registerButton = buttom(submitBtn)
+    registerButton.id = "registerBtn"
+    registerButton.name = "action"
+
+    submitBtnDiv.append(saveButton)
+    submitBtnDiv.append(registerButton)
 
 
     form.append(aboveInputDiv)
@@ -221,4 +247,6 @@ function quizRegisterPage(){
 }
 
 quizRegisterPage()
+putDateOnInputs()
 
+formEventQuiz()

@@ -347,3 +347,19 @@ export async function deleteQuizzById(id){
 
     return { status: pegando.status, msg: data.msg }
 }
+
+export async function registerQuiz(objeto){
+    const pegando = await fetchWithToken('http://localhost:3333/quizzes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(objeto)
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível criar o quiz' }
+    }
+
+    const data = await pegando.json()
+
+    return { data: data, status: pegando.status }
+}
