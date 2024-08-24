@@ -8,6 +8,7 @@ import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { NavBarProfessor } from "../../navBarProfessor.js"
 import { getOnBackQuizzesById } from "../../../../scripts/fetchDbFunctions.js"
+import { Question } from "../../../../components/question/question.js"
 
 export function takeIdByParams(){
     const params = new URLSearchParams(window.location.search)
@@ -16,15 +17,6 @@ export function takeIdByParams(){
 }
 
 const header = await createHeaderObject()
-
-
-const inputQuizzName = {
-    label: "Pergunta 1",
-    placeholder: "Digite aqui a pergunta...",
-    id: "question1",
-    error: "A pergunta é obrigatória",
-    style: "outline"
-}
 
 const saveBtn = {
     text: "Guardar Rascunho", 
@@ -63,6 +55,7 @@ function createFormLayout(){
     form.style.flexDirection = "column"
     form.style.gap = "3rem"
     form.style.paddingLeft = "2.4rem"
+    form.style.paddingRight = "2.4rem"
     return form
 }
 
@@ -86,13 +79,23 @@ function quizRegisterPage(){
 
     const form = createFormLayout()
 
-    form.append(Input(inputQuizzName))
+    form.append(Question({id:"pergunta1", title: "Pergunta 1"}))
+    form.append(Question({id:"pergunta2", title: "Pergunta 2"}))
+    form.append(Question({id:"pergunta3", title: "Pergunta 3"}))
+    form.append(Question({id:"pergunta4", title: "Pergunta 4"}))
+    form.append(Question({id:"pergunta5", title: "Pergunta 5"}))
+    form.append(Question({id:"pergunta6", title: "Pergunta 6"}))
+    form.append(Question({id:"pergunta7", title: "Pergunta 7"}))
+    form.append(Question({id:"pergunta8", title: "Pergunta 8"}))
+    form.append(Question({id:"pergunta9", title: "Pergunta 9"}))
+    form.append(Question({id:"pergunta10", title: "Pergunta 10"}))
 
     const submitBtnDiv = document.createElement('div')
     submitBtnDiv.style.display = "flex"
     submitBtnDiv.style.justifyContent = "flex-end"
     submitBtnDiv.style.gap = "1rem"
     submitBtnDiv.style.margin = "auto 0 auto 0"
+    submitBtnDiv.style.paddingBottom = "2rem"
 
     const saveButton = buttom(saveBtn)
     saveButton.id = "saveBtn"

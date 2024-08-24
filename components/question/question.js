@@ -47,11 +47,11 @@ export function Question({title, id}){
                     text: "Gerar",
                     type: "primary-md",
                     async onclick(){
-                        const inputElement = document.getElementById('dialogInput');
+                        const inputElement = div.querySelector('#dialogInput');
                         const inputValue = inputElement ? inputElement.value : '';
-                        const objectQuestion = await fetchQuestion(inputValue)
+                        const objectQuestion = await fetchQuestion(inputValue, id)
                         if(objectQuestion){
-                            const iHead = document.getElementById('inputHead')
+                            const iHead = div.querySelector('#inputHead')
                             iHead.value = objectQuestion.pergunta
                             let teste = 1
                             for(const alternativa of objectQuestion.alternativas){
@@ -141,8 +141,10 @@ async function generateQuestion(value) {
     
 }
 
-async function fetchQuestion(inputValue) {
-    const loadingElement = document.getElementById('loading');
+async function fetchQuestion(inputValue, id) {
+    const element = document.getElementById(id)
+    
+    const loadingElement = element.querySelector('#loading');
 
     try {
         // Mostrar o indicador de carregamento
