@@ -363,3 +363,19 @@ export async function registerQuiz(objeto){
 
     return { data: data, status: pegando.status }
 }
+
+export async function generateQuestionIa(objeto){
+    const pegando = await fetchWithToken('http://localhost:3333/ia/generateQuiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(objeto)
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível obter a resposta da ia' }
+    }
+
+    const data = await pegando.json()
+
+    return { data: data, status: pegando.status }
+}

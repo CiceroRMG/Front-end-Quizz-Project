@@ -12,6 +12,7 @@ import { buttom } from "./button/buttom.js"
 import { LongText } from "./longText/longText.js"
 import { InformationsBox } from "./informations/informations.js"
 import { Empty } from "./empty/empty.js"
+import { Question } from "./question/question.js"
 
 const arrayItensOfNav = {
     mainComponents: [
@@ -441,6 +442,7 @@ function page(){
     main.append(LongText({title: "Text", placeholder: "Escreva alguma coisa..."}))
     main.append(InformationsBox(informationsBoxData))
     main.append(Empty({title: "Nenhum aluno cadastrado"}))
+    main.append(Question({title: "Pergunta 1", id: "question1"}))
 
     document.body.append(div)
 }
