@@ -35,13 +35,18 @@
     line-height: 1.5rem;
 }
 
+.longText-area.sm{
+    height: auto;
+    max-height: 20rem;
+}
+
 .longText-area::placeholder{
     color: #78716C;
     font-family: "Open Sans";
     font-size: 1rem;
 
     line-height: 1.5rem;
-
+    padding-top: 0.15rem;
 }
 
 .longText-area:focus{

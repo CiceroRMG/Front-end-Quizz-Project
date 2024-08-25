@@ -1,6 +1,6 @@
 
 
-export function LongText({title = null, placeholder}){
+export function LongText({title = null, placeholder, id = null, style = "default"}){
 
     const longTextContainer = document.createElement('div')
     longTextContainer.classList.add('longText-container')
@@ -13,11 +13,17 @@ export function LongText({title = null, placeholder}){
         longTextContainer.append(header)
     }
 
-
     const textArea = document.createElement('textarea')
     textArea.classList.add('longText-area')
+    if(style === "small"){
+        textArea.classList.add('sm')
+    }
     textArea.setAttribute('placeholder', placeholder)
     longTextContainer.append(textArea)
+
+    if(id){
+        textArea.id = id
+    }
 
 
     return longTextContainer

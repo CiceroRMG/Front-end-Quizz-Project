@@ -1,5 +1,6 @@
 .question-div-box{
     position: relative;
+    width: 100%;
 }
 
 .question-div-box .input-label{
@@ -7,6 +8,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 1rem;
 }
 
 .question-div-box .input-label h2 {
@@ -35,13 +37,35 @@
     margin-bottom: 2rem;
 }
 
+.question-div-box .longText-area{
+  margin-bottom: 1rem;
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+.question-div-box .longText-area:focus{
+  outline: 1px solid #6366F1;
+}
+
+.inputAwnserCorrectDiv{
+  width: 100%;
+}
+
 .correctInput{
     width: 100%;
     padding: 0.65rem 0.5rem;
     padding-top: 1rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    line-height: 1.5rem;
+
+    height: auto;
+    resize: none;
+    overflow-y: hidden;
+
+    color: #1F2937;
+    font-family: "Open Sans";
+    font-size: 0.9rem;
     line-height: 1.5rem;
 }
 
@@ -56,14 +80,13 @@
     outline: 1px solid #50c26e;
 }
 
-.correctInput::placeholder, .inputAwnserIncorrectDiv input::placeholder{
-    color: var(--colors-stone-500, #78716C);
-    font-family: var(--font-family-open, "Open Sans");
-    font-size: var(--font-size-base, 1rem);
+.correctInput::placeholder, .inputAwnserIncorrectDiv textarea::placeholder{
+    color: #78716C;
+    font-family: "Open Sans";
+    font-size: 1rem;
     font-style: normal;
-    font-weight: var(--font-weight-normal, 400);
-    line-height: var(--font-leading-6, 1.5rem); /* 150% */
-    letter-spacing: var(--font-tracking-normal, 0rem);
+    font-weight: 400;
+    line-height: 1.5rem; 
 }
 
 .inputAwnserCorrectDiv{
@@ -79,24 +102,31 @@
 
 /*  */
 
-.inputAwnserIncorrectDiv input{
+.inputAwnserIncorrectDiv textarea{
     width: 100%;
     padding: 0.65rem 0.5rem;
     padding-top: 1rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+
+    height: auto;
+    resize: none;
+    overflow-y: hidden;
+
+    color: #1F2937;
+    font-family: "Open Sans";
+    font-size: 0.9rem;
     line-height: 1.5rem;
 }
 
-.inputAwnserIncorrectDiv input{
+.inputAwnserIncorrectDiv textarea{
     border: none;
     border-radius: var(--border-radius-md, 0.375rem);
     border-bottom: var(--border-width-1, 1px) solid var(--colors-stone-300, #D6D3D1);
     background: var(--colors-red-50, #FEF2F2);
 }
 
-.inputAwnserIncorrectDiv input:focus{
+.inputAwnserIncorrectDiv textarea:focus{
     outline: 1px solid #c26150;
 }
 
@@ -118,7 +148,11 @@
 }
 
 .dialog-p .inputContainer {
-    padding: 0.8rem 0rem;
+    padding-top: 0.8rem;
+}
+
+.dialog-p fieldset legend{
+  padding-bottom: 0.5rem;
 }
 
 #loading {
