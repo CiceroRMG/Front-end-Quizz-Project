@@ -364,6 +364,22 @@ export async function registerQuiz(objeto){
     return { data: data, status: pegando.status }
 }
 
+export async function registerQuizQuestions(objeto, id){
+    const pegando = await fetchWithToken(`http://localhost:3333/quizzes/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(objeto)
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível criar as perguntas do quizz' }
+    }
+
+    const data = await pegando.json()
+
+    return { status: pegando.status, msg: pegando.msg }
+}
+
 export async function generateQuestionIa(objeto){
     const pegando = await fetchWithToken('http://localhost:3333/ia/generateQuiz', {
         method: 'POST',

@@ -80,7 +80,6 @@ export function Question({title, id}){
                         const checkBox = div.querySelector('#detail');
                         const checkBoxValue = checkBox.value
                         const inputValue = inputElement ? inputElement.value : '';
-                        console.log(checkBoxValue);
                         
                         const objectQuestion = await fetchQuestion(inputValue, checkBoxValue, id)
                         if(objectQuestion){
