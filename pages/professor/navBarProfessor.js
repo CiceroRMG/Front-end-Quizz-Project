@@ -20,6 +20,12 @@ const arrayItensOfNav = {
                 itens: await createArrayObjectsOfStudentSubjectsNav()
             }
         },
+        {
+            img: "/components/nav-bar/img/create.svg",
+            text: "Criar Quizz",
+            as: "a",
+            link: "/pages/professor/quizzRegister/quizzRegister.html",
+        },
     ],
     footerComponents: [
         {

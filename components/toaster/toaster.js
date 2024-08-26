@@ -27,12 +27,22 @@ export function Toaster({title, subtitle, image, style = "success", timeout}){
     toaster.append(btn)
 
     toaster.classList.add('animate-in-left')
-    setTimeout(()=>{
+
+    if(timeout){
         setTimeout(()=>{
-            toaster.remove()
-        }, 1000)
-        toaster.classList.add('animate-in-right')
-    }, 4000)
+            setTimeout(()=>{
+                toaster.remove()
+            }, 1000)
+            toaster.classList.add('animate-in-right')
+        }, timeout)
+    } else{
+        setTimeout(()=>{
+            setTimeout(()=>{
+                toaster.remove()
+            }, 1000)
+            toaster.classList.add('animate-in-right')
+        }, 4000)
+    }
 
     return toaster
 }

@@ -24,6 +24,10 @@
     line-height: 1.5rem;
 }
 
+.nav-item p {
+    padding-top: 2px;
+}
+
 .nav-item:hover {
 
     filter: brightness(0) saturate(100%) invert(92%) sepia(23%) saturate(799%) hue-rotate(345deg) brightness(102%) contrast(103%);

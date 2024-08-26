@@ -16,7 +16,7 @@ const header = {
     title: "Informações do Quiz",
     backBtn: {
         onclick:()=>{
-            window.location.href = "/pages/professor/quizzRegister/quizzRegister.html"
+            window.location.href = "/pages/professor/dashboard/dashboard.html"
         }
     }
 

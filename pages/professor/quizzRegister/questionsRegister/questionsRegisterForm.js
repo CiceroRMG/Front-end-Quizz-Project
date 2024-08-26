@@ -1,18 +1,7 @@
 import { Toaster } from "../../../../components/toaster/toaster.js";
-import { registerQuizQuestions } from "../../../../scripts/fetchDbFunctions.js";
+import { getOnBackQuizzesById, registerQuizQuestions } from "../../../../scripts/fetchDbFunctions.js";
 import { takeIdByParams } from "./index.js";
 
-const successToaster = {
-    title: "Sucesso!",
-    image: "/components/toaster/img/checkCircle.svg",
-    subtitle: "Sucesso no cadastro das perguntas.",
-}
-
-const rascunhoToaster = {
-    title: "Sucesso!",
-    image: "/components/toaster/img/checkCircle.svg",
-    subtitle: "Seu quiz foi guardado no rascunho",
-}
 
 const rascunhoErrorToaster = {
     title: "Todos Campos Vazios!",
@@ -96,10 +85,13 @@ export async function formEventQuestions(){
         console.log(action);
         
         if (registerQuestionsOnQuizz.status === 200){
+            const disciplinaOfQuiz = await getOnBackQuizzesById(takeIdByParams())
             if(action === "save"){
-                return document.body.append(Toaster(rascunhoToaster))
+                localStorage.setItem("saveToaster", "true")
+                return window.location.href = `http://127.0.0.1:5500/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
             }
-            return document.body.append(Toaster(successToaster))
+            localStorage.setItem("registerToaster", "true")
+            return window.location.href = `http://127.0.0.1:5500/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
             
         } else {
             return document.body.append(Toaster(errorToaster))

@@ -1,0 +1,21 @@
+.layout-container .empty-div img{
+    width: 13rem;
+    height: 13rem;
+}
+
+.layout-container .empty-div{
+    padding-top: 1.5rem;
+}
+
+.buttonsDiv{
+    display: flex;
+    width: 100%;
+    gap : 1rem;
+    justify-content: start;
+    align-items: end;
+    padding-bottom: 1rem;
+}
+
+.main {
+    padding-bottom: 1rem;
+}

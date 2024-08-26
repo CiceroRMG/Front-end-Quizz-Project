@@ -1,0 +1,18 @@
+.quizzes-div{
+    display: flex;
+    width: 100%;
+    gap: 2.5rem;
+}
+
+.quizzes-div .layout-container{
+    width: 100%;
+}
+
+.quizzes-div .layout-container .empty-div img{
+    width: 12rem;
+    height: 12rem;
+}
+
+.quizzes-div .layout-container .empty-div{
+    margin-top: 7rem;
+}
