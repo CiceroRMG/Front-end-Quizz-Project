@@ -1,5 +1,6 @@
 import { Toaster } from "../../../components/toaster/toaster.js";
-import { registerQuiz } from "../../../scripts/fetchDbFunctions.js";
+import { editQuiz, registerQuiz } from "../../../scripts/fetchDbFunctions.js";
+import { takeIdByParams } from "../../../scripts/takeIdByParams.js";
 import { inputEmptyValidation } from "../../admin/register/studentsRegister/studentsFormValidations.js"
 
 const successToaster = {
@@ -23,12 +24,14 @@ const missingToaster = {
 }
 
 
-let selectedSubjectValue = ""
-let quizTypeValue = ""
-let maxTimeValue = ""
+let selectedSubjectValue = []
+let quizTypeValue = []
+let maxTimeValue = []
 
 document.addEventListener('selectDisciplinas', (event) => {
     selectedSubjectValue = event.detail.values[0];
+    console.log(selectedSubjectValue);
+    
     
 });
 
@@ -44,7 +47,7 @@ document.addEventListener('selectTime', (event) => {
 
 let action = ""
 
-export async function formEventQuiz(){
+export async function formEventQuizEdit(){
 
     const form = document.querySelector(".register-form")
 
@@ -92,24 +95,28 @@ export async function formEventQuiz(){
             rascunho: true,
             disciplina_id: selectedSubjectValue ? selectedSubjectValue : null,
         }
-    
-        const registerQuizReq = await registerQuiz(req)
-        const quizzId = registerQuizReq.data.response._id
         
+        console.log(req);
+        
+        const registerQuizReq = await editQuiz(req, takeIdByParams())
+        console.log(registerQuizReq.data);
+        const quizz = registerQuizReq.data.updatedQuizz
+        
+
         if(!registerQuizReq){
             action = ""
             return console.log('Algo deu errado na criação do quiz')
         }        
-
         
-        if (registerQuizReq.status === 201){
+        if (registerQuizReq.status === 200){
             if(action === "register"){
-                window.location.href = `/pages/professor/quizzRegister/questionsRegister/questionsRegister.html?id=${quizzId}`
+                window.location.href = `/pages/professor/quizEdit/questionsEdit/questionsEdit.html?id=${quizz._id}`
             }
             if(action === "save"){
                 localStorage.setItem('saveToaster', 'true')
-                window.location.href = `/pages/professor/subject/subject.html?id=${registerQuizReq.data.response.disciplina_id}`
+                 window.location.href = `/pages/professor/subject/subject.html?id=${quizz.disciplina_id}`
             }
+            
         } else {
             return document.body.append(Toaster(errorToaster))
         }

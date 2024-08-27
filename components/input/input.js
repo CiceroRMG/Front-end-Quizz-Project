@@ -1,7 +1,7 @@
 
 
 
-export function Input({label = null, img = null, placeholder = null, style = "default", info = null, id = null, error = null, type = "text"}){
+export function Input({label = null, img = null, placeholder = null, style = "default", info = null, id = null, error = null, type = "text", value = null}){
 
     const container = document.createElement('div')
     container.classList.add('inputContainer')
@@ -64,6 +64,10 @@ export function Input({label = null, img = null, placeholder = null, style = "de
         container.append(spanDiv)
     }
     
+    if(value){
+        input.value = value
+    }
+
     if(img){
         const spanDiv = document.createElement('div')
         spanDiv.classList.add('image-container')

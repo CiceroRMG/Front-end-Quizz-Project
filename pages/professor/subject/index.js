@@ -150,7 +150,7 @@ export async function createArrayOfPostedQuizzes(){
                                             console.log(await deleteQuizzById(quiz._id));
                                             dialog.remove()
                                             document.body.append(Toaster(deleteToaster))
-                                            const theQuiz = document.get(`#${quiz._id}`)
+                                            const theQuiz = document.getElementById(`${quiz._id}`)
                                             theQuiz.classList.add('elemento-excluido')
                                             setTimeout(()=>theQuiz.remove(), 500)
                                         }

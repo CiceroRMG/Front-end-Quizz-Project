@@ -40,7 +40,6 @@ let selectedSubjectsValue = []
 
 document.addEventListener('selectDisciplinas', (event) => {
     selectedSubjectsValue = event.detail.values;
-    console.log(selectedSubjectsValue);
     
 });
 

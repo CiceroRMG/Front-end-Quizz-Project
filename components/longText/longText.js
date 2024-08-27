@@ -1,6 +1,6 @@
 
 
-export function LongText({title = null, placeholder, id = null, style = "default"}){
+export function LongText({title = null, placeholder, id = null, style = "default", value = null}){
 
     const longTextContainer = document.createElement('div')
     longTextContainer.classList.add('longText-container')
@@ -23,6 +23,10 @@ export function LongText({title = null, placeholder, id = null, style = "default
 
     if(id){
         textArea.id = id
+    }
+
+    if(value){
+        textArea.value = value
     }
 
 

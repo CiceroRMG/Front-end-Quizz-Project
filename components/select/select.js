@@ -59,7 +59,11 @@ export function Select({label = null, info = null, id = null, placeholder = null
             values: preSelectedOptions.values || []
         }
         p.innerText = selectedOptions.content.join(', ') || placeholder
-
+        let event = ""
+        if(preSelectedOptions.content && preSelectedOptions.values){
+            event = new CustomEvent(id, { detail: selectedOptions });
+            document.dispatchEvent(event);
+        }
         if(options.length > 0){
             for(const option of options){
                 const li = document.createElement('li')
@@ -93,7 +97,7 @@ export function Select({label = null, info = null, id = null, placeholder = null
                         p.innerText = placeholder;
                     }
 
-                    const event = new CustomEvent(id, { detail: selectedOptions });
+                    event = new CustomEvent(id, { detail: selectedOptions });
                     document.dispatchEvent(event);
                 };
                     
@@ -109,6 +113,11 @@ export function Select({label = null, info = null, id = null, placeholder = null
             values: preSelectedOptions.values || []
         }
         p.innerText = selectedOptions.content.join(', ') || placeholder
+        let event = ""
+        if(preSelectedOptions.content && preSelectedOptions.values){
+            event = new CustomEvent(id, { detail: selectedOptions });
+            document.dispatchEvent(event);
+        }
 
         if(options.length > 0){
             for(const option of options){
@@ -142,7 +151,7 @@ export function Select({label = null, info = null, id = null, placeholder = null
                         p.innerText = placeholder
                     }
     
-                    const event = new CustomEvent(id, { detail: selectedOptions });
+                    event = new CustomEvent(id, { detail: selectedOptions });
                     document.dispatchEvent(event);
                     
                 }
