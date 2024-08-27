@@ -5,12 +5,13 @@ import { ListItens } from "../../../components/listItens/listItens.js"
 import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
 import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { based_url } from "../../../scripts/config.js"
-import { getOnBackDisciplinaById, getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
+import { deleteQuizzById, getOnBackDisciplinaById, getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
 import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { NavBarProfessor } from "../navBarProfessor.js"
 import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 import { buttom } from "../../../components/button/buttom.js"
 import { Toaster } from "../../../components/toaster/toaster.js"
+import { Dialog } from "../../../components/dialog/dialog.js"
 
 
 const headerContent =  await createHeadObject()
@@ -76,7 +77,7 @@ const quizRegisterBtn = {
 async function createHeadObject(){
     const takeSubjectByToken = await getOnBackDisciplinaById(takeIdByParams())
     const object = {
-        title: takeSubjectByToken.disciplina.nome,
+        title: `${takeSubjectByToken.disciplina.nome} ${takeSubjectByToken.disciplina.ano} / ${takeSubjectByToken.disciplina.semestre}`,
         subtitle: "Quizzes",
         backBtn: {
             onclick: ()=>{
@@ -102,22 +103,74 @@ export async function createArrayOfPostedQuizzes(){
     let arrayArchived = []
     
     for (const quiz of arrayQuizzes) {
-        const object = {
-            contents: [
-                {
-                    as: "h1",
-                    text: `${quiz.titulo}`,
-                },
-            ],
-            click: true,
-            onclick: ()=> window.location.href = `${based_url}/pages/professor/quiz/quiz.html?id=${quiz._id}`
-        }
-
-        if(quiz.rascunho){
-            arrayArchived.push(object)
-
-        } else{
+        
+        if(!quiz.rascunho){
+            const object = {
+                contents: [
+                    {
+                        as: "h1",
+                        text: `${quiz.titulo}`,
+                    },
+                ],
+                click: true,
+                onclick: ()=> window.location.href = `${based_url}/pages/professor/quiz/quiz.html?id=${quiz._id}`
+            }
             arrayPosted.push(object)
+            
+        } else{
+            const object = {
+                contents: [
+                    {
+                        as: "h1",
+                        text: `${quiz.titulo}`,
+                    },
+                    {
+                        as: "button",
+                        onclick: (event)=>{
+                            event.stopPropagation()
+                            let dialogDataTrash = {}
+                            dialogDataTrash = {
+                                title: "Tem certeza?",
+                                paragraph: `Tem certeza que deseja excluir o rascunho de "${quiz.titulo}"? O processo não poderá ser revertido.`,
+                                dialogButtons: [
+                                    {
+                                        text: "Cancelar",
+                                        type: "outline-sm",
+                                        onclick(){
+                                            const main = document.querySelector('.main')
+                                            const dialog = main.querySelector('.dialog')
+                                            dialog.remove()
+                                            dialog.close()
+                                        }
+                                    },
+                                    {
+                                        text: "Eliminar",
+                                        type: "destructive-sm",
+                                        onclick: async () => {
+                                            console.log(await deleteQuizzById(quiz._id));
+                                            dialog.remove()
+                                            document.body.append(Toaster(deleteToaster))
+                                            const theQuiz = document.get(`#${quiz._id}`)
+                                            theQuiz.classList.add('elemento-excluido')
+                                            setTimeout(()=>theQuiz.remove(), 500)
+                                        }
+                                    },
+                                ]
+                            }
+                            const main = document.querySelector('.main')
+                            main.append(Dialog(dialogDataTrash))
+                            const dialog = main.querySelector('.dialog')
+                            dialog.classList.add('animate-in')
+                            dialog.showModal()         
+                        },
+                        img: "/imgs/trash.svg",
+                    }
+                ],
+                click: true,
+                onclick: ()=> window.location.href = `${based_url}/pages/professor/quizEdit/quizEdit.html?id=${quiz._id}`,
+                id: quiz._id
+            }
+            arrayArchived.push(object)
         }
         
     }

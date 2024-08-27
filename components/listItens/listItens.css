@@ -26,6 +26,29 @@
     padding-top: 0.2rem;
 }
 
+.item-container .element-img{
+    width: 1.3rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.item-container .element-img:hover{
+    background-color: #d9d9d9cc;
+    border-radius: 8rem;
+    box-shadow: 0px 0px 1px 5px #d9d9d9cc;
+    transform: scale(1.2);
+}
+
+.item-container .element-button.img{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 0rem;
+    padding-top: 0rem;
+}
+
 .item-container .element-p {
     color: #57534E;
     font-family: "Open Sans";

@@ -1,6 +1,6 @@
 
-export function Item({contents = [{as: null, text, link: "#", onclick: null}], style = "normal", id = null, click = false, onclick}){
-
+export function Item({contents = [{as: null, text, link: "#", onclick: null, img: null}], style = "normal", id = null, click = false, onclick}){
+    
     const div = document.createElement('div')
     div.classList.add('item-container')
     
@@ -17,6 +17,7 @@ export function Item({contents = [{as: null, text, link: "#", onclick: null}], s
     }
     
     for(const content of contents){
+        
         const element = document.createElement(content.as)
         element.innerText = content.text
         if(content.as === "a"){
@@ -27,6 +28,14 @@ export function Item({contents = [{as: null, text, link: "#", onclick: null}], s
             element.classList.add('element-button')
             element.type = "button"
             element.onclick = content.onclick
+            if(content.img){
+                element.innerHTML = ""
+                element.classList.add('img')
+                const image = document.createElement('img')
+                image.classList.add('element-img')
+                image.src = content.img
+                element.append(image)
+            }
         }
         if(content.as === "h1"){
             element.classList.add('element-h1')

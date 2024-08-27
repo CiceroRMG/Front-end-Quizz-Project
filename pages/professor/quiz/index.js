@@ -15,72 +15,12 @@ import { deleteQuizzById, getOnBackQuizzesById } from "../../../scripts/fetchDbF
 
 const header = await createHeaderObject()
 
-async function createHeaderObject(){
-    const quizReq = await getOnBackQuizzesById(takeIdByParams())
-    let titleContent = ""
-    if(quizReq.quizz.rascunho){
-        titleContent = `${quizReq.quizz.titulo} (Rascunho)`
-    } else{
-        titleContent = `${quizReq.quizz.titulo}`
-    }
-
-    const object = {
-        title: titleContent,
-        backBtn: {
-            onclick:()=>{
-                window.location.href = `/pages/professor/subject/subject.html?id=${quizReq.quizz.disciplina_id._id}`
-            }
-        },
-        subtitle: quizReq.quizz.disciplina_id.nome
-    }
-
-    return object
-}
-
 const deleteBtn = {
     text: "Eliminar Quizz",
     type: "outline-destructive-md",
     btnType: "button",
     onclick: async()=>{await dialogDelete()}
-        
-}
-
-async function dialogDelete() {
-    let dialogData = {}
-    const quizzz = await getOnBackQuizzesById(takeIdByParams())
-    dialogData = {
-        title: "Tem certeza?",
-        paragraph: `Tem certeza que deseja excluir "${quizzz.quizz.titulo}"? O processo não poderá ser revertido.`,
-        dialogButtons: [
-            {
-                text: "Cancelar",
-                type: "outline-sm",
-                onclick(){
-                    const main = document.querySelector('.main')
-                    const dialog = main.querySelector('.dialog')
-                    dialog.remove()
-                    dialog.close()
-                }
-            },
-            {
-                text: "Eliminar",
-                type: "destructive-sm",
-                onclick: async () => {
-                        console.log(quizzz.quizz._id);
-                        console.log(await deleteQuizzById(quizzz.quizz._id));
-                        dialog.remove()
-                        localStorage.setItem('deleteToaster', 'true')
-                        window.location.href = `/pages/professor/subject/subject.html?id=${quizzz.quizz.disciplina_id._id}`
-                }
-            },
-        ]
-    }
-    const main = document.querySelector('.main')
-    main.append(Dialog(dialogData))
-    const dialog = main.querySelector('.dialog')
-    dialog.classList.add('animate-in')
-    dialog.showModal()
-
+    
 }
 
 const editBtn = {
@@ -104,8 +44,31 @@ const quizzesListItens = {
 
 const informations = await createObjectInformations()
 
-async function createObjectInformations(){
 
+async function createHeaderObject(){
+    const quizReq = await getOnBackQuizzesById(takeIdByParams())
+    let titleContent = ""
+    if(quizReq.quizz.rascunho){
+        titleContent = `${quizReq.quizz.titulo} (Rascunho)`
+    } else{
+        titleContent = `${quizReq.quizz.titulo}`
+    }
+
+    const object = {
+        title: titleContent,
+        backBtn: {
+            onclick:()=>{
+                window.location.href = `/pages/professor/subject/subject.html?id=${quizReq.quizz.disciplina_id._id}`
+            }
+        },
+        subtitle: quizReq.quizz.disciplina_id.nome
+    }
+
+    return object
+}
+
+async function createObjectInformations(){
+    
     const quizReq = await getOnBackQuizzesById(takeIdByParams())
 
     let array = [
@@ -119,7 +82,7 @@ async function createObjectInformations(){
         },
         {
             title: "Data de entrega",
-            content: quizReq.quizz.data_fim
+            content: formatDate(quizReq.quizz.data_fim)
         },
         {
             title: "Modalidade do Quiz",
@@ -140,6 +103,14 @@ async function createObjectInformations(){
     return object
 }
 
+function formatDate(date){
+    const [ano, mes, dia] = date.split('-');
+
+    const dataFormatada = `${dia}/${mes}/${ano}`;
+
+    return dataFormatada
+}
+
 function createContentLayout(){
     const form = document.createElement('div')
     form.classList.add('main-content')
@@ -155,6 +126,43 @@ function createContentLayout(){
     return form
 }
 
+async function dialogDelete() {
+    let dialogData = {}
+    const quizzz = await getOnBackQuizzesById(takeIdByParams())
+    dialogData = {
+        title: "Tem certeza?",
+        paragraph: `Tem certeza que deseja excluir "${quizzz.quizz.titulo}"? O processo não poderá ser revertido.`,
+        dialogButtons: [
+            {
+                text: "Cancelar",
+                type: "outline-sm",
+                onclick(){
+                    const main = document.querySelector('.main')
+                    const dialog = main.querySelector('.dialog')
+                    dialog.remove()
+                    dialog.close()
+                }
+            },
+            {
+                text: "Eliminar",
+                type: "destructive-sm",
+                onclick: async () => {
+                    console.log(quizzz.quizz._id);
+                    console.log(await deleteQuizzById(quizzz.quizz._id));
+                    dialog.remove()
+                    localStorage.setItem('deleteToaster', 'true')
+                    window.location.href = `/pages/professor/subject/subject.html?id=${quizzz.quizz.disciplina_id._id}`
+                }
+            },
+        ]
+    }
+    const main = document.querySelector('.main')
+    main.append(Dialog(dialogData))
+    const dialog = main.querySelector('.dialog')
+    dialog.classList.add('animate-in')
+    dialog.showModal()
+    
+}
 
 async function createQuizzesItensAndDialog() {
     let array = []
@@ -228,7 +236,7 @@ async function createQuizzesItensAndDialog() {
     }
 
     return array
-}
+} // mais tarde para criar tabela dos alunos que responderam
 
 document.addEventListener('DOMContentLoaded', async () => {
     await checkIfValidToken();
@@ -253,7 +261,7 @@ function quizPage(){
     const submitBtnDiv = document.createElement('div')
     submitBtnDiv.classList.add("buttonsDiv")
     submitBtnDiv.append(buttom(deleteBtn))
-    submitBtnDiv.append(buttom(editBtn))
+
 
     mainContent.append(infos)
     const studentsTable = ListItens(quizzesListItens)
