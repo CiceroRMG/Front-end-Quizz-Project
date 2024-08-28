@@ -4,7 +4,7 @@ const form = document.querySelector('.section-form')
 form.addEventListener('submit', authenticationLogin)
 
 const alunoUrl = '/pages/student/dashboard/dashboard.html'
-const professorUrl = '/html/professorFlowPages/index.html'
+const professorUrl = '/pages/professor/dashboard/dashboard.html'
 const admUrl = '/pages/admin/dashboard/dashboard.html'
 
 

@@ -1,21 +1,17 @@
-import { AppLayout } from "../../../../components/appLayout/appLayout.js"
-import { buttom } from "../../../../components/button/buttom.js"
-import { Header } from "../../../../components/header/header.js"
-import { Input } from "../../../../components/input/input.js"
-import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
+import { AppLayout } from "../../../../../components/appLayout/appLayout.js"
+import { buttom } from "../../../../../components/button/buttom.js"
+import { Header } from "../../../../../components/header/header.js"
+import { MainLayout } from "../../../../../components/mainLayout/mainLayout.js"
 
-import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
-import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
-import { NavBarProfessor } from "../../navBarProfessor.js"
-import { getOnBackQuizzesById } from "../../../../scripts/fetchDbFunctions.js"
-import { Question } from "../../../../components/question/question.js"
-import { formEventQuestions } from "./questionsRegisterForm.js"
+import { checkIfValidToken } from "../../../../../scripts/pushToLoginPage.js"
+import { checkTypeAdminAndProfessor } from "../../../../../scripts/checkTypeUser.js"
 
-export function takeIdByParams(){
-    const params = new URLSearchParams(window.location.search)
-    const id = params.get('id')
-    return id
-}
+import { getOnBackQuizzesById } from "../../../../../scripts/fetchDbFunctions.js"
+import { Question } from "../../../../../components/question/question.js"
+import { formEventQuestionsEdit } from "./questionsEdit.js"
+import { takeIdByParams } from "../../../../../scripts/takeIdByParams.js"
+import { NavBarAdmin } from "../../../navBarAdm.js"
+
 
 const header = await createHeaderObject()
 
@@ -38,7 +34,7 @@ async function createHeaderObject(){
         title: quizReq.quizz.titulo,
         backBtn: {
             onclick:()=>{
-                window.location.href = `/pages/professor/quizEdit/quizEdit.html?id=${quizReq.quizz._id}`
+                window.location.href = `/pages/admin/edit/quizEdit/quizEdit.html?id=${quizReq.quizz._id}`
             }
         },
         subtitle: quizReq.quizz.disciplina_id.nome
@@ -61,13 +57,15 @@ function createFormLayout(){
 }
 
 
-await checkIfValidToken();
-await checkTypeUser('professor')
 
-function quizRegisterPage(){
+await checkIfValidToken();
+await checkTypeAdminAndProfessor('admin', 'professor')
+
+
+async function quizRegisterPage(){
     const div = AppLayout()
 
-    div.append(NavBarProfessor)
+    div.append(NavBarAdmin)
     const main = MainLayout()
     div.append(main)
 
@@ -110,8 +108,8 @@ function quizRegisterPage(){
     main.append(form)
 
     document.body.append(div)
+
+    formEventQuestionsEdit()
 }
 
 quizRegisterPage()
-
-formEventQuestions()

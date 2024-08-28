@@ -238,10 +238,9 @@ async function createQuizzesItensAndDialog() {
     return array
 } // mais tarde para criar tabela dos alunos que responderam
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await checkIfValidToken();
-    await checkTypeUser('professor')
-});
+
+await checkIfValidToken();
+await checkTypeUser('professor')
 
 function quizPage(){
     const div = AppLayout()

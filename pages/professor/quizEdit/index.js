@@ -5,7 +5,7 @@ import { Input } from "../../../components/input/input.js"
 import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
 import { Select } from "../../../components/select/select.js"
 import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
-import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
+import { checkTypeAdminAndProfessor, checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { getOnBackDisciplinasOfProfessorByToken, getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
 import { NavBarProfessor } from "../navBarProfessor.js"
 import { LongText } from "../../../components/longText/longText.js"
@@ -220,11 +220,8 @@ async function createSubjectOptions(){
 }
 
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await checkIfValidToken();
-    await checkTypeUser('professor')
-
-});
+await checkIfValidToken();
+await checkTypeAdminAndProfessor('admin', 'professor')
 
 function quizRegisterPage(){
     const div = AppLayout()

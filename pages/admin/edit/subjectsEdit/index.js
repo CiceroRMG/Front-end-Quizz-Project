@@ -14,6 +14,7 @@ import { takeIdByParams } from "../studentsEdit/formEditStudent.js"
 import { ListItens } from "../../../../components/listItens/listItens.js"
 import { Dialog } from "../../../../components/dialog/dialog.js"
 import { Empty } from "../../../../components/empty/empty.js"
+import { Toaster } from "../../../../components/toaster/toaster.js"
 
 
 const subjectsHeader = {
@@ -88,6 +89,26 @@ const quizzesListItens = {
     itens: await createQuizzesItensAndDialog()
 }
 
+const successToaster = {
+    title: "Sucesso!",
+    image: "/components/toaster/img/checkCircle.svg",
+    subtitle: "Sucesso no cadastro do quiz.",
+    timeout: 6000,
+}
+
+const rascunhoToaster = {
+    title: "Sucesso!",
+    image: "/components/toaster/img/checkCircle.svg",
+    subtitle: "Seu quiz foi guardado no rascunho",
+    timeout: 6000,
+}
+
+const deleteToaster = {
+    title: "Sucesso ao deletar!",
+    image: "/components/toaster/img/checkCircle.svg",
+    subtitle: "O quizz foi deletado com sucesso",
+    timeout: 6000,
+}
 
 function createSideBySideInputsDiv(){
     const div = document.createElement('div')
@@ -206,12 +227,12 @@ async function createQuizzesItensAndDialog() {
                 contents: [
                     {
                         as: "h1",
-                        text: quizz.nome,
+                        text: `${quizz.nome}`,
                     },
                     {
                         as: "a",
                         text: "Editar",
-                        link: `/pages/admin/edit/quizesEdit/quizesEdit.html?id=${quizz.quizz_id}`, 
+                        link: `/pages/admin/edit/quizEdit/quizEdit.html?id=${quizz.quizz_id}`, 
                     },
                     {
                         as: "button",
@@ -235,8 +256,7 @@ async function createQuizzesItensAndDialog() {
                                         text: "Eliminar",
                                         type: "destructive-sm",
                                         onclick: async () => {
-                                                console.log(quizz.quizz_id);
-                                                console.log(await deleteQuizzById(quizz.quizz_id));
+                                                await deleteQuizzById(quizz.quizz_id);
                                                 const element = document.getElementById(`${quizz.quizz_id}`) 
                                                 element.classList.add('elemento-excluido')
                                                 setTimeout(()=>element.remove(), 500)
@@ -267,10 +287,10 @@ async function createQuizzesItensAndDialog() {
     return array
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await checkIfValidToken();
-    await checkTypeUser('admin')
-});
+
+await checkIfValidToken();
+await checkTypeUser('admin')
+
 
 function subjectsEditPage(){
     const div = AppLayout()
@@ -305,6 +325,19 @@ function subjectsEditPage(){
     if(liQuizzes.length < 1){
         listQuizzesDiv.append(Empty({title: "A disciplina não possui Quizzes"}))
         titles.style.display = "none"
+    }
+
+    if(localStorage.getItem('saveToaster')){
+        document.body.append(Toaster(rascunhoToaster))
+        localStorage.removeItem('saveToaster')
+    }
+    if(localStorage.getItem('registerToaster')){
+        document.body.append(Toaster(successToaster))
+        localStorage.removeItem('registerToaster')
+    }
+    if(localStorage.getItem('deleteToaster')){
+        document.body.append(Toaster(deleteToaster))
+        localStorage.removeItem('deleteToaster')
     }
 
 

@@ -5,7 +5,7 @@ import { Input } from "../../../../components/input/input.js"
 import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 
 import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
-import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
+import { checkTypeAdminAndProfessor } from "../../../../scripts/checkTypeUser.js"
 import { NavBarProfessor } from "../../navBarProfessor.js"
 import { getOnBackQuizzesById } from "../../../../scripts/fetchDbFunctions.js"
 import { Question } from "../../../../components/question/question.js"
@@ -57,10 +57,10 @@ function createFormLayout(){
 }
 
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await checkIfValidToken();
-    await checkTypeUser('admin')
-});
+
+await checkIfValidToken();
+await checkTypeAdminAndProfessor('admin', 'professor')
+
 
 async function quizRegisterPage(){
     const div = AppLayout()

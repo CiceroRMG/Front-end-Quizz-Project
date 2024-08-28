@@ -93,14 +93,14 @@ export async function createArrayOfPostedQuizzes(){
     const quizzesOfSubject = await getOnBackQuizzesById(takeIdByParams())
 
     const arrayQuizzes = quizzesOfSubject.quizz    
-
-    if(arrayQuizzes.length < 1){
-        document.body.append(Empty({title: "Não possui quizzes"}))
-        return console.log("não possui quizzes")
-    }
-
+    
     let arrayPosted = []
     let arrayArchived = []
+
+    if(arrayQuizzes.length < 1){
+        return {arrayArchived, arrayPosted}
+    }
+
     
     for (const quiz of arrayQuizzes) {
         
@@ -186,10 +186,10 @@ function createDivQuizzes(){
 }
 
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await checkIfValidToken();
-    await checkTypeUser('professor')
-});
+
+await checkIfValidToken();
+await checkTypeUser('professor')
+
 
 
 
