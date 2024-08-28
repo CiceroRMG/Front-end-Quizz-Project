@@ -134,11 +134,10 @@ async function preSelectedValues() {
 }
 
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await checkIfValidToken();
-    await checkTypeUser('admin')
 
-});
+await checkIfValidToken();
+await checkTypeUser('admin')
+
 
 function studentsEditPage(){
     const div = AppLayout()

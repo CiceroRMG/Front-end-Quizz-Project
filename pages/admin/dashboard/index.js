@@ -2,7 +2,9 @@ import { AppLayout } from "../../../components/appLayout/appLayout.js"
 import { Header } from "../../../components/header/header.js"
 import { ListItens } from "../../../components/listItens/listItens.js"
 import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
+import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { based_url } from "../../../scripts/config.js"
+import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { NavBarAdmin } from "../navBarAdm.js"
 
 
@@ -71,6 +73,11 @@ const contentAll = {
     itens: itens
 }
 
+await checkIfValidToken();
+
+if(await checkTypeUser('admin')){
+    page()
+}
 
 function page(){
     const div = AppLayout()
@@ -84,5 +91,3 @@ function page(){
 
     document.body.append(div)
 }
-
-page()

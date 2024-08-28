@@ -68,11 +68,8 @@ export async function createArrayObjectsOfStudentSubjects(){
 }
 
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await checkIfValidToken();
-    await checkTypeUser('aluno')
-});
-
+await checkIfValidToken();
+await checkTypeUser('aluno')
 
 
 function page(){

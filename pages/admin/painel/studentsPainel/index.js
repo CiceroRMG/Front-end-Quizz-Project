@@ -4,13 +4,16 @@ import { Empty } from "../../../../components/empty/empty.js"
 import { Header } from "../../../../components/header/header.js"
 import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 import { Table } from "../../../../components/table/table.js"
+import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { getAllStudents } from "../../../../scripts/fetchDbFunctions.js"
+import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
 import { tableAnimation } from "../../tableAnimation.js"
 import { studentRegisterBtn, studentsHeader, tableDataStudents } from "./studentsLogic.js"
 
 
-
+await checkIfValidToken();
+await checkTypeUser('admin')
 
 async function studentsPanelPage(){
     const div = AppLayout()

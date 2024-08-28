@@ -100,11 +100,9 @@ async function createSubjectOptions(){
 }
 
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await checkIfValidToken();
-    await checkTypeUser('admin')
+await checkIfValidToken();
+await checkTypeUser('admin')
 
-});
 
 function professorsRegisterPage(){
     const div = AppLayout()

@@ -12,11 +12,9 @@ import { tableAnimation } from "../../tableAnimation.js"
 import {subjectRegisterBtn, subjectsHeader,tableDataSubjects} from "./subjectsLogic.js"
 
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await checkIfValidToken();
-    await checkTypeUser('admin')
-    
-});
+await checkIfValidToken();
+await checkTypeUser('admin')
+
 
 async function subjectsPanelPage(){
     const div = AppLayout()

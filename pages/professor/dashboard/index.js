@@ -38,7 +38,6 @@ async function createName(){
 export async function createArrayObjectsOfStudentSubjects(){
 
     const takeUserById = await getOnBackUserByToken(getTokenOnLocalStorage())
-    console.log(takeUserById)
 
     const takeRelationUserSubject = await getOnBackDisciplinasOfProfessorById(takeUserById.usuario._id)
     const disciplinasDoUsuario = takeRelationUserSubject.disciplinas
