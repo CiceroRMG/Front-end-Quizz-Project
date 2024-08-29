@@ -17,11 +17,15 @@
     align-self: baseline;
     cursor: pointer;
     padding: 0.4rem;
+    transition: transform 0.3s ease;
+    transform-origin: center;
 }
+
 .backBtn:hover{
     background-color: #e1e1e1ac;
     box-shadow: 0 0 0px 2px #e1e1e1ac;
     border-radius: 999px;
+    transform: scale(1.2);
 }
 
 .container h1 {

@@ -38,15 +38,14 @@ async function createNameOfStudent(){
 export async function createArrayObjectsOfStudentSubjects(){
 
     const takeUserById = await getOnBackUserByToken(getTokenOnLocalStorage())
-    console.log(takeUserById)
 
     const takeRelationUserSubject = await getOnBackDisciplinasUsersTable(takeUserById.usuario._id)
     const disciplinasDoUsuario = takeRelationUserSubject.disciplinasComAlunos
 
     if(!disciplinasDoUsuario){
-        document.body.append(Empty({title: "Não possui disciplinas"}))
         return console.log("não possui disciplinas")
     }
+
 
     let array = []
     for (const disciplina of disciplinasDoUsuario) {
@@ -81,6 +80,9 @@ function page(){
     div.append(main)
     main.append(Header(headerContent))
     main.append(ListItens(contentAll))
+    if(itens.length < 1){
+        main.append(Empty({title: "Não possui disciplinas cadastradas"}))
+    }
 
     document.body.append(div)
 }

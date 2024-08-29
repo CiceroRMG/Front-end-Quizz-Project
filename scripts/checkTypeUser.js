@@ -15,6 +15,8 @@ export async function checkTypeUser(type){
             window.location.href = `${based_url}/pages/student/dashboard/dashboard.html`
         }
     }
+
+    return true
 }
 
 export async function checkTypeAdminAndProfessor(admin, professor) {

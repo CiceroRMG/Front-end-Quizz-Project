@@ -18,6 +18,8 @@ export function Item({contents = [{as: null, text, link: "#", onclick: null, img
     
     for(const content of contents){
         
+        const elementDiv = document.createElement('div')
+        elementDiv.classList.add('element-div')
         const element = document.createElement(content.as)
         element.innerText = content.text
         if(content.as === "a"){
@@ -49,14 +51,15 @@ export function Item({contents = [{as: null, text, link: "#", onclick: null, img
         
         if(style === "space"){
             if(contents.indexOf(content) === 0){
-                div.append(element)
+                elementDiv.append(element)
             } else {
                 section.append(element)
             }     
         }
         
         if(style === "normal"){
-            div.append(element)
+            elementDiv.append(element)
+            div.append(elementDiv)
         }
     }
     
