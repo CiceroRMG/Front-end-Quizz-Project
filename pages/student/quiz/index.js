@@ -130,7 +130,7 @@ async function dialogStart() {
                 type: "primary-sm",
                 onclick: async () => {
                     dialog.remove()
-                    window.location.href = `/pages/professor/quizStart/quizStart.html?id=${quizId}`
+                    window.location.href = `/pages/student/quizStart/quizStart.html?id=${quizId}`
                 }
             },
         ]
