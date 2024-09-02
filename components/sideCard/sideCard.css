@@ -50,8 +50,8 @@
 .ul-sideCard{
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
     align-items: center;
     width: 100%;
-    max-width: 10rem;
+    max-width: 16rem;
 }

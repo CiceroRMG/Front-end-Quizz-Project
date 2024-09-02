@@ -16,7 +16,7 @@ export function SideCard({title, itens = [], btn = null}){
     const list = document.createElement('ul')
     list.classList.add('ul-sideCard')
     itens.forEach((item) => {
-        const li = SideCardItem({key: item.key, value: item.value})
+        const li = SideCardItem({key: item.key, value: item.value, id: item.id})
         list.append(li)
     });
 
@@ -32,7 +32,7 @@ export function SideCard({title, itens = [], btn = null}){
 
 }
 
-function SideCardItem({key, value}){
+function SideCardItem({key, value, id}){
 
     const li = document.createElement('li')
     li.classList.add('li-sideCard')
@@ -40,7 +40,7 @@ function SideCardItem({key, value}){
     li.innerHTML = 
         `
             <h2 class="li-title">${key}</h2>
-            <p class="li-p">${value}</p>
+            <p class="li-p" id="${id}">${value}</p>
         `
 
     return li
