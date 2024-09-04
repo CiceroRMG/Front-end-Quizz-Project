@@ -1,0 +1,27 @@
+.timer-div{
+    display: flex;
+    padding: 0.5rem 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+
+    border-radius: 0.375rem;
+    border: 1px solid #A8A29E;
+    max-width: max-content;
+}
+
+.timer-div.red{
+    border-color: crimson;
+}
+
+.timer-div.red span{
+    color: crimson;
+}
+
+.time-text{
+    color: #78716C;
+    font-family: "Open Sans";
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem; 
+}

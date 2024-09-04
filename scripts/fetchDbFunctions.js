@@ -411,3 +411,20 @@ export async function generateQuestionIa(objeto){
 
     return { data: data, status: pegando.status }
 }
+
+export async function registerStudentAwnsers(objeto){
+    const pegando = await fetchWithToken(`http://localhost:3333/respostas/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(objeto)
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível criar as respostas do aluno' }
+    }
+
+    const data = await pegando.json()
+
+    return { status: pegando.status, msg: data.msg }
+}
+

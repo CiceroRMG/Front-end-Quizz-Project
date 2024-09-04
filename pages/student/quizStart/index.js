@@ -1,18 +1,77 @@
 import { AppLayout } from "../../../components/appLayout/appLayout.js"
 import { Header } from "../../../../components/header/header.js"
 import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
-
 import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
-import { Question } from "../../../components/question/question.js"
 import { NavBarStudents } from "../navBarStudents.js"
 import { SideCard } from "../../../components/sideCard/sideCard.js"
 import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
+import { Timer } from "../../../components/timer/timer.js"
+import { Dialog } from "../../../components/dialog/dialog.js"
+import { formEventStudentQuiz, successSubmit } from "./quizStartForm.js"
 
 const header = await createHeaderObject()
 
 const req = await getOnBackQuizzesById(takeIdByParams())
+
+const timerData = {
+    time: req.quizz.tempo, 
+    id: req.quizz._id,
+    action: async ()=>{
+        const main = document.querySelector('.main-content')
+        main.requestSubmit()
+        await successSubmit()
+    }
+}
+
+const sideCardComponent = {
+    title: "Respostas",
+    itens: sideCardArray(),
+    btn: {
+        text: "Entregar",
+        type: "primary-md",
+        btnType: "button",
+        onclick: async ()=>{
+            await dialogSubmit()
+
+        }
+    }
+}
+
+async function dialogSubmit() {
+    let dialogData = {}
+    const main = document.querySelector('.main-content')
+
+    dialogData = {
+        title: "Entregar quiz?",
+        paragraph: `Você irá entregar o quiz. Esta ação não pode ser desfeita. Campos Vazios serão considerados como errados. Revise se todas as perguntas estão marcadas.`,
+        dialogButtons: [
+            {
+                text: "Cancelar",
+                type: "outline-sm",
+                onclick(){
+                    const dialog = main.querySelector('.dialog')
+                    dialog.remove()
+                    dialog.close()
+                }
+            },
+            {
+                text: "Entregar",
+                type: "primary-sm",
+                btnType: "submit",
+                onclick: async ()=>{
+                    main.requestSubmit()
+                    dialog.remove()
+                }
+            },
+        ]
+    }
+    main.append(Dialog(dialogData))
+    const dialog = main.querySelector('.dialog')
+    dialog.classList.add('animate-in')
+    dialog.showModal()
+}
 
 function sideCardArray(){
     let alternativasSideCard = []
@@ -33,11 +92,6 @@ async function createHeaderObject(){
 
     const object = {
         title: quizReq.quizz.titulo,
-        backBtn: {
-            onclick:()=>{
-                window.location.href = `/pages/student/quiz/quiz.html?id=${quizReq.quizz._id}`
-            }
-        },
         subtitle: quizReq.quizz.disciplina_id.nome
     }
 
@@ -50,32 +104,24 @@ function updateSideCard(questionNumber, selectedOption) {
 }
 
 function createFormLayout(){
-    const form = document.createElement('div')
+    const form = document.createElement('form')
     form.classList.add('main-content')
-    form.style.width = "100%"
-    form.style.height = "100%"
-    form.style.maxHeight = "100vh"
-    form.style.display = "flex"
-    form.style.justifyContent = "space-between"
-    form.style.gap = "3rem"
-    form.style.paddingLeft = "2.3rem"
-    form.style.paddingRight = "2.3rem"
     
     return form
 }
-
 
 function QuestionStudent({question = {title, content, id}, awnsers = [{content, id}], indice = null}){
 
     const div = document.createElement('div')
     div.classList.add('question-box')
+    div.id = question.id
 
     const header = document.createElement('div')
     header.classList.add('question-header')
     header.innerHTML = 
             `
                 <h1 class="question-title">${question.title}</h1>
-                <p id="${question.id}" class="question-info">${question.content}<p>
+                <p class="question-info">${question.content}<p>
 
             `
 
@@ -123,7 +169,7 @@ function QuestionStudent({question = {title, content, id}, awnsers = [{content, 
 await checkIfValidToken();
 await checkTypeUser('aluno')
 
-function quizRegisterPage(){
+async function quizStartPage(){
     const div = AppLayout()
 
     div.append(NavBarStudents)
@@ -131,14 +177,14 @@ function quizRegisterPage(){
     div.append(main)
 
     const headDiv = document.createElement('div')
-    headDiv.append(Header(header))
+    const headComponent = Header(header)
+    headComponent.classList.add('page-header-box')
+    headComponent.append(Timer(timerData))
+    headDiv.append(headComponent)
     main.append(headDiv)
 
     const questionsDiv = document.createElement('div')
-    questionsDiv.style.width = "70%"
-    questionsDiv.style.display = "flex"
-    questionsDiv.style.flexDirection = "column"
-    questionsDiv.style.gap = "4rem"
+    questionsDiv.classList.add('questionsDiv')
     
     let indice = 1
     for(const question of req.quizz.perguntas){
@@ -172,29 +218,14 @@ function quizRegisterPage(){
 
     const submitBtnDiv = document.createElement('div')
     submitBtnDiv.classList.add("sideCard")
-    submitBtnDiv.append(SideCard(
-        {
-            title: "Respostas",
-            itens: sideCardArray(),
-            btn: {
-                text: "Entregar",
-                type: "primary-md"
-            }
-        }
-    ))
-    submitBtnDiv.style.width = "30%"
-    submitBtnDiv.style.minWidth = "16.125rem"
-    submitBtnDiv.style.display = "flex"
-    submitBtnDiv.style.position = "fixed"
-    submitBtnDiv.style.right = "4rem"
-    submitBtnDiv.style.top = "3rem"
-    submitBtnDiv.style.justifyContent = "end"
-    submitBtnDiv.style.maxHeight = "38rem"
+    submitBtnDiv.append(SideCard(sideCardComponent))
 
     form.append(submitBtnDiv)
     main.append(form)
 
     document.body.append(div)
+    
+    await formEventStudentQuiz()
 }
 
-quizRegisterPage()
+await quizStartPage()

@@ -19,5 +19,6 @@
 @import url(/components/login/login.css);
 @import url(/components/loginLayout/loginLayout.css);
 @import url(/components/question/question.css);
+@import url(/components/timer/timer.css);
 @import url('https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css');
 @import url('https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css');

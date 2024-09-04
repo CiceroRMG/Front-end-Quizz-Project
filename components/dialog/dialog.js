@@ -35,7 +35,8 @@ export function Dialog({title, paragraph = null, dialogButtons = [], img = null,
                 text: button.text,
                 type: button.type,
                 onclick: button.onclick,
-                img: button.img
+                img: button.img,
+                btnType: button.btnType,
             }))
         }
         form.style.justifyContent = "flex-end"

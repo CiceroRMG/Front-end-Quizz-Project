@@ -12,6 +12,7 @@ import { InformationsBox } from "../../../components/informations/informations.j
 import { deleteQuizzById, getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
 import { NavBarStudents } from "../navBarStudents.js"
 import { SideCard } from "../../../components/sideCard/sideCard.js"
+import { Toaster } from "../../../components/toaster/toaster.js"
 
 
 const header = await createHeaderObject()
@@ -166,17 +167,12 @@ function quizPage(){
 
     const submitBtnDiv = document.createElement('div')
     submitBtnDiv.classList.add("sideCard")
-    submitBtnDiv.append(SideCard(
-        {
-            title: "Suas Tentativas",
-        }
-    ))
+    submitBtnDiv.append(SideCard({title: "Suas Tentativas",}))
     submitBtnDiv.style.width = "30%"
     submitBtnDiv.style.minWidth = "16.125rem"
     submitBtnDiv.style.display = "flex"
     submitBtnDiv.style.justifyContent = "end"
     submitBtnDiv.style.maxHeight = "38rem"
-
 
     mainContent.append(infos)
     mainContent.append(submitBtnDiv)
