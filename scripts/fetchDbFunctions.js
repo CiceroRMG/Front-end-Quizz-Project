@@ -428,3 +428,32 @@ export async function registerStudentAwnsers(objeto){
     return { status: pegando.status, msg: data.msg }
 }
 
+export async function verifyUserAttempts(id){
+    const pegando = await fetchWithToken(`http://localhost:3333/respostas/verifyAttempts/${id}`, {
+        method: 'GET',
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: "Aluno não possui mais tentativas" }
+    }
+
+    const data = await pegando.json()
+
+    return { status: pegando.status, msg: data.msg}
+}
+
+export async function getUserAttempts(id){
+    const pegando = await fetchWithToken(`http://localhost:3333/respostas/${id}`, {
+        method: 'GET',
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: "Tentativas do aluno" }
+    }
+
+    const data = await pegando.json()
+
+    return { attempts: data.attempts}
+}
+
+

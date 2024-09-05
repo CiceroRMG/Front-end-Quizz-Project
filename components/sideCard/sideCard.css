@@ -47,6 +47,19 @@
 
 }
 
+.li-sideCard .li-a{
+    color: #4338CA;
+    text-decoration: none;
+    font-family: "Open Sans";
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+}
+
+.li-sideCard .li-a:hover{
+    color: #e3de55;
+}
+
 .ul-sideCard{
     display: flex;
     flex-direction: column;
@@ -54,4 +67,12 @@
     align-items: center;
     width: 100%;
     max-width: 16rem;
+}
+
+.ul-sideCard span{
+    color: #A8A29E;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 0.9rem;;
+    line-height: 1.25rem;
 }
