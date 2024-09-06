@@ -40,7 +40,7 @@ async function subjectsPanelPage(){
     emptyDiv.classList.add('animate-in-left')
     emptyDiv.style.height = "100dvh"
     emptyDiv.style.display = "none"
-    if(allSubjects.disciplinas.length < 1){
+    if((allSubjects.disciplinas?.length ?? 0 )< 1){
         emptyDiv.classList.add('animate-in-login')
         emptyDiv.style.display = "flex"
         table.style.display = "none"
@@ -50,6 +50,7 @@ async function subjectsPanelPage(){
     main.append(emptyDiv)
 
     document.body.append(div)
+
 }
 
 await subjectsPanelPage()

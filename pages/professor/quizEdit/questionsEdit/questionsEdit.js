@@ -35,6 +35,8 @@ export async function formEventQuestionsEdit(){
         await putInputsValue(`#pergunta${num}`, num)
     }
 
+    perguntasArray = []
+
     const form = document.querySelector(".register-form")
 
     const createBtn = document.getElementById('registerBtn')
@@ -59,6 +61,7 @@ export async function formEventQuestionsEdit(){
         if(action === "register"){
             
             if(perguntasArray.length !== 10){
+                perguntasArray = []
                 return document.body.append(Toaster(missingToaster))
             }
             req = {

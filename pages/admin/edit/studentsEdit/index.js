@@ -106,8 +106,8 @@ async function preSelectedValues() {
         let subjectsValue = []
         let subjectsContent = []
         for(const disciplina of studentSubjects){
-            subjectsValue.push(disciplina.disciplina_id._id)
-            subjectsContent.push(`${disciplina.disciplina_id.nome} | ${disciplina.disciplina_id.ano} / ${disciplina.disciplina_id.semestre}`)
+            subjectsValue.push(disciplina.disciplina_id?._id)
+            subjectsContent.push(`${disciplina.disciplina_id?.nome} | ${disciplina.disciplina_id?.ano} / ${disciplina.disciplina_id?.semestre}`)
         }
 
         const object = 

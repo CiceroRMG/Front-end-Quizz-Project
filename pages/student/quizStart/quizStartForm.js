@@ -39,10 +39,7 @@ export async function formEventStudentQuiz(){
 
             awnsersArray.push(object)
             
-        }
-
-        console.log(awnsersArray);
-        
+        }        
         
         req = {
             quiz_id: quiz.quizz._id,
@@ -50,6 +47,8 @@ export async function formEventStudentQuiz(){
         }
         
         const registerAwnsersStudent = await registerStudentAwnsers(req)
+        console.log(registerAwnsersStudent);
+        
         
         if(!registerAwnsersStudent){
             console.log('Algo deu errado no envio das peguntas do aluno')

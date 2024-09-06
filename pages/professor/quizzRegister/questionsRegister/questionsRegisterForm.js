@@ -47,17 +47,24 @@ export async function formEventQuestions(){
     form.addEventListener('submit', async (event)=>{
         event.preventDefault()
 
+        perguntasArray = []
+
         let req = {}
 
-        const shuffledArray = shuffleArray(perguntasArray)
-        
         for(let num = 1; num <= 10; num++){
             takeInputsValueAndCreateObjectQuestion(`#pergunta${num}`)
         }
 
+        for(let i = 0; i < perguntasArray.length; i++){
+            console.log(perguntasArray[i].alternativas);
+            perguntasArray[i].alternativas = shuffleArray(perguntasArray[i].alternativas);
+        }
+        
+
         if(action === "register"){
             
             if(perguntasArray.length !== 10){
+                perguntasArray = []
                 return document.body.append(Toaster(missingToaster))
             }
             req = {
@@ -74,8 +81,6 @@ export async function formEventQuestions(){
                 rascunho: true
             }
         }
-
-        console.log(req);
         
         const id = takeIdByParams()
         const registerQuestionsOnQuizz = await registerQuizQuestions(req, id)
@@ -85,7 +90,6 @@ export async function formEventQuestions(){
             action = ""
             return console.log('Algo deu errado na criação das perguntas')
         }        
-        console.log(action);
         
         if (registerQuestionsOnQuizz.status === 200){
             const disciplinaOfQuiz = await getOnBackQuizzesById(takeIdByParams())

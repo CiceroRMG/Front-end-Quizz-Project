@@ -425,7 +425,7 @@ export async function registerStudentAwnsers(objeto){
 
     const data = await pegando.json()
 
-    return { status: pegando.status, msg: data.msg }
+    return { status: pegando.status, msg: data.msg , data: data}
 }
 
 export async function verifyUserAttempts(id){

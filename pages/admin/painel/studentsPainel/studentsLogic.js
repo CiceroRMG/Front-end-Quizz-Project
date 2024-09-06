@@ -18,7 +18,7 @@ export async function makeArrayRowsWithStudentsData(){
         const studentSubjects = await getOnBackDisciplinasUsersTable(aluno._id)
         let subjects = []
         studentSubjects.disciplinasComAlunos.forEach(subject => {
-            subjects.push(subject.disciplina_id.nome)
+            subjects.push(subject.disciplina_id?.nome)
         })
         const row = {
             content1: `${aluno.matricula}`,

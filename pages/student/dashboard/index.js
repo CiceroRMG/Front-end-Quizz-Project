@@ -49,18 +49,22 @@ export async function createArrayObjectsOfStudentSubjects(){
 
     let array = []
     for (const disciplina of disciplinasDoUsuario) {
-        const object = {
-            contents: [
-                {
-                    as: "h1",
-                    text: `${disciplina.disciplina_id.nome} | ${disciplina.disciplina_id.ano} / ${disciplina.disciplina_id.semestre} |`,
-                },
-            ],
-            click: true,
-            onclick: ()=> window.location.href = `${based_url}/pages/student/subject/subject.html?id=${disciplina.disciplina_id._id}`
+        if(disciplina.disciplina_id){
+
+            const object = {
+                contents: [
+                    {
+                        as: "h1",
+                        text: `${disciplina.disciplina_id.nome} | ${disciplina.disciplina_id.ano} / ${disciplina.disciplina_id.semestre} |`,
+                    },
+                ],
+                click: true,
+                onclick: ()=> window.location.href = `${based_url}/pages/student/subject/subject.html?id=${disciplina.disciplina_id._id}`
+            }
+            
+            array.push(object)
+
         }
-        
-        array.push(object)
     }
 
     return array

@@ -89,7 +89,9 @@ async function createSubjectOptions(){
     let array = []
 
     const allProfessor = await getAllDisciplinasIfProfessorName()
-
+    if(!allProfessor.disciplinas){
+        return
+    }
     allProfessor.disciplinas.forEach((disciplina)=>{
         if(disciplina.prof_id){
             if(disciplina.prof_id._id === takeIdByParams()){

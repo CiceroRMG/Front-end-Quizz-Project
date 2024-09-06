@@ -81,6 +81,10 @@ function page(){
     main.append(Header(headerContent))
     main.append(ListItens(contentAll))
 
+    if(itens.length < 1){
+        main.append(Empty({title: "Não possui disciplinas cadastradas"}))
+    }
+
     document.body.append(div)
 }
 

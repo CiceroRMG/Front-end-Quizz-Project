@@ -18,8 +18,6 @@ const header = await createHeaderObject()
 const informations = await createObjectInformations()
 
 const userAttemptsData = await getUserAttempts(takeIdByParams())
-console.log(userAttemptsData.attempts);
-
 
 const awnserToaster = {
     title: "Limite excedido!",
@@ -52,6 +50,7 @@ function sideCardAttemptsItens(){
                 text: "Ver gabarito"
             }
         }
+        
 
         i += 1
 

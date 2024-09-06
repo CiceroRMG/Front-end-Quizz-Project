@@ -3,7 +3,7 @@
 
 
 
-export function Select({label = null, info = null, id = null, placeholder = null, options = [{text, value}], type = "default", preSelectedOptions = {content: [], values: []}}){
+export function Select({label = null, info = null, id = null, placeholder = null, options = [{text: null, value: null}], type = "default", preSelectedOptions = {content: [], values: []}}){
 
     const container = document.createElement('div')
     container.classList.add('selectContainer')

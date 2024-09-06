@@ -12,7 +12,8 @@ export async function makeArrayRowsWithSubjectsData(){
     const allSubjects = await getAllDisciplinasIfProfessorName()
     
     if(!allSubjects.disciplinas){
-       return console.log("Não possui dados");
+        const array = []
+       return array;
     }
 
     let rows = []

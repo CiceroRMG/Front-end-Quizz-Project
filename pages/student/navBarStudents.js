@@ -57,14 +57,18 @@ export async function createArrayObjectsOfStudentSubjectsNav(){
 
     let array = []
     for (const disciplina of disciplinasDoUsuario) {
-        const object = {
-                
-            text: disciplina.disciplina_id.nome,
-            href: `${based_url}/pages/student/subject/subject.html?id=${disciplina.disciplina_id._id}`
-                   
+        if(disciplina.disciplina_id){
+
+            const object = {
+                    
+                text: disciplina.disciplina_id ? disciplina.disciplina_id.nome : null,
+                href: `${based_url}/pages/student/subject/subject.html?id=${disciplina.disciplina_id._id}`
+                       
+            }
+
+            array.push(object)
         }
         
-        array.push(object)
     }
 
     return array
