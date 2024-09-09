@@ -52,6 +52,7 @@ export function Item({contents = [{as: null, text, link: "#", onclick: null, img
         if(style === "space"){
             if(contents.indexOf(content) === 0){
                 elementDiv.append(element)
+                div.append(elementDiv)
             } else {
                 section.append(element)
             }     

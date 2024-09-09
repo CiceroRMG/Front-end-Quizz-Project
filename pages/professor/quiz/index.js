@@ -10,7 +10,7 @@ import { Dialog } from "../../../components/dialog/dialog.js"
 import { Empty } from "../../../components/empty/empty.js"
 import { NavBarProfessor } from "../navBarProfessor.js"
 import { InformationsBox } from "../../../components/informations/informations.js"
-import { deleteQuizzById, getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
+import { deleteQuizzById, getAllStudentsRespondedQuiz, getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
 
 
 const header = await createHeaderObject()
@@ -23,15 +23,6 @@ const deleteBtn = {
     
 }
 
-const editBtn = {
-    text: "Editar Quizz",
-    type: "outline-md",
-    btnType: "button",
-    onclick: ()=>{
-        // 
-    }
-}
-
 const quizzesListItens = {
     elements: [
         {
@@ -39,7 +30,7 @@ const quizzesListItens = {
             text: "Alunos que responderam"
         },
     ],
-    itens: []
+    itens: await createQuizzesItensAndDialog()
 }
 
 const informations = await createObjectInformations()
@@ -166,66 +157,29 @@ async function dialogDelete() {
 
 async function createQuizzesItensAndDialog() {
     let array = []
-    let dialogData = {}
 
-    const subjectQuizzes = await getAllStudentsRespondedQuiz()
+    const studentsResponses = await getAllStudentsRespondedQuiz(takeIdByParams())
     
-    if(subjectQuizzes.disciplina.quizes.length > 0){
-        for(const quizz of subjectQuizzes.disciplina.quizes) {
+    if(studentsResponses.data.allStudentsResponses.length > 0){
+        for(const response of studentsResponses.data.allStudentsResponses) {
             
             const object = {
                 contents: [
                     {
                         as: "h1",
-                        text: quizz.nome,
+                        text: response.aluno_id.nome,
                     },
                     {
                         as: "a",
-                        text: "Editar",
-                        link: `/pages/admin/edit/quizesEdit/quizesEdit.html?id=${quizz.quizz_id}`, 
+                        text: "Ver Respostas",
+                        link: `/pages/professor/quizStudent/quizStudent.html?id=${response.quizz_id}`,
                     },
                     {
-                        as: "button",
-                        text: "Remover",
-                        onclick: ()=>{
-                            dialogData = {
-                                title: "Tem certeza?",
-                                paragraph: `Tem certeza que deseja excluir "${quizz.nome}"? O processo não poderá ser revertido.`,
-                                dialogButtons: [
-                                    {
-                                        text: "Cancelar",
-                                        type: "outline-sm",
-                                        onclick(){
-                                            const main = document.querySelector('.main')
-                                            const dialog = main.querySelector('.dialog')
-                                            dialog.remove()
-                                            dialog.close()
-                                        }
-                                    },
-                                    {
-                                        text: "Eliminar",
-                                        type: "destructive-sm",
-                                        onclick: async () => {
-                                                console.log(quizz.quizz_id);
-                                                
-                                                const element = document.getElementById(`${quizz.quizz_id}`) 
-                                                element.classList.add('elemento-excluido')
-                                                setTimeout(()=>element.remove(), 500)
-                                                dialog.remove()
-                                        }
-                                    },
-                                ]
-                            }
-                            const main = document.querySelector('.main')
-                            main.append(Dialog(dialogData))
-                            const dialog = main.querySelector('.dialog')
-                            dialog.classList.add('animate-in')
-                            dialog.showModal()
-
-                        }
+                        as: "p",
+                        text: "Nota : " + response.nota + " / 10",
                     }
                 ], 
-                id: quizz.quizz_id,
+                id: response.aluno_id._id,
                 style: "space",
                 click: false,
             }
@@ -234,9 +188,9 @@ async function createQuizzesItensAndDialog() {
 
         }
     }
-
+    
     return array
-} // mais tarde para criar tabela dos alunos que responderam
+}
 
 
 await checkIfValidToken();
@@ -264,6 +218,7 @@ function quizPage(){
 
     mainContent.append(infos)
     const studentsTable = ListItens(quizzesListItens)
+    studentsTable.classList.add('studentsReponses')
     if(quizzesListItens.itens.length < 1){
         studentsTable.append(Empty({title: "Nenhum aluno respondeu o quiz"}))
     }

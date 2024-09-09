@@ -20,3 +20,30 @@
 .main {
     padding-bottom: 1rem;
 }
+
+.studentsReponses .ul-itens{
+
+    max-height: 21.8rem;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+
+}
+
+.studentsReponses .ul-itens a {
+    font-size: 0.9rem;
+}
+
+.studentsReponses .ul-itens::-webkit-scrollbar-thumb {
+    border-radius: 1rem; 
+    background-color: #e7e7e7;
+    border: 7px solid #fafafa;
+}
+
+.studentsReponses .ul-itens::-webkit-scrollbar-track {
+    background-color: #fafafa; 
+    border-radius: 1rem; 
+}
+
+.studentsReponses .ul-itens::-webkit-scrollbar {
+    width: 20px; 
+}

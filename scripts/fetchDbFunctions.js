@@ -457,3 +457,16 @@ export async function getUserAttempts(id){
 }
 
 
+export async function getAllStudentsRespondedQuiz(id){
+    const pegando = await fetchWithToken(`http://localhost:3333/respostas/responses/${id}`, {
+        method: 'GET',
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: "Tentativas do aluno" }
+    }
+
+    const data = await pegando.json()
+
+    return { data }
+}
