@@ -46,7 +46,7 @@ function sideCardAttemptsItens(){
             key: i + "º Tentativa:", 
             value: attempt.nota ? attempt.nota + " / 10" : "0" + " / 10",
             anchor: {
-                a: `/pages/student/quiz/quiz.html?id=${attempt.quiz_id}`,
+                a: `/pages/student/testResults/testResults.html?id=${attempt.quiz_id}&attempt=${attempt._id}`,
                 text: "Ver gabarito"
             }
         }

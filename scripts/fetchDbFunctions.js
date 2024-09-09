@@ -114,6 +114,21 @@ export async function getOnBackUserByToken(token) {
     return { usuario, token: window.localStorage.getItem('token') }
 }
 
+export async function getOnBackUserIfLocalToken() {
+    const pegando = await fetchWithToken('http://localhost:3333/userToken/user', {
+        method: 'GET',
+      });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: 'Não foi possível obter a resposta de usuario pelo token' }
+    }
+
+    const data = await pegando.json()
+
+    const usuario = data.usuario
+    return { usuario }
+}
+
 export async function getOnBackUserTypeByToken() {
     const pegando = await fetchWithToken('http://localhost:3333/userToken')
 
@@ -454,6 +469,21 @@ export async function getUserAttempts(id){
     const data = await pegando.json()
 
     return { attempts: data.attempts}
+}
+
+
+export async function getUserAttemptById(id){
+    const pegando = await fetchWithToken(`http://localhost:3333/respostas/attempt/${id}`, {
+        method: 'GET',
+    });
+
+    if (!pegando.ok) {
+        return { status: pegando.status, msg: "Tentativa do aluno" }
+    }
+
+    const data = await pegando.json()
+
+    return { attempt: data.attempt}
 }
 
 
