@@ -39,6 +39,7 @@
     color: #44403C;
     font-family: "Open Sans";
     font-size: 1.125rem;
+    line-height: 1.5rem;
 }
 
 .header-image img{
@@ -46,3 +47,28 @@
     height: 1.6rem;
 }
 
+
+@media (max-width: 520px){
+
+    .container h1 {
+        font-size:  1.6rem;
+    }
+    
+    .header-p{
+        font-size: 1rem;
+    }
+
+
+}
+
+@media (max-width: 350px){
+
+    .container h1 {
+        font-size:  1.4rem;
+    }
+    
+    .header-p{
+        font-size: 0.875rem;
+    }
+
+}

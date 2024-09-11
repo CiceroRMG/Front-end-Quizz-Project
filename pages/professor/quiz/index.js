@@ -172,7 +172,7 @@ async function createQuizzesItensAndDialog() {
                     {
                         as: "a",
                         text: "Ver Respostas",
-                        link: `/pages/professor/quizStudent/quizStudent.html?id=${response.quizz_id}`,
+                        link: `/pages/professor/testResults/testResults.html?id=${response.quiz_id}&attempt=${response._id}`,
                     },
                     {
                         as: "p",

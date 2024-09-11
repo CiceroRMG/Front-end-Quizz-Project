@@ -47,8 +47,7 @@ export async function formEventStudentQuiz(){
         }
         
         const registerAwnsersStudent = await registerStudentAwnsers(req)
-        console.log(registerAwnsersStudent);
-        
+        console.log(registerAwnsersStudent.data.respostasRes);
         
         if(!registerAwnsersStudent){
             console.log('Algo deu errado no envio das peguntas do aluno')
@@ -57,7 +56,7 @@ export async function formEventStudentQuiz(){
 
         if (registerAwnsersStudent.status === 201){
                 localStorage.removeItem(quiz.quizz._id)
-                await successSubmit()
+                await successSubmit(registerAwnsersStudent.data.respostasRes)
                 return
                 
         } else {
@@ -69,7 +68,7 @@ export async function formEventStudentQuiz(){
 
 }
 
-export async function successSubmit() {
+export async function successSubmit(object) {
     const req = await getOnBackQuizzesById(takeIdByParams())
     let dialogData = {}
     const main = document.querySelector('.main-content')
@@ -79,7 +78,7 @@ export async function successSubmit() {
         paragraph: `O quiz "${req.quizz.titulo}" foi entregue com sucesso`,
         a: {
             text: "Ver gabarito",
-            link: `/pages/student/quiz/quiz.html?id=${req.quizz._id}`
+            link: `/pages/student/testResults/testResults.html?id=${object.quiz_id}&attempt=${object._id}`
         },
         closeBtn: true,
         img: "/components/dialog/img/checkCircle.svg"

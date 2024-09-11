@@ -3,10 +3,10 @@ import { Header } from "../../../../components/header/header.js"
 import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
 import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
-import { getOnBackQuizzesById, getOnBackUserByToken, getOnBackUserIfLocalToken, getOnBackUserTypeByToken, getUserAttemptById } from "../../../scripts/fetchDbFunctions.js"
-import { NavBarStudents } from "../navBarStudents.js"
+import { getOnBackQuizzesById, getUserAttemptById } from "../../../scripts/fetchDbFunctions.js"
 import { SideCard } from "../../../components/sideCard/sideCard.js"
 import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
+import { NavBarProfessor } from "../navBarProfessor.js"
 
 const header = await createHeaderObject()
 
@@ -67,7 +67,7 @@ async function createHeaderObject(){
         subtitle: quizReq.quizz.disciplina_id.nome,
         backBtn: {
             onclick: ()=>{
-                window.location.href = `/pages/student/quiz/quiz.html?id=${quizReq.quizz._id}`
+                window.location.href = `/pages/professor/quiz/quiz.html?id=${quizReq.quizz._id}`
             }
         }
     }
@@ -143,33 +143,23 @@ async function QuestionStudentResults({question = {title, content, id}, awnsers 
     return div
 }
 
-async function checkIfQuizIsToStudent(){
-    const user = await getOnBackUserIfLocalToken()
-    if(!user){
-        return
-    }
-    const userIdQuiz = attemptReq.attempt.aluno_id._id
-    if(user.usuario._id !== userIdQuiz){
-        alert("Acesso negado")
-        window.location.href = `/pages/login/login.html`
-    }
-}
-
-
 await checkIfValidToken();
-await checkTypeUser('aluno')
-await checkIfQuizIsToStudent()
+await checkTypeUser('professor')
 
 async function quizStartPage(){
     const div = AppLayout()
 
-    div.append(NavBarStudents)
+    div.append(NavBarProfessor)
     const main = MainLayout()
     div.append(main)
 
     const headDiv = document.createElement('div')
     const headComponent = Header(header)
     headComponent.classList.add('page-header-box')
+    const studentName = document.createElement('p')
+    studentName.innerText = "Aluno : " + attemptReq.attempt.aluno_id.nome
+    studentName.classList.add('name-student')
+    headComponent.append(studentName)
     headDiv.append(headComponent)
     main.append(headDiv)
 

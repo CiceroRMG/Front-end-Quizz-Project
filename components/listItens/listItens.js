@@ -15,11 +15,14 @@ export function Item({contents = [{as: null, text, link: "#", onclick: null, img
         div.style.cursor = "pointer"
         div.onclick = onclick
     }
-    
+    let index = 0
     for(const content of contents){
         
         const elementDiv = document.createElement('div')
         elementDiv.classList.add('element-div')
+        if(index === 1){
+            elementDiv.classList.add('second')
+        }
         const element = document.createElement(content.as)
         element.innerText = content.text
         if(content.as === "a"){
@@ -62,6 +65,7 @@ export function Item({contents = [{as: null, text, link: "#", onclick: null, img
             elementDiv.append(element)
             div.append(elementDiv)
         }
+        index += 1
     }
     
     if(style === "space"){
@@ -87,6 +91,9 @@ export function ListItens({elements = [{as, text}], itens = []}){
     for(const element of elements){
         const content = document.createElement(element.as)
         content.innerText = element.text
+        if(elements.length < 2){
+            div.classList.add('one')
+        }
 
         div.append(content)
     }
