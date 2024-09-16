@@ -6,18 +6,17 @@ import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
 import { Select } from "../../../components/select/select.js"
 import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
-import { getOnBackDisciplinasOfProfessorByToken } from "../../../scripts/fetchDbFunctions.js"
+import { getOnBackDisciplinaById, getOnBackDisciplinasOfProfessorByToken } from "../../../scripts/fetchDbFunctions.js"
 import { NavBarProfessor } from "../navBarProfessor.js"
 import { LongText } from "../../../components/longText/longText.js"
 import { formEventQuiz } from "./quizzRegisterForm.js"
+import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 
 
 const header = {
     title: "Informações do Quiz",
     backBtn: {
-        onclick:()=>{
-            window.location.href = "/pages/professor/dashboard/dashboard.html"
-        }
+        onclick: await BackBtnHrefIfHaveParams()
     }
 
 }
@@ -29,10 +28,12 @@ const inputQuizzName = {
     style: "outline"
 }
 
+
 const selectSubjects = {  
     id : "selectDisciplinas", 
     placeholder : "Selecione a disciplina",
     options : await createSubjectOptions(),
+    preSelectedOptions: await putPreSelectSubjectIfHaveParams()
 }
 
 const selectQuizzType = { 
@@ -168,6 +169,37 @@ function putDateOnInputs(){
     dateInputFinish.value = formattedDate;
 }
 
+async function putPreSelectSubjectIfHaveParams() {
+    const subjectId = takeIdByParams()
+    let preSelect = {}
+    if(subjectId){
+        const subject = await getOnBackDisciplinaById(subjectId)
+        if(subject){
+            preSelect = {
+                content: [subject.disciplina.nome + " | " + subject.disciplina.ano + " / " + subject.disciplina.semestre], 
+                values: [subject.disciplina._id]
+            }
+        }
+    }
+
+    return preSelect
+}
+
+async function BackBtnHrefIfHaveParams() {
+    const subjectId = takeIdByParams()
+    let onClickAction
+    if(subjectId){
+        const subject = await getOnBackDisciplinaById(subjectId)   
+        onClickAction = () => {
+                window.location.href = `/pages/professor/subject/subject.html?id=${subject.disciplina._id}`
+        }
+    } else {
+        onClickAction = () => {
+            window.location.href = "/pages/professor/dashboard/dashboard.html"
+        }
+    }
+    return onClickAction
+}
 
 async function createSubjectOptions(){
     let array = []

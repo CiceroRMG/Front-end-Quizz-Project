@@ -71,8 +71,10 @@ const quizRegisterBtn = {
     type: "primary-md",
     img: "/imgs/createQuizz.svg",
     text: "Criar Quiz",
-    onclick: ()=>{window.location.href = "/pages/professor/quizzRegister/quizzRegister.html"}
+    onclick: ()=>{ window.location.href = `/pages/professor/quizzRegister/quizzRegister.html?id=${id}`}
 }
+
+const id = takeIdByParams()
 
 async function createHeadObject(){
     const takeSubjectByToken = await getOnBackDisciplinaById(takeIdByParams())
