@@ -1,6 +1,6 @@
 import { Toaster } from "../../../../components/toaster/toaster.js";
 import { registerDisciplina } from "../../../../scripts/fetchDbFunctions.js";
-import { inputEmptyValidation } from "./subjectsFormValidations.js";
+import { inputEmptyValidation, nameValidations, yearValidate } from "./subjectsFormValidations.js";
 
 const successToaster = {
     title: "Sucesso!",
@@ -52,20 +52,18 @@ export async function formEvent(){
         const inputSubjectName = document.querySelector('#inputName')
         const inputYear = document.querySelector('#inputYear')
         
-        // validações dos formulários
         if(
-            !inputEmptyValidation(inputSubjectName.value, '#inputName', '#inputNameError') ||
-            !inputEmptyValidation(inputYear.value, '#inputYear', '#inputYearError')
+            !nameValidations(inputSubjectName.value) ||
+            !yearValidate(inputYear.value)
         ) {
-            return console.log('Algum dado invalido')
+            return
         }
 
         if(!selectedSemesterValue){
             document.body.append(Toaster(semesterErrorToaster))
-            return console.log('Semestre não selecionado');
+            return
         }
 
-        // validando se tem professor ou não
         req = {
             nome: inputSubjectName.value,
             prof_id: selectedProfessorValue || null,

@@ -1,7 +1,7 @@
 import { Toaster } from "../../../../components/toaster/toaster.js";
 import { takeSubjectIdByParams } from "../../../../scripts/alunoFlowPages/disciplinasPage/takeSubjectIdByParams.js";
 import { editDisciplina, getOnBackDisciplinaById } from "../../../../scripts/fetchDbFunctions.js";
-import { inputEmptyValidation } from "../../register/subjectsRegister/subjectsFormValidations.js";
+import { inputEmptyValidation, nameValidations, yearValidate } from "../../register/subjectsRegister/subjectsFormValidations.js";
 
 const successToaster = {
     title: "Sucesso!",
@@ -68,12 +68,11 @@ export async function formEditEvent(){
         const inputSubjectName = document.querySelector('#inputName')
         const inputYear = document.querySelector('#inputYear')
         
-        // validações dos formulários
         if(
-            !inputEmptyValidation(inputSubjectName.value, '#inputName', '#inputNameError') ||
-            !inputEmptyValidation(inputYear.value, '#inputYear', '#inputYearError')
+            !nameValidations(inputSubjectName.value) ||
+            !yearValidate(inputYear.value)
         ) {
-            return console.log('Algum dado invalido')
+            return
         }
 
         if(!selectedSemesterValue){
