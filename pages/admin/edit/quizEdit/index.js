@@ -6,13 +6,15 @@ import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 import { Select } from "../../../../components/select/select.js"
 import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { checkTypeAdminAndProfessor, checkTypeUser } from "../../../../scripts/checkTypeUser.js"
-import { getOnBackDisciplinasOfProfessorByToken, getOnBackQuizzesById } from "../../../../scripts/fetchDbFunctions.js"
+import { getAllDisciplinas, getOnBackDisciplinaById, getOnBackDisciplinasOfProfessorById, getOnBackQuizzesById } from "../../../../scripts/fetchDbFunctions.js"
 import { LongText } from "../../../../components/longText/longText.js"
 import { takeIdByParams } from "../../../../scripts/takeIdByParams.js"
 import { formEventQuizEdit } from "./quizEditForm.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
 
 const quizInfos = await quizObject()
+
+const professorId = quizInfos.disciplina_id.prof_id
 
 const header = {
     title: "Informações do Quiz",
@@ -36,7 +38,7 @@ const inputQuizzName = {
 const selectSubjects = {  
     id : "selectDisciplinas", 
     placeholder : "Selecione a disciplina",
-    options : await createSubjectOptions(),
+    options : [],
     preSelectedOptions: {
         content: [`${quizInfos.disciplina_id.nome} | ${quizInfos.disciplina_id.ano} / ${quizInfos.disciplina_id.semestre}`], 
         values: [quizInfos.disciplina_id._id]
@@ -204,20 +206,27 @@ function createDateInputs(text, id, value){
 }
 
 
-async function createSubjectOptions(){
-    let array = []
+// async function createSubjectOptions(){
+//     let array = []
+//     let allProfessorSubjects;
+    
+//     if (professorId) {
+//         allProfessorSubjects = await getOnBackDisciplinasOfProfessorById(professorId)
+//     } else{
+//         allProfessorSubjects = await getAllDisciplinas()
+//     }
+//     console.log(allProfessorSubjects);
+    
+//     allProfessorSubjects.disciplinas.forEach((disciplina)=>{
+//         const object = {
+//             text: `${disciplina.nome} | ${disciplina.ano} / ${disciplina.semestre}`,
+//             value: disciplina._id
+//         }
+//         array.push(object)   
+//     })
 
-    const allProfessorSubjects = await getOnBackDisciplinasOfProfessorByToken()
-    allProfessorSubjects.disciplinas.forEach((disciplina)=>{
-        const object = {
-            text: `${disciplina.nome} | ${disciplina.ano} / ${disciplina.semestre}`,
-            value: disciplina._id
-        }
-        array.push(object)   
-    })
-
-    return array
-}
+//     return array
+// }
 
 
 await checkIfValidToken();

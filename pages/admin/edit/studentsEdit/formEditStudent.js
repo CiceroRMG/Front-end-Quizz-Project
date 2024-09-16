@@ -95,10 +95,13 @@ export async function formEditStudent(){
 
             }
         
-        } 
+        } else{
+            await deleteAllSubjectStudentRelation(userId)
+        }
             
         if (validations.status === 200 || userRelation.status === 201){
-            return document.body.append(Toaster(successToaster))
+            localStorage.setItem('successToaster', 'true')
+            return window.location.href = `/pages/admin/painel/studentsPainel/studentsPainel.html`
             
         } else {
             return document.body.append(Toaster(errorToaster))

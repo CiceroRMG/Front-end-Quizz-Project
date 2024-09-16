@@ -1,5 +1,6 @@
 import { Toaster } from "../../../../components/toaster/toaster.js";
 import { getOnBackQuizzesById, registerQuizQuestions } from "../../../../scripts/fetchDbFunctions.js";
+import { shuffleArray } from "../../../../scripts/shuffleArray.js";
 import { takeIdByParams } from "../../../../scripts/takeIdByParams.js";
 
 
@@ -35,8 +36,6 @@ export async function formEventQuestionsEdit(){
         await putInputsValue(`#pergunta${num}`, num)
     }
 
-    perguntasArray = []
-
     const form = document.querySelector(".register-form")
 
     const createBtn = document.getElementById('registerBtn')
@@ -53,9 +52,15 @@ export async function formEventQuestionsEdit(){
         event.preventDefault()
 
         let req = {}
+        perguntasArray = []
         
         for(let num = 1; num <= 10; num++){
             takeInputsValueAndCreateObjectQuestion(`#pergunta${num}`)
+        }
+
+        for(let i = 0; i < perguntasArray.length; i++){
+            console.log(perguntasArray[i].alternativas);
+            perguntasArray[i].alternativas = shuffleArray(perguntasArray[i].alternativas);
         }
 
         if(action === "register"){

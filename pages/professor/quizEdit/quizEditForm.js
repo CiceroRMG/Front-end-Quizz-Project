@@ -30,8 +30,6 @@ let maxTimeValue = []
 
 document.addEventListener('selectDisciplinas', (event) => {
     selectedSubjectValue = event.detail.values[0];
-    console.log(selectedSubjectValue);
-    
     
 });
 
@@ -87,19 +85,15 @@ export async function formEventQuizEdit(){
         req = {
             titulo: inputQuizName.value,
             tempo: maxTimeValue ? maxTimeValue : null,
-            tentativas: inputAttempts.value > 0 ? inputAttempts.value : 999,
+            tentativas: inputAttempts.value > "0" ? inputAttempts.value : "999",
             data_inicio: inputStartDate.value,
             data_fim: inputFinishDate.value,
             mensagem: textArea.value,
             tipo: quizTypeValue ? quizTypeValue : null,
             rascunho: true,
-            disciplina_id: selectedSubjectValue ? selectedSubjectValue : null,
         }
         
-        console.log(req);
-        
         const registerQuizReq = await editQuiz(req, takeIdByParams())
-        console.log(registerQuizReq.data);
         const quizz = registerQuizReq.data.updatedQuizz
         
 

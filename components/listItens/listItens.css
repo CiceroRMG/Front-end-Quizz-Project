@@ -11,6 +11,7 @@
     padding: 1rem 1.25rem;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 
 }
 
@@ -102,7 +103,7 @@
     padding: 0rem 1.25rem;
     justify-content: space-between;
     align-items: center;
-    flex: 1 0 30%;
+    flex: 1 1 30%;
     gap: 1rem;
 }
 
@@ -155,7 +156,7 @@
     justify-content: end;
 }
 
-.element-div:last-child{
+.item-container .element-div:last-child{
     justify-content: end;
 }
 
@@ -163,7 +164,7 @@
     justify-content: center;
 }
 
-.element-div:first-child{
+.item-container .element-div:first-child{
     justify-content: start;
 }
 
@@ -184,7 +185,7 @@
     .item-container {
         min-width: 10rem;
         padding: 1rem 0.75rem;
-        gap: 0.5rem;
+        gap: 0.8rem;
     }
     .item-container .element-h1{
         font-size: 0.875rem;
@@ -203,6 +204,7 @@
     .titles-container{
         min-width: 10rem;
         width: 100%;
+        padding-right: 0 !important;
     }
 
     .titles-container h1{

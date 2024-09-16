@@ -60,6 +60,7 @@ export async function formEventQuizEdit(){
     saveBtnValue.addEventListener('click', ()=>{
         action = 'save';
     })
+    
 
     form.addEventListener('submit', async (event)=>{
         event.preventDefault()
@@ -87,13 +88,12 @@ export async function formEventQuizEdit(){
         req = {
             titulo: inputQuizName.value,
             tempo: maxTimeValue ? maxTimeValue : null,
-            tentativas: inputAttempts.value > 0 ? inputAttempts.value : 999,
+            tentativas: inputAttempts.value > "0" ? inputAttempts.value : "999",
             data_inicio: inputStartDate.value,
             data_fim: inputFinishDate.value,
             mensagem: textArea.value,
             tipo: quizTypeValue ? quizTypeValue : null,
             rascunho: true,
-            disciplina_id: selectedSubjectValue ? selectedSubjectValue : null,
         }
         
         console.log(req);

@@ -45,7 +45,11 @@ export async function displayValuesOnInputs(){
 }
 
 document.addEventListener('selectProfessor', (event) => {
+    if (!event.detail.values[0]) {
+        return selectedProfessorValue = []
+    }
     selectedProfessorValue = event.detail.values[0];
+    
 });
 
 document.addEventListener('selectSemester', (event) => {
@@ -105,7 +109,8 @@ export async function formEditEvent(){
     
         const criandoDisciplina = await editDisciplina(req, takeSubjectIdByParams())
         if(criandoDisciplina.status === 200){
-            document.body.append(Toaster(successToaster))
+            localStorage.setItem('successToaster', 'true')
+            return window.location.href = `/pages/admin/painel/subjectsPainel/subjectsPainel.html`
         } else if(criandoDisciplina.status === 409){
             document.body.append(Toaster(existsToaster))
         } else{

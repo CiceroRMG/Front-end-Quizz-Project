@@ -103,6 +103,11 @@ export function Select({label = null, info = null, id = null, placeholder = null
                     
                 optionsList.append(li)
             }
+        } else{
+            optionDiv.style.display = "none"
+            p.style.color = "#88807B"
+            select.style.cursor = "default"
+            arrowImg.style.display = "none"
         }
 
     }

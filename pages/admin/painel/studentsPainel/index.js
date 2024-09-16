@@ -4,13 +4,18 @@ import { Empty } from "../../../../components/empty/empty.js"
 import { Header } from "../../../../components/header/header.js"
 import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 import { Table } from "../../../../components/table/table.js"
+import { Toaster } from "../../../../components/toaster/toaster.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { getAllStudents } from "../../../../scripts/fetchDbFunctions.js"
 import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
-import { tableAnimation } from "../../tableAnimation.js"
 import { studentRegisterBtn, studentsHeader, tableDataStudents } from "./studentsLogic.js"
 
+const successToaster = {
+    title: "Sucesso!",
+    image: "/components/toaster/img/checkCircle.svg",
+    subtitle: "Sucesso na edição do aluno.",
+}
 
 await checkIfValidToken();
 await checkTypeUser('admin')
@@ -46,6 +51,11 @@ async function studentsPanelPage(){
     emptyDiv.classList.add('empty-subject-div')
     emptyDiv.append(Empty({title: "Nenhum aluno cadastrado"}))
     main.append(emptyDiv)
+
+    if(localStorage.getItem('successToaster')){
+        document.body.append(Toaster(successToaster))
+        localStorage.removeItem('successToaster')
+    }
 
     document.body.append(div)
 }

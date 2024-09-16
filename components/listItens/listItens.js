@@ -20,7 +20,7 @@ export function Item({contents = [{as: null, text, link: "#", onclick: null, img
         
         const elementDiv = document.createElement('div')
         elementDiv.classList.add('element-div')
-        if(index === 1){
+        if(index === 1 && contents.length < 2){
             elementDiv.classList.add('second')
         }
         const element = document.createElement(content.as)

@@ -2,12 +2,6 @@ import { Toaster } from "../../../../components/toaster/toaster.js";
 import { editDisciplina, getOnBackUserById, turnNullSubjectsProfId } from "../../../../scripts/fetchDbFunctions.js";
 import { inputEmptyValidation, validateAllStudentsInputsAndEdit } from "../../register/studentsRegister/studentsFormValidations.js"
 
-const successToaster = {
-    title: "Sucesso!",
-    image: "/components/toaster/img/checkCircle.svg",
-    subtitle: "Sucesso na edição do professor.",
-}
-
 const errorToaster = {
     title: "Erro!",
     image: "/components/toaster/img/errorCircle.svg",
@@ -40,8 +34,7 @@ let selectedSubjectsValue = []
 
 document.addEventListener('selectDisciplinas', (event) => {
     selectedSubjectsValue = event.detail.values;
-    console.log(selectedSubjectsValue);
-    
+
 });
 
 export async function formEditProfessors(){
@@ -93,8 +86,8 @@ export async function formEditProfessors(){
         } 
             
         if (validations.status === 200 || userRelation.status === 200){
-            return document.body.append(Toaster(successToaster))
-            
+            localStorage.setItem('successToaster', 'true')
+            return window.location.href = `/pages/admin/painel/professorsPainel/professorsPainel.html`
         } else {
             return document.body.append(Toaster(errorToaster))
         }

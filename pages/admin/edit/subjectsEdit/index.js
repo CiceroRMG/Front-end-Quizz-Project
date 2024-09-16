@@ -137,6 +137,7 @@ function createQuizzesLayout(){
     div.style.paddingLeft = "2.4rem"
     div.style.display = "flex"
     div.style.flexDirection = "column"
+    div.style.minHeight = "10rem"
 
     const h2 = document.createElement('h2')
     h2.innerText = "Quizzes"
@@ -319,6 +320,7 @@ function subjectsEditPage(){
     titles.style.paddingRight = '5.7rem'
     const ulQuizzes = listQuizzesDiv.querySelector('.ul-itens')
     ulQuizzes.style.maxHeight = "37.7vh"
+    ulQuizzes.style.minHeight = "100%"
     ulQuizzes.style.height = "100%"
     ulQuizzes.style.overflowY = "auto"
     const liQuizzes = ulQuizzes.querySelectorAll('li')

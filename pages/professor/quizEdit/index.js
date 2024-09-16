@@ -36,7 +36,7 @@ const inputQuizzName = {
 const selectSubjects = {  
     id : "selectDisciplinas", 
     placeholder : "Selecione a disciplina",
-    options : await createSubjectOptions(),
+    options : [],
     preSelectedOptions: {
         content: [`${quizInfos.disciplina_id.nome} | ${quizInfos.disciplina_id.ano} / ${quizInfos.disciplina_id.semestre}`], 
         values: [quizInfos.disciplina_id._id]
@@ -204,20 +204,20 @@ function createDateInputs(text, id, value){
 }
 
 
-async function createSubjectOptions(){
-    let array = []
+// async function createSubjectOptions(){
+//     let array = []
 
-    const allProfessorSubjects = await getOnBackDisciplinasOfProfessorByToken()
-    allProfessorSubjects.disciplinas.forEach((disciplina)=>{
-        const object = {
-            text: `${disciplina.nome} | ${disciplina.ano} / ${disciplina.semestre}`,
-            value: disciplina._id
-        }
-        array.push(object)   
-    })
+//     const allProfessorSubjects = await getOnBackDisciplinasOfProfessorByToken()
+//     allProfessorSubjects.disciplinas.forEach((disciplina)=>{
+//         const object = {
+//             text: `${disciplina.nome} | ${disciplina.ano} / ${disciplina.semestre}`,
+//             value: disciplina._id
+//         }
+//         array.push(object)   
+//     })
 
-    return array
-}
+//     return array
+// }
 
 
 await checkIfValidToken();
