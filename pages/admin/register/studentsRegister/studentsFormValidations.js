@@ -82,9 +82,6 @@ export async function validateAllStudentsInputsAndEdit(req, id){
     return criandoAluno
 }
 
-
-
-
 export function eventFocusInputs(){
     
     const inputName = document.querySelector('#inputName')

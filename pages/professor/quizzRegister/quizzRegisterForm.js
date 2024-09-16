@@ -1,6 +1,6 @@
 import { Toaster } from "../../../components/toaster/toaster.js";
 import { registerQuiz } from "../../../scripts/fetchDbFunctions.js";
-import { inputEmptyValidation } from "../../admin/register/studentsRegister/studentsFormValidations.js"
+import { nameQuizValidation, validateFinishDate, validateStartDate } from "./quizRegisterValidations.js";
 
 const successToaster = {
     title: "Sucesso!",
@@ -69,9 +69,10 @@ export async function formEventQuiz(){
         const inputFinishDate = document.querySelector('#inputFinishDate')
         const textArea = document.querySelector('.longText-area')
         
-        // validações dos formulários
         if(
-            !inputEmptyValidation(inputQuizName.value, '#inputName', '#inputNameError')
+            !nameQuizValidation(inputQuizName.value) ||
+            !validateStartDate(inputStartDate.value) ||
+            !validateFinishDate(inputFinishDate.value, inputStartDate.value)
         ) {
             action = "";
             return console.log('Algum dado invalido')

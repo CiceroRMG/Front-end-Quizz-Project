@@ -11,6 +11,7 @@ import { NavBarProfessor } from "../navBarProfessor.js"
 import { LongText } from "../../../components/longText/longText.js"
 import { formEventQuiz } from "./quizzRegisterForm.js"
 import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
+import { eventFocusInputs } from "./quizRegisterValidations.js"
 
 
 const header = {
@@ -139,6 +140,7 @@ function createFormLayout(){
 function createDateInputs(text, id){
     const div = document.createElement('div')
     div.classList.add('date-div')
+    div.style.position = "relative"
 
     const time = document.createElement('input')
     time.setAttribute('type', 'date')
@@ -148,8 +150,15 @@ function createDateInputs(text, id){
     const p = document.createElement('p')
     p.innerText = text
 
+    const spanError = document.createElement('span')
+    spanError.classList.add("input-error")
+    spanError.classList.add("hidden")
+    spanError.classList.add("notLabel")
+    spanError.id = id + "Error"
+    
     div.append(time)
     div.append(p)
+    div.append(spanError)
 
     return div
 }
@@ -278,3 +287,4 @@ quizRegisterPage()
 putDateOnInputs()
 
 formEventQuiz()
+eventFocusInputs()
