@@ -90,7 +90,7 @@ async function createObjectInformations(){
     let array = [
         {
             title: "Tentativas",
-            content: quizReq.quizz.tentativas
+            content: quizReq.quizz.tentativas === 999 ? "Sem limite" : quizReq.quizz.tentativas
         },
         {
             title: "Tempo máximo",
@@ -106,14 +106,19 @@ async function createObjectInformations(){
         },
     ]
 
-    const verify = await verifyAttempts()
-    if(!verify){
+    const verifyStudentAttempts = await verifyAttempts()
+    const verifyDates = await verifyDate()
+    if(!verifyStudentAttempts || !verifyDates){
         object = {
             header: {
                 title: "Orientações do Professor",
                 subtitle: quizReq.quizz.mensagem ? quizReq.quizz.mensagem : "Não possui orientações"
             }, 
             informations: array,
+            btn: {
+                text: !verifyStudentAttempts ? "Tentativas esgotadas" : "Começar", 
+                type: "primary-md",
+            }
         }
     } else{
         object = {
@@ -208,6 +213,22 @@ async function verifyAttempts() {
     }
 
     if(userAttempts.status === 401){
+        return false
+    }
+
+    return true
+}
+
+async function verifyDate() {
+    const currentDate = new Date()
+    const endDate = new Date(Date.parse(quizReq.quizz.data_fim + 'T00:00:00'))
+    const startDate = new Date(Date.parse(quizReq.quizz.data_inicio + 'T00:00:00'))
+    
+    currentDate.setHours(0, 0, 0, 0);
+    endDate.setHours(23, 59, 0, 0);
+    startDate.setHours(0, 0, 0, 0);
+
+    if(currentDate.getTime() > endDate.getTime() || currentDate.getTime() < startDate.getTime()){
         return false
     }
 

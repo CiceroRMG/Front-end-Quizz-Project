@@ -118,8 +118,17 @@ function takeInputsValueAndCreateObjectQuestion(id){
 
     const question = document.querySelector(id)
 
+    const pergunta = question.querySelector('#inputHead')
+    if(!pergunta.value){
+        pergunta.style.outline = "1px solid #6366F1"
+        pergunta.addEventListener('focus', removeOutlines);
+        return false
+    }
+
     const corretaInput = question.querySelector('.correctInput')
     if(!corretaInput.value){
+        corretaInput.style.outline = "1px solid #6366F1"
+        corretaInput.addEventListener('focus', removeOutlines);
         return false
     }  
     const corretaObject = {
@@ -131,6 +140,8 @@ function takeInputsValueAndCreateObjectQuestion(id){
     for(let num = 1; num <=3; num++){
         const incorretoInput = question.querySelector(`.incorrectInput${num}`)
         if(!incorretoInput.value){
+            incorretoInput.style.outline = "1px solid #6366F1"
+            incorretoInput.addEventListener('focus', removeOutlines);
             return false
         }
         const incorretaObject = {
@@ -140,11 +151,6 @@ function takeInputsValueAndCreateObjectQuestion(id){
         alernativasArray.push(incorretaObject)
     }
 
-    const pergunta = question.querySelector('#inputHead')
-    if(!pergunta.value){
-        return false
-    }
-
     const reqObject = {
         titulo: pergunta.value,
         alternativas: alernativasArray
@@ -152,6 +158,12 @@ function takeInputsValueAndCreateObjectQuestion(id){
 
     perguntasArray.push(reqObject)
 }
+
+function removeOutlines() {
+    document.querySelectorAll('*').forEach(el => {
+      el.style.outline = 'none';
+    });
+  }
 
 
 async function putInputsValue(id, arrayIndex){

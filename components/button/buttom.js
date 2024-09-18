@@ -15,6 +15,9 @@ export function buttom({text = "Button", type = "primary-md", onclick = null, im
 
     if(onclick){
         btn.onclick = onclick
+    } else{
+        btn.style.opacity = '0.5'
+        btn.style.cursor = "default"
     }
     
     if(img){

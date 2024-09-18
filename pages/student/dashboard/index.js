@@ -19,7 +19,7 @@ const headerContent = {
 const titles = [
     {
         as: "h1",
-        text: "Disciplinas"
+        text: "Suas Disciplinas"
     },
 ]
 

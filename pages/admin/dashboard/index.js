@@ -10,13 +10,13 @@ import { NavBarAdmin } from "../navBarAdm.js"
 
 const headerContent = {
     title: "Dashboard",
-    subtitle: "Bem vindo, Admin"
+    subtitle: "Administrador"
 }
 
 const titles = [
     {
         as: "h1",
-        text: "Disciplinas"
+        text: "Painel"
     },
 ]
 

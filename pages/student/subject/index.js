@@ -113,9 +113,17 @@ function page(){
     const main = MainLayout()
     div.append(main)
     main.append(Header(headerContent))
-    main.append(ListItens(contentAll))
+    const list = ListItens(contentAll)
+    main.append(list)
     if(itens.length < 1){
-        main.append(Empty({title: "Não possui disciplinas cadastradas"}))
+        list.style.display = "none"
+        const empty = document.createElement('div')
+        empty.classList.add('animate-in-login')
+        empty.style.height = "100%"
+        empty.style.display = "flex"
+        empty.style.alignItems = "center"
+        empty.append(Empty({title: "Não possui Quizzes cadastrados"}))
+        main.append(empty)
     }
 
     document.body.append(div)
