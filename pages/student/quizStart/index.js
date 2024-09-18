@@ -3,7 +3,7 @@ import { Header } from "../../../../components/header/header.js"
 import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
 import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
-import { getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
+import { getOnBackQuizzesById, verifyUserAttempts } from "../../../scripts/fetchDbFunctions.js"
 import { NavBarStudents } from "../navBarStudents.js"
 import { SideCard } from "../../../components/sideCard/sideCard.js"
 import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
@@ -165,9 +165,57 @@ function QuestionStudent({question = {title, content, id}, awnsers = [{content, 
     return div
 }
 
+async function checkUserAttemptsAndDate(){
+    console.log("entrando aqui");
+    
+    const attemptsUser = await verifyAttempts()
+    const date = await verifyDate()
+
+    if(!attemptsUser || !date){
+        window.location.href = `/pages/student/dashboard/dashboard.html`
+        return
+    }
+}
+
+async function verifyAttempts() {
+
+    const userAttempts = await verifyUserAttempts(takeIdByParams())
+    
+    if(!userAttempts){
+        return false
+    }
+
+    if(userAttempts.status === 401){
+        return false
+    }
+
+    return true
+}
+
+async function verifyDate() {
+
+    if(!req){
+        return false
+    }
+    const currentDate = new Date()
+    const endDate = new Date(Date.parse(req.quizz.data_fim + 'T00:00:00'))
+    const startDate = new Date(Date.parse(req.quizz.data_inicio + 'T00:00:00'))
+    
+    currentDate.setHours(0, 0, 0, 0);
+    endDate.setHours(23, 59, 0, 0);
+    startDate.setHours(0, 0, 0, 0);
+
+    if(currentDate.getTime() > endDate.getTime() || currentDate.getTime() < startDate.getTime()){
+        return false
+    }
+
+    return true
+}
+
 
 await checkIfValidToken();
 await checkTypeUser('aluno')
+await checkUserAttemptsAndDate()
 
 async function quizStartPage(){
     const div = AppLayout()

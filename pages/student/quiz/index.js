@@ -192,7 +192,7 @@ async function dialogStart() {
                         return document.body.append(Toaster(awnserToaster))
                     }
 
-                    window.location.href = `/pages/student/quizStart/quizStart.html?id=${quizId}`
+                    window.open(`/pages/student/quizStart/quizStart.html?id=${quizId}`)
                 }
             },
         ]
