@@ -94,6 +94,7 @@ export async function formEventQuizEdit(){
             mensagem: textArea.value,
             tipo: quizTypeValue ? quizTypeValue : null,
             rascunho: true,
+            disciplina_id: selectedSubjectValue
         }
         
         const registerQuizReq = await editQuiz(req, takeIdByParams())

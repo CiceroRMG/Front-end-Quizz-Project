@@ -48,3 +48,12 @@
 .btn-info-div{
     margin-top: 1rem;
 }
+
+
+@media (max-width: 520px){
+
+    .informations-li h1, .informations-li span {
+        font-size: 0.875rem;
+    }
+
+}

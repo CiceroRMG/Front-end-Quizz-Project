@@ -191,12 +191,16 @@ header dialog p, dialog h1, dialog span{
         position: initial;
         align-self: center;
         width: 20rem;
-        padding-bottom: 3rem;
+        padding-bottom: 4rem;
         max-height: none;
     }
 
     .questionsDiv{
         width: 100%;
+    }
+
+    .space-div{
+        display: none;
     }
 }
 
@@ -210,6 +214,17 @@ header dialog p, dialog h1, dialog span{
          padding-left: 1rem;
     }
 
+    .page-header-box{
+        padding-left: 1rem;
+    }
+
+}
+
+@media (max-width: 640px){
+    .timer-div{
+        margin: 0 3rem 0 auto;
+        align-self: center;
+    }
 }
 
 @media (max-width: 519px){
@@ -240,6 +255,14 @@ header dialog p, dialog h1, dialog span{
     .page-header-box{
         padding-left: 1rem;
     }
+
+    .timer-div{
+        margin-right: 1rem;
+    }
+
+    .main-content{
+        padding-left: 0rem;
+   }
     
 }
 
@@ -255,7 +278,18 @@ header dialog p, dialog h1, dialog span{
     }
 
     .sideCard{
-        max-width: max-content;
+        max-width: auto;
     }
 
+    .main{
+        gap: 1rem;
+        padding: 1.5rem 1.5rem;
+    }
+
+}
+
+@media (max-width: 350px){
+    .sideCard{
+        max-width: 12rem;
+    }
 }

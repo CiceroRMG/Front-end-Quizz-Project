@@ -32,6 +32,10 @@
         padding: 1.5rem;
         padding-top: 2.5rem;
     }
+    
+    .main::-webkit-scrollbar {
+        width: 0px; 
+    }
 }
 
 

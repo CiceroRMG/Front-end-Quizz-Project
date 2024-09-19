@@ -161,6 +161,10 @@
     }
 
 @media (max-width: 520px){
+    .nav-item.selected::before{
+        display: none;
+    }
+
     .nav-bar-layout{
         flex-direction: row;
         width: 100vw;

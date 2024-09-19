@@ -152,14 +152,6 @@ function formatDate(date){
 function createContentLayout(){
     const form = document.createElement('div')
     form.classList.add('main-content')
-    form.style.width = "100%"
-    form.style.height = "100%"
-    form.style.maxHeight = "100vh"
-    form.style.display = "flex"
-    form.style.justifyContent = "space-between"
-    form.style.gap = "3rem"
-    form.style.paddingLeft = "2.3rem"
-     form.style.paddingRight = "2.3rem"
     
     return form
 }
@@ -256,18 +248,10 @@ async function quizPage(){
     const mainContent = createContentLayout()
 
     const infos = InformationsBox(informations)
-    infos.style.paddingRight = "1rem"
-    infos.style.width = "70%"
-    infos.style.minWidth = "17.125rem"
 
     const submitBtnDiv = document.createElement('div')
     submitBtnDiv.classList.add("sideCard")
     submitBtnDiv.append(SideCard(sideCardData))
-    submitBtnDiv.style.width = "30%"
-    submitBtnDiv.style.minWidth = "16.125rem"
-    submitBtnDiv.style.display = "flex"
-    submitBtnDiv.style.justifyContent = "end"
-    submitBtnDiv.style.maxHeight = "38rem"
 
     mainContent.append(infos)
     mainContent.append(submitBtnDiv)

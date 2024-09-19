@@ -76,3 +76,11 @@
     font-size: 0.9rem;;
     line-height: 1.25rem;
 }
+
+@media (max-width: 520px){
+
+    .li-sideCard .li-title, .li-sideCard .li-p, .li-sideCard .li-a{
+        font-size: 0.875rem;
+    }
+
+}

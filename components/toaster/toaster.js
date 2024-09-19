@@ -2,7 +2,7 @@ import { Header } from "../header/header.js"
 
 
 export function Toaster({title, subtitle, image, style = "success", timeout}){
-
+    removeExistsToaster()
     const toaster = document.createElement('div')
     toaster.classList.add('toaster-container')
 
@@ -45,4 +45,11 @@ export function Toaster({title, subtitle, image, style = "success", timeout}){
     }
 
     return toaster
+}
+
+function removeExistsToaster() {
+    const existingToaster = document.querySelector('.toaster-container');
+    if (existingToaster) {
+        existingToaster.remove();
+    }
 }

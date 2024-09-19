@@ -185,12 +185,16 @@ header dialog p, dialog h1, dialog span{
         position: initial;
         align-self: center;
         width: 20rem;
-        padding-bottom: 3rem;
+        padding-bottom: 4rem;
         max-height: none;
     }
 
     .questionsDiv{
         width: 100%;
+    }
+
+    .space-div{
+        display: none;
     }
 }
 
@@ -226,10 +230,9 @@ header dialog p, dialog h1, dialog span{
         font-size: 0.8rem;
     }
 
-    .page-header-box{
-        padding-left: 1rem;
-    }
-    
+    .main-content{
+        padding-left: 0rem;
+   }
 }
 
 @media (max-width: 400px){
@@ -244,7 +247,25 @@ header dialog p, dialog h1, dialog span{
     }
 
     .sideCard{
-        max-width: max-content;
+        max-width: auto;
+    }
+
+    .li-sideCard{
+        justify-content: center;
+        gap: 3rem;
+    }
+
+    .main{
+        gap: 1rem;
+        padding: 1.5rem 1.5rem;
+    }
+
+}
+
+@media (max-width: 350px){
+
+    .main-content .sideCard{
+        max-width: 12rem;
     }
 
 }

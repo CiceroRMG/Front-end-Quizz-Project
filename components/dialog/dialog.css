@@ -21,7 +21,7 @@ dialog::backdrop{
     font-weight: 600;
     font-family: "Open Sans";
     justify-content: flex-start;
-    line-height: 1.5rem;
+    line-height: 2rem;
 }
 
 .dialog-p{
@@ -72,7 +72,17 @@ dialog::backdrop{
     .dialog{
         max-width: 20rem;
     }
+    .dialog h1{
+        font-size: 1rem;
+    }
 
+    .dialog-header{
+        padding-bottom: 1rem;
+    }
+
+    .dialog-p{
+        font-size: 0.875rem;
+    }
 
 }
 
