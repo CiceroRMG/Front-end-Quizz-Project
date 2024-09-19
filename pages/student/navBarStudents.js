@@ -52,7 +52,7 @@ export async function createArrayObjectsOfStudentSubjectsNav(){
     const disciplinasDoUsuario = takeRelationUserSubject.disciplinasComAlunos
 
     if(!disciplinasDoUsuario){
-        return console.log("não possui disciplinas")
+        return
     }
 
     let array = []

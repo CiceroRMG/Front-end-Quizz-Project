@@ -65,6 +65,9 @@ await checkTypeAdminAndProfessor('admin', 'professor')
 async function quizRegisterPage(){
     const div = AppLayout()
 
+    const itemNavArray = NavBarProfessor.querySelectorAll('.nav-item')
+    const itemNav = itemNavArray[2]
+    itemNav.classList.add('selected')
     div.append(NavBarProfessor)
     const main = MainLayout()
     div.append(main)

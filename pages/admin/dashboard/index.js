@@ -82,6 +82,9 @@ if(await checkTypeUser('admin')){
 function page(){
     const div = AppLayout()
 
+    const itemNavArray = NavBarAdmin.querySelectorAll('.nav-item')
+    const itemNav = itemNavArray[0]
+    itemNav.classList.add('selected')
     div.append(NavBarAdmin)
 
     const main = MainLayout()

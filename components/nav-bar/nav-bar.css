@@ -91,7 +91,7 @@
     background: #1E1B4B;
     border: 1px solid transparent;
     color: var(--text-primary-color);
-    padding: 0 1.5rem;
+    padding: 0.3rem 1.5rem;
     padding-right: 2rem;
     padding-left: 0.7rem;
 }
@@ -104,16 +104,13 @@
 }
 
 .ul ul li a:hover{
-    color: #f8de15;
+    color: #FEF08A;
 }
 
 .ul ul li a .selected{
     color: #FEF08A;
 }
 
-.nav-item .selected{
-    filter: brightness(0) saturate(100%) invert(92%) sepia(23%) saturate(799%) hue-rotate(345deg) brightness(102%) contrast(103%);
-}
 
 .arrow-nav{
     transition: transform 0.3s ease;
@@ -125,6 +122,18 @@
 
 .arrow-nav.select{
     transform: rotate(90deg);
+}
+
+.nav-item.selected::before {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 28px;
+    background-color: #FEF08A;
+    position: absolute;
+    left: -31.5px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 @media (max-width: 1000px){
@@ -145,7 +154,11 @@
     .ul ul li a{
         color: black;
     }
-}
+
+    .ul ul li a:hover{
+        color: #e5ca02;
+    }
+    }
 
 @media (max-width: 520px){
     .nav-bar-layout{

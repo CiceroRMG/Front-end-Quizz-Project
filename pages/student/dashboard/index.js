@@ -78,6 +78,8 @@ await checkTypeUser('aluno')
 function page(){
     const div = AppLayout()
 
+    const itemNav = NavBarStudents.querySelector('.nav-item')
+    itemNav.classList.add('selected')
     div.append(NavBarStudents)
 
     const main = MainLayout()

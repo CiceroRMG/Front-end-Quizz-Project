@@ -5,8 +5,7 @@ import { ListItens } from "../../../components/listItens/listItens.js"
 import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
 import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { based_url } from "../../../scripts/config.js"
-import { getAllDisciplinas, getOnBackDisciplinaById, getOnBackDisciplinasUsersTable, getOnBackQuizzesById, getOnBackUserByToken } from "../../../scripts/fetchDbFunctions.js"
-import { getTokenOnLocalStorage } from "../../../scripts/getTokenOnLocalStorage.js"
+import { getOnBackDisciplinaById, getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
 import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 import { NavBarStudents } from "../navBarStudents.js"
@@ -108,6 +107,9 @@ await checkTypeUser('aluno')
 function page(){
     const div = AppLayout()
 
+    const itemNavArray = NavBarStudents.querySelectorAll('.nav-item')
+    const itemNav = itemNavArray[1]
+    itemNav.classList.add('selected')
     div.append(NavBarStudents)
 
     const main = MainLayout()

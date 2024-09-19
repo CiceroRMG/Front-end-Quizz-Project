@@ -242,6 +242,9 @@ await checkTypeUser('aluno')
 async function quizPage(){
     const div = AppLayout()
 
+    const itemNavArray = NavBarStudents.querySelectorAll('.nav-item')
+    const itemNav = itemNavArray[1]
+    itemNav.classList.add('selected')
     div.append(NavBarStudents)
     const main = MainLayout()
     div.append(main)

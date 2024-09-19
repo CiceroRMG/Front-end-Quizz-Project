@@ -296,6 +296,9 @@ await checkTypeUser('admin')
 function subjectsEditPage(){
     const div = AppLayout()
 
+    const itemNavArray = NavBarAdmin.querySelectorAll('.nav-item')
+    const itemNav = itemNavArray[1]
+    itemNav.classList.add('selected')
     div.append(NavBarAdmin)
     const main = MainLayout()
     div.append(main)

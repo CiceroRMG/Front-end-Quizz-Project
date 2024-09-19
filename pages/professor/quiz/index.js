@@ -199,6 +199,9 @@ await checkTypeUser('professor')
 function quizPage(){
     const div = AppLayout()
 
+    const itemNavArray = NavBarProfessor.querySelectorAll('.nav-item')
+    const itemNav = itemNavArray[1]
+    itemNav.classList.add('selected')
     div.append(NavBarProfessor)
     const main = MainLayout()
     div.append(main)
