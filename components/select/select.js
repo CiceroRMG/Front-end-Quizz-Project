@@ -51,6 +51,7 @@ export function Select({label = null, info = null, id = null, placeholder = null
     const optionsList = document.createElement('ul')
     optionsList.classList.add('options-ul')
 
+
     // aqui é a parte que o filho chora e a mãe não ve
     if(type === "default"){
         
@@ -75,6 +76,7 @@ export function Select({label = null, info = null, id = null, placeholder = null
                     li.classList.add('li-selected')
                 }
                 li.onclick = () => {
+
                     // Remover 'li-selected' de todos os outros itens
                     optionsList.querySelectorAll('.li-selected').forEach(selectedLi => {
                         if (selectedLi !== li) {
@@ -136,7 +138,8 @@ export function Select({label = null, info = null, id = null, placeholder = null
                     li.classList.add('li-selected')
                 }
 
-                li.onclick = async ()=>{
+                li.onclick = async (event)=>{
+                    event.stopPropagation();
                     li.classList.toggle('li-selected')
                     const valueName = li.getAttribute('data-content')
                     const value = li.getAttribute('data-value')
@@ -175,6 +178,17 @@ export function Select({label = null, info = null, id = null, placeholder = null
     select.append(optionDiv)
 
     container.append(select)
+
+    document.addEventListener('click', (event) => {
+        const selectContainer = document.querySelectorAll('.selectContainer');
+        selectContainer.forEach((select) =>{
+            if (!select.contains(event.target)) {
+                const optionDiv = select.querySelector('.options-container');
+                optionDiv.classList.add('hidden');
+                optionDiv.classList.remove('animate-in')
+            }
+        })
+    });
 
     return container
 }
