@@ -118,22 +118,13 @@ const submitBtn = {
 
 function createSideBySideInputsDiv(){
     const div = document.createElement('div')
-    div.style.display = "flex"
-    div.style.widht = "100%"
-    div.style.alignItems = "center"
-    div.style.gap = "2rem"
+    div.classList.add('sideBySideInputs')
     return div
 }
 
 function createFormLayout(){
     const form = document.createElement('form')
     form.classList.add('register-form')
-    form.style.width = "100%"
-    form.style.height = "100%"
-    form.style.display = "flex"
-    form.style.flexDirection = "column"
-    form.style.gap = "3rem"
-    form.style.paddingLeft = "2.4rem"
     return form
 }
 
@@ -259,10 +250,7 @@ function quizRegisterPage(){
     dateInputsDiv.append(createDateInputs('Data de entrega', 'inputFinishDate'))
 
     const submitBtnDiv = document.createElement('div')
-    submitBtnDiv.style.display = "flex"
-    submitBtnDiv.style.justifyContent = "flex-end"
-    submitBtnDiv.style.gap = "1rem"
-    submitBtnDiv.style.margin = "auto 0 auto 0"
+    submitBtnDiv.classList.add('submitBtnDiv')
 
     const saveButton = buttom(saveBtn)
     saveButton.id = "saveBtn"

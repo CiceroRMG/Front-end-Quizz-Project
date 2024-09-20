@@ -50,13 +50,6 @@ async function createHeaderObject(){
 function createFormLayout(){
     const form = document.createElement('form')
     form.classList.add('register-form')
-    form.style.width = "100%"
-    form.style.height = "100%"
-    form.style.display = "flex"
-    form.style.flexDirection = "column"
-    form.style.gap = "3rem"
-    form.style.paddingLeft = "2.4rem"
-    form.style.paddingRight = "2.4rem"
     return form
 }
 

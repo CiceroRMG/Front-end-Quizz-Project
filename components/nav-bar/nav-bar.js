@@ -113,7 +113,10 @@ export function NavBar({mainComponents = [], footerComponents = []}){
             },
         ]
     } 
-    header.append(Dialog(logoutDialog))
+    const dialogElement = Dialog(logoutDialog)
+    const dialogHead = dialogElement.querySelector('.dialog-header')
+    dialogHead.style.paddingBottom = "2.5rem"
+    header.append(dialogElement)
 
 
     return header

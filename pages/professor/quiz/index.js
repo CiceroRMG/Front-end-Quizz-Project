@@ -65,7 +65,7 @@ async function createObjectInformations(){
     let array = [
         {
             title: "Tentativas",
-            content: quizReq.quizz.tentativas
+            content: quizReq.quizz.tentativas === 999 ? "Sem limite" : quizReq.quizz.tentativas
         },
         {
             title: "Tempo máximo",
@@ -105,14 +105,6 @@ function formatDate(date){
 function createContentLayout(){
     const form = document.createElement('div')
     form.classList.add('main-content')
-    form.style.width = "100%"
-    form.style.height = "100%"
-    form.style.maxHeight = "100vh"
-    form.style.display = "flex"
-    form.style.flexDirection = "column"
-    form.style.gap = "3rem"
-    form.style.paddingLeft = "2.3rem"
-    form.style.paddingRight = "2.3rem"
     
     return form
 }

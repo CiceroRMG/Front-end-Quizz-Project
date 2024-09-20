@@ -207,12 +207,9 @@ function page(){
     div.append(main)
 
     const headDiv = document.createElement('div')
+    headDiv.classList.add('headDiv')
     headDiv.append(Header(headerContent))
     headDiv.append(buttom(quizRegisterBtn))
-    headDiv.style.display = "flex"
-    headDiv.style.justifyContent = "space-between"
-    headDiv.style.alignItems = "center"
-    headDiv.style.gap = "2rem"
     main.append(headDiv)
 
     const divQuizzes = createDivQuizzes()

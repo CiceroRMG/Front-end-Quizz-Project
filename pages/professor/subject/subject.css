@@ -16,3 +16,83 @@
 .quizzes-div .layout-container .empty-div{
     margin-top: 7rem;
 }
+
+.headDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+@media (max-width: 876px){
+
+    .quizzes-div{
+        flex-direction: column;
+    }
+
+    .quizzes-div .layout-container .empty-div{
+        margin-top: 3rem;
+    }
+
+    .quizzes-div .layout-container .empty-div img{
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .quizzes-div .layout-container .empty-div h1{
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 690px){
+    .headDiv .head{
+        gap: 0.7rem;
+    }
+
+    .headDiv .head h1{
+        font-size: 1.4rem;
+    }
+
+    .headDiv .head p{
+        font-size: 0.9rem;
+    }
+
+    .headDiv .button{
+        padding: 0.5rem 1.25rem;
+    }
+
+    .headDiv .button p{
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 590px){
+    .headDiv .head h1{
+        font-size: 1.1rem;
+    }
+
+    .headDiv .head p{
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 550px){
+    .main{
+        padding: 2.5rem 2rem;
+    }
+}
+
+@media (max-width: 429px){
+    .headDiv {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .headDiv .button{
+        padding: 0.5rem 1.25rem;
+    }
+
+    .headDiv .button p{
+        font-size: 0.875rem;
+    }
+}

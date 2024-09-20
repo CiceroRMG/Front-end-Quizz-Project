@@ -150,8 +150,8 @@ header dialog p, dialog h1, dialog span{
 }
 
 .name-student{
-    margin: auto 3rem auto auto;
-    
+    align-self: center;
+    margin: 0 5rem 0 auto;
 }
 
 @media (max-width: 1355px){
@@ -163,13 +163,19 @@ header dialog p, dialog h1, dialog span{
     .container{
         max-width: 59%;
     }
-
+    
+    .name-student{
+        margin: 0 1rem 0 auto;
+    }
 }
 
 @media (max-width: 1190px){
 
     .sideCard{
         width: max-content;
+    }
+    .name-student{
+        margin: 0 2rem 0 auto;
     }
 
 }
@@ -190,12 +196,16 @@ header dialog p, dialog h1, dialog span{
         position: initial;
         align-self: center;
         width: 20rem;
-        padding-bottom: 3rem;
+        padding-bottom: 4rem;
         max-height: none;
     }
 
     .questionsDiv{
         width: 100%;
+    }
+
+    .space-div{
+        display: none;
     }
 }
 
@@ -208,7 +218,18 @@ header dialog p, dialog h1, dialog span{
          padding-right: 0;
          padding-left: 1rem;
     }
+}
 
+@media (max-width: 660px) {
+    .name-student{
+        margin: 0 3rem 0 auto;
+    }
+}
+
+@media (max-width: 540px) {
+    .name-student{
+        font-size: 0.85rem;
+    }
 }
 
 @media (max-width: 519px){
@@ -231,10 +252,15 @@ header dialog p, dialog h1, dialog span{
         font-size: 0.8rem;
     }
 
-    .page-header-box{
-        padding-left: 1rem;
-    }
-    
+    .main-content{
+        padding-left: 0rem;
+   }
+
+   .name-student{
+        align-self: center;
+        margin: 0 0rem 0 auto;
+   }
+
 }
 
 @media (max-width: 400px){
@@ -249,7 +275,33 @@ header dialog p, dialog h1, dialog span{
     }
 
     .sideCard{
-        max-width: max-content;
+        max-width: auto;
+    }
+
+    .li-sideCard{
+        justify-content: center;
+        gap: 3rem;
+    }
+
+    .main{
+        gap: 1rem;
+        padding: 1.5rem 1.5rem;
+    }
+
+}
+
+@media (max-width: 360px){
+    .page-header-box .name-student{
+        font-size: 0.7rem;
+        max-width: 30%;
+        line-height: 1.2rem;
+   }
+}
+
+@media (max-width: 350px){
+
+    .main-content .sideCard{
+        max-width: 12rem;
     }
 
 }
