@@ -110,7 +110,7 @@ export async function logout(){
     redirectToLogin()
 }
 
-function redirectToLogin(){
+export function redirectToLogin(){
     window.localStorage.removeItem('token')
     window.localStorage.removeItem('refreshToken')
     window.location.href = `${based_url}/pages/login/login.html`
