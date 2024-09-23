@@ -1,2 +1,2 @@
-export const based_url = `http://127.0.0.1:5500`
+export const based_url = `https://transcendent-snickerdoodle-d6507f.netlify.app`
 export const baseUrl = `https://back-end-quizz-project.onrender.com`
