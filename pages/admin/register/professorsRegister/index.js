@@ -87,7 +87,7 @@ async function createSubjectOptions(){
     let array = []
 
     const allProfessor = await getAllDisciplinasIfProfessorName()
-    allProfessor.disciplinas.forEach((disciplina)=>{
+    allProfessor.disciplinas?.forEach((disciplina)=>{
         if(!disciplina.prof_id){
             const object = {
                 text: `${disciplina.nome} | ${disciplina.ano} / ${disciplina.semestre}`,
