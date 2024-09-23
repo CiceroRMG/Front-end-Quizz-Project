@@ -11,7 +11,40 @@
 
     position: fixed;
     top: 50%;
-    right: 43%;
+    right: 47%;
+
   }
   @keyframes l6 {to{transform: rotate(1turn)}}
   
+  @media (max-width: 1035px){
+
+    .loader{
+      right: 46%;
+    }
+
+  }
+
+  @media (max-width: 775px){
+
+    .loader{
+      right: 44%;
+    }
+
+  }
+
+  @media (max-width: 560px){
+
+    .loader{
+      right: 43%;
+    }
+
+  }
+
+
+  @media (max-width: 410px){
+
+    .loader{
+      right: 42%;
+    }
+
+  }
