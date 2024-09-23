@@ -1,3 +1,4 @@
+import { baseUrl } from "../../scripts/config.js"
 import { getOnBackUserTypeByToken } from "../../scripts/fetchDbFunctions.js"
 
 const form = document.querySelector('.section-form')
@@ -43,7 +44,7 @@ export async function authenticationLogin(event) {
 
     if (loginValue.includes('@')) {
         email = loginValue;
-        sendToBackForAuthentication = await fetch('http://localhost:3333/login', {
+        sendToBackForAuthentication = await fetch(`${baseUrl}/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email, senha: passwordValue })
@@ -51,7 +52,7 @@ export async function authenticationLogin(event) {
         });
     } else if(loginValue.length == "8") {
         matricula = loginValue;
-        sendToBackForAuthentication = await fetch('http://localhost:3333/login', {
+        sendToBackForAuthentication = await fetch(`${baseUrl}/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ matricula: matricula, senha: passwordValue })

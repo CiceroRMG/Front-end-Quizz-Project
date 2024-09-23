@@ -1,4 +1,5 @@
 
+import { baseUrl } from "./config.js";
 import { checkIfValidToken } from "./pushToLoginPage.js";
 
 async function fetchWithToken(url, options = {}) {
@@ -23,7 +24,7 @@ async function fetchWithToken(url, options = {}) {
 }
 
 export async function registerDisciplina(objeto){
-    const pegando = await fetchWithToken('http://localhost:3333/disciplinas', {
+    const pegando = await fetchWithToken(`${baseUrl}/disciplinas`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(objeto)
@@ -39,7 +40,7 @@ export async function registerDisciplina(objeto){
 }
 
 export async function deleteDisciplinaById(id){
-    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/disciplinas/${id}`, {
         method: 'DELETE',
     });
 
@@ -53,7 +54,7 @@ export async function deleteDisciplinaById(id){
 }
 
 export async function editDisciplina(objeto, id){
-    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/disciplinas/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(objeto)
@@ -69,7 +70,7 @@ export async function editDisciplina(objeto, id){
 }
 
 export async function getAllDisciplinas(){
-    const pegando = await fetchWithToken('http://localhost:3333/disciplinas')
+    const pegando = await fetchWithToken(`${baseUrl}/disciplinas`)
 
     if (!pegando.ok) {
         return { status: pegando.status, msg: 'Não foi possível obter a resposta de requisitar todas as disciplinas' }
@@ -85,7 +86,7 @@ export async function getAllDisciplinas(){
 
 // função pega o usuario no db pelo parametro id
 export async function getOnBackUserById(id) {
-    const pegando = await fetchWithToken(`http://localhost:3333/users/${id}`)
+    const pegando = await fetchWithToken(`${baseUrl}/users/${id}`)
     if(!pegando){
         return console.log("A requisição de pegar o usuario pelo ID falhou")
     }
@@ -98,7 +99,7 @@ export async function getOnBackUserById(id) {
 
 // função pega o usuario no db pelo token
 export async function getOnBackUserByToken(token) {
-    const pegando = await fetchWithToken('http://localhost:3333/userToken', {
+    const pegando = await fetchWithToken(`${baseUrl}/userToken`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({ token })
@@ -115,7 +116,7 @@ export async function getOnBackUserByToken(token) {
 }
 
 export async function getOnBackUserIfLocalToken() {
-    const pegando = await fetchWithToken('http://localhost:3333/userToken/user', {
+    const pegando = await fetchWithToken(`${baseUrl}/userToken/user`, {
         method: 'GET',
       });
 
@@ -130,7 +131,7 @@ export async function getOnBackUserIfLocalToken() {
 }
 
 export async function getOnBackUserTypeByToken() {
-    const pegando = await fetchWithToken('http://localhost:3333/userToken')
+    const pegando = await fetchWithToken(`${baseUrl}/userToken`)
 
     if (!pegando.ok) {
         return { status: pegando.status, msg: 'Não foi possível obter a resposta do tipo do usuario pelo token' }
@@ -145,7 +146,7 @@ export async function getOnBackUserTypeByToken() {
 
 // função pega o usuario-disciplina no db pelo parametro id -> o parametro id pode ser tanto um id de aluno quanto um id de disciplina
 export async function getOnBackDisciplinasUsersTable(id) {
-    const pegando = await fetchWithToken(`http://localhost:3333/usersDisciplinas/${id}`)
+    const pegando = await fetchWithToken(`${baseUrl}/usersDisciplinas/${id}`)
     if(!pegando.ok){
         return ({status: pegando.status, msg: 'Esse id não esta vinculado a nenhum aluno e nenhuma disciplina'})
     }
@@ -157,7 +158,7 @@ export async function getOnBackDisciplinasUsersTable(id) {
 }
 
 export async function checkOnBackIfUserInDisciplina(userId, subjectId) {
-    const pegando = await fetchWithToken(`http://localhost:3333/usersDisciplinas/${userId}/${subjectId}`)
+    const pegando = await fetchWithToken(`${baseUrl}/usersDisciplinas/${userId}/${subjectId}`)
 
     if (!pegando.ok) {
         return { status: pegando.status, msg: 'Usuário não tem permissão para acessar a disciplina' }
@@ -169,7 +170,7 @@ export async function checkOnBackIfUserInDisciplina(userId, subjectId) {
 
 // função pega a disciplina no db pelo parametro id 
 export async function getOnBackDisciplinaById(id) {
-    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/${id}`);
+    const pegando = await fetchWithToken(`${baseUrl}/disciplinas/${id}`);
     if(!pegando){
         return console.log("A requisição de pegar discplina pelo ID falhou")
     }
@@ -181,7 +182,7 @@ export async function getOnBackDisciplinaById(id) {
 }
 
 export async function getAllDisciplinasIfProfessorName(){
-    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/painel/data`);
+    const pegando = await fetchWithToken(`${baseUrl}/disciplinas/painel/data`);
     if(!pegando){
         return console.log("A requisição de pegar todas as discplinas falhou")
     }
@@ -193,7 +194,7 @@ export async function getAllDisciplinasIfProfessorName(){
 }
 
 export async function getOnBackDisciplinasOfProfessorById(id) {
-    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/prof/${id}`);
+    const pegando = await fetchWithToken(`${baseUrl}/disciplinas/prof/${id}`);
     if(!pegando){
         return console.log("A requisição de pegar as discplinas do professor pelo ID falhou")
     }
@@ -204,7 +205,7 @@ export async function getOnBackDisciplinasOfProfessorById(id) {
 }
 
 export async function getOnBackDisciplinasOfProfessorByToken() {
-    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/prof`);
+    const pegando = await fetchWithToken(`${baseUrl}/disciplinas/prof`);
     if(!pegando){
         return console.log("A requisição de pegar as discplinas do professor pelo token falhou")
     }
@@ -217,7 +218,7 @@ export async function getOnBackDisciplinasOfProfessorByToken() {
 
 // o id parametro dessa função pode ser tanto um id de um quizz quanto o id de uma disciplina
 export async function getOnBackQuizzesById(id) {
-    const pegando = await fetchWithToken(`http://localhost:3333/quizzes/${id}`)
+    const pegando = await fetchWithToken(`${baseUrl}/quizzes/${id}`)
     if(!pegando){
         return console.log("A requisição de pegar quizz pelo ID falhou")
     }
@@ -228,7 +229,7 @@ export async function getOnBackQuizzesById(id) {
 }
 
 export async function getOnBackAllProfessor(){
-    const pegando = await fetchWithToken('http://localhost:3333/users/register/getAllProfessor')
+    const pegando = await fetchWithToken(`${baseUrl}/users/register/getAllProfessor`)
 
     if (!pegando.ok) {
         return { status: pegando.status, msg: 'Não foi possível obter a resposta de requisitar todos os professores' }
@@ -241,7 +242,7 @@ export async function getOnBackAllProfessor(){
 }
 
 export async function getAllStudents(){
-    const pegando = await fetchWithToken('http://localhost:3333/users/register/getAllStudents')
+    const pegando = await fetchWithToken(`${baseUrl}/users/register/getAllStudents`)
 
     if (!pegando.ok) {
         return { status: pegando.status, msg: 'Não foi possível obter a resposta de requisitar todos os alunos' }
@@ -255,7 +256,7 @@ export async function getAllStudents(){
 
 
 export async function deleteUserById(id){
-    const pegando = await fetchWithToken(`http://localhost:3333/users/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/users/${id}`, {
         method: 'DELETE',
     });
 
@@ -269,7 +270,7 @@ export async function deleteUserById(id){
 }
 
 export async function registerUser(objeto){
-    const pegando = await fetchWithToken('http://localhost:3333/users', {
+    const pegando = await fetchWithToken(`${baseUrl}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(objeto)
@@ -287,7 +288,7 @@ export async function registerUser(objeto){
 }
 
 export async function registerUserDisciplina(objeto){
-    const pegando = await fetchWithToken('http://localhost:3333/usersDisciplinas', {
+    const pegando = await fetchWithToken(`${baseUrl}/usersDisciplinas`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(objeto)
@@ -304,7 +305,7 @@ export async function registerUserDisciplina(objeto){
 }
 
 export async function editUserNoPassword(objeto, id){
-    const pegando = await fetchWithToken(`http://localhost:3333/users/adm/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/users/adm/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(objeto)
@@ -321,7 +322,7 @@ export async function editUserNoPassword(objeto, id){
 
 
 export async function deleteAllSubjectStudentRelation(id){
-    const pegando = await fetchWithToken(`http://localhost:3333/usersDisciplinas/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/usersDisciplinas/${id}`, {
         method: 'DELETE',
     });
 
@@ -335,7 +336,7 @@ export async function deleteAllSubjectStudentRelation(id){
 }
 
 export async function turnNullSubjectsProfId(id) {
-    const pegando = await fetchWithToken(`http://localhost:3333/disciplinas/null/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/disciplinas/null/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json'},
     });
@@ -350,7 +351,7 @@ export async function turnNullSubjectsProfId(id) {
 }
 
 export async function deleteQuizzById(id){
-    const pegando = await fetchWithToken(`http://localhost:3333/quizzes/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/quizzes/${id}`, {
         method: 'DELETE',
     });
 
@@ -364,7 +365,7 @@ export async function deleteQuizzById(id){
 }
 
 export async function registerQuiz(objeto){
-    const pegando = await fetchWithToken('http://localhost:3333/quizzes', {
+    const pegando = await fetchWithToken(`${baseUrl}/quizzes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(objeto)
@@ -380,7 +381,7 @@ export async function registerQuiz(objeto){
 }
 
 export async function editQuiz(objeto, id){
-    const pegando = await fetchWithToken(`http://localhost:3333/quizzes/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/quizzes/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(objeto)
@@ -396,7 +397,7 @@ export async function editQuiz(objeto, id){
 }
 
 export async function registerQuizQuestions(objeto, id){
-    const pegando = await fetchWithToken(`http://localhost:3333/quizzes/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/quizzes/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(objeto)
@@ -412,7 +413,7 @@ export async function registerQuizQuestions(objeto, id){
 }
 
 export async function generateQuestionIa(objeto){
-    const pegando = await fetchWithToken('http://localhost:3333/ia/generateQuiz', {
+    const pegando = await fetchWithToken(`${baseUrl}/ia/generateQuiz`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(objeto)
@@ -428,7 +429,7 @@ export async function generateQuestionIa(objeto){
 }
 
 export async function registerStudentAwnsers(objeto){
-    const pegando = await fetchWithToken(`http://localhost:3333/respostas/`, {
+    const pegando = await fetchWithToken(`${baseUrl}/respostas/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(objeto)
@@ -444,7 +445,7 @@ export async function registerStudentAwnsers(objeto){
 }
 
 export async function verifyUserAttempts(id){
-    const pegando = await fetchWithToken(`http://localhost:3333/respostas/verifyAttempts/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/respostas/verifyAttempts/${id}`, {
         method: 'GET',
     });
 
@@ -458,7 +459,7 @@ export async function verifyUserAttempts(id){
 }
 
 export async function getUserAttempts(id){
-    const pegando = await fetchWithToken(`http://localhost:3333/respostas/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/respostas/${id}`, {
         method: 'GET',
     });
 
@@ -473,7 +474,7 @@ export async function getUserAttempts(id){
 
 
 export async function getUserAttemptById(id){
-    const pegando = await fetchWithToken(`http://localhost:3333/respostas/attempt/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/respostas/attempt/${id}`, {
         method: 'GET',
     });
 
@@ -488,7 +489,7 @@ export async function getUserAttemptById(id){
 
 
 export async function getAllStudentsRespondedQuiz(id){
-    const pegando = await fetchWithToken(`http://localhost:3333/respostas/responses/${id}`, {
+    const pegando = await fetchWithToken(`${baseUrl}/respostas/responses/${id}`, {
         method: 'GET',
     });
 

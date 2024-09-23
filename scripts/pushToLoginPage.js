@@ -1,5 +1,5 @@
 // toda vez que a pagina iniciar vai rodar as seguintes funções
-import { based_url } from "./config.js"
+import { based_url, baseUrl } from "./config.js"
 
 
 export async function checkIfValidToken(){
@@ -31,7 +31,7 @@ export async function checkIfValidToken(){
 
 // função de requisição só pra ver se o token expirou ou não
 export async function getOnBackForTestIfTokenIsValid(token) {
-    const pegando = await fetch('http://localhost:3333/userToken', {
+    const pegando = await fetch(`${baseUrl}/userToken`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'authorization': token},
         body: JSON.stringify({ token })
@@ -49,7 +49,7 @@ export async function getOnBackForTestIfTokenIsValid(token) {
 
 // função de requisição para pegar um token novo no back
 export async function getOnBackANewToken(refreshToken){
-    const pegando = await fetch('http://localhost:3333/refreshToken', {
+    const pegando = await fetch(`${baseUrl}/refreshToken`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'authorization': refreshToken },
         body: JSON.stringify({ refreshToken })
@@ -97,7 +97,7 @@ async function tryMakeANewTokenIfUserHaveARefreshToken(){
 export async function logout(){
     const refreshToken = localStorage.getItem('refreshToken')
 
-    const response = await fetch('http://localhost:3333/refreshToken/delete', {
+    const response = await fetch(`${baseUrl}/refreshToken/delete`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'authorization': refreshToken },
         body: JSON.stringify({ refreshToken })
