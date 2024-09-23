@@ -12,6 +12,7 @@ import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 import { buttom } from "../../../components/button/buttom.js"
 import { Toaster } from "../../../components/toaster/toaster.js"
 import { Dialog } from "../../../components/dialog/dialog.js"
+import { loader } from "../../../scripts/loader.js"
 
 
 const headerContent =  await createHeadObject()
@@ -240,6 +241,8 @@ function page(){
     main.append(divQuizzes)
 
     document.body.append(div)
+
+    loader()
 }
 
 page()

@@ -12,6 +12,7 @@ import { LongText } from "../../../components/longText/longText.js"
 import { formEventQuiz } from "./quizzRegisterForm.js"
 import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 import { eventFocusInputs } from "./quizRegisterValidations.js"
+import { loader } from "../../../scripts/loader.js"
 
 
 const header = {
@@ -272,6 +273,8 @@ function quizRegisterPage(){
     main.append(form)
 
     document.body.append(div)
+
+    loader()
 }
 
 quizRegisterPage()

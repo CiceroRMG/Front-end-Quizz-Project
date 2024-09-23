@@ -7,6 +7,7 @@ import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { based_url } from "../../../scripts/config.js"
 import { getOnBackDisciplinasOfProfessorById, getOnBackUserByToken } from "../../../scripts/fetchDbFunctions.js"
 import { getTokenOnLocalStorage } from "../../../scripts/getTokenOnLocalStorage.js"
+import { loader } from "../../../scripts/loader.js"
 import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { NavBarProfessor } from "../navBarProfessor.js"
 
@@ -89,6 +90,8 @@ function page(){
     }
 
     document.body.append(div)
+
+    loader()
 }
 
 page()

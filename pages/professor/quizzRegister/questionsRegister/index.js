@@ -10,6 +10,7 @@ import { NavBarProfessor } from "../../navBarProfessor.js"
 import { getOnBackQuizzesById } from "../../../../scripts/fetchDbFunctions.js"
 import { Question } from "../../../../components/question/question.js"
 import { formEventQuestions } from "./questionsRegisterForm.js"
+import { loader } from "../../../../scripts/loader.js"
 
 export function takeIdByParams(){
     const params = new URLSearchParams(window.location.search)
@@ -106,6 +107,8 @@ function quizRegisterPage(){
     main.append(form)
 
     document.body.append(div)
+
+    loader()
 }
 
 quizRegisterPage()

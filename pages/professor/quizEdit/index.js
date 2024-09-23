@@ -12,6 +12,7 @@ import { LongText } from "../../../components/longText/longText.js"
 import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 import { formEventQuizEdit } from "./quizEditForm.js"
 import { eventFocusInputs } from "../quizzRegister/quizRegisterValidations.js"
+import { loader } from "../../../scripts/loader.js"
 
 const quizInfos = await quizObject()
 
@@ -277,6 +278,8 @@ function quizRegisterPage(){
     main.append(form)
 
     document.body.append(div)
+
+    loader()
 }
 
 quizRegisterPage()

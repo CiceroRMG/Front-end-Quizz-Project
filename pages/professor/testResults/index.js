@@ -7,6 +7,7 @@ import { getOnBackQuizzesById, getUserAttemptById } from "../../../scripts/fetch
 import { SideCard } from "../../../components/sideCard/sideCard.js"
 import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 import { NavBarProfessor } from "../navBarProfessor.js"
+import { loader } from "../../../scripts/loader.js"
 
 const header = await createHeaderObject()
 
@@ -213,6 +214,8 @@ async function quizStartPage(){
     main.append(form)
 
     document.body.append(div)
+
+    loader()
 }
 
 await quizStartPage()

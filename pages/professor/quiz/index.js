@@ -11,6 +11,7 @@ import { Empty } from "../../../components/empty/empty.js"
 import { NavBarProfessor } from "../navBarProfessor.js"
 import { InformationsBox } from "../../../components/informations/informations.js"
 import { deleteQuizzById, getAllStudentsRespondedQuiz, getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
+import { loader } from "../../../scripts/loader.js"
 
 
 const header = await createHeaderObject()
@@ -222,6 +223,8 @@ function quizPage(){
     main.append(mainContent)
 
     document.body.append(div)
+
+    loader()
 }
 
 quizPage()
