@@ -15,6 +15,7 @@ import { ListItens } from "../../../../components/listItens/listItens.js"
 import { Dialog } from "../../../../components/dialog/dialog.js"
 import { Empty } from "../../../../components/empty/empty.js"
 import { Toaster } from "../../../../components/toaster/toaster.js"
+import { loader } from "../../../../scripts/loader.js"
 
 
 const subjectsHeader = {
@@ -359,6 +360,8 @@ function subjectsEditPage(){
     main.append(form)
 
     document.body.append(div)
+
+    loader()
 }
 
 subjectsEditPage()

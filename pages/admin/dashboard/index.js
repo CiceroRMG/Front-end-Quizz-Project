@@ -4,6 +4,7 @@ import { ListItens } from "../../../components/listItens/listItens.js"
 import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
 import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { based_url } from "../../../scripts/config.js"
+import { loader } from "../../../scripts/loader.js"
 import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { NavBarAdmin } from "../navBarAdm.js"
 
@@ -93,4 +94,6 @@ function page(){
     main.append(ListItens(contentAll))
 
     document.body.append(div)
+
+    loader()
 }

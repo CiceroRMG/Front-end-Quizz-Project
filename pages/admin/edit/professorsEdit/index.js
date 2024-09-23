@@ -11,6 +11,7 @@ import { NavBarAdmin } from "../../navBarAdm.js"
 import { eventFocusInputs } from "../../register/studentsRegister/studentsFormValidations.js"
 import { takeIdByParams } from "../studentsEdit/formEditStudent.js"
 import { formEditProfessors } from "./formEditProfessors.js"
+import { loader } from "../../../../scripts/loader.js"
 
 
 const professorsHeader = {
@@ -182,6 +183,7 @@ function studentsEditPage(){
     main.append(form)
 
     document.body.append(div)
+    loader()
 }
 
 studentsEditPage()

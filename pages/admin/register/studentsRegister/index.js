@@ -10,6 +10,7 @@ import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
 import { formEventStudents } from "./formEventStudent.js"
 import { eventFocusInputs } from "./studentsFormValidations.js"
+import { loader } from "../../../../scripts/loader.js"
 
 
 const studentsHeader = {
@@ -142,6 +143,8 @@ function studentsRegisterPage(){
     main.append(form)
 
     document.body.append(div)
+
+    loader()
 }
 
 studentsRegisterPage()

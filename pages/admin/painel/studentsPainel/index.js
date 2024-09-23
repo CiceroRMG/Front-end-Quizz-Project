@@ -7,6 +7,7 @@ import { Table } from "../../../../components/table/table.js"
 import { Toaster } from "../../../../components/toaster/toaster.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { getAllStudents } from "../../../../scripts/fetchDbFunctions.js"
+import { loader } from "../../../../scripts/loader.js"
 import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
 import { studentRegisterBtn, studentsHeader, tableDataStudents } from "./studentsLogic.js"
@@ -61,6 +62,8 @@ async function studentsPanelPage(){
     }
 
     document.body.append(div)
+
+    loader()
 }
 
 

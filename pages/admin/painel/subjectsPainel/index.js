@@ -7,6 +7,7 @@ import { Table } from "../../../../components/table/table.js"
 import { Toaster } from "../../../../components/toaster/toaster.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { getAllDisciplinasIfProfessorName } from "../../../../scripts/fetchDbFunctions.js"
+import { loader } from "../../../../scripts/loader.js"
 import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
 import { tableAnimation } from "../../tableAnimation.js"
@@ -64,7 +65,7 @@ async function subjectsPanelPage(){
     }
 
     document.body.append(div)
-
+    loader()
 }
 
 await subjectsPanelPage()
