@@ -92,7 +92,7 @@ async function createSubjectOptions(){
     if(!allProfessor.disciplinas){
         return
     }
-    allProfessor.disciplinas.forEach((disciplina)=>{
+    allProfessor.disciplinas?.forEach((disciplina)=>{
         if(disciplina.prof_id){
             if(disciplina.prof_id._id === takeIdByParams()){
                 const object = {
