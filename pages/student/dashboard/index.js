@@ -7,13 +7,15 @@ import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { based_url } from "../../../scripts/config.js"
 import { getOnBackDisciplinasUsersTable, getOnBackUserByToken } from "../../../scripts/fetchDbFunctions.js"
 import { getTokenOnLocalStorage } from "../../../scripts/getTokenOnLocalStorage.js"
+import { loader } from "../../../scripts/loader.js"
 import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { NavBarStudents } from "../navBarStudents.js"
 
+const takeUserByToken = await getOnBackUserByToken(getTokenOnLocalStorage())
 
 const headerContent = {
     title: "Dashboard",
-    subtitle: ("Bem vindo, " + await createNameOfStudent())
+    subtitle: ("Bem vindo, " + takeUserByToken.usuario.nome)
 }
 
 const titles = [
@@ -30,16 +32,9 @@ const contentAll = {
     itens: itens
 }
 
-async function createNameOfStudent(){
-    const takeUserByToken = await getOnBackUserByToken(getTokenOnLocalStorage())
-    return takeUserByToken.usuario.nome
-}
-
 export async function createArrayObjectsOfStudentSubjects(){
 
-    const takeUserById = await getOnBackUserByToken(getTokenOnLocalStorage())
-
-    const takeRelationUserSubject = await getOnBackDisciplinasUsersTable(takeUserById.usuario._id)
+    const takeRelationUserSubject = await getOnBackDisciplinasUsersTable(takeUserByToken.usuario._id)
     const disciplinasDoUsuario = takeRelationUserSubject.disciplinasComAlunos
 
     if(!disciplinasDoUsuario){
@@ -70,10 +65,8 @@ export async function createArrayObjectsOfStudentSubjects(){
     return array
 }
 
-
 await checkIfValidToken();
 await checkTypeUser('aluno')
-
 
 function page(){
     const div = AppLayout()
@@ -91,6 +84,7 @@ function page(){
     }
 
     document.body.append(div)
+    loader()
 }
 
 page()

@@ -10,6 +10,7 @@ import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 import { Timer } from "../../../components/timer/timer.js"
 import { Dialog } from "../../../components/dialog/dialog.js"
 import { formEventStudentQuiz, successSubmit } from "./quizStartForm.js"
+import { loader } from "../../../scripts/loader.js"
 
 const header = await createHeaderObject()
 
@@ -276,6 +277,7 @@ async function quizStartPage(){
 
     document.body.append(div)
     
+    loader()
     await formEventStudentQuiz()
 }
 

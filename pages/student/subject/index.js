@@ -6,6 +6,7 @@ import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
 import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { based_url } from "../../../scripts/config.js"
 import { getOnBackDisciplinaById, getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
+import { loader } from "../../../scripts/loader.js"
 import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 import { NavBarStudents } from "../navBarStudents.js"
@@ -129,6 +130,8 @@ function page(){
     }
 
     document.body.append(div)
+
+    loader()
 }
 
 page()

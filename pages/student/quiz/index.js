@@ -10,6 +10,7 @@ import { getOnBackQuizzesById, getUserAttempts, verifyUserAttempts } from "../..
 import { NavBarStudents } from "../navBarStudents.js"
 import { SideCard } from "../../../components/sideCard/sideCard.js"
 import { Toaster } from "../../../components/toaster/toaster.js"
+import { loader } from "../../../scripts/loader.js"
 
 const quizReq = await getOnBackQuizzesById(takeIdByParams())
 
@@ -258,6 +259,8 @@ async function quizPage(){
     main.append(mainContent)
 
     document.body.append(div)
+
+    loader()
 }
 
 quizPage()
