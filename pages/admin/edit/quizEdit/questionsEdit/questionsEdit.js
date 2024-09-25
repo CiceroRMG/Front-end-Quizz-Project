@@ -38,7 +38,7 @@ export async function formEventQuestionsEdit(){
     }
 
     for(let num = 1; num <= 10; num++){
-        putInputsValue(`#pergunta${num}`, num)
+        putInputsValue(`#pergunta${num}`, num, quizQuestionsReq)
     }
 
     const form = document.querySelector(".register-form")
