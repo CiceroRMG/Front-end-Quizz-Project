@@ -1,50 +1,41 @@
-/* HTML: <div class="loader"></div> */
-.loader {
-    width: 50px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    padding: 3px;
-    background: 
-      radial-gradient(farthest-side,#ffa516 95%,#0000) 50% 0/12px 12px no-repeat,
-      radial-gradient(farthest-side,#0000 calc(100% - 5px),#ffa516 calc(100% - 4px)) content-box;
-    animation: l6 2s infinite ;
 
-    position: fixed;
-    top: 50%;
-    right: 47%;
-
-  }
-  @keyframes l6 {to{transform: rotate(1turn)}}
+.div-load{
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   
-  @media (max-width: 1035px){
+  /* HTML: <div class="loader"></div> */
+.loading {
+  width: 100px;
+  aspect-ratio: 1;
+  padding: 10px;
+  box-sizing: border-box;
+  display: grid;
+  background: #fff;
+  filter: blur(5px) contrast(10) hue-rotate(330deg);
+  mix-blend-mode: darken;
+}
+.loading:before,
+.loading:after{ 
+  content: "";
+  grid-area: 1/1; 
+  width: 40px;
+  height: 40px;
+  background: #cc24ff;
+  animation: l7 2s infinite;
+}
+.loading:after{ 
+  animation-delay: -1s;
+}
 
-    .loader{
-      right: 46%;
-    }
-
-  }
-
-  @media (max-width: 775px){
-
-    .loader{
-      right: 44%;
-    }
-
-  }
-
-  @media (max-width: 560px){
-
-    .loader{
-      right: 43%;
-    }
-
-  }
-
-
-  @media (max-width: 410px){
-
-    .loader{
-      right: 42%;
-    }
-
-  }
+@keyframes l7{
+  0%   {transform: translate(   0,0)}
+  25%  {transform: translate(100%,0)}
+  50%  {transform: translate(100%,100%)}
+  75%  {transform: translate(   0,100%)}
+  100% {transform: translate(   0,0)}
+}
