@@ -65,16 +65,14 @@ export async function createArrayObjectsOfStudentSubjects(){
     return array
 }
 
-await checkIfValidToken();
-await checkTypeUser('aluno')
-
-function page(){
+async function page(){
+    
     const div = AppLayout()
-
+    
     const itemNav = NavBarStudents.querySelector('.nav-item')
     itemNav.classList.add('selected')
     div.append(NavBarStudents)
-
+    
     const main = MainLayout()
     div.append(main)
     main.append(Header(headerContent))
@@ -82,9 +80,10 @@ function page(){
     if(itens.length < 1){
         main.append(Empty({title: "Não possui disciplinas cadastradas"}))
     }
-
+    
     document.body.append(div)
     loader()
+    await checkTypeUser('aluno')
 }
 
-page()
+await page()

@@ -170,7 +170,7 @@ export async function createArrayOfPostedQuizzes(){
                     }
                 ],
                 click: true,
-                onclick: ()=> window.location.href = `${based_url}/pages/professor/quizEdit/quizEdit.html?id=${quiz._id}`,
+                onclick: () => window.location.href = `${based_url}/pages/professor/quizEdit/quizEdit.html?id=${quiz._id}`,
                 id: quiz._id
             }
             arrayArchived.push(object)

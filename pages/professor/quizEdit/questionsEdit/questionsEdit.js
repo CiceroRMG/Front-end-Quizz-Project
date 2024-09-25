@@ -32,10 +32,15 @@ let perguntasArray = []
 
 export async function formEventQuestionsEdit(){
 
-    for(let num = 1; num <= 10; num++){
-        await putInputsValue(`#pergunta${num}`, num)
+    const quizQuestionsReq = await getOnBackQuizzesById(takeIdByParams())
+    if(!quizQuestionsReq){
+        return console.log("A requisição de buscar o quiz pelo ID falhou");
     }
 
+    for(let num = 1; num <= 10; num++){
+        putInputsValue(`#pergunta${num}`, num, quizQuestionsReq)
+    }
+    
     const form = document.querySelector(".register-form")
 
     const createBtn = document.getElementById('registerBtn')
@@ -50,7 +55,6 @@ export async function formEventQuestionsEdit(){
 
     form.addEventListener('submit', async (event)=>{
         event.preventDefault()
-
         let req = {}
         perguntasArray = []
         
@@ -166,13 +170,11 @@ function removeOutlines() {
   }
 
 
-async function putInputsValue(id, arrayIndex){
+function putInputsValue(id, arrayIndex, req){
 
     const index = arrayIndex - 1
 
-    const quizQuestionsReq = await getOnBackQuizzesById(takeIdByParams())
-    
-    const quizQuestions = quizQuestionsReq.quizz.perguntas[index]
+    const quizQuestions = req.quizz.perguntas[index]
     
     if(!quizQuestions){
         return

@@ -3,6 +3,11 @@ import { getOnBackUserTypeByToken } from "./fetchDbFunctions.js"
 
 export async function checkTypeUser(type){
     const getType = await getOnBackUserTypeByToken()
+
+    if(!getType){
+        console.log("Algo deu errado na requisições");
+        
+    }
 ;    
     if (getType.usuario !== type){
         if(getType.usuario === "admin"){
@@ -14,7 +19,10 @@ export async function checkTypeUser(type){
         if(getType.usuario === "aluno"){
             window.location.href = `${based_url}/pages/student/dashboard/dashboard.html`
         }
-    }
+        else {
+            window.location.href = `${based_url}/pages/login/login.html` 
+        }
+    } 
 
     return true
 }

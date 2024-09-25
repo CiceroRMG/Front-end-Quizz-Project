@@ -53,8 +53,7 @@ export async function formEventQuestions(){
 
         for(let num = 1; num <= 10; num++){
             takeInputsValueAndCreateObjectQuestion(`#pergunta${num}`)
-            console.log(perguntasArray);
-            
+
         }
 
         for(let i = 0; i < perguntasArray.length; i++){

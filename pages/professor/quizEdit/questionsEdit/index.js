@@ -30,11 +30,14 @@ const submitBtn = {
 
 async function createHeaderObject(){
     const quizReq = await getOnBackQuizzesById(takeIdByParams())
+    if(!quizReq){
+        return console.log("Erro ao fazer requisição para rota de quizzes");
+    }
 
     const object = {
-        title: quizReq.quizz.titulo,
+        title: quizReq.quizz ? quizReq.quizz.titulo : "Quizz",
         backBtn: {
-            onclick:()=>{
+            onclick:()=> {
                 window.location.href = `/pages/professor/quizEdit/quizEdit.html?id=${quizReq.quizz._id}`
             }
         },
@@ -50,11 +53,7 @@ function createFormLayout(){
     return form
 }
 
-
-
-await checkIfValidToken();
 await checkTypeAdminAndProfessor('admin', 'professor')
-
 
 async function quizRegisterPage(){
     const div = AppLayout()
@@ -107,7 +106,7 @@ async function quizRegisterPage(){
     document.body.append(div)
 
     loader()
-    formEventQuestionsEdit()
+    await formEventQuestionsEdit()
 }
 
-quizRegisterPage()
+await quizRegisterPage()
