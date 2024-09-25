@@ -32,8 +32,13 @@ let perguntasArray = []
 
 export async function formEventQuestionsEdit(){
 
+    const quizQuestionsReq = await getOnBackQuizzesById(takeIdByParams())
+    if(!quizQuestionsReq){
+        return console.log("Erro na requisição de quiz por ID");
+    }
+
     for(let num = 1; num <= 10; num++){
-        await putInputsValue(`#pergunta${num}`, num)
+        putInputsValue(`#pergunta${num}`, num)
     }
 
     const form = document.querySelector(".register-form")
@@ -166,13 +171,11 @@ function removeOutlines() {
   }
 
 
-async function putInputsValue(id, arrayIndex){
+function putInputsValue(id, arrayIndex, req){
 
     const index = arrayIndex - 1
-
-    const quizQuestionsReq = await getOnBackQuizzesById(takeIdByParams())
     
-    const quizQuestions = quizQuestionsReq.quizz.perguntas[index]
+    const quizQuestions = req.quizz.perguntas[index]
     
     if(!quizQuestions){
         return
