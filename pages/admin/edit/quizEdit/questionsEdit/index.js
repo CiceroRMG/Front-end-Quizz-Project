@@ -97,15 +97,10 @@ async function quizRegisterPage(){
     submitBtnDiv.style.margin = "auto 0 auto 0"
     submitBtnDiv.style.paddingBottom = "2rem"
 
-    const saveButton = buttom(saveBtn)
-    saveButton.id = "saveBtn"
-    saveButton.name = "action"
-
     const registerButton = buttom(submitBtn)
     registerButton.id = "registerBtn"
     registerButton.name = "action"
 
-    submitBtnDiv.append(saveButton)
     submitBtnDiv.append(registerButton)
 
     form.append(submitBtnDiv)

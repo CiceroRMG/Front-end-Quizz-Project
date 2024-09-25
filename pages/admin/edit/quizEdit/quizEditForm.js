@@ -54,12 +54,6 @@ export async function formEventQuizEdit(){
         action = 'register';
     })
 
-    const saveBtnValue = document.getElementById('saveBtn')
-    saveBtnValue.addEventListener('click', ()=>{
-        action = 'save';
-    })
-    
-
     form.addEventListener('submit', async (event)=>{
         event.preventDefault()
 

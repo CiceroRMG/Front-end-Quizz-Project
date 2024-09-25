@@ -48,11 +48,6 @@ export async function formEventQuestionsEdit(){
         action = 'register';
     })
 
-    const saveBtnValue = document.getElementById('saveBtn')
-    saveBtnValue.addEventListener('click', ()=>{
-        action = 'save';
-    })
-
     form.addEventListener('submit', async (event)=>{
         event.preventDefault()
 
@@ -65,7 +60,6 @@ export async function formEventQuestionsEdit(){
         }
 
         for(let i = 0; i < perguntasArray.length; i++){
-            console.log(perguntasArray[i].alternativas);
             perguntasArray[i].alternativas = shuffleArray(perguntasArray[i].alternativas);
         }
 

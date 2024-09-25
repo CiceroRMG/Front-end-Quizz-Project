@@ -269,15 +269,11 @@ function quizRegisterPage(){
     submitBtnDiv.style.gap = "1rem"
     submitBtnDiv.style.margin = "auto 0 auto 0"
 
-    const saveButton = buttom(saveBtn)
-    saveButton.id = "saveBtn"
-    saveButton.name = "action"
 
     const registerButton = buttom(submitBtn)
     registerButton.id = "registerBtn"
     registerButton.name = "action"
 
-    submitBtnDiv.append(saveButton)
     submitBtnDiv.append(registerButton)
 
 
