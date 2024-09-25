@@ -11,6 +11,7 @@ import { Question } from "../../../../../components/question/question.js"
 import { formEventQuestionsEdit } from "./questionsEdit.js"
 import { takeIdByParams } from "../../../../../scripts/takeIdByParams.js"
 import { NavBarAdmin } from "../../../navBarAdm.js"
+import { loader } from "../../../../../scripts/loader.js"
 
 
 const header = await createHeaderObject()
@@ -113,6 +114,7 @@ async function quizRegisterPage(){
     document.body.append(div)
 
     formEventQuestionsEdit()
+    loader()
 }
 
 quizRegisterPage()
