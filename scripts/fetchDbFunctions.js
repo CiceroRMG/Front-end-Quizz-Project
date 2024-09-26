@@ -3,13 +3,6 @@ import { baseUrl } from "./config.js";
 import { checkIfValidToken } from "./pushToLoginPage.js";
 
 async function fetchWithToken(url, options = {}) {
-    // Verifica e renova o token se necessário
-    // const tokenIsValid = await checkIfValidToken();
-    // if (!tokenIsValid) {
-    //     console.log("Token e refreshtoken inválido e a atualização deles falhou também");
-    //     return null;
-    // }
-
     const token = window.localStorage.getItem('token');
 
     // Atualiza o token do header da requisição
@@ -19,6 +12,13 @@ async function fetchWithToken(url, options = {}) {
     options.headers['authorization'] = `${token}`;
 
     const response = await fetch(url, options);
+    if(response.status === 401){
+        const tokenIsValid = await checkIfValidToken();
+        if (!tokenIsValid) {
+            console.log("Token e refreshtoken inválido e a atualização deles falhou também");
+            return null;
+        }
+    }
 
     return response;
 }
