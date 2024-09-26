@@ -9,9 +9,10 @@ import { SideCard } from "../../../components/sideCard/sideCard.js"
 import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 import { loader } from "../../../scripts/loader.js"
 
+const req = await getOnBackQuizzesById(takeIdByParams())
+
 const header = await createHeaderObject()
 
-const req = await getOnBackQuizzesById(takeIdByParams())
 
 const attemptReq = await getUserAttemptById(takeAttemptByParams())
 
