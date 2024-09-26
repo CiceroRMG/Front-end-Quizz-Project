@@ -4,17 +4,16 @@ import { Header } from "../../../components/header/header.js"
 import { ListItens } from "../../../components/listItens/listItens.js"
 import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
 import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
-import { based_url } from "../../../scripts/config.js"
 import { getOnBackDisciplinasOfProfessorById, getOnBackUserByToken } from "../../../scripts/fetchDbFunctions.js"
 import { getTokenOnLocalStorage } from "../../../scripts/getTokenOnLocalStorage.js"
 import { loader } from "../../../scripts/loader.js"
-import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { NavBarProfessor } from "../navBarProfessor.js"
 
+const takeUserById = await getOnBackUserByToken(getTokenOnLocalStorage())
 
 const headerContent = {
     title: "Dashboard",
-    subtitle: ("Bem vindo, Prof. " + await createName())
+    subtitle: ("Bem vindo, Prof. " + takeUserById.usuario.nome)
 }
 
 const titles = [
@@ -31,14 +30,7 @@ const contentAll = {
     itens: itens
 }
 
-async function createName(){
-    const takeUserByToken = await getOnBackUserByToken(getTokenOnLocalStorage())
-    return takeUserByToken.usuario.nome
-}
-
 export async function createArrayObjectsOfStudentSubjects(){
-
-    const takeUserById = await getOnBackUserByToken(getTokenOnLocalStorage())
 
     const takeRelationUserSubject = await getOnBackDisciplinasOfProfessorById(takeUserById.usuario._id)
     const disciplinasDoUsuario = takeRelationUserSubject.disciplinas
@@ -58,7 +50,7 @@ export async function createArrayObjectsOfStudentSubjects(){
                 },
             ],
             click: true,
-            onclick: ()=> window.location.href = `${based_url}/pages/professor/subject/subject.html?id=${disciplina._id}`
+            onclick: ()=> window.location.href = `/pages/professor/subject/subject.html?id=${disciplina._id}`
         }
         
         array.push(object)
@@ -66,11 +58,6 @@ export async function createArrayObjectsOfStudentSubjects(){
 
     return array
 }
-
-
-await checkIfValidToken();
-await checkTypeUser('professor')
-
 
 function page(){
     const div = AppLayout()
@@ -95,3 +82,4 @@ function page(){
 }
 
 page()
+await checkTypeUser('professor')

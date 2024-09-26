@@ -9,9 +9,9 @@ import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 import { NavBarProfessor } from "../navBarProfessor.js"
 import { loader } from "../../../scripts/loader.js"
 
-const header = await createHeaderObject()
-
 const req = await getOnBackQuizzesById(takeIdByParams())
+
+const header = await createHeaderObject()
 
 const attemptReq = await getUserAttemptById(takeAttemptByParams())
 
@@ -61,14 +61,13 @@ export function takeAttemptByParams(){
 }
 
 async function createHeaderObject(){
-    const quizReq = await getOnBackQuizzesById(takeIdByParams())
 
     const object = {
-        title: quizReq.quizz.titulo,
-        subtitle: quizReq.quizz.disciplina_id.nome,
+        title: req.quizz.titulo,
+        subtitle: req.quizz.disciplina_id.nome,
         backBtn: {
             onclick: ()=>{
-                window.location.href = `/pages/professor/quiz/quiz.html?id=${quizReq.quizz._id}`
+                window.location.href = `/pages/professor/quiz/quiz.html?id=${req.quizz._id}`
             }
         }
     }
@@ -144,9 +143,6 @@ async function QuestionStudentResults({question = {title, content, id}, awnsers 
     return div
 }
 
-await checkIfValidToken();
-await checkTypeUser('professor')
-
 async function quizStartPage(){
     const div = AppLayout()
 
@@ -220,3 +216,4 @@ async function quizStartPage(){
 
 await quizStartPage()
 putStudentResponses()
+await checkTypeUser('professor')

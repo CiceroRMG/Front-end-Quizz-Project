@@ -4,7 +4,6 @@ import { Header } from "../../../components/header/header.js"
 import { Input } from "../../../components/input/input.js"
 import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
 import { Select } from "../../../components/select/select.js"
-import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { getOnBackDisciplinaById, getOnBackDisciplinasOfProfessorByToken } from "../../../scripts/fetchDbFunctions.js"
 import { NavBarProfessor } from "../navBarProfessor.js"
@@ -14,6 +13,8 @@ import { takeIdByParams } from "../../../scripts/takeIdByParams.js"
 import { eventFocusInputs } from "./quizRegisterValidations.js"
 import { loader } from "../../../scripts/loader.js"
 
+const subjectId = takeIdByParams()
+const subject = await getOnBackDisciplinaById(subjectId)
 
 const header = {
     title: "Informações do Quiz",
@@ -29,7 +30,6 @@ const inputQuizzName = {
     error: "Digite um nome válido",
     style: "outline"
 }
-
 
 const selectSubjects = {  
     id : "selectDisciplinas", 
@@ -171,10 +171,8 @@ function putDateOnInputs(){
 }
 
 async function putPreSelectSubjectIfHaveParams() {
-    const subjectId = takeIdByParams()
     let preSelect = {}
     if(subjectId){
-        const subject = await getOnBackDisciplinaById(subjectId)
         if(subject){
             preSelect = {
                 content: [subject.disciplina.nome + " | " + subject.disciplina.ano + " / " + subject.disciplina.semestre], 
@@ -187,10 +185,8 @@ async function putPreSelectSubjectIfHaveParams() {
 }
 
 async function BackBtnHrefIfHaveParams() {
-    const subjectId = takeIdByParams()
     let onClickAction
-    if(subjectId){
-        const subject = await getOnBackDisciplinaById(subjectId)   
+    if(subjectId){  
         onClickAction = () => {
                 window.location.href = `/pages/professor/subject/subject.html?id=${subject.disciplina._id}`
         }
@@ -216,9 +212,6 @@ async function createSubjectOptions(){
 
     return array
 }
-
-await checkIfValidToken();
-await checkTypeUser('professor')
 
 function quizRegisterPage(){
     const div = AppLayout()
@@ -279,6 +272,6 @@ function quizRegisterPage(){
 
 quizRegisterPage()
 putDateOnInputs()
-
+await checkTypeUser('professor')
 formEventQuiz()
 eventFocusInputs()

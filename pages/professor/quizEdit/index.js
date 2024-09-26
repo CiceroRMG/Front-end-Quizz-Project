@@ -205,26 +205,6 @@ function createDateInputs(text, id, value){
     return div
 }
 
-
-// async function createSubjectOptions(){
-//     let array = []
-
-//     const allProfessorSubjects = await getOnBackDisciplinasOfProfessorByToken()
-//     allProfessorSubjects.disciplinas.forEach((disciplina)=>{
-//         const object = {
-//             text: `${disciplina.nome} | ${disciplina.ano} / ${disciplina.semestre}`,
-//             value: disciplina._id
-//         }
-//         array.push(object)   
-//     })
-
-//     return array
-// }
-
-
-await checkIfValidToken();
-await checkTypeAdminAndProfessor('admin', 'professor')
-
 function quizRegisterPage(){
     const div = AppLayout()
 
@@ -283,6 +263,8 @@ function quizRegisterPage(){
 }
 
 quizRegisterPage()
+
+await checkTypeAdminAndProfessor('admin', 'professor')
 
 formEventQuizEdit()
 eventFocusInputs()

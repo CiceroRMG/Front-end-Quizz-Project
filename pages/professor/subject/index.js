@@ -116,7 +116,7 @@ export async function createArrayOfPostedQuizzes(){
                     },
                 ],
                 click: true,
-                onclick: ()=> window.location.href = `${based_url}/pages/professor/quiz/quiz.html?id=${quiz._id}`
+                onclick: ()=> window.location.href = `/pages/professor/quiz/quiz.html?id=${quiz._id}`
             }
             arrayPosted.push(object)
             
@@ -170,7 +170,7 @@ export async function createArrayOfPostedQuizzes(){
                     }
                 ],
                 click: true,
-                onclick: () => window.location.href = `${based_url}/pages/professor/quizEdit/quizEdit.html?id=${quiz._id}`,
+                onclick: () => window.location.href = `/pages/professor/quizEdit/quizEdit.html?id=${quiz._id}`,
                 id: quiz._id
             }
             arrayArchived.push(object)
@@ -187,14 +187,6 @@ function createDivQuizzes(){
     div.classList.add('quizzes-div')
     return (div)
 }
-
-
-
-await checkIfValidToken();
-await checkTypeUser('professor')
-
-
-
 
 function page(){
     const div = AppLayout()
@@ -246,3 +238,4 @@ function page(){
 }
 
 page()
+await checkTypeUser('professor')

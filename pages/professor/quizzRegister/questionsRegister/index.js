@@ -1,10 +1,7 @@
 import { AppLayout } from "../../../../components/appLayout/appLayout.js"
 import { buttom } from "../../../../components/button/buttom.js"
 import { Header } from "../../../../components/header/header.js"
-import { Input } from "../../../../components/input/input.js"
 import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
-
-import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
 import { NavBarProfessor } from "../../navBarProfessor.js"
 import { getOnBackQuizzesById } from "../../../../scripts/fetchDbFunctions.js"
@@ -53,10 +50,6 @@ function createFormLayout(){
     form.classList.add('register-form')
     return form
 }
-
-
-await checkIfValidToken();
-await checkTypeUser('professor')
 
 function quizRegisterPage(){
     const div = AppLayout()
@@ -112,5 +105,5 @@ function quizRegisterPage(){
 }
 
 quizRegisterPage()
-
+await checkTypeUser('professor')
 formEventQuestions()

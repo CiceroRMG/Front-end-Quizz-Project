@@ -13,6 +13,7 @@ import { InformationsBox } from "../../../components/informations/informations.j
 import { deleteQuizzById, getAllStudentsRespondedQuiz, getOnBackQuizzesById } from "../../../scripts/fetchDbFunctions.js"
 import { loader } from "../../../scripts/loader.js"
 
+const quizReq = await getOnBackQuizzesById(takeIdByParams())
 
 const header = await createHeaderObject()
 
@@ -36,9 +37,8 @@ const quizzesListItens = {
 
 const informations = await createObjectInformations()
 
-
 async function createHeaderObject(){
-    const quizReq = await getOnBackQuizzesById(takeIdByParams())
+
     let titleContent = ""
     if(quizReq.quizz.rascunho){
         titleContent = `${quizReq.quizz.titulo} (Rascunho)`
@@ -60,8 +60,6 @@ async function createHeaderObject(){
 }
 
 async function createObjectInformations(){
-    
-    const quizReq = await getOnBackQuizzesById(takeIdByParams())
 
     let array = [
         {
@@ -112,10 +110,10 @@ function createContentLayout(){
 
 async function dialogDelete() {
     let dialogData = {}
-    const quizzz = await getOnBackQuizzesById(takeIdByParams())
+    
     dialogData = {
         title: "Tem certeza?",
-        paragraph: `Tem certeza que deseja excluir "${quizzz.quizz.titulo}"? O processo não poderá ser revertido.`,
+        paragraph: `Tem certeza que deseja excluir "${quizReq.quizz.titulo}"? O processo não poderá ser revertido.`,
         dialogButtons: [
             {
                 text: "Cancelar",
@@ -131,11 +129,10 @@ async function dialogDelete() {
                 text: "Eliminar",
                 type: "destructive-sm",
                 onclick: async () => {
-                    console.log(quizzz.quizz._id);
-                    console.log(await deleteQuizzById(quizzz.quizz._id));
+                    await deleteQuizzById(quizReq.quizz._id);
                     dialog.remove()
                     localStorage.setItem('deleteToaster', 'true')
-                    window.location.href = `/pages/professor/subject/subject.html?id=${quizzz.quizz.disciplina_id._id}`
+                    window.location.href = `/pages/professor/subject/subject.html?id=${quizReq.quizz.disciplina_id._id}`
                 }
             },
         ]
@@ -185,10 +182,6 @@ async function createQuizzesItensAndDialog() {
     return array
 }
 
-
-await checkIfValidToken();
-await checkTypeUser('professor')
-
 function quizPage(){
     const div = AppLayout()
 
@@ -228,3 +221,4 @@ function quizPage(){
 }
 
 quizPage()
+await checkTypeUser('professor')
