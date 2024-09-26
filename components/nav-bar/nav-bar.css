@@ -91,8 +91,8 @@
     background: #1E1B4B;
     border: 1px solid transparent;
     color: var(--text-primary-color);
-    padding: 0.3rem 1.5rem;
-    padding-right: 2rem;
+    padding: 0.3rem 2rem;
+    padding-right: 2.5rem;
     padding-left: 0.7rem;
 }
 
@@ -101,6 +101,7 @@
     color: var(--text-primary-color);
     text-decoration: none;
     line-height: 1.2rem;
+    text-wrap: nowrap;
 }
 
 .ul ul li a:hover{
