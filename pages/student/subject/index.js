@@ -100,12 +100,7 @@ export async function createArrayObjectsOfSubjectQuizzes(){
     return array
 }
 
-
-await checkIfValidToken();
-await checkTypeUser('aluno')
-
-
-function page(){
+async function page(){
     const div = AppLayout()
 
     const itemNavArray = NavBarStudents.querySelectorAll('.nav-item')
@@ -132,6 +127,7 @@ function page(){
     document.body.append(div)
 
     loader()
+    await checkTypeUser('aluno')
 }
 
-page()
+await page()

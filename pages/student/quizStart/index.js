@@ -213,11 +213,6 @@ async function verifyDate() {
     return true
 }
 
-
-await checkIfValidToken();
-await checkTypeUser('aluno')
-await checkUserAttemptsAndDate()
-
 async function quizStartPage(){
     const div = AppLayout()
 
@@ -278,6 +273,8 @@ async function quizStartPage(){
     document.body.append(div)
     
     loader()
+    await checkTypeUser('aluno')
+    await checkUserAttemptsAndDate()
     await formEventStudentQuiz()
 }
 

@@ -156,11 +156,6 @@ async function checkIfQuizIsToStudent(){
     }
 }
 
-
-await checkIfValidToken();
-await checkTypeUser('aluno')
-await checkIfQuizIsToStudent()
-
 async function quizStartPage(){
     const div = AppLayout()
 
@@ -226,6 +221,8 @@ async function quizStartPage(){
     document.body.append(div)
 
     loader()
+    await checkTypeUser('aluno')
+    await checkIfQuizIsToStudent()
 }
 
 await quizStartPage()

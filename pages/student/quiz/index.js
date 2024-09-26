@@ -228,10 +228,6 @@ async function verifyDate() {
     return true
 }
 
-
-await checkIfValidToken();
-await checkTypeUser('aluno')
-
 async function quizPage(){
     const div = AppLayout()
 
@@ -261,6 +257,7 @@ async function quizPage(){
     document.body.append(div)
 
     loader()
+    await checkTypeUser('aluno')
 }
 
-quizPage()
+await quizPage()
