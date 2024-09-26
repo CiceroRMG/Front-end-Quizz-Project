@@ -46,6 +46,8 @@ document.addEventListener('selectTime', (event) => {
 
 let action = ""
 
+let loader = document.querySelector('.div-load-req');
+
 export async function formEventQuizEdit(){
 
     const form = document.querySelector(".register-form")
@@ -62,6 +64,7 @@ export async function formEventQuizEdit(){
 
     form.addEventListener('submit', async (event)=>{
         event.preventDefault()
+        loader.style.display = 'flex';
 
         let req = {}
     
@@ -78,10 +81,12 @@ export async function formEventQuizEdit(){
             !validateFinishDate(inputFinishDate.value, inputStartDate.value)
         ) {
             action = "";
+            loader.style.display = 'none';
             return console.log('Algum dado invalido')
         }
 
         if(!selectedSubjectValue || !quizTypeValue || !maxTimeValue){
+            loader.style.display = 'none';
             return document.body.append(Toaster(missingToaster))
         }
 
@@ -103,19 +108,23 @@ export async function formEventQuizEdit(){
 
         if(!registerQuizReq){
             action = ""
+            loader.style.display = 'none';
             return console.log('Algo deu errado na criação do quiz')
         }        
         
         if (registerQuizReq.status === 200){
             if(action === "register"){
+                loader.style.display = 'none';
                 window.location.href = `/pages/professor/quizEdit/questionsEdit/questionsEdit.html?id=${quizz._id}`
             }
             if(action === "save"){
+                loader.style.display = 'none';
                 localStorage.setItem('saveToaster', 'true')
                  window.location.href = `/pages/professor/subject/subject.html?id=${quizz.disciplina_id}`
             }
             
         } else {
+            loader.style.display = 'none';
             return document.body.append(Toaster(errorToaster))
         }
     

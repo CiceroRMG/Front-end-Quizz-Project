@@ -42,6 +42,8 @@ document.addEventListener('selectTime', (event) => {
     
 });
 
+let loader = document.querySelector('.div-load-req');
+
 let action = ""
 
 export async function formEventQuiz(){
@@ -60,6 +62,7 @@ export async function formEventQuiz(){
 
     form.addEventListener('submit', async (event)=>{
         event.preventDefault()
+        loader.style.display = 'flex';
 
         let req = {}
     
@@ -75,10 +78,12 @@ export async function formEventQuiz(){
             !validateFinishDate(inputFinishDate.value, inputStartDate.value)
         ) {
             action = "";
+            loader.style.display = 'none';
             return console.log('Algum dado invalido')
         }
 
         if(!selectedSubjectValue || !quizTypeValue || !maxTimeValue){
+            loader.style.display = 'none';
             return document.body.append(Toaster(missingToaster))
         }
 
@@ -99,19 +104,23 @@ export async function formEventQuiz(){
         
         if(!registerQuizReq){
             action = ""
+            loader.style.display = 'none';
             return console.log('Algo deu errado na criação do quiz')
         }        
 
         
         if (registerQuizReq.status === 201){
             if(action === "register"){
+                loader.style.display = 'none';
                 window.location.href = `/pages/professor/quizzRegister/questionsRegister/questionsRegister.html?id=${quizzId}`
             }
             if(action === "save"){
+                loader.style.display = 'none';
                 localStorage.setItem('saveToaster', 'true')
                 window.location.href = `/pages/professor/subject/subject.html?id=${registerQuizReq.data.response.disciplina_id}`
             }
         } else {
+            loader.style.display = 'none';
             return document.body.append(Toaster(errorToaster))
         }
     

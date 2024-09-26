@@ -30,6 +30,8 @@ let action = ""
 
 let perguntasArray = []
 
+let loader = document.querySelector('.div-load-req');
+
 export async function formEventQuestions(){
 
     const form = document.querySelector(".register-form")
@@ -46,6 +48,7 @@ export async function formEventQuestions(){
 
     form.addEventListener('submit', async (event)=>{
         event.preventDefault()
+        loader.style.display = 'flex';
 
         perguntasArray = []
 
@@ -65,6 +68,7 @@ export async function formEventQuestions(){
             
             if(perguntasArray.length !== 10){
                 perguntasArray = []
+                loader.style.display = 'none';
                 return document.body.append(Toaster(missingToaster))
             }
             req = {
@@ -74,6 +78,7 @@ export async function formEventQuestions(){
         }
         if(action === "save"){
             if(perguntasArray.length < 1){
+                loader.style.display = 'none';
                 return document.body.append(Toaster(rascunhoErrorToaster))
             }
             req = {
@@ -87,6 +92,7 @@ export async function formEventQuestions(){
         
 
         if(!registerQuestionsOnQuizz){
+            loader.style.display = 'none';
             action = ""
             return console.log('Algo deu errado na criação das perguntas')
         }        
@@ -95,12 +101,15 @@ export async function formEventQuestions(){
             const disciplinaOfQuiz = await getOnBackQuizzesById(takeIdByParams())
             if(action === "save"){
                 localStorage.setItem("saveToaster", "true")
+                loader.style.display = 'none';
                 return window.location.href = `/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
             }
+            loader.style.display = 'none';
             localStorage.setItem("registerToaster", "true")
             return window.location.href = `/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
             
         } else {
+            loader.style.display = 'none';
             return document.body.append(Toaster(errorToaster))
         }
 
@@ -120,6 +129,7 @@ function takeInputsValueAndCreateObjectQuestion(id){
     if(!pergunta.value){
         pergunta.style.outline = "1px solid #6366F1"
         pergunta.addEventListener('focus', removeOutlines);
+        loader.style.display = 'none';
         return false
     }
 
@@ -127,6 +137,7 @@ function takeInputsValueAndCreateObjectQuestion(id){
     if(!corretaInput.value){
         corretaInput.style.outline = "1px solid #6366F1"
         corretaInput.addEventListener('focus', removeOutlines);
+        loader.style.display = 'none';
         return false
     }  
     const corretaObject = {
@@ -139,6 +150,7 @@ function takeInputsValueAndCreateObjectQuestion(id){
         const incorretoInput = question.querySelector(`.incorrectInput${num}`)
         if(!incorretoInput.value){
             incorretoInput.style.outline = "1px solid #6366F1"
+            loader.style.display = 'none';
             incorretoInput.addEventListener('focus', removeOutlines);
             return false
         }
