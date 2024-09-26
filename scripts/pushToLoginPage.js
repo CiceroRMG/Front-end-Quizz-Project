@@ -14,7 +14,6 @@ export async function checkIfValidToken(){
     const whateverReq = await getOnBackForTestIfTokenIsValid(token)
 
     if (whateverReq.status === 401){
-        console.log("token expirado: tentando entrar na função do refreshtoken")
         const success = await tryMakeANewTokenIfUserHaveARefreshToken()
         if(success){
             console.log("Deu sucesso na resposta do refresh token")

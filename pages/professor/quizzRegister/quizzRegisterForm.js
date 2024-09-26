@@ -111,13 +111,15 @@ export async function formEventQuiz(){
         
         if (registerQuizReq.status === 201){
             if(action === "register"){
-                loader.style.display = 'none';
                 window.location.href = `/pages/professor/quizzRegister/questionsRegister/questionsRegister.html?id=${quizzId}`
+                loader.style.display = 'none';
+                return
             }
             if(action === "save"){
-                loader.style.display = 'none';
                 localStorage.setItem('saveToaster', 'true')
                 window.location.href = `/pages/professor/subject/subject.html?id=${registerQuizReq.data.response.disciplina_id}`
+                loader.style.display = 'none';
+                return
             }
         } else {
             loader.style.display = 'none';

@@ -106,13 +106,15 @@ export async function formEventQuestionsEdit(){
         if (registerQuestionsOnQuizz.status === 200){
             const disciplinaOfQuiz = await getOnBackQuizzesById(takeIdByParams())
             if(action === "save"){
-                loader.style.display = 'none';
                 localStorage.setItem("saveToaster", "true")
-                return window.location.href = `/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
+                window.location.href = `/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
+                loader.style.display = 'none';
+                return
             }
-            loader.style.display = 'none';
             localStorage.setItem("registerToaster", "true")
-            return window.location.href = `/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
+            window.location.href = `/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
+            loader.style.display = 'none';
+            return
             
         } else {
             loader.style.display = 'none';

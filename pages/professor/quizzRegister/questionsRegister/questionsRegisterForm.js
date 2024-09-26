@@ -101,12 +101,14 @@ export async function formEventQuestions(){
             const disciplinaOfQuiz = await getOnBackQuizzesById(takeIdByParams())
             if(action === "save"){
                 localStorage.setItem("saveToaster", "true")
+                window.location.href = `/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
                 loader.style.display = 'none';
-                return window.location.href = `/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
+                return
             }
-            loader.style.display = 'none';
             localStorage.setItem("registerToaster", "true")
-            return window.location.href = `/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
+            window.location.href = `/pages/professor/subject/subject.html?id=${disciplinaOfQuiz.quizz.disciplina_id._id}`
+            loader.style.display = 'none';
+            return
             
         } else {
             loader.style.display = 'none';

@@ -114,13 +114,13 @@ export async function formEventQuizEdit(){
         
         if (registerQuizReq.status === 200){
             if(action === "register"){
-                loader.style.display = 'none';
                 window.location.href = `/pages/professor/quizEdit/questionsEdit/questionsEdit.html?id=${quizz._id}`
+                loader.style.display = 'none';
             }
             if(action === "save"){
-                loader.style.display = 'none';
                 localStorage.setItem('saveToaster', 'true')
-                 window.location.href = `/pages/professor/subject/subject.html?id=${quizz.disciplina_id}`
+                window.location.href = `/pages/professor/subject/subject.html?id=${quizz.disciplina_id}`
+                loader.style.display = 'none';
             }
             
         } else {
