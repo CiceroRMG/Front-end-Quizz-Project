@@ -6,9 +6,10 @@ function noRegister(){
     div.classList.add('animate-in-login')
 }
 
+export const allStudents = await getAllStudents()
+
 export async function makeArrayRowsWithStudentsData(){
     
-    const allStudents = await getAllStudents()
     if(!allStudents.alunos){
        return console.log("Não possui dados");
     }
@@ -69,7 +70,6 @@ export async function makeArrayRowsWithStudentsData(){
 }
 
 export async function counterNumberOfStudentsRegisters(){
-    const allStudents = await getAllStudents()
     const length = allStudents.alunos ? allStudents.alunos.length : 0
 
     return length

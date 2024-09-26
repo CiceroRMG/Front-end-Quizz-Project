@@ -57,12 +57,6 @@ function createFormLayout(){
     return form
 }
 
-
-
-await checkIfValidToken();
-await checkTypeAdminAndProfessor('admin', 'professor')
-
-
 async function quizRegisterPage(){
     const div = AppLayout()
 
@@ -113,3 +107,4 @@ async function quizRegisterPage(){
 }
 
 quizRegisterPage()
+await checkTypeAdminAndProfessor('admin', 'professor')

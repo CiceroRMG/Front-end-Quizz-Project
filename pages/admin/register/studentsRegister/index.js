@@ -98,10 +98,6 @@ async function createSubjectOptions(){
     return array
 }
 
-
-await checkIfValidToken();
-await checkTypeUser('admin')
-
 function studentsRegisterPage(){
     const div = AppLayout()
 
@@ -148,6 +144,8 @@ function studentsRegisterPage(){
 }
 
 studentsRegisterPage()
+
+await checkTypeUser('admin')
 
 formEventStudents()
 

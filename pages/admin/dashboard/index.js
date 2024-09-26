@@ -5,7 +5,6 @@ import { MainLayout } from "../../../components/mainLayout/mainLayout.js"
 import { checkTypeUser } from "../../../scripts/checkTypeUser.js"
 import { based_url } from "../../../scripts/config.js"
 import { loader } from "../../../scripts/loader.js"
-import { checkIfValidToken } from "../../../scripts/pushToLoginPage.js"
 import { NavBarAdmin } from "../navBarAdm.js"
 
 
@@ -74,12 +73,6 @@ const contentAll = {
     itens: itens
 }
 
-await checkIfValidToken();
-
-if(await checkTypeUser('admin')){
-    page()
-}
-
 function page(){
     const div = AppLayout()
 
@@ -97,3 +90,6 @@ function page(){
 
     loader()
 }
+
+page()
+await checkTypeUser('admin')

@@ -6,20 +6,15 @@ import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 import { Table } from "../../../../components/table/table.js"
 import { Toaster } from "../../../../components/toaster/toaster.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
-import { getAllStudents } from "../../../../scripts/fetchDbFunctions.js"
 import { loader } from "../../../../scripts/loader.js"
-import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
-import { studentRegisterBtn, studentsHeader, tableDataStudents } from "./studentsLogic.js"
+import { allStudents, studentRegisterBtn, studentsHeader, tableDataStudents } from "./studentsLogic.js"
 
 const successToaster = {
     title: "Sucesso!",
     image: "/components/toaster/img/checkCircle.svg",
     subtitle: "Sucesso na edição do aluno.",
 }
-
-await checkIfValidToken();
-await checkTypeUser('admin')
 
 async function studentsPanelPage(){
     const div = AppLayout()
@@ -43,7 +38,6 @@ async function studentsPanelPage(){
     const table = Table(tableDataStudents)
     main.append(table)
 
-    const allStudents = await getAllStudents()
     const emptyDiv = document.createElement('div')
     emptyDiv.style.height = "100dvh"
     emptyDiv.style.display = "none"
@@ -66,5 +60,5 @@ async function studentsPanelPage(){
     loader()
 }
 
-
 await studentsPanelPage()
+await checkTypeUser('admin')

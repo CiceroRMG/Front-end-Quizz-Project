@@ -6,22 +6,15 @@ import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 import { Table } from "../../../../components/table/table.js"
 import { Toaster } from "../../../../components/toaster/toaster.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
-import { getAllDisciplinasIfProfessorName } from "../../../../scripts/fetchDbFunctions.js"
 import { loader } from "../../../../scripts/loader.js"
-import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
-import { tableAnimation } from "../../tableAnimation.js"
-import {subjectRegisterBtn, subjectsHeader,tableDataSubjects} from "./subjectsLogic.js"
+import {allSubjects, subjectRegisterBtn, subjectsHeader,tableDataSubjects} from "./subjectsLogic.js"
 
 const successToaster = {
     title: "Sucesso!",
     image: "/components/toaster/img/checkCircle.svg",
     subtitle: "Sucesso na edição da disciplina.",
 }
-
-await checkIfValidToken();
-await checkTypeUser('admin')
-
 
 async function subjectsPanelPage(){
     const div = AppLayout()
@@ -45,7 +38,6 @@ async function subjectsPanelPage(){
     const table = Table(tableDataSubjects)
     main.append(table)
 
-    const allSubjects = await getAllDisciplinasIfProfessorName()
     const emptyDiv = document.createElement('div')
     emptyDiv.classList.add('animate-in-left')
     emptyDiv.style.height = "100dvh"
@@ -69,3 +61,4 @@ async function subjectsPanelPage(){
 }
 
 await subjectsPanelPage()
+await checkTypeUser('admin')

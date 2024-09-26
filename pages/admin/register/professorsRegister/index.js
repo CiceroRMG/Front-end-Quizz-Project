@@ -100,11 +100,6 @@ async function createSubjectOptions(){
     return array
 }
 
-
-await checkIfValidToken();
-await checkTypeUser('admin')
-
-
 function professorsRegisterPage(){
     const div = AppLayout()
 
@@ -151,6 +146,8 @@ function professorsRegisterPage(){
 }
 
 professorsRegisterPage()
+
+await checkTypeUser('admin')
 
 formEventProfessors()
 

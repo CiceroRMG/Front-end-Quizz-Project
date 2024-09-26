@@ -137,11 +137,6 @@ async function preSelectedValues() {
 }
 
 
-
-await checkIfValidToken();
-await checkTypeUser('admin')
-
-
 function studentsEditPage(){
     const div = AppLayout()
 
@@ -187,6 +182,8 @@ function studentsEditPage(){
 }
 
 studentsEditPage()
+
+await checkTypeUser('admin')
 
 formEditProfessors()
 

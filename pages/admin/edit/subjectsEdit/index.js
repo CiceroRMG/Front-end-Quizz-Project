@@ -17,6 +17,7 @@ import { Empty } from "../../../../components/empty/empty.js"
 import { Toaster } from "../../../../components/toaster/toaster.js"
 import { loader } from "../../../../scripts/loader.js"
 
+const subjectReq = await getOnBackDisciplinaById(takeIdByParams())
 
 const subjectsHeader = {
     title: "Edição da Disciplina",
@@ -171,7 +172,6 @@ async function createProfessorOptions(){
 }
 
 async function preSelectedProfessorValues() {
-    const subjectReq = await getOnBackDisciplinaById(takeIdByParams())
     const subject = subjectReq.disciplina
     
     if(subject.prof_id){
@@ -194,7 +194,6 @@ async function preSelectedProfessorValues() {
 }
 
 async function preSelectedSemesterValues() {
-    const subjectReq = await getOnBackDisciplinaById(takeIdByParams())
     const subject = subjectReq.disciplina
     
     let professorsValue = []
@@ -219,11 +218,9 @@ async function preSelectedSemesterValues() {
 async function createQuizzesItensAndDialog() {
     let array = []
     let dialogData = {}
-
-    const subjectQuizzes = await getOnBackDisciplinaById(takeIdByParams())
     
-    if(subjectQuizzes.disciplina.quizes.length > 0){
-        for(const quizz of subjectQuizzes.disciplina.quizes) {
+    if(subjectReq.disciplina.quizes.length > 0){
+        for(const quizz of subjectReq.disciplina.quizes) {
             
             const object = {
                 contents: [
@@ -288,11 +285,6 @@ async function createQuizzesItensAndDialog() {
 
     return array
 }
-
-
-await checkIfValidToken();
-await checkTypeUser('admin')
-
 
 function subjectsEditPage(){
     const div = AppLayout()
@@ -365,6 +357,8 @@ function subjectsEditPage(){
 }
 
 subjectsEditPage()
+
+await checkTypeUser('admin')
 
 formEditEvent()
 

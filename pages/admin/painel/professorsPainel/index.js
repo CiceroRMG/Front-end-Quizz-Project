@@ -6,21 +6,16 @@ import { MainLayout } from "../../../../components/mainLayout/mainLayout.js"
 import { Table } from "../../../../components/table/table.js"
 import { Toaster } from "../../../../components/toaster/toaster.js"
 import { checkTypeUser } from "../../../../scripts/checkTypeUser.js"
-import { getAllStudents, getOnBackAllProfessor } from "../../../../scripts/fetchDbFunctions.js"
 import { loader } from "../../../../scripts/loader.js"
-import { checkIfValidToken } from "../../../../scripts/pushToLoginPage.js"
 import { NavBarAdmin } from "../../navBarAdm.js"
-import { tableAnimation } from "../../tableAnimation.js"
 import { professorsHeader, tableDataProfessors, professorsRegisterBtn } from "./professorsLogic.js"
+import { allProfessors } from "./professorsLogic.js"
 
 const successToaster = {
     title: "Sucesso!",
     image: "/components/toaster/img/checkCircle.svg",
     subtitle: "Sucesso na edição do professor.",
 }
-
-await checkIfValidToken();
-await checkTypeUser('admin')
 
 async function professorPanelPage(){
     const div = AppLayout()
@@ -44,7 +39,6 @@ async function professorPanelPage(){
     const table = Table(tableDataProfessors)
     main.append(table)
 
-    const allProfessors = await getOnBackAllProfessor()
     const emptyDiv = document.createElement('div')
     emptyDiv.style.height = "100dvh"
     emptyDiv.style.display = "none"
@@ -67,5 +61,5 @@ async function professorPanelPage(){
     loader()
 }
 
-
 await professorPanelPage()
+await checkTypeUser('admin')

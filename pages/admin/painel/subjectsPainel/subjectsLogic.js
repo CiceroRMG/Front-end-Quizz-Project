@@ -7,9 +7,9 @@ function noRegister(){
     div.classList.add('animate-in-login')
 }
 
+export const allSubjects = await getAllDisciplinasIfProfessorName()
+
 export async function makeArrayRowsWithSubjectsData(){
-    
-    const allSubjects = await getAllDisciplinasIfProfessorName()
     
     if(!allSubjects.disciplinas){
         const array = []
@@ -73,7 +73,6 @@ export async function makeArrayRowsWithSubjectsData(){
 }
 
 export async function counterNumberOfSubjectRegisters(){
-    const allSubjects = await getAllDisciplinasIfProfessorName()
     const length = allSubjects.disciplinas ? allSubjects.disciplinas.length : 0
 
     return length
