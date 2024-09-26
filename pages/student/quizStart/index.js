@@ -89,11 +89,10 @@ function sideCardArray(){
 }
 
 async function createHeaderObject(){
-    const quizReq = await getOnBackQuizzesById(takeIdByParams())
 
     const object = {
-        title: quizReq.quizz.titulo,
-        subtitle: quizReq.quizz.disciplina_id.nome
+        title: req.quizz.titulo,
+        subtitle: req.quizz.disciplina_id.nome
     }
 
     return object

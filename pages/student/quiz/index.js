@@ -62,7 +62,6 @@ function sideCardAttemptsItens(){
 }
 
 async function createHeaderObject(){
-    const quizReq = await getOnBackQuizzesById(takeIdByParams())
     let titleContent = ""
     if(quizReq.quizz.rascunho){
         titleContent = `${quizReq.quizz.titulo} (Rascunho)`
@@ -84,8 +83,6 @@ async function createHeaderObject(){
 }
 
 async function createObjectInformations(){
-    
-    const quizReq = await getOnBackQuizzesById(takeIdByParams())
     let object = {}
 
     let array = [
@@ -184,8 +181,7 @@ async function dialogStart() {
                     if(!verify){
                         return document.body.append(Toaster(awnserToaster))
                     }
-
-                    window.open(`/pages/student/quizStart/quizStart.html?id=${quizId}`)
+                    window.location.href = `/pages/student/quizStart/quizStart.html?id=${quizId}`
                 }
             },
         ]
