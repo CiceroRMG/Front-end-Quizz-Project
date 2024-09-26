@@ -11,13 +11,14 @@ async function fetchWithToken(url, options = {}) {
     }
     options.headers['authorization'] = `${token}`;
 
-    const response = await fetch(url, options);
+    let response = await fetch(url, options);
     if(response.status === 401){
         const tokenIsValid = await checkIfValidToken();
         if (!tokenIsValid) {
             console.log("Token e refreshtoken inválido e a atualização deles falhou também");
             return null;
         }
+        response = await fetch(url, options);
     }
 
     return response;
