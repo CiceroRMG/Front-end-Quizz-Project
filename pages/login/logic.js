@@ -37,7 +37,7 @@ export async function authenticationLogin(event) {
     event.preventDefault()
     toogleLoginData.correctData()
 
-    const loginValue = document.querySelector('#login').value
+    const loginValue = document.querySelector('#login').value.toLowerCase()
     const passwordValue = document.querySelector('#password').value
 
     let email, matricula, sendToBackForAuthentication;
