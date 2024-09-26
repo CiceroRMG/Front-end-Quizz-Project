@@ -93,7 +93,8 @@
     color: var(--text-primary-color);
     padding: 0.3rem 2rem;
     padding-right: 2.5rem;
-    padding-left: 0.7rem;
+    padding-left: 0.3rem;
+    width: 10rem;
 }
 
 .ul ul li a{
@@ -101,7 +102,7 @@
     color: var(--text-primary-color);
     text-decoration: none;
     line-height: 1.2rem;
-    text-wrap: nowrap;
+    width: 100%
 }
 
 .ul ul li a:hover{
