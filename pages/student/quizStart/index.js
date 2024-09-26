@@ -12,9 +12,9 @@ import { Dialog } from "../../../components/dialog/dialog.js"
 import { formEventStudentQuiz, successSubmit } from "./quizStartForm.js"
 import { loader } from "../../../scripts/loader.js"
 
-const header = await createHeaderObject()
-
 const req = await getOnBackQuizzesById(takeIdByParams())
+
+const header = await createHeaderObject()
 
 const timerData = {
     time: req.quizz.tempo, 
