@@ -48,7 +48,7 @@ export async function formEventStudents(){
         // validando se tem professor ou não
         req = {
             nome: inputStudentName.value,
-            matricula: inputRegister.value,
+            matricula: String(inputRegister.value),
             email: inputEmail.value,
             senha: "12345",
             tipo: "aluno"

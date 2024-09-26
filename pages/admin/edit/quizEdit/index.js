@@ -154,14 +154,8 @@ const orientations = {
     value: quizInfos.mensagem
 }
 
-const saveBtn = {
-    text: "Guardar Rascunho", 
-    type: "outline-md",
-    btnType: "submit",
-}
-
 const submitBtn = {
-    text: "Criar Perguntas", 
+    text: "Ver Perguntas", 
     type: "primary-md",
     btnType: "submit"
 }

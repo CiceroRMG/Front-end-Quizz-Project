@@ -17,7 +17,7 @@ import { loader } from "../../../scripts/loader.js"
 const header = await createHeaderObject()
 
 const deleteBtn = {
-    text: "Eliminar Quizz",
+    text: "Eliminar Quiz",
     type: "outline-destructive-md",
     btnType: "button",
     onclick: async()=>{await dialogDelete()}

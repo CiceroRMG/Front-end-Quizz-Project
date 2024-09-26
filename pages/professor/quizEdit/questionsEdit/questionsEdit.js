@@ -183,13 +183,19 @@ function putInputsValue(id, arrayIndex, req){
     const question = document.querySelector(id)
 
     const corretaInput = question.querySelector('.correctInput')
-    const corretaInputSelected = quizQuestions.alternativas[0]
-    corretaInput.value = corretaInputSelected.conteudo
-    adjustTextareaHeight(corretaInput)
-
+    let arrayOfWrongsQuestions = []
+    for (const alternativa of quizQuestions.alternativas){
+        if (alternativa.correta) {
+            corretaInput.value = alternativa.conteudo
+            adjustTextareaHeight(corretaInput)  
+        } else{
+            arrayOfWrongsQuestions.push(alternativa)
+        }
+    }
+    
     for(let num = 1; num <=3; num++){
         const incorretoInput = question.querySelector(`.incorrectInput${num}`)
-        const incorretoInputSelected = quizQuestions.alternativas[num]
+        const incorretoInputSelected = arrayOfWrongsQuestions[num - 1]
         incorretoInput.value = incorretoInputSelected.conteudo
         adjustTextareaHeight(incorretoInput)
     }

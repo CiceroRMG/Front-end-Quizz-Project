@@ -60,7 +60,7 @@ const selectSubjects = {
 }
 
 const submitBtn = {
-    text: "Cadastrar", 
+    text: "Editar", 
     type: "primary-l",
 }
 

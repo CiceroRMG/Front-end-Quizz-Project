@@ -22,7 +22,7 @@ const arrayItensOfNav = {
         },
         {
             img: "/components/nav-bar/img/create.svg",
-            text: "Criar Quizz",
+            text: "Criar Quiz",
             as: "a",
             link: "/pages/professor/quizzRegister/quizzRegister.html",
         },
