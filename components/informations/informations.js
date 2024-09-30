@@ -32,7 +32,9 @@ export function InformationsBox({header = null, informations, btn = null}){
             img: btn.img,
             onclick: btn.onclick,
             text: btn.text,
-            type: btn.type
+            type: btn.type,
+            btnType: btn.btnType,
+            disabled: btn.disabled
         })
         btnDiv.append(infoBtn)
         informationBox.append(btnDiv)
