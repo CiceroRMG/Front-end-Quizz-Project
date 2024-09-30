@@ -116,6 +116,7 @@ async function createObjectInformations(){
             btn: {
                 text: !verifyStudentAttempts ? "Tentativas esgotadas" : "Expirado", 
                 type: "primary-md",
+                disabled: true
             }
         }
     } else{
