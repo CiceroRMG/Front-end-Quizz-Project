@@ -10,6 +10,27 @@ const errorToaster = {
     style: "error"
 }
 
+let isSubmitting = false; 
+
+window.addEventListener('beforeunload', function (event) {
+    if (isSubmitting) {
+        return; 
+    }
+    const message = "Tem certeza que deseja sair da página? O progresso do seu quiz será perdido.";
+    event.returnValue = message;
+    return message;
+});
+
+window.addEventListener('popstate', function (event) {
+    if (isSubmitting) {
+        return; 
+    }
+    const leavePage = confirm("Tem certeza que deseja voltar? O progresso do seu quiz será perdido.");
+    if (!leavePage) {
+        history.pushState(null, null, window.location.href);
+    }
+});
+
 export async function formEventStudentQuiz(){
 
     const form = document.querySelector(".main-content")
@@ -56,6 +77,7 @@ export async function formEventStudentQuiz(){
 
         if (registerAwnsersStudent.status === 201){
                 localStorage.removeItem(quiz.quizz._id)
+                isSubmitting = true
                 await successSubmit(registerAwnsersStudent.data.respostasRes)
                 return
                 
