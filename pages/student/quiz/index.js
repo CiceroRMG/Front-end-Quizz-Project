@@ -114,7 +114,7 @@ async function createObjectInformations(){
             }, 
             informations: array,
             btn: {
-                text: !verifyStudentAttempts ? "Tentativas esgotadas" : "Começar", 
+                text: !verifyStudentAttempts ? "Tentativas esgotadas" : "Expirado", 
                 type: "primary-md",
             }
         }
