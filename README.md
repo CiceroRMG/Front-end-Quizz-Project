@@ -1,5 +1,13 @@
 ### Front-End Introduction
 
+[You can access the deployed application](https://polvoquiz.netlify.app/pages/login/login.html)
+
+Professor Login: pedro@gmail.com
+Password: 12345
+
+Student Login: jonathan@gmail.com
+Password: 12345
+
 ### About the Project
 
 This project was developed using the concepts of React, but without using the React library (lib). Instead, I used pure JavaScript to build the entire frontend of the software. The goal of this approach was to challenge myself by building the app without frameworks or libraries, in order to deeply understand how a framework simplifies what can be done with pure language.
